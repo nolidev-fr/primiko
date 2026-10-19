@@ -218,8 +218,12 @@
 					self.next();
 				}
 			} );
+			this.form.addEventListener( 'pointerdown', function () {
+				self.pointerAt = Date.now();
+			} );
 			this.form.addEventListener( 'change', function ( event ) {
 				self.changed( event.target );
+				self.autoAdvance( event.target );
 			} );
 			this.form.addEventListener( 'input', function ( event ) {
 				self.changed( event.target );
@@ -600,6 +604,64 @@
 			) {
 				this.clearError( wrapper.getAttribute( 'data-field' ) );
 			}
+		},
+
+		/**
+		 * Goes to the next step once a step made only of single choices is
+		 * answered.
+		 *
+		 * Only after a click or a tap: with the keyboard, the arrow keys
+		 * change the checked radio at each press, and moving on then would
+		 * stop the visitor from going through the answers. The short delay
+		 * lets the visitor see the answer before the step changes.
+		 *
+		 * @param {HTMLElement} target Element that changed.
+		 */
+		autoAdvance( target ) {
+			const self = this;
+			const step = this.current;
+
+			window.clearTimeout( this.advanceTimer );
+
+			if (
+				'radio' !== target.type ||
+				Date.now() - ( this.pointerAt || 0 ) > 1000 ||
+				! this.singleChoicesDone()
+			) {
+				return;
+			}
+
+			this.advanceTimer = window.setTimeout( function () {
+				if ( step === self.current && self.singleChoicesDone() ) {
+					self.next();
+				}
+			}, 350 );
+		},
+
+		/**
+		 * Tells whether the current step only holds single choice questions,
+		 * all answered, and is not the last step.
+		 *
+		 * @return {boolean} Whether the step can move on by itself.
+		 */
+		singleChoicesDone() {
+			const self = this;
+			const fields = this.state.fields.filter( function ( id ) {
+				return self.config.fields[ id ].step === self.current;
+			} );
+
+			return (
+				! this.isLast() &&
+				fields.length > 0 &&
+				fields.every( function ( id ) {
+					const field = self.config.fields[ id ];
+					const single =
+						'yesno' === field.type ||
+						( 'choice' === field.type && ! field.multiple );
+
+					return single && values( self.read( id ) ).length > 0;
+				} )
+			);
 		},
 
 		/**
