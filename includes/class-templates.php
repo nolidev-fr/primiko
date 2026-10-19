@@ -587,7 +587,7 @@ final class Templates {
 		_doing_it_wrong(
 			__METHOD__,
 			esc_html( sprintf( 'Quote template %1$s skipped: %2$s.', basename( $file ), $error ) ),
-			'0.1.0'
+			'1.0.0'
 		);
 	}
 }

@@ -4,7 +4,7 @@ Tags: quote, request a quote, multi-step form, contractor, tradesman
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,8 +124,8 @@ Usually not. The form stops most spam on its own: a hidden field robots fill in,
 
 == Changelog ==
 
-= 0.1.0 =
-* First version: roofer template, multi-step visitor form, photos, saved requests and emails.
+= 1.0.0 =
+* First version: multi-step visitor form, photos, saved requests and emails.
 * Questions and messages editor on the form screen.
 * Twenty trade and professional templates, with a searchable trade picker.
 * Retention period, personal data export and erase, request list with status views.
