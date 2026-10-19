@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "id": "electrician",
+  "title": "Electrician",
+  "description": "Breakdowns, renovation of installations, new builds, sockets and lighting, fuse boards, electric vehicle charging points and electric heating.",
+  "category": "building",
+  "keywords": "electricity, wiring, fuse board, sockets, lighting, breakdown, charging point, electric car, heating",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your project",
+      "fields": [
+        {
+          "id": "service",
+          "type": "choice",
+          "label": "What do you need?",
+          "required": true,
+          "options": [
+            { "value": "breakdown", "label": "A breakdown or a breaker that keeps tripping" },
+            { "value": "renovation", "label": "Renovating an old installation" },
+            { "value": "new_build", "label": "Wiring a new build or an extension" },
+            { "value": "points", "label": "Adding sockets, switches or lights" },
+            { "value": "board", "label": "Replacing the fuse board" },
+            { "value": "ev_charger", "label": "Electric vehicle charging point" },
+            { "value": "heating", "label": "Electric heating" },
+            { "value": "inspection", "label": "A safety check before a sale or a rental" },
+            { "value": "other", "label": "Something else" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "A few details",
+      "description": "Answer what you can. If you are not sure, choose \"I don't know\".",
+      "fields": [
+        {
+          "id": "power_out",
+          "type": "yesno",
+          "label": "Is the power out right now?",
+          "required": true,
+          "show_if": { "field": "service", "equals": "breakdown" }
+        },
+        {
+          "id": "breakdown_scope",
+          "type": "choice",
+          "label": "What is affected?",
+          "show_if": { "field": "service", "equals": "breakdown" },
+          "options": [
+            { "value": "all", "label": "The whole home" },
+            { "value": "room", "label": "One room or one circuit" },
+            { "value": "appliance", "label": "One appliance" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "building_age",
+          "type": "choice",
+          "label": "Age of the building",
+          "show_if": { "field": "service", "in": [ "renovation", "board", "points", "inspection" ] },
+          "options": [
+            { "value": "recent", "label": "Less than 15 years" },
+            { "value": "middle", "label": "15 to 40 years" },
+            { "value": "old", "label": "More than 40 years" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "home_area",
+          "type": "number",
+          "label": "Area of the home",
+          "unit": "m²",
+          "min": 10,
+          "max": 2000,
+          "show_if": { "field": "service", "in": [ "renovation", "new_build", "heating", "inspection" ] }
+        },
+        {
+          "id": "rooms",
+          "type": "number",
+          "label": "Number of rooms",
+          "min": 1,
+          "max": 50,
+          "show_if": { "field": "service", "in": [ "renovation", "new_build", "heating" ] }
+        },
+        {
+          "id": "points_count",
+          "type": "text",
+          "label": "What should be added?",
+          "placeholder": "For example 4 sockets in the kitchen and 2 outdoor lights",
+          "required": true,
+          "show_if": { "field": "service", "equals": "points" }
+        },
+        {
+          "id": "parking",
+          "type": "choice",
+          "label": "Where is the car parked?",
+          "show_if": { "field": "service", "equals": "ev_charger" },
+          "options": [
+            { "value": "garage", "label": "In a garage attached to the house" },
+            { "value": "outside", "label": "Outside, on my land" },
+            { "value": "shared", "label": "In a shared car park (apartment building)" }
+          ]
+        },
+        {
+          "id": "board_distance",
+          "type": "number",
+          "label": "Approximate distance between the fuse board and the parking space",
+          "unit": "m",
+          "min": 1,
+          "max": 200,
+          "show_if": { "field": "service", "equals": "ev_charger" }
+        },
+        {
+          "id": "car_model",
+          "type": "text",
+          "label": "Car model, if you know it",
+          "show_if": { "field": "service", "equals": "ev_charger" }
+        },
+        {
+          "id": "heating_need",
+          "type": "choice",
+          "label": "What is it for?",
+          "show_if": { "field": "service", "equals": "heating" },
+          "options": [
+            { "value": "replace", "label": "Replacing old heaters" },
+            { "value": "add", "label": "Heating a room that has none" },
+            { "value": "water_heater", "label": "An electric water heater" }
+          ]
+        },
+        {
+          "id": "inspection_reason",
+          "type": "choice",
+          "label": "What is the check for?",
+          "show_if": { "field": "service", "equals": "inspection" },
+          "options": [
+            { "value": "sale", "label": "A sale" },
+            { "value": "rental", "label": "A rental" },
+            { "value": "insurance", "label": "My insurer" },
+            { "value": "peace", "label": "Peace of mind" }
+          ]
+        },
+        {
+          "id": "other_request",
+          "type": "textarea",
+          "label": "Describe what you need",
+          "required": true,
+          "show_if": { "field": "service", "equals": "other" }
+        },
+        {
+          "id": "notes",
+          "type": "textarea",
+          "label": "Anything else we should know?",
+          "placeholder": "Access, a burning smell, a question...",
+          "show_if": { "field": "service", "not_in": [ "other" ] }
+        }
+      ]
+    },
+    {
+      "id": "place",
+      "title": "Where?",
+      "fields": [
+        { "id": "site_address", "type": "address", "label": "Address", "required": true },
+        {
+          "id": "building",
+          "type": "choice",
+          "label": "Type of building",
+          "options": [
+            { "value": "house", "label": "House" },
+            { "value": "apartment", "label": "Apartment" },
+            { "value": "business", "label": "Shop, office or workshop" }
+          ]
+        },
+        {
+          "id": "customer",
+          "type": "choice",
+          "label": "You are",
+          "options": [
+            { "value": "owner", "label": "The owner" },
+            { "value": "tenant", "label": "A tenant" },
+            { "value": "business", "label": "A business" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "title": "Photos",
+      "description": "A photo of the fuse board, opened, and of the place of the work helps us prepare the quote.",
+      "fields": [
+        { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone. Do not touch anything that looks damaged.", "max": 6 }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "How soon do you need us?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible" },
+            { "value": "months", "label": "Within the next three months" },
+            { "value": "flexible", "label": "No rush, I am planning ahead" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you or visit?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will get back to you soon. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your quote request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon.\n\nHere is a copy of what you sent us."
+  }
+}

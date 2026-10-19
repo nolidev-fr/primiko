@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<ruleset name="Primiko">
+	<description>Coding standards for the Primiko plugin.</description>
+
+	<file>.</file>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/build/*</exclude-pattern>
+	<exclude-pattern>/tests/*</exclude-pattern>
+	<exclude-pattern>/dev/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+	<arg name="parallel" value="8"/>
+
+	<config name="minimum_wp_version" value="6.0"/>
+	<config name="testVersion" value="7.4-"/>
+
+	<rule ref="WordPress"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="primiko"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Generated table of the template texts: one text per entry, not aligned. -->
+	<rule ref="WordPress.Arrays.MultipleStatementAlignment">
+		<exclude-pattern>/includes/template-strings.php</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="primiko"/>
+				<element value="Primiko"/>
+				<element value="PRIMIKO"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

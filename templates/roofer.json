@@ -1,0 +1,363 @@
+{
+  "schema": 1,
+  "id": "roofer",
+  "title": "Roofer",
+  "description": "Roof repair and renovation, roof windows, roof cleaning, gutters, cladding and chimney sweeping.",
+  "category": "building",
+  "keywords": "roof, roofing, slate, tiles, zinc, roof window, Velux, gutters, cladding, chimney sweep, moss removal, leak",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your project",
+      "fields": [
+        {
+          "id": "service",
+          "type": "choice",
+          "label": "What do you need?",
+          "required": true,
+          "options": [
+            { "value": "repair", "label": "Leak or roof repair" },
+            { "value": "renovation", "label": "Roof renovation or new roof" },
+            { "value": "roof_window", "label": "Roof window (Velux or similar)" },
+            { "value": "cleaning", "label": "Roof cleaning and moss removal" },
+            { "value": "gutters", "label": "Gutters and downpipes" },
+            { "value": "cladding", "label": "Wall cladding" },
+            { "value": "chimney", "label": "Chimney sweeping" },
+            { "value": "other", "label": "Something else" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "A few details",
+      "description": "Answer what you can. If you are not sure, choose \"I don't know\": we will look on site.",
+      "fields": [
+        {
+          "id": "leak_now",
+          "type": "yesno",
+          "label": "Is water coming in right now?",
+          "required": true,
+          "show_if": { "field": "service", "equals": "repair" }
+        },
+        {
+          "id": "damage",
+          "type": "choice",
+          "label": "Where is the problem?",
+          "help": "Choose all that apply.",
+          "multiple": true,
+          "show_if": { "field": "service", "equals": "repair" },
+          "options": [
+            { "value": "covering", "label": "Missing or broken slates or tiles" },
+            { "value": "flashing", "label": "Around the chimney or a roof window" },
+            { "value": "ridge", "label": "Ridge or roof edge" },
+            { "value": "storm", "label": "Storm damage" },
+            { "value": "unknown", "label": "I don't know where it comes from" }
+          ]
+        },
+        {
+          "id": "renovation_scope",
+          "type": "choice",
+          "label": "What should be renovated?",
+          "required": true,
+          "show_if": { "field": "service", "equals": "renovation" },
+          "options": [
+            { "value": "full", "label": "The whole roof" },
+            { "value": "partial", "label": "Part of the roof" },
+            { "value": "new", "label": "A new roof (new building or extension)" }
+          ]
+        },
+        {
+          "id": "insulation",
+          "type": "yesno",
+          "label": "Would you like to add roof insulation at the same time?",
+          "show_if": { "field": "service", "equals": "renovation" }
+        },
+        {
+          "id": "covering",
+          "type": "choice",
+          "label": "What is the roof covered with?",
+          "required": true,
+          "show_if": { "field": "service", "in": [ "repair", "renovation", "roof_window", "cleaning" ] },
+          "options": [
+            { "value": "slate", "label": "Natural slate" },
+            { "value": "tiles", "label": "Clay or concrete tiles" },
+            { "value": "zinc", "label": "Zinc or metal" },
+            { "value": "fibre_cement", "label": "Fibre cement sheets" },
+            { "value": "flat", "label": "Flat roof (membrane)" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "covering_wanted",
+          "type": "choice",
+          "label": "Which covering would you like?",
+          "show_if": {
+            "all": [
+              { "field": "service", "equals": "renovation" },
+              { "field": "renovation_scope", "in": [ "full", "new" ] }
+            ]
+          },
+          "options": [
+            { "value": "same", "label": "The same as today" },
+            { "value": "slate", "label": "Natural slate" },
+            { "value": "zinc", "label": "Zinc" },
+            { "value": "tiles", "label": "Tiles" },
+            { "value": "undecided", "label": "Not decided yet, I would like advice" }
+          ]
+        },
+        {
+          "id": "roof_area",
+          "type": "number",
+          "label": "Approximate roof area",
+          "unit": "m²",
+          "min": 1,
+          "max": 5000,
+          "help": "A rough idea is enough. Leave it blank if you don't know.",
+          "show_if": { "field": "service", "in": [ "renovation", "cleaning" ] }
+        },
+        {
+          "id": "window_project",
+          "type": "choice",
+          "label": "What is it for?",
+          "required": true,
+          "show_if": { "field": "service", "equals": "roof_window" },
+          "options": [
+            { "value": "new", "label": "Fitting a new roof window" },
+            { "value": "replace", "label": "Replacing an existing roof window" },
+            { "value": "repair", "label": "A leak, a blind or a motor to repair" }
+          ]
+        },
+        {
+          "id": "window_count",
+          "type": "number",
+          "label": "How many roof windows?",
+          "min": 1,
+          "max": 50,
+          "show_if": { "field": "service", "equals": "roof_window" }
+        },
+        {
+          "id": "window_size",
+          "type": "text",
+          "label": "Size or reference of the window, if you know it",
+          "placeholder": "For example 78 x 98 cm or MK04",
+          "help": "On a Velux window, the reference is on a plate at the top of the frame, visible when the window is open.",
+          "show_if": { "field": "window_project", "in": [ "replace", "repair" ] }
+        },
+        {
+          "id": "cleaning_state",
+          "type": "choice",
+          "label": "How does the roof look?",
+          "show_if": { "field": "service", "equals": "cleaning" },
+          "options": [
+            { "value": "light", "label": "A little moss" },
+            { "value": "heavy", "label": "A lot of moss or lichen" },
+            { "value": "never", "label": "It has never been cleaned" }
+          ]
+        },
+        {
+          "id": "water_repellent",
+          "type": "yesno",
+          "label": "Would you like a water-repellent treatment after cleaning?",
+          "show_if": { "field": "service", "equals": "cleaning" }
+        },
+        {
+          "id": "gutter_work",
+          "type": "choice",
+          "label": "What needs doing?",
+          "required": true,
+          "show_if": { "field": "service", "equals": "gutters" },
+          "options": [
+            { "value": "replace", "label": "Replace gutters or downpipes" },
+            { "value": "new", "label": "Fit new gutters" },
+            { "value": "repair", "label": "Repair a leak or an overflow" },
+            { "value": "clean", "label": "Clean the gutters" }
+          ]
+        },
+        {
+          "id": "gutter_material",
+          "type": "choice",
+          "label": "Material",
+          "show_if": { "field": "service", "equals": "gutters" },
+          "options": [
+            { "value": "zinc", "label": "Zinc" },
+            { "value": "aluminium", "label": "Aluminium" },
+            { "value": "pvc", "label": "PVC" },
+            { "value": "copper", "label": "Copper" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "gutter_length",
+          "type": "number",
+          "label": "Approximate length",
+          "unit": "m",
+          "min": 1,
+          "max": 1000,
+          "show_if": { "field": "service", "equals": "gutters" }
+        },
+        {
+          "id": "cladding_material",
+          "type": "choice",
+          "label": "Which cladding?",
+          "show_if": { "field": "service", "equals": "cladding" },
+          "options": [
+            { "value": "slate", "label": "Slate" },
+            { "value": "wood", "label": "Wood" },
+            { "value": "zinc", "label": "Zinc or metal" },
+            { "value": "fibre_cement", "label": "Fibre cement" },
+            { "value": "undecided", "label": "Not decided yet, I would like advice" }
+          ]
+        },
+        {
+          "id": "cladding_area",
+          "type": "number",
+          "label": "Approximate wall area",
+          "unit": "m²",
+          "min": 1,
+          "max": 5000,
+          "show_if": { "field": "service", "equals": "cladding" }
+        },
+        {
+          "id": "chimney_appliance",
+          "type": "choice",
+          "label": "What is connected to the chimney?",
+          "help": "Choose all that apply.",
+          "required": true,
+          "multiple": true,
+          "show_if": { "field": "service", "equals": "chimney" },
+          "options": [
+            { "value": "fireplace", "label": "Open fireplace" },
+            { "value": "wood_stove", "label": "Wood stove or fireplace insert" },
+            { "value": "pellet_stove", "label": "Pellet stove" },
+            { "value": "boiler", "label": "Oil or gas boiler" }
+          ]
+        },
+        {
+          "id": "chimney_count",
+          "type": "number",
+          "label": "How many flues?",
+          "min": 1,
+          "max": 20,
+          "show_if": { "field": "service", "equals": "chimney" }
+        },
+        {
+          "id": "last_sweep",
+          "type": "choice",
+          "label": "When was it last swept?",
+          "show_if": { "field": "service", "equals": "chimney" },
+          "options": [
+            { "value": "under_year", "label": "Less than a year ago" },
+            { "value": "one_two_years", "label": "One to two years ago" },
+            { "value": "longer", "label": "Longer ago" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "building",
+          "type": "choice",
+          "label": "Type of building",
+          "show_if": { "field": "service", "not_in": [ "chimney", "other" ] },
+          "options": [
+            { "value": "house", "label": "House" },
+            { "value": "outbuilding", "label": "Extension, garage or outbuilding" },
+            { "value": "apartments", "label": "Apartment building" },
+            { "value": "business", "label": "Shop, office or farm building" }
+          ]
+        },
+        {
+          "id": "storeys",
+          "type": "choice",
+          "label": "Height of the building",
+          "help": "It tells us which scaffolding or lift to bring.",
+          "show_if": { "field": "service", "not_in": [ "chimney", "other" ] },
+          "options": [
+            { "value": "ground", "label": "Ground floor only" },
+            { "value": "one", "label": "One floor above the ground floor" },
+            { "value": "two_plus", "label": "Two floors or more" }
+          ]
+        },
+        {
+          "id": "other_request",
+          "type": "textarea",
+          "label": "Describe what you need",
+          "required": true,
+          "show_if": { "field": "service", "equals": "other" }
+        },
+        {
+          "id": "notes",
+          "type": "textarea",
+          "label": "Anything else we should know?",
+          "placeholder": "Access, a previous repair, a question...",
+          "show_if": { "field": "service", "not_in": [ "other" ] }
+        }
+      ]
+    },
+    {
+      "id": "place",
+      "title": "Where is the work?",
+      "fields": [
+        {
+          "id": "site_address",
+          "type": "address",
+          "label": "Address of the work",
+          "required": true
+        },
+        {
+          "id": "customer",
+          "type": "choice",
+          "label": "You are",
+          "options": [
+            { "value": "owner", "label": "The owner" },
+            { "value": "tenant", "label": "A tenant" },
+            { "value": "manager", "label": "A property manager or co-ownership" },
+            { "value": "business", "label": "A business" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "title": "Photos",
+      "description": "Photos help us understand the job and prepare the quote faster. A view of the whole roof and a close-up of the problem are ideal.",
+      "fields": [
+        {
+          "id": "photos",
+          "type": "photos",
+          "label": "Photos of the roof",
+          "help": "Up to 6 photos. You can take them now with your phone. No need to climb on the roof: photos from the ground or a window are fine.",
+          "max": 6
+        }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "When would you like the work done?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible" },
+            { "value": "months", "label": "Within the next three months" },
+            { "value": "flexible", "label": "No rush, I am planning ahead" }
+          ]
+        },
+        {
+          "id": "availability",
+          "type": "text",
+          "label": "When can we call you or visit?",
+          "placeholder": "For example weekdays after 5 pm",
+          "maxlength": 150
+        }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will get back to you soon. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your quote request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon to talk about your project.\n\nHere is a copy of what you sent us."
+  }
+}

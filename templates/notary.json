@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "id": "notary",
+  "title": "Notary",
+  "description": "Property sales and purchases, estates, gifts, marriage contracts, wills and company deeds.",
+  "category": "professional",
+  "keywords": "notary, property sale, purchase, deed, estate, inheritance, succession, gift, donation, marriage contract, will, civil partnership",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your request",
+      "description": "Please do not send documents through this form: we will ask for what we need.",
+      "fields": [
+        {
+          "id": "need",
+          "type": "choice",
+          "label": "What is it about?",
+          "required": true,
+          "options": [
+            { "value": "property", "label": "Buying or selling a property" },
+            { "value": "estate", "label": "An estate, after a death" },
+            { "value": "gift", "label": "A gift to a relative" },
+            { "value": "couple", "label": "Marriage contract or civil partnership" },
+            { "value": "will", "label": "A will" },
+            { "value": "company", "label": "A company (articles, sale of shares)" },
+            { "value": "lease", "label": "A commercial lease" },
+            { "value": "other", "label": "Something else" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "A few details",
+      "fields": [
+        {
+          "id": "property_role",
+          "type": "choice",
+          "label": "You are",
+          "required": true,
+          "show_if": { "field": "need", "equals": "property" },
+          "options": [
+            { "value": "buyer", "label": "Buying" },
+            { "value": "seller", "label": "Selling" },
+            { "value": "both", "label": "Selling and buying" }
+          ]
+        },
+        {
+          "id": "property_stage",
+          "type": "choice",
+          "label": "Where are you in the process?",
+          "show_if": { "field": "need", "equals": "property" },
+          "options": [
+            { "value": "looking", "label": "Still looking or about to sell" },
+            { "value": "offer", "label": "An offer has been accepted" },
+            { "value": "signed", "label": "The preliminary contract is signed" }
+          ]
+        },
+        {
+          "id": "property_type",
+          "type": "choice",
+          "label": "Type of property",
+          "show_if": { "field": "need", "in": [ "property", "gift", "estate" ] },
+          "options": [
+            { "value": "house", "label": "House" },
+            { "value": "apartment", "label": "Apartment" },
+            { "value": "land", "label": "Land" },
+            { "value": "business", "label": "Commercial premises" },
+            { "value": "none", "label": "No property involved" }
+          ]
+        },
+        {
+          "id": "death_date",
+          "type": "date",
+          "label": "Date of the death",
+          "show_if": { "field": "need", "equals": "estate" }
+        },
+        {
+          "id": "will_exists",
+          "type": "choice",
+          "label": "Is there a will?",
+          "show_if": { "field": "need", "equals": "estate" },
+          "options": [
+            { "value": "yes", "label": "Yes" },
+            { "value": "no", "label": "No" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "situation",
+          "type": "textarea",
+          "label": "Tell us more about your request",
+          "placeholder": "Context, people involved, deadlines, questions...",
+          "help": "Keep to the main points: we will go into the details together.",
+          "maxlength": 3000
+        },
+        {
+          "id": "town",
+          "type": "text",
+          "label": "Town of the property or of your home",
+          "maxlength": 100
+        }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "Appointment",
+      "fields": [
+        {
+          "id": "meeting",
+          "type": "choice",
+          "label": "How would you like to meet?",
+          "options": [
+            { "value": "office", "label": "At the office" },
+            { "value": "phone", "label": "By phone" },
+            { "value": "video", "label": "By video call" },
+            { "value": "any", "label": "No preference" }
+          ]
+        },
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "How soon?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible, a deadline is close" },
+            { "value": "weeks", "label": "Within a few weeks" },
+            { "value": "flexible", "label": "No rush" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will contact you soon to arrange an appointment. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon to arrange an appointment.\n\nHere is a copy of what you sent us."
+  }
+}

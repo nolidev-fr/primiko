@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "id": "lawyer",
+  "title": "Lawyer",
+  "description": "First contact with a law firm: area of law, situation, deadlines and preferred appointment.",
+  "category": "professional",
+  "keywords": "lawyer, attorney, law firm, legal advice, divorce, dismissal, employment law, dispute, litigation, contract, inheritance",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your request",
+      "description": "This form only prepares a first contact. Do not write sensitive details here (health, offences, documents): the lawyer will ask for them in a confidential setting.",
+      "fields": [
+        {
+          "id": "area",
+          "type": "choice",
+          "label": "Which area is it about?",
+          "required": true,
+          "options": [
+            { "value": "family", "label": "Family (divorce, children, separation)" },
+            { "value": "employment", "label": "Employment (dismissal, contract, harassment)" },
+            { "value": "property", "label": "Property (rent, neighbours, building work)" },
+            { "value": "business", "label": "Business (contracts, company, unpaid invoices)" },
+            { "value": "injury", "label": "Accident or personal injury" },
+            { "value": "consumer", "label": "Consumer dispute" },
+            { "value": "criminal", "label": "Criminal matter" },
+            { "value": "public", "label": "Dispute with an administration" },
+            { "value": "other", "label": "Something else" }
+          ]
+        },
+        {
+          "id": "client_type",
+          "type": "choice",
+          "label": "You are",
+          "options": [
+            { "value": "individual", "label": "A private individual" },
+            { "value": "business", "label": "A business or a professional" },
+            { "value": "association", "label": "An association or a local authority" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "Your situation",
+      "fields": [
+        {
+          "id": "situation",
+          "type": "textarea",
+          "label": "Describe your situation in a few lines",
+          "help": "Keep to the main facts. Leave out names, health details and anything you would not want written down.",
+          "required": true,
+          "maxlength": 2000
+        },
+        {
+          "id": "procedure",
+          "type": "choice",
+          "label": "Where are things at?",
+          "options": [
+            { "value": "advice", "label": "I would like advice before acting" },
+            { "value": "dispute", "label": "A dispute has started, without a court" },
+            { "value": "court", "label": "A court case is under way" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "deadline",
+          "type": "yesno",
+          "label": "Is there a deadline (hearing, time to reply)?"
+        },
+        {
+          "id": "deadline_date",
+          "type": "date",
+          "label": "Date of the deadline",
+          "show_if": { "field": "deadline", "equals": "yes" }
+        },
+        {
+          "id": "other_party",
+          "type": "text",
+          "label": "Name of the other party, if any",
+          "help": "Optional. It lets the firm check that it can take your case.",
+          "maxlength": 150
+        },
+        {
+          "id": "legal_aid",
+          "type": "choice",
+          "label": "Legal aid or legal expenses insurance",
+          "options": [
+            { "value": "legal_aid", "label": "I may be entitled to legal aid" },
+            { "value": "insurance", "label": "I have legal expenses insurance" },
+            { "value": "none", "label": "Neither" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "Appointment",
+      "fields": [
+        {
+          "id": "meeting",
+          "type": "choice",
+          "label": "How would you like to meet?",
+          "options": [
+            { "value": "office", "label": "At the office" },
+            { "value": "phone", "label": "By phone" },
+            { "value": "video", "label": "By video call" },
+            { "value": "any", "label": "No preference" }
+          ]
+        },
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "How soon?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible" },
+            { "value": "weeks", "label": "Within a few weeks" },
+            { "value": "flexible", "label": "No rush" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will contact you soon to arrange an appointment. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon to arrange an appointment.\n\nHere is a copy of what you sent us."
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "schema": 1,
+  "id": "joiner",
+  "title": "Joiner and window fitter",
+  "description": "Windows, doors, shutters, garage doors, stairs, built-in furniture and decking.",
+  "category": "building",
+  "keywords": "carpentry, joinery, windows, doors, shutters, garage door, stairs, wardrobe, decking, pergola",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your project",
+      "fields": [
+        {
+          "id": "service",
+          "type": "choice",
+          "label": "What do you need?",
+          "required": true,
+          "options": [
+            { "value": "windows", "label": "Windows or bay windows" },
+            { "value": "front_door", "label": "Front door" },
+            { "value": "shutters", "label": "Shutters" },
+            { "value": "garage_door", "label": "Garage door" },
+            { "value": "interior_doors", "label": "Interior doors" },
+            { "value": "stairs", "label": "Stairs" },
+            { "value": "furniture", "label": "Built-in furniture, wardrobe or kitchen" },
+            { "value": "decking", "label": "Decking, pergola or carport" },
+            { "value": "repair", "label": "A repair" },
+            { "value": "other", "label": "Something else" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "A few details",
+      "description": "Answer what you can. If you are not sure, choose \"I don't know\".",
+      "fields": [
+        {
+          "id": "count",
+          "type": "number",
+          "label": "How many?",
+          "min": 1,
+          "max": 200,
+          "show_if": { "field": "service", "in": [ "windows", "shutters", "interior_doors" ] }
+        },
+        {
+          "id": "project",
+          "type": "choice",
+          "label": "New or replacement?",
+          "show_if": { "field": "service", "in": [ "windows", "front_door", "shutters", "garage_door", "interior_doors" ] },
+          "options": [
+            { "value": "replace", "label": "Replacing existing ones" },
+            { "value": "new", "label": "New, for a new build or a new opening" }
+          ]
+        },
+        {
+          "id": "material",
+          "type": "choice",
+          "label": "Material",
+          "show_if": { "field": "service", "in": [ "windows", "front_door", "shutters", "garage_door" ] },
+          "options": [
+            { "value": "pvc", "label": "PVC" },
+            { "value": "aluminium", "label": "Aluminium" },
+            { "value": "wood", "label": "Wood" },
+            { "value": "mixed", "label": "Wood and aluminium" },
+            { "value": "advice", "label": "I would like advice" }
+          ]
+        },
+        {
+          "id": "shutter_type",
+          "type": "choice",
+          "label": "Type of shutters",
+          "show_if": { "field": "service", "equals": "shutters" },
+          "options": [
+            { "value": "roller", "label": "Roller shutters" },
+            { "value": "hinged", "label": "Hinged shutters" },
+            { "value": "sliding", "label": "Sliding shutters" },
+            { "value": "advice", "label": "I would like advice" }
+          ]
+        },
+        {
+          "id": "motorised",
+          "type": "yesno",
+          "label": "Motorised?",
+          "show_if": { "field": "service", "in": [ "shutters", "garage_door" ] }
+        },
+        {
+          "id": "sizes",
+          "type": "textarea",
+          "label": "Sizes, if you know them",
+          "placeholder": "For example: kitchen window 100 x 120 cm, bay window 240 x 215 cm",
+          "help": "No need to be precise: we measure on site before ordering.",
+          "show_if": { "field": "service", "in": [ "windows", "front_door", "shutters", "garage_door", "interior_doors" ] }
+        },
+        {
+          "id": "grants",
+          "type": "yesno",
+          "label": "Would you like help with energy renovation grants?",
+          "show_if": {
+            "all": [
+              { "field": "service", "in": [ "windows", "front_door" ] },
+              { "field": "project", "equals": "replace" }
+            ]
+          }
+        },
+        {
+          "id": "stairs_type",
+          "type": "choice",
+          "label": "Type of stairs",
+          "show_if": { "field": "service", "equals": "stairs" },
+          "options": [
+            { "value": "straight", "label": "Straight" },
+            { "value": "quarter", "label": "With a turn" },
+            { "value": "spiral", "label": "Spiral" },
+            { "value": "advice", "label": "I would like advice" }
+          ]
+        },
+        {
+          "id": "furniture_details",
+          "type": "textarea",
+          "label": "Describe the furniture",
+          "placeholder": "Room, size, use...",
+          "required": true,
+          "show_if": { "field": "service", "equals": "furniture" }
+        },
+        {
+          "id": "decking_area",
+          "type": "number",
+          "label": "Approximate area",
+          "unit": "m²",
+          "min": 1,
+          "max": 1000,
+          "show_if": { "field": "service", "equals": "decking" }
+        },
+        {
+          "id": "repair_details",
+          "type": "textarea",
+          "label": "What needs to be repaired?",
+          "required": true,
+          "show_if": { "field": "service", "equals": "repair" }
+        },
+        {
+          "id": "other_request",
+          "type": "textarea",
+          "label": "Describe what you need",
+          "required": true,
+          "show_if": { "field": "service", "equals": "other" }
+        },
+        {
+          "id": "notes",
+          "type": "textarea",
+          "label": "Anything else we should know?",
+          "placeholder": "Colour, glazing, security, a question...",
+          "show_if": { "field": "service", "not_in": [ "other" ] }
+        }
+      ]
+    },
+    {
+      "id": "place",
+      "title": "Where is the work?",
+      "fields": [
+        { "id": "site_address", "type": "address", "label": "Address of the work", "required": true },
+        {
+          "id": "building",
+          "type": "choice",
+          "label": "Type of building",
+          "options": [
+            { "value": "house", "label": "House" },
+            { "value": "apartment", "label": "Apartment" },
+            { "value": "business", "label": "Shop or office" }
+          ]
+        },
+        {
+          "id": "customer",
+          "type": "choice",
+          "label": "You are",
+          "options": [
+            { "value": "owner", "label": "The owner" },
+            { "value": "tenant", "label": "A tenant" },
+            { "value": "manager", "label": "A property manager or co-ownership" },
+            { "value": "business", "label": "A business" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "title": "Photos",
+      "description": "A photo of each window, door or place of the work, from inside and outside, helps us prepare the quote faster.",
+      "fields": [
+        { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "When would you like the work done?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible" },
+            { "value": "months", "label": "Within the next three months" },
+            { "value": "flexible", "label": "No rush, I am planning ahead" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you or visit?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will get back to you soon. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your quote request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon to talk about your project.\n\nHere is a copy of what you sent us."
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "id": "diagnostician",
+  "title": "Property surveys and diagnostics",
+  "description": "The property surveys required for a sale, a rental or before works: energy performance, asbestos, lead, electricity, gas, termites.",
+  "category": "professional",
+  "keywords": "diagnostics, property survey, energy performance certificate, EPC, DPE, asbestos, lead, termites, electricity, gas, sale, rental",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your request",
+      "fields": [
+        {
+          "id": "reason",
+          "type": "choice",
+          "label": "What are the surveys for?",
+          "required": true,
+          "options": [
+            { "value": "sale", "label": "A sale" },
+            { "value": "rental", "label": "A rental" },
+            { "value": "works", "label": "Works or a demolition" },
+            { "value": "energy", "label": "Only an energy performance certificate" },
+            { "value": "other", "label": "Something else" }
+          ]
+        },
+        {
+          "id": "property_type",
+          "type": "choice",
+          "label": "Type of property",
+          "required": true,
+          "options": [
+            { "value": "house", "label": "House" },
+            { "value": "apartment", "label": "Apartment" },
+            { "value": "commercial", "label": "Commercial premises" },
+            { "value": "building", "label": "Whole building" },
+            { "value": "land", "label": "Land" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "The property",
+      "description": "The surveys needed depend on these answers.",
+      "fields": [
+        {
+          "id": "area",
+          "type": "number",
+          "label": "Living area",
+          "unit": "m²",
+          "min": 5,
+          "max": 10000,
+          "show_if": { "field": "property_type", "not_in": [ "land" ] }
+        },
+        {
+          "id": "rooms",
+          "type": "number",
+          "label": "Number of rooms",
+          "min": 1,
+          "max": 100,
+          "show_if": { "field": "property_type", "in": [ "house", "apartment" ] }
+        },
+        {
+          "id": "built",
+          "type": "choice",
+          "label": "When was it built?",
+          "show_if": { "field": "property_type", "not_in": [ "land" ] },
+          "options": [
+            { "value": "before_1949", "label": "Before 1949" },
+            { "value": "1949_1997", "label": "Between 1949 and July 1997" },
+            { "value": "after_1997", "label": "After July 1997" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "gas",
+          "type": "choice",
+          "label": "Gas installation",
+          "show_if": { "field": "property_type", "not_in": [ "land" ] },
+          "options": [
+            { "value": "none", "label": "No gas" },
+            { "value": "recent", "label": "Less than 15 years old" },
+            { "value": "old", "label": "More than 15 years old" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "electricity",
+          "type": "choice",
+          "label": "Electrical installation",
+          "show_if": { "field": "property_type", "not_in": [ "land" ] },
+          "options": [
+            { "value": "recent", "label": "Less than 15 years old" },
+            { "value": "old", "label": "More than 15 years old" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "co_ownership",
+          "type": "yesno",
+          "label": "Is it in a co-owned building?",
+          "show_if": { "field": "property_type", "in": [ "apartment", "commercial" ] }
+        },
+        {
+          "id": "notes",
+          "type": "textarea",
+          "label": "Anything else we should know?",
+          "placeholder": "Outbuildings, access, keys, a question...",
+          "maxlength": 2000
+        }
+      ]
+    },
+    {
+      "id": "place",
+      "title": "Where?",
+      "fields": [
+        { "id": "site_address", "type": "address", "label": "Address of the property", "required": true },
+        {
+          "id": "customer",
+          "type": "choice",
+          "label": "You are",
+          "options": [
+            { "value": "owner", "label": "The owner" },
+            { "value": "agency", "label": "An estate agency" },
+            { "value": "notary", "label": "A notary" },
+            { "value": "other", "label": "Someone else" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        { "id": "wanted_date", "type": "date", "label": "When do you need the reports?" },
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "How soon?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible" },
+            { "value": "weeks", "label": "Within a few weeks" },
+            { "value": "flexible", "label": "No rush" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you or visit?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will get back to you soon. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your quote request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon.\n\nHere is a copy of what you sent us."
+  }
+}

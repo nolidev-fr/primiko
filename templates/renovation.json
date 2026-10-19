@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "id": "renovation",
+  "title": "Renovation works (general)",
+  "description": "A general template for building and renovation trades without a template of their own.",
+  "category": "general",
+  "keywords": "renovation, works, building, refurbishment, insulation, kitchen, bathroom",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your project",
+      "fields": [
+        {
+          "id": "project",
+          "type": "choice",
+          "label": "What kind of project?",
+          "required": true,
+          "options": [
+            { "value": "full", "label": "Full renovation" },
+            { "value": "room", "label": "Renovating one or more rooms" },
+            { "value": "kitchen", "label": "Kitchen" },
+            { "value": "bathroom", "label": "Bathroom" },
+            { "value": "insulation", "label": "Insulation" },
+            { "value": "outside", "label": "Outside works" },
+            { "value": "repair", "label": "A repair" },
+            { "value": "other", "label": "Something else" }
+          ]
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "Describe your project",
+          "placeholder": "What should be done, materials you have in mind, what matters to you...",
+          "required": true,
+          "maxlength": 3000
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "A few details",
+      "fields": [
+        {
+          "id": "area",
+          "type": "number",
+          "label": "Approximate area concerned",
+          "unit": "m²",
+          "min": 1,
+          "max": 10000
+        },
+        {
+          "id": "building_age",
+          "type": "choice",
+          "label": "Age of the building",
+          "options": [
+            { "value": "recent", "label": "Less than 15 years" },
+            { "value": "middle", "label": "15 to 50 years" },
+            { "value": "old", "label": "More than 50 years" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "occupied",
+          "type": "yesno",
+          "label": "Will the place be lived in during the work?"
+        },
+        {
+          "id": "professionals",
+          "type": "choice",
+          "label": "Are other professionals involved?",
+          "options": [
+            { "value": "none", "label": "No" },
+            { "value": "architect", "label": "An architect or a project manager" },
+            { "value": "trades", "label": "Other tradespeople" },
+            { "value": "unknown", "label": "Not decided yet" }
+          ]
+        },
+        {
+          "id": "budget",
+          "type": "text",
+          "label": "Budget you have in mind, if any",
+          "help": "Optional. It helps us suggest solutions that fit.",
+          "maxlength": 100
+        }
+      ]
+    },
+    {
+      "id": "place",
+      "title": "Where is the work?",
+      "fields": [
+        { "id": "site_address", "type": "address", "label": "Address of the work", "required": true },
+        {
+          "id": "building",
+          "type": "choice",
+          "label": "Type of building",
+          "options": [
+            { "value": "house", "label": "House" },
+            { "value": "apartment", "label": "Apartment" },
+            { "value": "business", "label": "Shop or office" },
+            { "value": "other", "label": "Other" }
+          ]
+        },
+        {
+          "id": "customer",
+          "type": "choice",
+          "label": "You are",
+          "options": [
+            { "value": "owner", "label": "The owner" },
+            { "value": "buyer", "label": "Buying the property" },
+            { "value": "tenant", "label": "A tenant" },
+            { "value": "business", "label": "A business" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "title": "Photos",
+      "description": "Photos of the place help us understand the project and prepare the quote faster.",
+      "fields": [
+        { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "When would you like the work done?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible" },
+            { "value": "months", "label": "Within the next three months" },
+            { "value": "later", "label": "Later this year" },
+            { "value": "flexible", "label": "No rush, I am planning ahead" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you or visit?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will get back to you soon. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your quote request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon to talk about your project.\n\nHere is a copy of what you sent us."
+  }
+}

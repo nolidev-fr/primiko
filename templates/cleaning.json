@@ -1,0 +1,200 @@
+{
+  "schema": 1,
+  "id": "cleaning",
+  "title": "Cleaning",
+  "description": "Home and office cleaning, end of tenancy, after works, windows, carpets and upholstery.",
+  "category": "home",
+  "keywords": "cleaning, housekeeping, offices, end of tenancy, windows, carpets, sofa",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your request",
+      "fields": [
+        {
+          "id": "service",
+          "type": "choice",
+          "label": "What kind of cleaning?",
+          "required": true,
+          "options": [
+            { "value": "home", "label": "Home cleaning" },
+            { "value": "office", "label": "Offices or shop" },
+            { "value": "move", "label": "End of tenancy or before moving in" },
+            { "value": "works", "label": "After building works" },
+            { "value": "windows", "label": "Windows" },
+            { "value": "upholstery", "label": "Carpets, rugs or sofas" },
+            { "value": "common_areas", "label": "Common areas of a building" },
+            { "value": "other", "label": "Something else" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "A few details",
+      "fields": [
+        {
+          "id": "frequency",
+          "type": "choice",
+          "label": "How often?",
+          "required": true,
+          "show_if": { "field": "service", "in": [ "home", "office", "windows", "common_areas" ] },
+          "options": [
+            { "value": "once", "label": "Once" },
+            { "value": "weekly", "label": "Every week" },
+            { "value": "fortnightly", "label": "Every two weeks" },
+            { "value": "monthly", "label": "Every month" },
+            { "value": "other", "label": "Another rhythm" }
+          ]
+        },
+        {
+          "id": "area",
+          "type": "number",
+          "label": "Approximate area",
+          "unit": "m²",
+          "min": 5,
+          "max": 50000,
+          "show_if": { "field": "service", "in": [ "home", "office", "move", "works", "common_areas" ] }
+        },
+        {
+          "id": "rooms",
+          "type": "number",
+          "label": "Number of rooms",
+          "min": 1,
+          "max": 100,
+          "show_if": { "field": "service", "in": [ "home", "move" ] }
+        },
+        {
+          "id": "bathrooms",
+          "type": "number",
+          "label": "Number of bathrooms and toilets",
+          "min": 0,
+          "max": 50,
+          "show_if": { "field": "service", "in": [ "home", "move", "office" ] }
+        },
+        {
+          "id": "windows_count",
+          "type": "number",
+          "label": "Approximate number of windows",
+          "min": 1,
+          "max": 2000,
+          "show_if": { "field": "service", "equals": "windows" }
+        },
+        {
+          "id": "windows_height",
+          "type": "yesno",
+          "label": "Are some windows out of reach without a ladder?",
+          "show_if": { "field": "service", "equals": "windows" }
+        },
+        {
+          "id": "upholstery_items",
+          "type": "text",
+          "label": "What should be cleaned?",
+          "placeholder": "For example a 3-seat sofa and 20 m² of carpet",
+          "required": true,
+          "show_if": { "field": "service", "equals": "upholstery" }
+        },
+        {
+          "id": "furnished",
+          "type": "yesno",
+          "label": "Will the place be furnished?",
+          "show_if": { "field": "service", "in": [ "move", "works" ] }
+        },
+        {
+          "id": "pets",
+          "type": "yesno",
+          "label": "Are there pets?",
+          "show_if": { "field": "service", "in": [ "home", "upholstery" ] }
+        },
+        {
+          "id": "products",
+          "type": "choice",
+          "label": "Cleaning products and equipment",
+          "show_if": { "field": "service", "in": [ "home", "office" ] },
+          "options": [
+            { "value": "provided", "label": "Brought by you" },
+            { "value": "on_site", "label": "Available on site" }
+          ]
+        },
+        {
+          "id": "other_request",
+          "type": "textarea",
+          "label": "Describe what you need",
+          "required": true,
+          "show_if": { "field": "service", "equals": "other" }
+        },
+        {
+          "id": "notes",
+          "type": "textarea",
+          "label": "Anything else we should know?",
+          "placeholder": "Keys, alarm, rooms to leave out, a question...",
+          "show_if": { "field": "service", "not_in": [ "other" ] }
+        }
+      ]
+    },
+    {
+      "id": "place",
+      "title": "Where?",
+      "fields": [
+        { "id": "site_address", "type": "address", "label": "Address", "required": true },
+        {
+          "id": "building",
+          "type": "choice",
+          "label": "Type of place",
+          "options": [
+            { "value": "house", "label": "House" },
+            { "value": "apartment", "label": "Apartment" },
+            { "value": "office", "label": "Office or shop" },
+            { "value": "building", "label": "Apartment building" }
+          ]
+        },
+        {
+          "id": "customer",
+          "type": "choice",
+          "label": "You are",
+          "options": [
+            { "value": "individual", "label": "A private individual" },
+            { "value": "landlord", "label": "A landlord or an agency" },
+            { "value": "manager", "label": "A property manager or co-ownership" },
+            { "value": "business", "label": "A business" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "title": "Photos",
+      "description": "Photos are optional, but they help for end of tenancy, after works or upholstery cleaning.",
+      "fields": [
+        { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        {
+          "id": "start_date",
+          "type": "date",
+          "label": "Date wanted, if you have one"
+        },
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "How soon?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible" },
+            { "value": "weeks", "label": "Within a few weeks" },
+            { "value": "flexible", "label": "No rush" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you or visit?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will get back to you soon. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your quote request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon.\n\nHere is a copy of what you sent us."
+  }
+}

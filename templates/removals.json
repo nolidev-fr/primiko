@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "id": "removals",
+  "title": "Removals",
+  "description": "House and office moves, furniture transport, packing, piano moving and storage.",
+  "category": "home",
+  "keywords": "moving, removals, relocation, furniture, piano, storage, boxes",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your move",
+      "fields": [
+        {
+          "id": "service",
+          "type": "choice",
+          "label": "What do you need?",
+          "required": true,
+          "options": [
+            { "value": "home", "label": "A home removal" },
+            { "value": "office", "label": "An office removal" },
+            { "value": "items", "label": "Moving a few pieces of furniture" },
+            { "value": "piano", "label": "Moving a piano or a heavy item" },
+            { "value": "storage", "label": "Storage only" }
+          ]
+        },
+        {
+          "id": "home_size",
+          "type": "choice",
+          "label": "Size of the home you leave",
+          "show_if": { "field": "service", "equals": "home" },
+          "options": [
+            { "value": "studio", "label": "Studio" },
+            { "value": "two", "label": "2 rooms" },
+            { "value": "three", "label": "3 rooms" },
+            { "value": "four", "label": "4 rooms" },
+            { "value": "five_plus", "label": "5 rooms or more" }
+          ]
+        },
+        {
+          "id": "volume",
+          "type": "number",
+          "label": "Volume, if you know it",
+          "unit": "m³",
+          "help": "Leave it blank if you don't know: we can work it out with you or during a visit.",
+          "min": 1,
+          "max": 1000,
+          "show_if": { "field": "service", "in": [ "home", "office", "storage" ] }
+        },
+        {
+          "id": "items_list",
+          "type": "textarea",
+          "label": "What should be moved?",
+          "placeholder": "For example a wardrobe, a sofa and a washing machine",
+          "required": true,
+          "show_if": { "field": "service", "in": [ "items", "piano" ] }
+        }
+      ]
+    },
+    {
+      "id": "departure",
+      "title": "From",
+      "fields": [
+        { "id": "from_address", "type": "address", "label": "Address you leave", "required": true },
+        {
+          "id": "from_floor",
+          "type": "choice",
+          "label": "Floor",
+          "options": [
+            { "value": "ground", "label": "Ground floor or house" },
+            { "value": "one_two", "label": "1st or 2nd floor" },
+            { "value": "three_plus", "label": "3rd floor or above" }
+          ]
+        },
+        {
+          "id": "from_lift",
+          "type": "yesno",
+          "label": "Is there a lift?",
+          "show_if": { "field": "from_floor", "in": [ "one_two", "three_plus" ] }
+        },
+        {
+          "id": "from_parking",
+          "type": "choice",
+          "label": "Can a truck park close to the entrance?",
+          "options": [
+            { "value": "yes", "label": "Yes" },
+            { "value": "permit", "label": "With a parking permit from the town" },
+            { "value": "far", "label": "No, it is far or difficult" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "arrival",
+      "title": "To",
+      "show_if": { "field": "service", "not_in": [ "storage" ] },
+      "fields": [
+        { "id": "to_address", "type": "address", "label": "Address you move to", "required": true },
+        {
+          "id": "to_floor",
+          "type": "choice",
+          "label": "Floor",
+          "options": [
+            { "value": "ground", "label": "Ground floor or house" },
+            { "value": "one_two", "label": "1st or 2nd floor" },
+            { "value": "three_plus", "label": "3rd floor or above" }
+          ]
+        },
+        {
+          "id": "to_lift",
+          "type": "yesno",
+          "label": "Is there a lift?",
+          "show_if": { "field": "to_floor", "in": [ "one_two", "three_plus" ] }
+        },
+        {
+          "id": "to_parking",
+          "type": "choice",
+          "label": "Can a truck park close to the entrance?",
+          "options": [
+            { "value": "yes", "label": "Yes" },
+            { "value": "permit", "label": "With a parking permit from the town" },
+            { "value": "far", "label": "No, it is far or difficult" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "extras",
+      "title": "Services",
+      "fields": [
+        {
+          "id": "services",
+          "type": "choice",
+          "label": "Which services would you like?",
+          "help": "Choose all that apply.",
+          "multiple": true,
+          "options": [
+            { "value": "packing", "label": "Packing" },
+            { "value": "boxes", "label": "Supply of boxes" },
+            { "value": "dismantling", "label": "Dismantling and reassembling furniture" },
+            { "value": "storage", "label": "Storage between the two homes" },
+            { "value": "cleaning", "label": "Cleaning of the home left" }
+          ]
+        },
+        {
+          "id": "notes",
+          "type": "textarea",
+          "label": "Anything else we should know?",
+          "placeholder": "Fragile or valuable items, narrow stairs, a question...",
+          "maxlength": 3000
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "title": "Photos",
+      "description": "Photos of the rooms or of bulky furniture help us estimate the volume.",
+      "fields": [
+        { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        { "id": "move_date", "type": "date", "label": "Date of the move, if you know it" },
+        {
+          "id": "flexible_date",
+          "type": "yesno",
+          "label": "Is the date flexible?"
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you or visit?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will get back to you soon. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your removal quote request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon to prepare your move.\n\nHere is a copy of what you sent us."
+  }
+}

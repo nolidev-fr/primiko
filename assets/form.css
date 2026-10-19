@@ -1,0 +1,659 @@
+/**
+ * Visitor form.
+ *
+ * The form has no look of its own: it borrows the theme. Buttons, inputs,
+ * fonts and colors come from the theme whenever it styles them, and the few
+ * parts a theme never styles (answer cards, progress, photos) take their
+ * color from the theme palette.
+ *
+ * Most selectors are wrapped in :where(), so any theme rule wins over them,
+ * even a plain `button` or `input[type="text"]` rule. A few utility controls
+ * (review links, photo removal) use a real class selector on purpose, so
+ * that the button style of the theme does not turn them into big buttons.
+ *
+ * Variables, to set in the theme CSS (on .primiko or any parent) or
+ * from the block settings:
+ * --primiko-accent  main color (cards, progress, focus)
+ * --primiko-radius  corner radius of the cards and fallback inputs
+ * The --primiko-x-* variables are internal.
+ */
+
+:where(.primiko) {
+	/* The color chosen in the block or the theme CSS, otherwise the main
+	   color of the theme, under the names the common themes use:
+	   block themes (primary, accent, accent-1), Elementor, Astra, Kadence.
+	   Without any, the script borrows the link color of the page. */
+	--primiko-x-accent: var(--primiko-accent, var(--wp--preset--color--primary, var(--wp--preset--color--accent, var(--wp--preset--color--accent-1, var(--e-global-color-primary, var(--ast-global-color-0, var(--global-palette1, #1f5f99)))))));
+	--primiko-on-accent: #fff;
+	--primiko-x-radius: var(--primiko-radius, 6px);
+	--primiko-line: color-mix(in srgb, currentColor 28%, transparent);
+	--primiko-line-strong: color-mix(in srgb, currentColor 55%, transparent);
+	--primiko-soft: color-mix(in srgb, var(--primiko-x-accent) 9%, transparent);
+	--primiko-muted: color-mix(in srgb, currentColor 72%, transparent);
+	/* Red that follows the text color: darker on light themes, lighter on dark ones. */
+	--primiko-error: color-mix(in oklab, #c62828 68%, currentColor);
+	--primiko-gap: var(--wp--style--block-gap, 1.5rem);
+	--primiko-small: var(--wp--preset--font-size--small, 0.9em);
+	container-type: inline-size;
+	container-name: primiko;
+	max-width: 42rem;
+	caret-color: var(--primiko-x-accent);
+	accent-color: var(--primiko-x-accent);
+}
+
+:where(.primiko) *,
+:where(.primiko) *::before,
+:where(.primiko) *::after {
+	box-sizing: border-box;
+}
+
+:where(.primiko) [hidden] {
+	display: none !important;
+}
+
+:where(.primiko) ::selection {
+	background: color-mix(in srgb, var(--primiko-x-accent) 25%, transparent);
+}
+
+/* Progress */
+
+:where(.primiko__progress) {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	margin-bottom: calc(var(--primiko-gap) * 1.25);
+}
+
+.primiko .primiko__progress-text {
+	flex: none;
+	margin: 0;
+	font-size: var(--primiko-small);
+	font-variant-numeric: tabular-nums;
+	color: var(--primiko-muted);
+}
+
+:where(.primiko__bar) {
+	flex: 1;
+	height: 4px;
+	border-radius: 2px;
+	background: var(--primiko-line);
+	overflow: hidden;
+}
+
+:where(.primiko__bar span) {
+	display: block;
+	height: 100%;
+	width: 0;
+	border-radius: inherit;
+	background: var(--primiko-x-accent);
+	transition: width 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Steps */
+
+/* Themes often style fieldset and legend (margins, borders, floats). The
+   form structure keeps its own. */
+.primiko .primiko__step,
+.primiko .primiko__group {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	min-width: 0;
+	background: none;
+	box-shadow: none;
+}
+
+/* Theme heading styles can be very large (h2 in a block theme is often
+   2.5rem or more). Keep the font, weight and color of the theme, and
+   bring the size back to the scale of a form. */
+.primiko .primiko__step-title {
+	margin: 0 0 0.5em;
+	font-size: clamp(1.4rem, 1.2rem + 1.2cqi, 1.85rem);
+	line-height: 1.25;
+	text-wrap: balance;
+}
+
+.primiko .primiko__step-title:focus {
+	outline: none;
+}
+
+.primiko .primiko__step-description {
+	max-width: 65ch;
+	margin: 0 0 var(--primiko-gap);
+	color: var(--primiko-muted);
+}
+
+.primiko .primiko__step:not([hidden]) {
+	animation: primiko-step 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes primiko-step {
+	from {
+		opacity: 0;
+		transform: translateY(0.5rem);
+	}
+}
+
+/* Fields. Themes give paragraphs large bottom margins: the short texts of
+   the form keep their own spacing. */
+
+:where(.primiko__field) {
+	margin: 0 0 var(--primiko-gap);
+}
+
+.primiko .primiko__label {
+	display: block;
+	float: none;
+	width: auto;
+	max-width: 100%;
+	margin: 0 0 0.4rem;
+	padding: 0;
+	font-weight: 600;
+	line-height: 1.35;
+}
+
+:where(.primiko__sublabel) {
+	display: block;
+	margin: 0 0 0.25rem;
+	font-size: var(--primiko-small);
+}
+
+:where(.primiko__required) {
+	color: var(--primiko-error);
+}
+
+.primiko .primiko__help {
+	max-width: 65ch;
+	margin: 0 0 0.6rem;
+	font-size: var(--primiko-small);
+	color: var(--primiko-muted);
+}
+
+/* Fallback input style, for themes that do not style form fields. A theme
+   rule such as input[type="text"] replaces it. */
+:where(.primiko__input) {
+	display: block;
+	width: 100%;
+	min-height: 2.875rem;
+	padding: 0.6rem 0.8rem;
+	border: 1px solid var(--primiko-line-strong);
+	border-radius: var(--primiko-x-radius);
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	/* 16px at least, so that phones do not zoom on focus. */
+	font-size: max(1rem, 16px);
+	line-height: 1.4;
+}
+
+:where(textarea.primiko__input) {
+	min-height: 7rem;
+	resize: vertical;
+}
+
+:where(.primiko__input)::placeholder {
+	color: color-mix(in srgb, currentColor 55%, transparent);
+	opacity: 1;
+}
+
+/* Radios and checkboxes: no focus ring on the small input itself, which
+   some themes draw on every click. Keyboard users see the whole card
+   outlined instead (focus-visible only, so a click shows nothing). */
+.primiko .primiko__option input:focus,
+.primiko .primiko__consent input:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.primiko .primiko__option:has(input:focus-visible),
+.primiko .primiko__consent:has(input:focus-visible) {
+	outline: 2px solid var(--primiko-x-accent);
+	outline-offset: 2px;
+}
+
+:where(.primiko__input):focus-visible,
+.primiko .primiko__file:focus-visible + :where(.primiko__button),
+:where(.primiko__button):focus-visible,
+.primiko .primiko__link:focus-visible,
+.primiko .primiko__photo-remove:focus-visible {
+	outline: 2px solid var(--primiko-x-accent);
+	outline-offset: 2px;
+}
+
+.primiko .primiko__unit-wrap {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	max-width: 13rem;
+}
+
+:where(.primiko__unit) {
+	color: var(--primiko-muted);
+}
+
+.primiko .primiko__address {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.75rem;
+}
+
+/* Answer cards */
+
+.primiko .primiko__options {
+	display: grid;
+	gap: 0.5rem;
+}
+
+.primiko .primiko__option {
+	position: relative;
+	box-sizing: border-box;
+	width: auto;
+	text-transform: none;
+	letter-spacing: normal;
+	display: flex;
+	align-items: flex-start;
+	gap: 0.75rem;
+	min-height: 3rem;
+	margin: 0;
+	padding: 0.75rem 0.9rem;
+	border: 1px solid var(--primiko-line);
+	border-radius: var(--primiko-x-radius);
+	font-weight: normal;
+	line-height: 1.4;
+	cursor: pointer;
+	transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.primiko .primiko__option:has(input:checked) {
+	border-color: var(--primiko-x-accent);
+	background: var(--primiko-soft);
+	box-shadow: inset 0 0 0 1px var(--primiko-x-accent);
+}
+
+@media (hover: hover) {
+	.primiko .primiko__option:hover {
+		border-color: var(--primiko-line-strong);
+	}
+
+	.primiko .primiko__option:has(input:checked):hover {
+		border-color: var(--primiko-x-accent);
+	}
+}
+
+/* Native radios and checkboxes, tinted with the accent color. Some themes
+   restyle them: their rule wins. */
+:where(.primiko__option input),
+:where(.primiko__consent input) {
+	flex: none;
+	width: 1.2rem;
+	height: 1.2rem;
+	margin: 0.1rem 0 0;
+	accent-color: var(--primiko-x-accent);
+	cursor: pointer;
+}
+
+.primiko .primiko__option-text {
+	display: flex;
+	flex-direction: column;
+	gap: 0.15rem;
+}
+
+:where(.primiko__option-help) {
+	font-size: var(--primiko-small);
+	color: var(--primiko-muted);
+}
+
+.primiko .primiko__consent {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.75rem;
+	padding: 0.9rem;
+	border: 1px solid var(--primiko-line);
+	border-radius: var(--primiko-x-radius);
+}
+
+:where(.primiko__consent label) {
+	cursor: pointer;
+}
+
+/* Photos */
+
+.primiko .primiko__picker {
+	position: relative;
+	display: inline-flex;
+}
+
+/* The file input lies over the button, so the button is the input. */
+.primiko .primiko__file {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.primiko .primiko__file:disabled {
+	cursor: not-allowed;
+}
+
+.primiko .primiko__picker:has(:disabled) {
+	opacity: 0.5;
+}
+
+.primiko .primiko__picker :where(.primiko__button) {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+:where(.primiko__icon) {
+	flex: none;
+	width: 1.25em;
+	height: 1.25em;
+}
+
+.primiko .primiko__photo-count {
+	margin: 0.6rem 0;
+	font-size: var(--primiko-small);
+	font-variant-numeric: tabular-nums;
+	color: var(--primiko-muted);
+}
+
+.primiko .primiko__previews {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr));
+	gap: 0.5rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.primiko .primiko__previews li {
+	position: relative;
+	margin: 0;
+	aspect-ratio: 1;
+}
+
+.primiko .primiko__previews img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: var(--primiko-x-radius);
+}
+
+.primiko .primiko__photo-remove {
+	position: absolute;
+	top: 0.3rem;
+	right: 0.3rem;
+	display: grid;
+	place-items: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	min-height: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: rgb(0 0 0 / 0.68);
+	box-shadow: 0 1px 4px rgb(0 0 0 / 0.3);
+	color: #fff;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.primiko .primiko__photo-remove svg {
+	width: 1rem;
+	height: 1rem;
+}
+
+/* Errors and messages */
+
+.primiko .primiko__error {
+	display: flex;
+	gap: 0.4rem;
+	margin: 0.45rem 0 0;
+	color: var(--primiko-error);
+	font-size: var(--primiko-small);
+	font-weight: 600;
+}
+
+:where(.primiko__field.has-error) :where(.primiko__input),
+.primiko .has-error .primiko__option,
+.primiko .has-error .primiko__consent {
+	border-color: var(--primiko-error);
+}
+
+:where(.primiko__alert) {
+	margin: 0 0 var(--primiko-gap);
+	padding: 0.8rem 1rem;
+	border: 1px solid color-mix(in srgb, var(--primiko-error) 45%, transparent);
+	border-radius: var(--primiko-x-radius);
+	background: color-mix(in srgb, var(--primiko-error) 8%, transparent);
+}
+
+:where(.primiko__done) {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.9rem;
+	padding: 1.25rem;
+	border: 1px solid color-mix(in srgb, var(--primiko-x-accent) 45%, transparent);
+	border-radius: var(--primiko-x-radius);
+	background: var(--primiko-soft);
+	white-space: pre-line;
+	animation: primiko-step 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:where(.primiko__done) :where(.primiko__icon) {
+	width: 1.75rem;
+	height: 1.75rem;
+	color: var(--primiko-x-accent);
+}
+
+:where(.primiko__done):focus {
+	outline: none;
+}
+
+/* Captcha widget, when a service is set */
+
+.primiko .primiko__captcha {
+	margin: 0 0 var(--primiko-gap);
+	min-height: 65px;
+}
+
+/* Review */
+
+:where(.primiko__summary) {
+	margin: 0 0 var(--primiko-gap);
+	border-top: 1px solid var(--primiko-line);
+}
+
+:where(.primiko__summary-step) {
+	padding: 0.9rem 0;
+	border-bottom: 1px solid var(--primiko-line);
+}
+
+:where(.primiko__summary-head) {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 1rem;
+	margin-bottom: 0.4rem;
+}
+
+.primiko .primiko__summary-head h3 {
+	margin: 0;
+	font-size: 1em;
+	line-height: 1.35;
+}
+
+.primiko .primiko__summary dl {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.1rem 1rem;
+	margin: 0;
+}
+
+.primiko .primiko__summary dt {
+	font-size: var(--primiko-small);
+	color: var(--primiko-muted);
+}
+
+.primiko .primiko__summary dd {
+	margin: 0 0 0.5rem;
+	overflow-wrap: anywhere;
+}
+
+:where(.primiko__summary .is-empty) {
+	margin: 0;
+	color: var(--primiko-muted);
+	font-style: italic;
+}
+
+/* Buttons. The primary buttons carry wp-element-button, so a block theme
+   gives them its own button style. A classic theme styles them through its
+   button rules. These are only the fallback. */
+
+.primiko .primiko__nav {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.75rem;
+	margin-top: calc(var(--primiko-gap) * 1.5);
+}
+
+:where(.primiko__nav [data-action="next"]),
+:where(.primiko__nav [data-action="submit"]) {
+	flex: 1;
+}
+
+:where(.primiko__button) {
+	display: inline-block;
+	min-height: 3rem;
+	margin: 0;
+	padding: 0.7rem 1.4rem;
+	border: 1px solid var(--primiko-x-accent);
+	border-radius: var(--primiko-x-radius);
+	background: var(--primiko-x-accent);
+	color: var(--primiko-on-accent);
+	font: inherit;
+	font-weight: 600;
+	line-height: 1.3;
+	text-align: center;
+	cursor: pointer;
+}
+
+/* Secondary buttons stay outlined whatever the theme does with buttons,
+   with the shape and lettering of the theme button, copied by the script. */
+.primiko .primiko__button--secondary {
+	border: 1px solid var(--primiko-line-strong);
+	border-radius: var(--primiko-x-button-radius, var(--primiko-x-radius));
+	background: transparent;
+	box-shadow: none;
+	color: inherit;
+	font-family: var(--primiko-x-button-family, inherit);
+	font-size: var(--primiko-x-button-size, inherit);
+	font-weight: var(--primiko-x-button-weight, 600);
+	letter-spacing: var(--primiko-x-button-spacing, normal);
+	text-transform: var(--primiko-x-button-transform, none);
+	text-decoration: none;
+}
+
+@media (hover: hover) {
+	.primiko .primiko__button--secondary:hover,
+	.primiko .primiko__picker:hover .primiko__button--secondary {
+		border-color: var(--primiko-x-accent);
+		background: var(--primiko-soft);
+	}
+}
+
+:where(.primiko__button):disabled {
+	opacity: 0.6;
+	cursor: progress;
+}
+
+.primiko .primiko__link {
+	min-height: 0;
+	margin: 0;
+	padding: 0.25rem 0;
+	border: 0;
+	border-radius: 0;
+	background: none;
+	box-shadow: none;
+	color: inherit;
+	font: inherit;
+	font-size: var(--primiko-small);
+	text-decoration: underline;
+	text-decoration-color: var(--primiko-x-accent);
+	text-underline-offset: 0.2em;
+	text-transform: none;
+	letter-spacing: normal;
+	cursor: pointer;
+}
+
+/* Hidden helpers */
+
+:where(.primiko__sr),
+:where(.primiko__trap) {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Wider containers: the form reacts to its own width, not the screen, so it
+   also works in a narrow column of a desktop layout. */
+
+@container primiko (min-width: 30rem) {
+	.primiko .primiko__address {
+		grid-template-columns: 9rem 1fr;
+	}
+
+	.primiko .primiko__address-part--street {
+		grid-column: 1 / -1;
+	}
+
+	.primiko .primiko__options--inline {
+		grid-template-columns: repeat(2, minmax(0, 11rem));
+	}
+
+	.primiko .primiko__summary dl {
+		grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+	}
+
+	.primiko .primiko__summary dd {
+		margin-bottom: 0.25rem;
+	}
+
+	:where(.primiko__nav [data-action="next"]),
+	:where(.primiko__nav [data-action="submit"]) {
+		flex: none;
+		margin-left: auto;
+	}
+}
+
+@container primiko (min-width: 36rem) {
+	.primiko .primiko__options--columns {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:where(.primiko__bar span),
+	.primiko .primiko__option {
+		transition: none;
+	}
+
+	.primiko .primiko__step:not([hidden]),
+	:where(.primiko__done) {
+		animation: none;
+	}
+}

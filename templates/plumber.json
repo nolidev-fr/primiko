@@ -1,0 +1,264 @@
+{
+  "schema": 1,
+  "id": "plumber",
+  "title": "Plumber and heating engineer",
+  "description": "Leaks and blockages, water heaters, boilers, heat pumps, bathrooms and plumbing installations.",
+  "category": "building",
+  "keywords": "plumbing, heating, leak, blocked drain, water heater, boiler, heat pump, radiator, bathroom",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your project",
+      "fields": [
+        {
+          "id": "service",
+          "type": "choice",
+          "label": "What do you need?",
+          "required": true,
+          "options": [
+            { "value": "leak", "label": "A leak" },
+            { "value": "blockage", "label": "A blocked sink, toilet or drain" },
+            { "value": "water_heater", "label": "Water heater (repair or replacement)" },
+            { "value": "boiler", "label": "Boiler (servicing, repair or replacement)" },
+            { "value": "heat_pump", "label": "Heat pump" },
+            { "value": "radiators", "label": "Radiators or underfloor heating" },
+            { "value": "bathroom", "label": "Bathroom or kitchen plumbing" },
+            { "value": "new_install", "label": "Plumbing for a new build or a renovation" },
+            { "value": "other", "label": "Something else" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "A few details",
+      "description": "Answer what you can. If you are not sure, choose \"I don't know\".",
+      "fields": [
+        {
+          "id": "leak_now",
+          "type": "yesno",
+          "label": "Is water leaking right now?",
+          "help": "If it is, close the main water valve, usually near the water meter.",
+          "required": true,
+          "show_if": { "field": "service", "equals": "leak" }
+        },
+        {
+          "id": "leak_place",
+          "type": "choice",
+          "label": "Where is the leak?",
+          "show_if": { "field": "service", "equals": "leak" },
+          "options": [
+            { "value": "tap", "label": "A tap or a toilet" },
+            { "value": "pipe", "label": "A visible pipe" },
+            { "value": "hidden", "label": "Inside a wall or under the floor" },
+            { "value": "heater", "label": "The water heater or the boiler" },
+            { "value": "unknown", "label": "I don't know, I see water or damp" }
+          ]
+        },
+        {
+          "id": "blockage_place",
+          "type": "choice",
+          "label": "What is blocked?",
+          "show_if": { "field": "service", "equals": "blockage" },
+          "options": [
+            { "value": "sink", "label": "A sink or a washbasin" },
+            { "value": "toilet", "label": "A toilet" },
+            { "value": "shower", "label": "A shower or a bathtub" },
+            { "value": "main", "label": "The main drain, everything is slow" }
+          ]
+        },
+        {
+          "id": "heater_type",
+          "type": "choice",
+          "label": "Type of water heater",
+          "show_if": { "field": "service", "equals": "water_heater" },
+          "options": [
+            { "value": "electric", "label": "Electric" },
+            { "value": "thermodynamic", "label": "Heat pump water heater" },
+            { "value": "gas", "label": "Gas" },
+            { "value": "solar", "label": "Solar" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "heater_capacity",
+          "type": "number",
+          "label": "Capacity of the tank, if you know it",
+          "unit": "L",
+          "min": 10,
+          "max": 1000,
+          "show_if": { "field": "service", "equals": "water_heater" }
+        },
+        {
+          "id": "boiler_need",
+          "type": "choice",
+          "label": "What is it for?",
+          "required": true,
+          "show_if": { "field": "service", "equals": "boiler" },
+          "options": [
+            { "value": "service", "label": "Yearly servicing" },
+            { "value": "repair", "label": "A breakdown" },
+            { "value": "replace", "label": "Replacing the boiler" }
+          ]
+        },
+        {
+          "id": "boiler_energy",
+          "type": "choice",
+          "label": "Energy of the boiler",
+          "show_if": { "field": "service", "equals": "boiler" },
+          "options": [
+            { "value": "gas", "label": "Gas" },
+            { "value": "oil", "label": "Heating oil" },
+            { "value": "wood", "label": "Wood or pellets" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "boiler_age",
+          "type": "choice",
+          "label": "Age of the boiler or the water heater",
+          "show_if": { "field": "service", "in": [ "boiler", "water_heater" ] },
+          "options": [
+            { "value": "recent", "label": "Less than 10 years" },
+            { "value": "old", "label": "10 to 20 years" },
+            { "value": "very_old", "label": "More than 20 years" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "heat_pump_need",
+          "type": "choice",
+          "label": "What is it for?",
+          "required": true,
+          "show_if": { "field": "service", "equals": "heat_pump" },
+          "options": [
+            { "value": "install", "label": "Installing a heat pump" },
+            { "value": "service", "label": "Servicing" },
+            { "value": "repair", "label": "A breakdown" }
+          ]
+        },
+        {
+          "id": "current_heating",
+          "type": "choice",
+          "label": "How is the home heated today?",
+          "show_if": { "field": "heat_pump_need", "equals": "install" },
+          "options": [
+            { "value": "oil", "label": "Heating oil boiler" },
+            { "value": "gas", "label": "Gas boiler" },
+            { "value": "electric", "label": "Electric heaters" },
+            { "value": "wood", "label": "Wood" },
+            { "value": "none", "label": "New build, nothing yet" }
+          ]
+        },
+        {
+          "id": "home_area",
+          "type": "number",
+          "label": "Area of the home",
+          "unit": "m²",
+          "min": 10,
+          "max": 2000,
+          "show_if": { "field": "service", "in": [ "heat_pump", "radiators", "new_install" ] }
+        },
+        {
+          "id": "grants",
+          "type": "yesno",
+          "label": "Would you like help with energy renovation grants?",
+          "show_if": {
+            "any": [
+              { "field": "boiler_need", "equals": "replace" },
+              { "field": "heat_pump_need", "equals": "install" },
+              { "field": "heater_type", "equals": "thermodynamic" }
+            ]
+          }
+        },
+        {
+          "id": "bathroom_work",
+          "type": "choice",
+          "label": "What is planned?",
+          "help": "Choose all that apply.",
+          "multiple": true,
+          "show_if": { "field": "service", "equals": "bathroom" },
+          "options": [
+            { "value": "shower", "label": "Shower" },
+            { "value": "bathtub", "label": "Bathtub" },
+            { "value": "toilet", "label": "Toilet" },
+            { "value": "basin", "label": "Washbasin or vanity unit" },
+            { "value": "kitchen", "label": "Kitchen sink and appliances" }
+          ]
+        },
+        {
+          "id": "other_request",
+          "type": "textarea",
+          "label": "Describe what you need",
+          "required": true,
+          "show_if": { "field": "service", "equals": "other" }
+        },
+        {
+          "id": "notes",
+          "type": "textarea",
+          "label": "Anything else we should know?",
+          "placeholder": "Brand of the appliance, a fault code, access, a question...",
+          "show_if": { "field": "service", "not_in": [ "other" ] }
+        }
+      ]
+    },
+    {
+      "id": "place",
+      "title": "Where?",
+      "fields": [
+        { "id": "site_address", "type": "address", "label": "Address", "required": true },
+        {
+          "id": "building",
+          "type": "choice",
+          "label": "Type of home",
+          "options": [
+            { "value": "house", "label": "House" },
+            { "value": "apartment", "label": "Apartment" },
+            { "value": "business", "label": "Shop or office" }
+          ]
+        },
+        {
+          "id": "customer",
+          "type": "choice",
+          "label": "You are",
+          "options": [
+            { "value": "owner", "label": "The owner" },
+            { "value": "tenant", "label": "A tenant" },
+            { "value": "manager", "label": "A property manager or co-ownership" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "title": "Photos",
+      "description": "A photo of the problem, of the appliance and of its plate (brand and model) helps us come with the right parts.",
+      "fields": [
+        { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "How soon do you need us?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible" },
+            { "value": "weeks", "label": "Within a few weeks" },
+            { "value": "flexible", "label": "No rush, I am planning ahead" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you or visit?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will get back to you soon. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your quote request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon.\n\nHere is a copy of what you sent us."
+  }
+}

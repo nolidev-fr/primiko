@@ -1,0 +1,234 @@
+{
+  "schema": 1,
+  "id": "pest-control",
+  "title": "Pest control",
+  "description": "Wasp and hornet nests (Asian hornets included), bee swarms, rodents, bed bugs and other pests.",
+  "category": "home",
+  "keywords": "pests, wasps, hornets, Asian hornet, bees, swarm, nest, rats, mice, bed bugs, cockroaches",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your problem",
+      "fields": [
+        {
+          "id": "pest",
+          "type": "choice",
+          "label": "What is the problem?",
+          "required": true,
+          "options": [
+            { "value": "nest", "label": "A wasp or hornet nest" },
+            { "value": "bumblebees", "label": "Bumblebees" },
+            { "value": "swarm", "label": "A bee swarm" },
+            { "value": "rodents", "label": "Rats or mice" },
+            { "value": "bedbugs", "label": "Bed bugs" },
+            { "value": "cockroaches", "label": "Cockroaches" },
+            { "value": "other", "label": "Something else" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "A few details",
+      "description": "Keep your distance from the nest or the insects while you answer. If you are not sure, choose \"I don't know\".",
+      "fields": [
+        {
+          "id": "insect",
+          "type": "choice",
+          "label": "Which insect?",
+          "help": "The Asian hornet is dark, almost black, with yellow legs. The European hornet is larger, brown and yellow.",
+          "show_if": { "field": "pest", "equals": "nest" },
+          "options": [
+            { "value": "wasps", "label": "Wasps" },
+            { "value": "european_hornets", "label": "European hornets" },
+            { "value": "asian_hornets", "label": "Asian hornets" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "nest_place",
+          "type": "choice",
+          "label": "Where is the nest?",
+          "required": true,
+          "show_if": { "field": "pest", "in": [ "nest", "bumblebees", "swarm" ] },
+          "options": [
+            { "value": "roof", "label": "Under the roof, in the attic or a shutter box" },
+            { "value": "tree", "label": "In a tree or a hedge" },
+            { "value": "wall", "label": "In a wall or a hole" },
+            { "value": "ground", "label": "In the ground" },
+            { "value": "shed", "label": "In a shed or an outbuilding" },
+            { "value": "unknown", "label": "I can't see it, insects come and go" }
+          ]
+        },
+        {
+          "id": "nest_height",
+          "type": "choice",
+          "label": "How high is it?",
+          "show_if": { "field": "pest", "in": [ "nest", "bumblebees", "swarm" ] },
+          "options": [
+            { "value": "low", "label": "Within reach, under 3 m" },
+            { "value": "medium", "label": "3 to 10 m" },
+            { "value": "high", "label": "Over 10 m, at the top of a tall tree" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "nest_size",
+          "type": "choice",
+          "label": "Size of the nest",
+          "show_if": { "field": "pest", "equals": "nest" },
+          "options": [
+            { "value": "small", "label": "Smaller than a fist" },
+            { "value": "medium", "label": "About the size of a ball" },
+            { "value": "large", "label": "Larger than a football" },
+            { "value": "unseen", "label": "I can't see it" }
+          ]
+        },
+        {
+          "id": "risk",
+          "type": "yesno",
+          "label": "Is someone at risk (allergic person, young children, nest near a door or a path)?",
+          "show_if": { "field": "pest", "in": [ "nest", "bumblebees", "swarm" ] }
+        },
+        {
+          "id": "swarm_since",
+          "type": "choice",
+          "label": "Since when has the swarm been there?",
+          "help": "Bees are protected: a swarm is collected alive whenever possible.",
+          "show_if": { "field": "pest", "equals": "swarm" },
+          "options": [
+            { "value": "today", "label": "Today" },
+            { "value": "days", "label": "A few days" },
+            { "value": "longer", "label": "Longer, the bees have settled in" }
+          ]
+        },
+        {
+          "id": "rodent_where",
+          "type": "choice",
+          "label": "Where do you see them or hear them?",
+          "help": "Choose all that apply.",
+          "multiple": true,
+          "show_if": { "field": "pest", "equals": "rodents" },
+          "options": [
+            { "value": "house", "label": "In the house" },
+            { "value": "attic", "label": "In the attic or the walls" },
+            { "value": "outbuilding", "label": "In a garage, cellar or outbuilding" },
+            { "value": "garden", "label": "In the garden" }
+          ]
+        },
+        {
+          "id": "infested_rooms",
+          "type": "number",
+          "label": "How many rooms are affected?",
+          "min": 1,
+          "max": 100,
+          "show_if": { "field": "pest", "in": [ "bedbugs", "cockroaches" ] }
+        },
+        {
+          "id": "since",
+          "type": "choice",
+          "label": "Since when?",
+          "show_if": { "field": "pest", "in": [ "rodents", "bedbugs", "cockroaches" ] },
+          "options": [
+            { "value": "days", "label": "A few days" },
+            { "value": "weeks", "label": "A few weeks" },
+            { "value": "months", "label": "Several months" }
+          ]
+        },
+        {
+          "id": "premises",
+          "type": "choice",
+          "label": "Type of place",
+          "show_if": { "field": "pest", "not_in": [ "other" ] },
+          "options": [
+            { "value": "house", "label": "House" },
+            { "value": "apartment", "label": "Apartment" },
+            { "value": "business", "label": "Shop, restaurant or office" },
+            { "value": "farm", "label": "Farm" },
+            { "value": "public", "label": "Public building or school" }
+          ]
+        },
+        {
+          "id": "other_request",
+          "type": "textarea",
+          "label": "Describe the problem",
+          "required": true,
+          "show_if": { "field": "pest", "equals": "other" }
+        },
+        {
+          "id": "notes",
+          "type": "textarea",
+          "label": "Anything else we should know?",
+          "placeholder": "Access, animals at home, a question...",
+          "show_if": { "field": "pest", "not_in": [ "other" ] }
+        }
+      ]
+    },
+    {
+      "id": "place",
+      "title": "Where?",
+      "fields": [
+        {
+          "id": "site_address",
+          "type": "address",
+          "label": "Address",
+          "required": true
+        },
+        {
+          "id": "customer",
+          "type": "choice",
+          "label": "You are",
+          "options": [
+            { "value": "owner", "label": "The owner" },
+            { "value": "tenant", "label": "A tenant" },
+            { "value": "manager", "label": "A property manager or co-ownership" },
+            { "value": "business", "label": "A business or a local authority" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "title": "Photos",
+      "description": "A photo of the nest or of the insects helps us come with the right equipment. Take it from a safe distance, never close to a nest.",
+      "fields": [
+        {
+          "id": "photos",
+          "type": "photos",
+          "label": "Photos",
+          "help": "Up to 4 photos. Zoom in rather than walking closer.",
+          "max": 4
+        }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "How soon do you need us?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible" },
+            { "value": "week", "label": "This week" },
+            { "value": "flexible", "label": "No rush" }
+          ]
+        },
+        {
+          "id": "availability",
+          "type": "text",
+          "label": "When can we call you or come?",
+          "placeholder": "For example weekdays after 5 pm",
+          "maxlength": 150
+        }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will call you back soon. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will call you back soon.\n\nUntil then, keep away from the nest or the insects and do not try to destroy a nest yourself.\n\nHere is a copy of what you sent us."
+  }
+}

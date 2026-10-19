@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "id": "architect",
+  "title": "Architect",
+  "description": "New houses, extensions, renovations, interior design and planning applications.",
+  "category": "professional",
+  "keywords": "architect, building design, plans, planning permission, building permit, extension, renovation, interior design, project management",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your project",
+      "fields": [
+        {
+          "id": "project",
+          "type": "choice",
+          "label": "What is the project?",
+          "required": true,
+          "options": [
+            { "value": "house", "label": "A new house" },
+            { "value": "extension", "label": "An extension or a raised roof" },
+            { "value": "renovation", "label": "A renovation" },
+            { "value": "interior", "label": "Interior design" },
+            { "value": "commercial", "label": "A commercial or public building" },
+            { "value": "other", "label": "Something else" }
+          ]
+        },
+        {
+          "id": "mission",
+          "type": "choice",
+          "label": "What do you expect from us?",
+          "options": [
+            { "value": "full", "label": "The whole project, from design to the end of the works" },
+            { "value": "permit", "label": "The plans and the planning application" },
+            { "value": "feasibility", "label": "A first opinion on feasibility" },
+            { "value": "unknown", "label": "I would like to talk about it" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "A few details",
+      "fields": [
+        {
+          "id": "area",
+          "type": "number",
+          "label": "Approximate floor area of the project",
+          "unit": "m²",
+          "min": 1,
+          "max": 100000
+        },
+        {
+          "id": "plot",
+          "type": "choice",
+          "label": "The land or the building",
+          "options": [
+            { "value": "owned", "label": "I own it" },
+            { "value": "buying", "label": "I am buying it" },
+            { "value": "looking", "label": "I am still looking" }
+          ]
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "Describe your project",
+          "placeholder": "Needs, style, constraints of the site, what matters to you...",
+          "required": true,
+          "maxlength": 3000
+        },
+        {
+          "id": "budget",
+          "type": "text",
+          "label": "Budget for the works, if you have one",
+          "help": "Optional. It helps us suggest a project that fits.",
+          "maxlength": 100
+        }
+      ]
+    },
+    {
+      "id": "place",
+      "title": "Where?",
+      "fields": [
+        {
+          "id": "has_address",
+          "type": "yesno",
+          "label": "Do you know the address of the project?"
+        },
+        {
+          "id": "site_address",
+          "type": "address",
+          "label": "Address of the project",
+          "required": true,
+          "show_if": { "field": "has_address", "equals": "yes" }
+        },
+        {
+          "id": "town",
+          "type": "text",
+          "label": "Town or area you are looking in",
+          "show_if": { "field": "has_address", "equals": "no" },
+          "maxlength": 100
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "title": "Photos",
+      "description": "Photos of the land or of the building, or of a sketch, help us prepare the first meeting.",
+      "fields": [
+        { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 images. You can take them now with your phone.", "max": 6 }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "When would you like the works to start?",
+          "required": true,
+          "options": [
+            { "value": "soon", "label": "Within the year" },
+            { "value": "later", "label": "In one to two years" },
+            { "value": "flexible", "label": "No date yet" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will contact you soon to talk about your project. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your project request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon to talk about your project.\n\nHere is a copy of what you sent us."
+  }
+}

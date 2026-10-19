@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "id": "service",
+  "title": "Service on quote (general)",
+  "description": "A general template for any service quoted on request, when no trade template fits.",
+  "category": "general",
+  "keywords": "service, quote, request, other trade",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your request",
+      "fields": [
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "What do you need?",
+          "placeholder": "Describe the service, the context and what matters to you.",
+          "required": true,
+          "maxlength": 3000
+        },
+        {
+          "id": "frequency",
+          "type": "choice",
+          "label": "Is it a one-off or a regular service?",
+          "options": [
+            { "value": "once", "label": "A one-off" },
+            { "value": "regular", "label": "A regular service" },
+            { "value": "unknown", "label": "Not decided yet" }
+          ]
+        },
+        {
+          "id": "for_whom",
+          "type": "choice",
+          "label": "You are",
+          "options": [
+            { "value": "individual", "label": "A private individual" },
+            { "value": "business", "label": "A business" },
+            { "value": "association", "label": "An association or a local authority" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "place",
+      "title": "Where?",
+      "fields": [
+        {
+          "id": "on_site",
+          "type": "yesno",
+          "label": "Does the service take place at an address?",
+          "help": "For example at your home, your business or an event venue."
+        },
+        {
+          "id": "site_address",
+          "type": "address",
+          "label": "Address",
+          "required": true,
+          "show_if": { "field": "on_site", "equals": "yes" }
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "title": "Photos or documents",
+      "description": "Optional: a photo, a plan or a screenshot often explains better than words.",
+      "fields": [
+        { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 4 images.", "max": 4 }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        { "id": "wanted_date", "type": "date", "label": "Date wanted, if you have one" },
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "How soon?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible" },
+            { "value": "weeks", "label": "Within a few weeks" },
+            { "value": "flexible", "label": "No rush" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will get back to you soon. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon.\n\nHere is a copy of what you sent us."
+  }
+}

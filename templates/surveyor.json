@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "id": "surveyor",
+  "title": "Land surveyor",
+  "description": "Boundary marking, plot division, topographic surveys and co-ownership documents.",
+  "category": "professional",
+  "keywords": "land surveyor, boundaries, boundary marking, plot division, topographic survey, land, co-ownership, measurements",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your request",
+      "fields": [
+        {
+          "id": "need",
+          "type": "choice",
+          "label": "What do you need?",
+          "required": true,
+          "options": [
+            { "value": "boundary", "label": "Marking the boundaries of a plot" },
+            { "value": "division", "label": "Dividing a plot to sell or build" },
+            { "value": "topo", "label": "A topographic survey before a project" },
+            { "value": "co_ownership", "label": "Co-ownership documents" },
+            { "value": "other", "label": "Something else" }
+          ]
+        },
+        {
+          "id": "plot_area",
+          "type": "number",
+          "label": "Approximate area of the plot",
+          "unit": "m²",
+          "min": 1,
+          "max": 10000000,
+          "show_if": { "field": "need", "in": [ "boundary", "division", "topo" ] }
+        },
+        {
+          "id": "neighbours",
+          "type": "choice",
+          "label": "Are the neighbours aware?",
+          "show_if": { "field": "need", "equals": "boundary" },
+          "options": [
+            { "value": "agree", "label": "Yes, we agree" },
+            { "value": "dispute", "label": "There is a disagreement" },
+            { "value": "not_yet", "label": "Not yet" }
+          ]
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "Tell us more about your request",
+          "placeholder": "Project, reference of the plot in the land register if you have it, questions...",
+          "maxlength": 3000
+        }
+      ]
+    },
+    {
+      "id": "place",
+      "title": "Where?",
+      "fields": [
+        { "id": "site_address", "type": "address", "label": "Address of the land or building", "required": true },
+        {
+          "id": "customer",
+          "type": "choice",
+          "label": "You are",
+          "options": [
+            { "value": "owner", "label": "The owner" },
+            { "value": "buyer", "label": "Buying" },
+            { "value": "professional", "label": "A notary, an agency or a builder" },
+            { "value": "public", "label": "A local authority" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "title": "Photos or documents",
+      "description": "Optional: a photo of the land, of a plan or of the land register extract.",
+      "fields": [
+        { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 4 images.", "max": 4 }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "How soon?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible, a sale or a deed is planned" },
+            { "value": "months", "label": "Within the next three months" },
+            { "value": "flexible", "label": "No rush" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will get back to you soon. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your quote request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon.\n\nHere is a copy of what you sent us."
+  }
+}

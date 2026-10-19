@@ -1,0 +1,16 @@
+{
+  "name": "primiko",
+  "private": true,
+  "description": "Block and admin scripts of the Primiko plugin.",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "lint:js": "wp-scripts lint-js src assets \"bin/**/*.mjs\"",
+    "i18n:templates": "node bin/template-strings.mjs"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0",
+    "typescript": "^5.9.3"
+  }
+}

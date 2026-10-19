@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "id": "accountant",
+  "title": "Accountant",
+  "description": "Business creation, bookkeeping and annual accounts, tax returns, payroll and advice.",
+  "category": "professional",
+  "keywords": "accounting, chartered accountant, bookkeeping, accounts, tax return, payroll, company creation, VAT, business plan",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your request",
+      "description": "Please do not send confidential documents through this form: we will ask for what we need.",
+      "fields": [
+        {
+          "id": "need",
+          "type": "choice",
+          "label": "What do you need?",
+          "help": "Choose all that apply.",
+          "required": true,
+          "multiple": true,
+          "options": [
+            { "value": "creation", "label": "Creating a business" },
+            { "value": "bookkeeping", "label": "Bookkeeping and annual accounts" },
+            { "value": "change", "label": "Changing accountant" },
+            { "value": "tax", "label": "Personal tax return" },
+            { "value": "payroll", "label": "Payroll and employee administration" },
+            { "value": "advice", "label": "Advice (management, financing, sale of a business)" },
+            { "value": "other", "label": "Something else" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "business",
+      "title": "Your business",
+      "show_if": { "field": "need", "in": [ "creation", "bookkeeping", "change", "payroll", "advice", "other" ] },
+      "fields": [
+        {
+          "id": "legal_form",
+          "type": "choice",
+          "label": "Legal form",
+          "options": [
+            { "value": "not_created", "label": "Not created yet" },
+            { "value": "micro", "label": "Micro-enterprise or sole trader" },
+            { "value": "limited", "label": "Limited company (SARL, EURL, SAS, SASU)" },
+            { "value": "property", "label": "Property company (SCI)" },
+            { "value": "association", "label": "Association" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "activity",
+          "type": "text",
+          "label": "Business activity",
+          "placeholder": "For example roofer, restaurant, IT consultant",
+          "maxlength": 150
+        },
+        {
+          "id": "turnover",
+          "type": "choice",
+          "label": "Yearly turnover",
+          "help": "An order of magnitude, expected if the business is new.",
+          "options": [
+            { "value": "small", "label": "Under 100,000 €" },
+            { "value": "medium", "label": "100,000 to 500,000 €" },
+            { "value": "large", "label": "500,000 € to 2 million €" },
+            { "value": "very_large", "label": "Over 2 million €" },
+            { "value": "unknown", "label": "I don't know yet" }
+          ]
+        },
+        {
+          "id": "employees",
+          "type": "number",
+          "label": "Number of employees",
+          "min": 0,
+          "max": 10000
+        },
+        {
+          "id": "start_date",
+          "type": "date",
+          "label": "Start date of the business or of the financial year, if known"
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "A few details",
+      "fields": [
+        {
+          "id": "situation",
+          "type": "textarea",
+          "label": "Tell us more about your request",
+          "placeholder": "Context, deadlines, software you use, questions...",
+          "maxlength": 3000
+        },
+        {
+          "id": "town",
+          "type": "text",
+          "label": "Town of the business or of your home",
+          "maxlength": 100
+        },
+        {
+          "id": "meeting",
+          "type": "choice",
+          "label": "How would you like to meet?",
+          "options": [
+            { "value": "office", "label": "At the office" },
+            { "value": "phone", "label": "By phone" },
+            { "value": "video", "label": "By video call" },
+            { "value": "any", "label": "No preference" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "How soon?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible, a deadline is close" },
+            { "value": "weeks", "label": "Within a few weeks" },
+            { "value": "flexible", "label": "No rush" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will contact you soon to arrange a first meeting. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon to arrange a first meeting.\n\nHere is a copy of what you sent us."
+  }
+}

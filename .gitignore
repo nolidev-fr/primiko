@@ -1,0 +1,26 @@
+# Local working notes, never published (the brief names clients).
+/BRIEF.md
+/BRIEF-*.md
+
+# Tooling.
+/vendor/
+/node_modules/
+/composer.lock
+/.phpcs-cache
+/.wp-env.override.json
+
+# Builds and system files.
+/build/
+/*.zip
+.DS_Store
+Thumbs.db
+
+# Test site: WP-CLI binary copied locally.
+/dev/wp-cli.phar
+
+# Local tool settings.
+/.claude/
+/.impeccable/
+
+# Design references (generated images), not versioned.
+/design/

@@ -1,0 +1,218 @@
+{
+  "schema": 1,
+  "id": "landscaper",
+  "title": "Landscaper and gardener",
+  "description": "Garden design and upkeep, hedges, trees, lawns, paving, fences and watering.",
+  "category": "outdoor",
+  "keywords": "garden, gardening, landscaping, hedges, trees, felling, lawn, paving, fence, watering",
+  "steps": [
+    {
+      "id": "service",
+      "title": "Your project",
+      "fields": [
+        {
+          "id": "service",
+          "type": "choice",
+          "label": "What do you need?",
+          "help": "Choose all that apply.",
+          "required": true,
+          "multiple": true,
+          "options": [
+            { "value": "upkeep", "label": "Garden upkeep (mowing, weeding)" },
+            { "value": "hedges", "label": "Hedge trimming" },
+            { "value": "trees", "label": "Tree pruning or felling" },
+            { "value": "design", "label": "Garden design or redesign" },
+            { "value": "lawn", "label": "New lawn" },
+            { "value": "planting", "label": "Planting" },
+            { "value": "paving", "label": "Paving, paths or terrace" },
+            { "value": "fence", "label": "Fence or gate" },
+            { "value": "watering", "label": "Watering system" },
+            { "value": "other", "label": "Something else" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "details",
+      "title": "A few details",
+      "description": "Answer what you can. If you are not sure, choose \"I don't know\".",
+      "fields": [
+        {
+          "id": "garden_area",
+          "type": "number",
+          "label": "Approximate area of the garden",
+          "unit": "m²",
+          "min": 1,
+          "max": 100000,
+          "show_if": { "field": "service", "in": [ "upkeep", "design", "lawn", "watering" ] }
+        },
+        {
+          "id": "frequency",
+          "type": "choice",
+          "label": "How often?",
+          "show_if": { "field": "service", "in": [ "upkeep", "hedges" ] },
+          "options": [
+            { "value": "once", "label": "Once" },
+            { "value": "seasonal", "label": "A few times a year" },
+            { "value": "regular", "label": "Regularly, with a yearly contract" }
+          ]
+        },
+        {
+          "id": "hedge_length",
+          "type": "number",
+          "label": "Approximate length of the hedges",
+          "unit": "m",
+          "min": 1,
+          "max": 10000,
+          "show_if": { "field": "service", "in": [ "hedges" ] }
+        },
+        {
+          "id": "hedge_height",
+          "type": "choice",
+          "label": "Height of the hedges",
+          "show_if": { "field": "service", "in": [ "hedges" ] },
+          "options": [
+            { "value": "low", "label": "Under 2 m" },
+            { "value": "medium", "label": "2 to 4 m" },
+            { "value": "high", "label": "Over 4 m" }
+          ]
+        },
+        {
+          "id": "tree_work",
+          "type": "choice",
+          "label": "What should be done with the trees?",
+          "show_if": { "field": "service", "in": [ "trees" ] },
+          "options": [
+            { "value": "pruning", "label": "Pruning" },
+            { "value": "felling", "label": "Felling" },
+            { "value": "stump", "label": "Felling and stump removal" }
+          ]
+        },
+        {
+          "id": "tree_count",
+          "type": "number",
+          "label": "How many trees?",
+          "min": 1,
+          "max": 500,
+          "show_if": { "field": "service", "in": [ "trees" ] }
+        },
+        {
+          "id": "tree_height",
+          "type": "choice",
+          "label": "Height of the tallest tree",
+          "show_if": { "field": "service", "in": [ "trees" ] },
+          "options": [
+            { "value": "small", "label": "Under 6 m" },
+            { "value": "medium", "label": "6 to 15 m" },
+            { "value": "tall", "label": "Over 15 m" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "near_building",
+          "type": "yesno",
+          "label": "Is a tree close to a house, a road or power lines?",
+          "show_if": { "field": "service", "in": [ "trees" ] }
+        },
+        {
+          "id": "paving_area",
+          "type": "number",
+          "label": "Approximate area to pave",
+          "unit": "m²",
+          "min": 1,
+          "max": 10000,
+          "show_if": { "field": "service", "in": [ "paving" ] }
+        },
+        {
+          "id": "fence_length",
+          "type": "number",
+          "label": "Approximate length of fence",
+          "unit": "m",
+          "min": 1,
+          "max": 10000,
+          "show_if": { "field": "service", "in": [ "fence" ] }
+        },
+        {
+          "id": "waste",
+          "type": "yesno",
+          "label": "Should we take away the green waste?",
+          "show_if": { "field": "service", "in": [ "upkeep", "hedges", "trees" ] }
+        },
+        {
+          "id": "access",
+          "type": "choice",
+          "label": "Access to the garden",
+          "show_if": { "field": "service", "not_in": [ "other" ] },
+          "options": [
+            { "value": "easy", "label": "Easy access with a vehicle" },
+            { "value": "narrow", "label": "Narrow passage or through the house" },
+            { "value": "unknown", "label": "I don't know" }
+          ]
+        },
+        {
+          "id": "other_request",
+          "type": "textarea",
+          "label": "Describe what you need",
+          "required": true,
+          "show_if": { "field": "service", "in": [ "other" ] }
+        },
+        {
+          "id": "notes",
+          "type": "textarea",
+          "label": "Anything else we should know?",
+          "placeholder": "Slope, wishes for the garden, a question...",
+          "show_if": { "field": "service", "filled": true }
+        }
+      ]
+    },
+    {
+      "id": "place",
+      "title": "Where?",
+      "fields": [
+        { "id": "site_address", "type": "address", "label": "Address of the garden", "required": true },
+        {
+          "id": "customer",
+          "type": "choice",
+          "label": "You are",
+          "options": [
+            { "value": "individual", "label": "A private individual" },
+            { "value": "manager", "label": "A property manager or co-ownership" },
+            { "value": "business", "label": "A business or a local authority" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "title": "Photos",
+      "description": "A view of the garden, the hedges or the trees helps us prepare the quote faster.",
+      "fields": [
+        { "id": "photos", "type": "photos", "label": "Photos of the garden", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "When?",
+      "fields": [
+        {
+          "id": "timing",
+          "type": "choice",
+          "label": "When would you like the work done?",
+          "required": true,
+          "options": [
+            { "value": "urgent", "label": "As soon as possible" },
+            { "value": "months", "label": "Within the next three months" },
+            { "value": "season", "label": "At the right season" },
+            { "value": "flexible", "label": "No rush" }
+          ]
+        },
+        { "id": "availability", "type": "text", "label": "When can we call you or visit?", "placeholder": "For example weekdays after 5 pm", "maxlength": 150 }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your request has been sent. We will get back to you soon. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your quote request to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your request. We have received it and will contact you soon to talk about your garden.\n\nHere is a copy of what you sent us."
+  }
+}
