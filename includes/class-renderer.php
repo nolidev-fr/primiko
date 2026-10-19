@@ -156,7 +156,7 @@ final class Renderer {
 			<div class="primiko__done" tabindex="-1" hidden></div>
 
 			<noscript>
-				<p class="primiko__noscript"><?php esc_html_e( 'This form needs JavaScript. Please enable it in your browser, or contact us by phone or email.', 'primiko' ); ?></p>
+				<p class="primiko__noscript"><?php esc_html_e( 'This form needs JavaScript. Please enable it in your browser, or use the phone number or email address shown on this site.', 'primiko' ); ?></p>
 			</noscript>
 		</div>
 		<?php

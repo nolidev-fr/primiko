@@ -4,7 +4,7 @@ Tags: quote, request a quote, multi-step form, contractor, tradesman
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,6 +139,11 @@ Usually not. The form stops most spam on its own: a hidden field robots fill in,
 7. A request with all its answers and a reply button.
 
 == Changelog ==
+
+= 1.0.3 =
+* The message shown when no copy is sent can be rewritten too.
+* No extra space above the form when the theme already keeps anchors below its header.
+* The text shown without JavaScript no longer speaks for the business.
 
 = 1.0.2 =
 * No step count any more: the progress bar shows the way, without "Step 1 of 7".

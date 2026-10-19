@@ -201,6 +201,7 @@
 			this.form.hidden = false;
 			this.root.classList.add( 'is-ready' );
 			this.matchTheme();
+			this.matchAnchorSpace();
 
 			this.buttons.prev.addEventListener( 'click', function () {
 				self.move( -1 );
@@ -329,6 +330,41 @@
 					'--primiko-x-field-background',
 					field.backgroundColor
 				);
+			}
+		},
+
+		/**
+		 * Drops the space kept above the form when a link leads to it, if the
+		 * theme already keeps anchors below its header (scroll-padding-top):
+		 * the two would add up. A page opened on the anchor of the form is
+		 * then placed again.
+		 */
+		matchAnchorSpace() {
+			const padding = parseFloat(
+				window.getComputedStyle( document.documentElement )
+					.scrollPaddingTop
+			);
+			const targets = [ this.root, this.root.parentElement ];
+
+			if ( ! ( padding > 0 ) ) {
+				return;
+			}
+
+			targets.forEach( function ( element ) {
+				element.style.scrollMarginTop = '0px';
+			} );
+
+			const hash = window.location.hash.slice( 1 );
+
+			if (
+				hash &&
+				targets.some( function ( element ) {
+					return element.id === decodeURIComponent( hash );
+				} )
+			) {
+				document
+					.getElementById( decodeURIComponent( hash ) )
+					.scrollIntoView();
 			}
 		},
 

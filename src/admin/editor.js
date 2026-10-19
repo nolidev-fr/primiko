@@ -724,6 +724,14 @@ function Messages( { template, custom, update } ) {
 			TextareaControl,
 		],
 		[
+			'success_no_copy',
+			__(
+				'Message shown when no copy is sent (no email address, or too many copies to that address today)',
+				'primiko'
+			),
+			TextareaControl,
+		],
+		[
 			'acknowledgement_subject',
 			__( 'Subject of the copy sent to the visitor', 'primiko' ),
 			TextControl,

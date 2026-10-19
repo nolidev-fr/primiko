@@ -31,7 +31,7 @@ defined( 'ABSPATH' ) || exit;
  *                     'options' => array( '<value>' => array( 'hidden' => true, 'label' => '...' ) ),
  *                 ),
  *             ),
- *             'messages' => array( 'success' => '...', 'acknowledgement_subject' => '...', 'acknowledgement_body' => '...' ),
+ *             'messages' => array( 'success' => '...', 'success_no_copy' => '...', 'acknowledgement_subject' => '...', 'acknowledgement_body' => '...' ),
  *             'added'    => array(
  *                 array( 'id' => 'custom_ab12cd', 'step' => '<step id>', 'type' => 'choice', 'label' => '...', 'help' => '...',
  *                        'required' => true, 'multiple' => false, 'options' => array( array( 'value' => 'o1', 'label' => '...' ) ) ),
@@ -51,7 +51,7 @@ final class Customizations {
 	/**
 	 * Messages the business can rewrite.
 	 */
-	const MESSAGES = array( 'success', 'acknowledgement_subject', 'acknowledgement_body' );
+	const MESSAGES = array( 'success', 'success_no_copy', 'acknowledgement_subject', 'acknowledgement_body' );
 
 	/**
 	 * Longest text accepted for a title, a question or an answer.

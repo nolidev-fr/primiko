@@ -196,7 +196,7 @@ final class Submission {
 		return new \WP_REST_Response(
 			array(
 				// The usual message tells about the copy: not when none could be sent.
-				'message'   => Mailer::fill( $copied ? $this->message( $schema, 'success' ) : Mailer::default_message( 'success_no_copy' ), $request_id ),
+				'message'   => Mailer::fill( $this->message( $schema, $copied ? 'success' : 'success_no_copy' ), $request_id ),
 				'reference' => Mailer::reference( $request_id ),
 			),
 			201
