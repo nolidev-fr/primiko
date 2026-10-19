@@ -116,7 +116,7 @@
     {
       "id": "photos",
       "title": "Photos",
-      "description": "Photos of the place help us understand the project and prepare the quote faster.",
+      "description": "Photos of the place help to understand the project and prepare the quote faster.",
       "fields": [
         { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
       ]

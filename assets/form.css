@@ -15,6 +15,9 @@
  * from the block settings:
  * --primiko-accent  main color (cards, progress, focus)
  * --primiko-radius  corner radius of the cards and fallback inputs
+ * --primiko-small   size of the small texts (help, errors, counters)
+ * None is needed: the script reads the colors, corners and fields of
+ * the theme.
  * The --primiko-x-* variables are internal.
  */
 
@@ -33,7 +36,9 @@
 	/* Red that follows the text color: darker on light themes, lighter on dark ones. */
 	--primiko-error: color-mix(in oklab, #c62828 68%, currentColor);
 	--primiko-gap: var(--wp--style--block-gap, 1.5rem);
-	--primiko-small: var(--wp--preset--font-size--small, 0.9em);
+	/* Small texts follow the theme, but never below 1rem: help texts and
+	   errors must stay easy to read on a phone. */
+	--primiko-small: max(var(--wp--preset--font-size--small, 0.9em), 1rem);
 	container-type: inline-size;
 	container-name: primiko;
 	max-width: 42rem;
@@ -75,7 +80,7 @@
 :where(.primiko__bar) {
 	flex: 1;
 	height: 4px;
-	border-radius: 2px;
+	border-radius: min(2px, var(--primiko-x-radius));
 	background: var(--primiko-line);
 	overflow: hidden;
 }
@@ -258,6 +263,7 @@
 	padding: 0.75rem 0.9rem;
 	border: 1px solid var(--primiko-line);
 	border-radius: var(--primiko-x-radius);
+	background: var(--primiko-x-field-background, transparent);
 	font-weight: normal;
 	line-height: 1.4;
 	cursor: pointer;
@@ -266,7 +272,7 @@
 
 .primiko .primiko__option:has(input:checked) {
 	border-color: var(--primiko-x-accent);
-	background: var(--primiko-soft);
+	background: color-mix(in srgb, var(--primiko-x-accent) 9%, var(--primiko-x-field-background, transparent));
 	box-shadow: inset 0 0 0 1px var(--primiko-x-accent);
 }
 
@@ -310,6 +316,7 @@
 	padding: 0.9rem;
 	border: 1px solid var(--primiko-line);
 	border-radius: var(--primiko-x-radius);
+	background: var(--primiko-x-field-background, transparent);
 }
 
 :where(.primiko__consent label) {
@@ -396,10 +403,10 @@
 	min-height: 0;
 	margin: 0;
 	padding: 0;
-	border: 0;
-	border-radius: 50%;
-	background: rgb(0 0 0 / 0.68);
-	box-shadow: 0 1px 4px rgb(0 0 0 / 0.3);
+	border: 1px solid rgb(255 255 255 / 0.4);
+	border-radius: var(--primiko-x-radius);
+	background: rgb(0 0 0 / 0.72);
+	box-shadow: none;
 	color: #fff;
 	line-height: 1;
 	cursor: pointer;
@@ -484,7 +491,7 @@
 	margin-bottom: 0.4rem;
 }
 
-.primiko .primiko__summary-head h3 {
+.primiko .primiko__summary-head :is(h3, h4, h5) {
 	margin: 0;
 	font-size: 1em;
 	line-height: 1.35;

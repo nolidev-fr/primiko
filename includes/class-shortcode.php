@@ -53,8 +53,15 @@ final class Shortcode {
 	 * @return string
 	 */
 	public function render( $atts ) {
-		$atts = shortcode_atts( array( 'form' => 0 ), $atts, self::TAG );
+		$atts = shortcode_atts(
+			array(
+				'form'    => 0,
+				'heading' => 2,
+			),
+			$atts,
+			self::TAG
+		);
 
-		return $this->renderer->render( absint( $atts['form'] ) );
+		return $this->renderer->render( absint( $atts['form'] ), absint( $atts['heading'] ) );
 	}
 }

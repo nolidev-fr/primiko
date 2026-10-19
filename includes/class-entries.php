@@ -41,6 +41,7 @@ final class Entries {
 
 				$items[] = array(
 					'id'    => $field['id'],
+					'type'  => $field['type'],
 					'label' => $field['label'],
 					'value' => self::display( $field, $clean[ $field['id'] ] ),
 				);
@@ -119,7 +120,7 @@ final class Entries {
 			foreach ( $step['items'] as $item ) {
 				$html .= '<tr>';
 				$html .= '<th scope="row" style="text-align:left;vertical-align:top;padding:6px 12px 6px 0;width:40%;font-weight:normal;color:#555;">' . esc_html( $item['label'] ) . '</th>';
-				$html .= '<td style="vertical-align:top;padding:6px 0;">' . nl2br( esc_html( $item['value'] ) ) . '</td>';
+				$html .= '<td style="vertical-align:top;padding:6px 0;">' . self::value_html( $item ) . '</td>';
 				$html .= '</tr>';
 			}
 
@@ -127,5 +128,46 @@ final class Entries {
 		}
 
 		return $html;
+	}
+
+	/**
+	 * Returns one answer as HTML. The phone number calls, the email address
+	 * writes and the address opens a map: the business often reads its
+	 * requests on a phone.
+	 *
+	 * @param array $item Entry item: id, type (since 1.0.1), label, value.
+	 * @return string Escaped HTML.
+	 */
+	private static function value_html( $item ) {
+		$value = (string) $item['value'];
+		$type  = isset( $item['type'] ) ? $item['type'] : '';
+
+		// Entries saved before 1.0.1 have no type: the contact fields keep fixed IDs.
+		if ( '' === $type && isset( $item['id'] ) ) {
+			$type = array(
+				'phone' => 'tel',
+				'email' => 'email',
+			)[ $item['id'] ] ?? '';
+		}
+
+		if ( '' === $value ) {
+			return '';
+		}
+
+		switch ( $type ) {
+			case 'tel':
+				$number = preg_replace( '/[^0-9+]/', '', $value );
+
+				return '' === $number ? esc_html( $value ) : '<a href="' . esc_url( 'tel:' . $number, array( 'tel' ) ) . '">' . esc_html( $value ) . '</a>';
+
+			case 'email':
+				return is_email( $value ) ? '<a href="' . esc_url( 'mailto:' . $value, array( 'mailto' ) ) . '">' . esc_html( $value ) . '</a>' : esc_html( $value );
+
+			case 'address':
+				return '<a href="' . esc_url( 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( $value ) ) . '">' . esc_html( $value ) . '</a>';
+
+			default:
+				return nl2br( esc_html( $value ) );
+		}
 	}
 }

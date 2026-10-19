@@ -31,7 +31,7 @@
     {
       "id": "details",
       "title": "A few details",
-      "description": "Answer what you can. If you are not sure, choose \"I don't know\": we will look on site.",
+      "description": "Answer what you can. When you are not sure, choose the closest answer: the details are checked on site.",
       "fields": [
         {
           "id": "leak_now",
@@ -319,7 +319,7 @@
     {
       "id": "photos",
       "title": "Photos",
-      "description": "Photos help us understand the job and prepare the quote faster. A view of the whole roof and a close-up of the problem are ideal.",
+      "description": "Photos help to understand the job and prepare the quote faster. A view of the whole roof and a close-up of the problem are ideal.",
       "fields": [
         {
           "id": "photos",

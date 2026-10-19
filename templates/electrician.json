@@ -32,7 +32,7 @@
     {
       "id": "details",
       "title": "A few details",
-      "description": "Answer what you can. If you are not sure, choose \"I don't know\".",
+      "description": "Answer what you can. When you are not sure, choose the closest answer.",
       "fields": [
         {
           "id": "power_out",
@@ -185,7 +185,7 @@
     {
       "id": "photos",
       "title": "Photos",
-      "description": "A photo of the fuse board, opened, and of the place of the work helps us prepare the quote.",
+      "description": "A photo of the fuse board, opened, and of the place of the work helps to prepare the quote.",
       "fields": [
         { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone. Do not touch anything that looks damaged.", "max": 6 }
       ]

@@ -309,13 +309,26 @@
 				'input.primiko__input, textarea.primiko__input'
 			);
 
-			if (
-				input &&
-				! style.getPropertyValue( '--primiko-radius' ).trim()
-			) {
+			if ( ! input ) {
+				return;
+			}
+
+			const field = window.getComputedStyle( input );
+
+			if ( ! style.getPropertyValue( '--primiko-radius' ).trim() ) {
 				this.root.style.setProperty(
 					'--primiko-x-radius',
-					window.getComputedStyle( input ).borderTopLeftRadius
+					field.borderTopLeftRadius
+				);
+			}
+
+			// Answer cards and the consent box take the background of the
+			// theme fields, so they stand out on a colored section as the
+			// fields do.
+			if ( this.toRgb( field.backgroundColor ) ) {
+				this.root.style.setProperty(
+					'--primiko-x-field-background',
+					field.backgroundColor
 				);
 			}
 		},
@@ -603,6 +616,16 @@
 				! this.check( wrapper.getAttribute( 'data-field' ) )
 			) {
 				this.clearError( wrapper.getAttribute( 'data-field' ) );
+
+				// Once every field of the step is fixed, the warning goes too.
+				if (
+					this.alert.textContent === this.i18n.checkFields &&
+					! this.stepElement( this.current ).querySelector(
+						'.has-error'
+					)
+				) {
+					this.hideAlert();
+				}
 			}
 		},
 
@@ -1032,7 +1055,9 @@
 						.filter( Boolean )
 						.join( ', ' );
 				case 'photos':
-					return value ? format( i18n.photosSummary, value ) : '';
+					return value
+						? format( i18n.photosSummary[ value ], value )
+						: '';
 				case 'number':
 					return value && field.unit
 						? value + ' ' + field.unit
@@ -1073,7 +1098,9 @@
 				section.className = 'primiko__summary-step';
 				const heading = document.createElement( 'div' );
 				heading.className = 'primiko__summary-head';
-				const title = document.createElement( 'h3' );
+				const title = document.createElement(
+					'h' + Math.min( 6, ( self.config.heading || 2 ) + 1 )
+				);
 				title.textContent = step.title;
 				const edit = document.createElement( 'button' );
 				edit.type = 'button';
@@ -1230,7 +1257,11 @@
 			} );
 
 			picker.querySelector( '.primiko__photo-count' ).textContent =
-				format( this.i18n.photoCount, this.photos[ id ].length, max );
+				format(
+					this.i18n.photoCounts[ this.photos[ id ].length ],
+					this.photos[ id ].length,
+					max
+				);
 			picker.querySelector( 'input[type="file"]' ).disabled =
 				this.photos[ id ].length >= max;
 		},

@@ -45,6 +45,11 @@
 		padding-bottom: 1rem;
 		border-bottom: 1px solid #f0f0f1;
 
+		// The step introduction runs under the toggle and the title.
+		> .components-base-control:nth-child(3) {
+			grid-column: 1 / -1;
+		}
+
 		@media (max-width: 600px) {
 			grid-template-columns: 1fr;
 		}
@@ -156,6 +161,12 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.35rem;
+
+		// A hidden answer reads as off at a glance, not only by its box.
+		&.is-off .components-checkbox-control__label {
+			color: #757575;
+			text-decoration: line-through;
+		}
 	}
 
 	&__texts {

@@ -33,7 +33,7 @@
     {
       "id": "details",
       "title": "A few details",
-      "description": "Answer what you can. If you are not sure, choose \"I don't know\".",
+      "description": "Answer what you can. When you are not sure, choose the closest answer.",
       "fields": [
         {
           "id": "count",
@@ -186,7 +186,7 @@
     {
       "id": "photos",
       "title": "Photos",
-      "description": "A photo of each window, door or place of the work, from inside and outside, helps us prepare the quote faster.",
+      "description": "A photo of each window, door or place of the work, from inside and outside, helps to prepare the quote faster.",
       "fields": [
         { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
       ]

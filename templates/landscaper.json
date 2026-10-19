@@ -35,7 +35,7 @@
     {
       "id": "details",
       "title": "A few details",
-      "description": "Answer what you can. If you are not sure, choose \"I don't know\".",
+      "description": "Answer what you can. When you are not sure, choose the closest answer.",
       "fields": [
         {
           "id": "garden_area",
@@ -185,7 +185,7 @@
     {
       "id": "photos",
       "title": "Photos",
-      "description": "A view of the garden, the hedges or the trees helps us prepare the quote faster.",
+      "description": "A view of the garden, the hedges or the trees helps to prepare the quote faster.",
       "fields": [
         { "id": "photos", "type": "photos", "label": "Photos of the garden", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
       ]

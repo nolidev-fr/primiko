@@ -274,6 +274,28 @@ function Step( { step, open, template, custom, reachable, update } ) {
 						update( [ 'steps', step.id, 'title' ], value )
 					}
 				/>
+				{ step.description && (
+					<TextareaControl
+						{ ...common }
+						label={ __( 'Step introduction', 'primiko' ) }
+						help={ __(
+							'Shown under the step title. Left empty, the text of the template is used.',
+							'primiko'
+						) }
+						value={
+							getIn( custom, [
+								'steps',
+								step.id,
+								'description',
+							] ) || ''
+						}
+						placeholder={ step.description }
+						rows={ 3 }
+						onChange={ ( value ) =>
+							update( [ 'steps', step.id, 'description' ], value )
+						}
+					/>
+				) }
 			</div>
 
 			{ ! hidden &&
@@ -597,7 +619,11 @@ function Question( { field, template, custom, state, update } ) {
 						return (
 							<div
 								key={ option.value }
-								className="primiko-editor__option"
+								className={
+									getIn( custom, [ ...path, 'hidden' ] )
+										? 'primiko-editor__option is-off'
+										: 'primiko-editor__option'
+								}
 							>
 								<CheckboxControl
 									{ ...common }

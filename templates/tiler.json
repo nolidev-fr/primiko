@@ -31,7 +31,7 @@
     {
       "id": "details",
       "title": "A few details",
-      "description": "Answer what you can. If you are not sure, choose \"I don't know\": we will look on site.",
+      "description": "Answer what you can. When you are not sure, choose the closest answer: the details are checked on site.",
       "fields": [
         {
           "id": "rooms",
@@ -58,8 +58,8 @@
           "multiple": true,
           "show_if": { "field": "service", "equals": "bathroom" },
           "options": [
-            { "value": "floor", "label": "Floor" },
-            { "value": "walls", "label": "Walls" },
+            { "value": "floor", "label": "Floor tiles" },
+            { "value": "walls", "label": "Wall tiles" },
             { "value": "shower", "label": "A walk-in shower" },
             { "value": "bathtub", "label": "Removing the bathtub" },
             { "value": "full", "label": "Complete renovation, plumbing included" }
@@ -240,7 +240,7 @@
     {
       "id": "photos",
       "title": "Photos",
-      "description": "Photos help us understand the job and prepare the quote faster. A view of the whole room and a close-up of the floor or wall are ideal.",
+      "description": "Photos help to understand the job and prepare the quote faster. A view of the whole room and a close-up of the floor or wall are ideal.",
       "fields": [
         {
           "id": "photos",

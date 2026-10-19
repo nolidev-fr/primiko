@@ -143,6 +143,16 @@ final class Form_Settings {
 					<p class="description"><?php esc_html_e( 'One email address per line. Left empty, requests go to the administration email address of the site.', 'primiko' ); ?></p>
 				</td>
 			</tr>
+			<tr>
+				<th scope="row"><?php esc_html_e( 'Visitor email', 'primiko' ); ?></th>
+				<td>
+					<label for="primiko-email-optional">
+						<input type="checkbox" id="primiko-email-optional" name="primiko_email_optional" value="1" <?php checked( (bool) get_post_meta( $post->ID, '_primiko_email_optional', true ) ); ?>>
+						<?php esc_html_e( 'Optional', 'primiko' ); ?>
+					</label>
+					<p class="description"><?php esc_html_e( 'For customers who prefer the phone. Without an email address, the visitor gets no copy of the request, and the phone number stays required.', 'primiko' ); ?></p>
+				</td>
+			</tr>
 			<?php if ( 'auto-draft' !== $post->post_status ) : ?>
 				<tr>
 					<th scope="row"><?php esc_html_e( 'Shortcode', 'primiko' ); ?></th>
@@ -214,6 +224,12 @@ final class Form_Settings {
 		}
 
 		update_post_meta( $post_id, '_primiko_recipients', array_values( array_unique( $recipients ) ) );
+
+		if ( ! empty( $_POST['primiko_email_optional'] ) ) {
+			update_post_meta( $post_id, '_primiko_email_optional', '1' );
+		} else {
+			delete_post_meta( $post_id, '_primiko_email_optional' );
+		}
 
 		$this->save_customizations( $post_id );
 	}

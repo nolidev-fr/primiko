@@ -32,7 +32,7 @@
     {
       "id": "details",
       "title": "A few details",
-      "description": "Answer what you can. If you are not sure, choose \"I don't know\".",
+      "description": "Answer what you can. When you are not sure, choose the closest answer.",
       "fields": [
         {
           "id": "leak_now",
@@ -232,7 +232,7 @@
     {
       "id": "photos",
       "title": "Photos",
-      "description": "A photo of the problem, of the appliance and of its plate (brand and model) helps us come with the right parts.",
+      "description": "A photo of the problem, of the appliance and of its plate (brand and model) helps to bring the right parts.",
       "fields": [
         { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
       ]

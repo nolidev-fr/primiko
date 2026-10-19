@@ -65,7 +65,10 @@ final class Block {
 	 * @return string
 	 */
 	public function render( $attributes ) {
-		$html = $this->renderer->render( isset( $attributes['formId'] ) ? absint( $attributes['formId'] ) : 0 );
+		$html = $this->renderer->render(
+			isset( $attributes['formId'] ) ? absint( $attributes['formId'] ) : 0,
+			isset( $attributes['headingLevel'] ) ? (int) $attributes['headingLevel'] : 2
+		);
 
 		if ( '' === $html ) {
 			return '';

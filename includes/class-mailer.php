@@ -202,7 +202,7 @@ final class Mailer {
 	public static function default_message( $key ) {
 		$messages = array(
 			'success'                 => __( 'Thank you {name}, your request has been sent. A copy has been sent to {email}.', 'primiko' ),
-			'success_no_copy'         => __( 'Thank you {name}, your request has been sent. We will get back to you soon.', 'primiko' ),
+			'success_no_copy'         => __( 'Thank you {name}, your request has been sent.', 'primiko' ),
 			'acknowledgement_subject' => __( 'Your quote request to {site_name}', 'primiko' ),
 			'acknowledgement_body'    => __( "Hello {name},\n\nThank you for your request. We have received it and will get back to you soon.\n\nHere is a copy of what you sent us.", 'primiko' ),
 		);
@@ -251,20 +251,25 @@ final class Mailer {
 
 	/**
 	 * Absolute paths of the photos to attach, when they are small enough.
+	 * The keys name the attachments after the reference of the request
+	 * (ABC123-1.jpg) rather than the random names of the stored files.
 	 *
 	 * @param int $request_id Request post ID.
-	 * @return string[]
+	 * @return array<string, string> Paths keyed by attachment name.
 	 */
 	private function attachments( $request_id ) {
-		$paths = array();
-		$total = 0;
+		$paths  = array();
+		$total  = 0;
+		$number = 0;
+		$prefix = sanitize_file_name( self::reference( $request_id ) );
 
 		foreach ( (array) get_post_meta( $request_id, '_primiko_photos', true ) as $relative ) {
 			$path = primiko()->uploads->path( (string) $relative );
 
 			if ( '' !== $path ) {
-				$paths[] = $path;
-				$total  += (int) filesize( $path );
+				++$number;
+				$paths[ $prefix . '-' . $number . '.' . strtolower( pathinfo( $path, PATHINFO_EXTENSION ) ) ] = $path;
+				$total += (int) filesize( $path );
 			}
 		}
 
@@ -281,7 +286,8 @@ final class Mailer {
 
 	/**
 	 * Name and address for an email header, without characters that could
-	 * break the header.
+	 * break the header. The name stays without quotes: wp_mail() hands it
+	 * to PHPMailer, which adds them, and a quoted name would show them.
 	 *
 	 * @param string $name  Display name.
 	 * @param string $email Email address.
@@ -290,7 +296,7 @@ final class Mailer {
 	private static function address( $name, $email ) {
 		$name = trim( preg_replace( '/[\r\n"<>,;]+/', ' ', $name ) );
 
-		return '' === $name ? $email : '"' . $name . '" <' . $email . '>';
+		return '' === $name ? $email : $name . ' <' . $email . '>';
 	}
 
 	/**

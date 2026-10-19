@@ -43,8 +43,8 @@ function primiko_template_strings() {
 		'Your request' =>
 			__( 'Your request', 'primiko' ),
 		// From accountant.json.
-		'Please do not send confidential documents through this form: we will ask for what we need.' =>
-			__( 'Please do not send confidential documents through this form: we will ask for what we need.', 'primiko' ),
+		'Please do not send confidential documents through this form: what is needed will be asked for later.' =>
+			__( 'Please do not send confidential documents through this form: what is needed will be asked for later.', 'primiko' ),
 		// From accountant.json, earthworks.json, electrician.json, joiner.json, landscaper.json, painter.json, plumber.json, removals.json, roofer.json, service.json, surveyor.json.
 		'What do you need?' =>
 			__( 'What do you need?', 'primiko' ),
@@ -280,8 +280,8 @@ function primiko_template_strings() {
 		'Photos' =>
 			__( 'Photos', 'primiko' ),
 		// From architect.json.
-		'Photos of the land or of the building, or of a sketch, help us prepare the first meeting.' =>
-			__( 'Photos of the land or of the building, or of a sketch, help us prepare the first meeting.', 'primiko' ),
+		'Photos of the land or of the building, or of a sketch, help to prepare the first meeting.' =>
+			__( 'Photos of the land or of the building, or of a sketch, help to prepare the first meeting.', 'primiko' ),
 		// From architect.json.
 		'Up to 6 images. You can take them now with your phone.' =>
 			__( 'Up to 6 images. You can take them now with your phone.', 'primiko' ),
@@ -583,8 +583,8 @@ function primiko_template_strings() {
 		'Digger hire with operator' =>
 			__( 'Digger hire with operator', 'primiko' ),
 		// From earthworks.json, roofer.json, tiler.json.
-		'Answer what you can. If you are not sure, choose "I don\'t know": we will look on site.' =>
-			__( 'Answer what you can. If you are not sure, choose "I don\'t know": we will look on site.', 'primiko' ),
+		'Answer what you can. When you are not sure, choose the closest answer: the details are checked on site.' =>
+			__( 'Answer what you can. When you are not sure, choose the closest answer: the details are checked on site.', 'primiko' ),
 		// From earthworks.json.
 		'What documents do you have?' =>
 			__( 'What documents do you have?', 'primiko' ),
@@ -757,8 +757,8 @@ function primiko_template_strings() {
 		'A local authority' =>
 			__( 'A local authority', 'primiko' ),
 		// From earthworks.json.
-		'Photos help us understand the job and prepare the quote faster. A view of the plot and of the access are ideal.' =>
-			__( 'Photos help us understand the job and prepare the quote faster. A view of the plot and of the access are ideal.', 'primiko' ),
+		'Photos help to understand the job and prepare the quote faster. A view of the plot and of the access are ideal.' =>
+			__( 'Photos help to understand the job and prepare the quote faster. A view of the plot and of the access are ideal.', 'primiko' ),
 		// From earthworks.json.
 		'Photos of the site' =>
 			__( 'Photos of the site', 'primiko' ),
@@ -811,8 +811,8 @@ function primiko_template_strings() {
 		'A safety check before a sale or a rental' =>
 			__( 'A safety check before a sale or a rental', 'primiko' ),
 		// From electrician.json, joiner.json, landscaper.json, mason.json, painter.json, plumber.json.
-		'Answer what you can. If you are not sure, choose "I don\'t know".' =>
-			__( 'Answer what you can. If you are not sure, choose "I don\'t know".', 'primiko' ),
+		'Answer what you can. When you are not sure, choose the closest answer.' =>
+			__( 'Answer what you can. When you are not sure, choose the closest answer.', 'primiko' ),
 		// From electrician.json.
 		'Is the power out right now?' =>
 			__( 'Is the power out right now?', 'primiko' ),
@@ -898,8 +898,8 @@ function primiko_template_strings() {
 		'A tenant' =>
 			__( 'A tenant', 'primiko' ),
 		// From electrician.json.
-		'A photo of the fuse board, opened, and of the place of the work helps us prepare the quote.' =>
-			__( 'A photo of the fuse board, opened, and of the place of the work helps us prepare the quote.', 'primiko' ),
+		'A photo of the fuse board, opened, and of the place of the work helps to prepare the quote.' =>
+			__( 'A photo of the fuse board, opened, and of the place of the work helps to prepare the quote.', 'primiko' ),
 		// From electrician.json.
 		'Up to 6 photos. You can take them now with your phone. Do not touch anything that looks damaged.' =>
 			__( 'Up to 6 photos. You can take them now with your phone. Do not touch anything that looks damaged.', 'primiko' ),
@@ -1024,8 +1024,8 @@ function primiko_template_strings() {
 		'Shop or office' =>
 			__( 'Shop or office', 'primiko' ),
 		// From joiner.json.
-		'A photo of each window, door or place of the work, from inside and outside, helps us prepare the quote faster.' =>
-			__( 'A photo of each window, door or place of the work, from inside and outside, helps us prepare the quote faster.', 'primiko' ),
+		'A photo of each window, door or place of the work, from inside and outside, helps to prepare the quote faster.' =>
+			__( 'A photo of each window, door or place of the work, from inside and outside, helps to prepare the quote faster.', 'primiko' ),
 		// From landscaper.json.
 		'Landscaper and gardener' =>
 			__( 'Landscaper and gardener', 'primiko' ),
@@ -1148,8 +1148,8 @@ function primiko_template_strings() {
 		'A business or a local authority' =>
 			__( 'A business or a local authority', 'primiko' ),
 		// From landscaper.json.
-		'A view of the garden, the hedges or the trees helps us prepare the quote faster.' =>
-			__( 'A view of the garden, the hedges or the trees helps us prepare the quote faster.', 'primiko' ),
+		'A view of the garden, the hedges or the trees helps to prepare the quote faster.' =>
+			__( 'A view of the garden, the hedges or the trees helps to prepare the quote faster.', 'primiko' ),
 		// From landscaper.json.
 		'Photos of the garden' =>
 			__( 'Photos of the garden', 'primiko' ),
@@ -1357,8 +1357,8 @@ function primiko_template_strings() {
 		'An architect or a business' =>
 			__( 'An architect or a business', 'primiko' ),
 		// From mason.json.
-		'Photos of the place and, if you have them, of the plans help us prepare the quote faster.' =>
-			__( 'Photos of the place and, if you have them, of the plans help us prepare the quote faster.', 'primiko' ),
+		'Photos of the place and, if you have them, of the plans help to prepare the quote faster.' =>
+			__( 'Photos of the place and, if you have them, of the plans help to prepare the quote faster.', 'primiko' ),
 		// From notary.json.
 		'Notary' =>
 			__( 'Notary', 'primiko' ),
@@ -1369,8 +1369,8 @@ function primiko_template_strings() {
 		'notary, property sale, purchase, deed, estate, inheritance, succession, gift, donation, marriage contract, will, civil partnership' =>
 			__( 'notary, property sale, purchase, deed, estate, inheritance, succession, gift, donation, marriage contract, will, civil partnership', 'primiko' ),
 		// From notary.json.
-		'Please do not send documents through this form: we will ask for what we need.' =>
-			__( 'Please do not send documents through this form: we will ask for what we need.', 'primiko' ),
+		'Please do not send documents through this form: what is needed will be asked for later.' =>
+			__( 'Please do not send documents through this form: what is needed will be asked for later.', 'primiko' ),
 		// From notary.json.
 		'What is it about?' =>
 			__( 'What is it about?', 'primiko' ),
@@ -1464,7 +1464,7 @@ function primiko_template_strings() {
 		// From painter.json.
 		'What should be done?' =>
 			__( 'What should be done?', 'primiko' ),
-		// From painter.json, tiler.json.
+		// From painter.json.
 		'Walls' =>
 			__( 'Walls', 'primiko' ),
 		// From painter.json.
@@ -1555,8 +1555,8 @@ function primiko_template_strings() {
 		'Furniture to move, ceiling height, a question...' =>
 			__( 'Furniture to move, ceiling height, a question...', 'primiko' ),
 		// From painter.json.
-		'A view of each room or of the facade helps us prepare the quote faster.' =>
-			__( 'A view of each room or of the facade helps us prepare the quote faster.', 'primiko' ),
+		'A view of each room or of the facade helps to prepare the quote faster.' =>
+			__( 'A view of each room or of the facade helps to prepare the quote faster.', 'primiko' ),
 		// From pest-control.json.
 		'Pest control' =>
 			__( 'Pest control', 'primiko' ),
@@ -1599,8 +1599,8 @@ function primiko_template_strings() {
 		'Cockroaches' =>
 			__( 'Cockroaches', 'primiko' ),
 		// From pest-control.json.
-		'Keep your distance from the nest or the insects while you answer. If you are not sure, choose "I don\'t know".' =>
-			__( 'Keep your distance from the nest or the insects while you answer. If you are not sure, choose "I don\'t know".', 'primiko' ),
+		'Keep your distance from the nest or the insects while you answer. When you are not sure, choose the closest answer.' =>
+			__( 'Keep your distance from the nest or the insects while you answer. When you are not sure, choose the closest answer.', 'primiko' ),
 		// From pest-control.json.
 		'Which insect?' =>
 			__( 'Which insect?', 'primiko' ),
@@ -1722,8 +1722,8 @@ function primiko_template_strings() {
 		'Access, animals at home, a question...' =>
 			__( 'Access, animals at home, a question...', 'primiko' ),
 		// From pest-control.json.
-		'A photo of the nest or of the insects helps us come with the right equipment. Take it from a safe distance, never close to a nest.' =>
-			__( 'A photo of the nest or of the insects helps us come with the right equipment. Take it from a safe distance, never close to a nest.', 'primiko' ),
+		'A photo of the nest or of the insects helps to bring the right equipment. Take it from a safe distance, never close to a nest.' =>
+			__( 'A photo of the nest or of the insects helps to bring the right equipment. Take it from a safe distance, never close to a nest.', 'primiko' ),
 		// From pest-control.json.
 		'Up to 4 photos. Zoom in rather than walking closer.' =>
 			__( 'Up to 4 photos. Zoom in rather than walking closer.', 'primiko' ),
@@ -1902,8 +1902,8 @@ function primiko_template_strings() {
 		'Type of home' =>
 			__( 'Type of home', 'primiko' ),
 		// From plumber.json.
-		'A photo of the problem, of the appliance and of its plate (brand and model) helps us come with the right parts.' =>
-			__( 'A photo of the problem, of the appliance and of its plate (brand and model) helps us come with the right parts.', 'primiko' ),
+		'A photo of the problem, of the appliance and of its plate (brand and model) helps to bring the right parts.' =>
+			__( 'A photo of the problem, of the appliance and of its plate (brand and model) helps to bring the right parts.', 'primiko' ),
 		// From removals.json.
 		'Removals' =>
 			__( 'Removals', 'primiko' ),
@@ -1978,7 +1978,7 @@ function primiko_template_strings() {
 		// From removals.json.
 		'Address you leave' =>
 			__( 'Address you leave', 'primiko' ),
-		// From removals.json, tiler.json.
+		// From removals.json.
 		'Floor' =>
 			__( 'Floor', 'primiko' ),
 		// From removals.json.
@@ -2033,8 +2033,8 @@ function primiko_template_strings() {
 		'Fragile or valuable items, narrow stairs, a question...' =>
 			__( 'Fragile or valuable items, narrow stairs, a question...', 'primiko' ),
 		// From removals.json.
-		'Photos of the rooms or of bulky furniture help us estimate the volume.' =>
-			__( 'Photos of the rooms or of bulky furniture help us estimate the volume.', 'primiko' ),
+		'Photos of the rooms or of bulky furniture help to estimate the volume.' =>
+			__( 'Photos of the rooms or of bulky furniture help to estimate the volume.', 'primiko' ),
 		// From removals.json.
 		'Date of the move, if you know it' =>
 			__( 'Date of the move, if you know it', 'primiko' ),
@@ -2105,8 +2105,8 @@ function primiko_template_strings() {
 		'Other' =>
 			__( 'Other', 'primiko' ),
 		// From renovation.json.
-		'Photos of the place help us understand the project and prepare the quote faster.' =>
-			__( 'Photos of the place help us understand the project and prepare the quote faster.', 'primiko' ),
+		'Photos of the place help to understand the project and prepare the quote faster.' =>
+			__( 'Photos of the place help to understand the project and prepare the quote faster.', 'primiko' ),
 		// From roofer.json.
 		'Roofer' =>
 			__( 'Roofer', 'primiko' ),
@@ -2324,8 +2324,8 @@ function primiko_template_strings() {
 		'Access, a previous repair, a question...' =>
 			__( 'Access, a previous repair, a question...', 'primiko' ),
 		// From roofer.json.
-		'Photos help us understand the job and prepare the quote faster. A view of the whole roof and a close-up of the problem are ideal.' =>
-			__( 'Photos help us understand the job and prepare the quote faster. A view of the whole roof and a close-up of the problem are ideal.', 'primiko' ),
+		'Photos help to understand the job and prepare the quote faster. A view of the whole roof and a close-up of the problem are ideal.' =>
+			__( 'Photos help to understand the job and prepare the quote faster. A view of the whole roof and a close-up of the problem are ideal.', 'primiko' ),
 		// From roofer.json.
 		'Photos of the roof' =>
 			__( 'Photos of the roof', 'primiko' ),
@@ -2465,6 +2465,12 @@ function primiko_template_strings() {
 		'What is planned in the bathroom?' =>
 			__( 'What is planned in the bathroom?', 'primiko' ),
 		// From tiler.json.
+		'Floor tiles' =>
+			__( 'Floor tiles', 'primiko' ),
+		// From tiler.json.
+		'Wall tiles' =>
+			__( 'Wall tiles', 'primiko' ),
+		// From tiler.json.
 		'A walk-in shower' =>
 			__( 'A walk-in shower', 'primiko' ),
 		// From tiler.json.
@@ -2570,8 +2576,8 @@ function primiko_template_strings() {
 		'New build' =>
 			__( 'New build', 'primiko' ),
 		// From tiler.json.
-		'Photos help us understand the job and prepare the quote faster. A view of the whole room and a close-up of the floor or wall are ideal.' =>
-			__( 'Photos help us understand the job and prepare the quote faster. A view of the whole room and a close-up of the floor or wall are ideal.', 'primiko' ),
+		'Photos help to understand the job and prepare the quote faster. A view of the whole room and a close-up of the floor or wall are ideal.' =>
+			__( 'Photos help to understand the job and prepare the quote faster. A view of the whole room and a close-up of the floor or wall are ideal.', 'primiko' ),
 		// From tiler.json.
 		'Photos of the room' =>
 			__( 'Photos of the room', 'primiko' ),

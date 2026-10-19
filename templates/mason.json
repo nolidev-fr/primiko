@@ -31,7 +31,7 @@
     {
       "id": "details",
       "title": "A few details",
-      "description": "Answer what you can. If you are not sure, choose \"I don't know\".",
+      "description": "Answer what you can. When you are not sure, choose the closest answer.",
       "fields": [
         {
           "id": "build_area",
@@ -180,7 +180,7 @@
     {
       "id": "photos",
       "title": "Photos",
-      "description": "Photos of the place and, if you have them, of the plans help us prepare the quote faster.",
+      "description": "Photos of the place and, if you have them, of the plans help to prepare the quote faster.",
       "fields": [
         { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
       ]

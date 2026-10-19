@@ -30,7 +30,7 @@
     {
       "id": "details",
       "title": "A few details",
-      "description": "Keep your distance from the nest or the insects while you answer. If you are not sure, choose \"I don't know\".",
+      "description": "Keep your distance from the nest or the insects while you answer. When you are not sure, choose the closest answer.",
       "fields": [
         {
           "id": "insect",
@@ -190,7 +190,7 @@
     {
       "id": "photos",
       "title": "Photos",
-      "description": "A photo of the nest or of the insects helps us come with the right equipment. Take it from a safe distance, never close to a nest.",
+      "description": "A photo of the nest or of the insects helps to bring the right equipment. Take it from a safe distance, never close to a nest.",
       "fields": [
         {
           "id": "photos",

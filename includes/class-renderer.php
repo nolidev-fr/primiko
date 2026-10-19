@@ -33,6 +33,13 @@ final class Renderer {
 	private $count = 0;
 
 	/**
+	 * Heading level of the step titles of the form being rendered.
+	 *
+	 * @var int
+	 */
+	private $heading = 2;
+
+	/**
 	 * Sets up the renderer.
 	 *
 	 * @param Templates $templates Trade templates.
@@ -71,9 +78,13 @@ final class Renderer {
 	 * Returns the HTML of a form.
 	 *
 	 * @param int $form_id Form post ID.
+	 * @param int $heading Heading level of the step titles, 2 to 4: 3 when
+	 *                     the form sits under a section title of level 2.
 	 * @return string Empty when the form cannot be shown.
 	 */
-	public function render( $form_id ) {
+	public function render( $form_id, $heading = 2 ) {
+		$this->heading = max( 2, min( 4, (int) $heading ) );
+
 		$form   = get_post( $form_id );
 		$schema = $form && Post_Types::FORM === $form->post_type && 'publish' === $form->post_status
 			? $this->templates->form_schema( $form->ID )
@@ -217,8 +228,6 @@ final class Renderer {
 				/* translators: %d: maximum number of photos. */
 				'photosMax'     => __( 'You can add up to %d photos.', 'primiko' ),
 				'photoBad'      => __( 'This photo could not be read. Please choose a JPEG or PNG image.', 'primiko' ),
-				/* translators: 1: number of photos added, 2: maximum. */
-				'photoCount'    => __( '%1$d of %2$d photos', 'primiko' ),
 				/* translators: %d: photo number. */
 				'photoRemove'   => __( 'Remove photo %d', 'primiko' ),
 				'photoWorking'  => __( 'Preparing the photos...', 'primiko' ),
@@ -229,13 +238,36 @@ final class Renderer {
 				'edit'          => __( 'Edit', 'primiko' ),
 				/* translators: %s: step title. */
 				'editStep'      => __( 'Edit: %s', 'primiko' ),
-				/* translators: %d: number of photos. */
-				'photosSummary' => __( '%d photo(s)', 'primiko' ),
 				'sending'       => __( 'Sending...', 'primiko' ),
 				'sendFailed'    => __( 'Your request could not be sent. Please check your connection and try again.', 'primiko' ),
 				'captchaWait'   => __( 'Please complete the anti-spam check above the button, then send again.', 'primiko' ),
+				'photoCounts'   => $this->photo_strings( 'count' ),
+				'photosSummary' => $this->photo_strings( 'summary' ),
 			),
 		);
+	}
+
+	/**
+	 * Photo counts with their plural form, one string per number of photos
+	 * (0 to the largest a field allows): the script has no plural rules of
+	 * its own.
+	 *
+	 * @param string $kind 'count' for the counter under the picker, 'summary'
+	 *                     for the review step.
+	 * @return string[] Strings indexed by number of photos.
+	 */
+	private function photo_strings( $kind ) {
+		$strings = array();
+
+		for ( $number = 0; $number <= 10; $number++ ) {
+			$strings[] = 'count' === $kind
+				/* translators: 1: number of photos added, 2: maximum. */
+				? _n( '%1$d of %2$d photo', '%1$d of %2$d photos', $number, 'primiko' )
+				/* translators: %d: number of photos. */
+				: _n( '%d photo', '%d photos', $number, 'primiko' );
+		}
+
+		return $strings;
 	}
 
 	/**
@@ -248,7 +280,7 @@ final class Renderer {
 		$id = $prefix . 'step-' . $step['id'];
 		?>
 		<fieldset class="primiko__step" data-step="<?php echo esc_attr( $step['id'] ); ?>" aria-labelledby="<?php echo esc_attr( $id ); ?>" hidden>
-			<h2 class="primiko__step-title" id="<?php echo esc_attr( $id ); ?>" tabindex="-1"><?php echo esc_html( $step['title'] ); ?></h2>
+			<h<?php echo (int) $this->heading; ?> class="primiko__step-title" id="<?php echo esc_attr( $id ); ?>" tabindex="-1"><?php echo esc_html( $step['title'] ); ?></h<?php echo (int) $this->heading; ?>>
 
 			<?php if ( ! empty( $step['description'] ) ) : ?>
 				<p class="primiko__step-description"><?php echo esc_html( $step['description'] ); ?></p>

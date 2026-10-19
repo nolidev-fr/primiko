@@ -29,7 +29,7 @@
     {
       "id": "details",
       "title": "A few details",
-      "description": "Answer what you can. If you are not sure, choose \"I don't know\".",
+      "description": "Answer what you can. When you are not sure, choose the closest answer.",
       "fields": [
         {
           "id": "rooms",
@@ -193,7 +193,7 @@
     {
       "id": "photos",
       "title": "Photos",
-      "description": "A view of each room or of the facade helps us prepare the quote faster.",
+      "description": "A view of each room or of the facade helps to prepare the quote faster.",
       "fields": [
         { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
       ]

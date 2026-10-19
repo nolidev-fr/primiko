@@ -104,7 +104,7 @@
     {
       "id": "photos",
       "title": "Photos",
-      "description": "Photos of the land or of the building, or of a sketch, help us prepare the first meeting.",
+      "description": "Photos of the land or of the building, or of a sketch, help to prepare the first meeting.",
       "fields": [
         { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 images. You can take them now with your phone.", "max": 6 }
       ]

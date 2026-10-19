@@ -9,7 +9,7 @@
     {
       "id": "service",
       "title": "Your request",
-      "description": "Please do not send confidential documents through this form: we will ask for what we need.",
+      "description": "Please do not send confidential documents through this form: what is needed will be asked for later.",
       "fields": [
         {
           "id": "need",

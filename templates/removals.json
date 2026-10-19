@@ -155,7 +155,7 @@
     {
       "id": "photos",
       "title": "Photos",
-      "description": "Photos of the rooms or of bulky furniture help us estimate the volume.",
+      "description": "Photos of the rooms or of bulky furniture help to estimate the volume.",
       "fields": [
         { "id": "photos", "type": "photos", "label": "Photos", "help": "Up to 6 photos. You can take them now with your phone.", "max": 6 }
       ]

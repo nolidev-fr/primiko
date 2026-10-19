@@ -4,7 +4,7 @@ Tags: quote, request a quote, multi-step form, contractor, tradesman
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,7 +98,15 @@ Yes. The form asks for its security token when it loads, so a cached page still 
 
 = Can I change the look? =
 
-The form uses the fonts and colors of your theme. Set `--primiko-accent` and `--primiko-radius` on `.primiko` in your theme CSS to change the main color and the corners.
+You should not need to. The form reads your theme: its fonts, main color, buttons, the corners and background of its fields. To change it anyway, the block has a main color and a corner radius, or set `--primiko-accent`, `--primiko-radius` and `--primiko-small` (size of the help texts, 1rem at least by default) on `.primiko` in your theme CSS.
+
+= The form sits under a section title. Can the step titles follow? =
+
+Yes. In the block settings, choose Heading 3 (or 4) for the step titles. With the shortcode, add `heading="3"`.
+
+= Can visitors leave out their email address? =
+
+Yes. Tick Visitor email, Optional, on the form screen. Visitors who leave it empty get no copy of their request, and the phone number stays required.
 
 = Does it send data to an outside service? =
 
@@ -123,6 +131,15 @@ Usually not. The form stops most spam on its own: a hidden field robots fill in,
 7. A request with all its answers and a reply button.
 
 == Changelog ==
+
+= 1.0.1 =
+* A step made only of single choices moves on by itself after a click or a tap.
+* Heading level of the step titles in the block, and an optional visitor email.
+* Step introductions can be rewritten, and the template introductions no longer speak for the business.
+* Answer cards take the background of the theme fields, and the corners follow the theme everywhere.
+* Small texts never go below 1rem.
+* Phone, email and address are links in the request and the email, and attached photos are named after the reference.
+* Fixed: quotes around the names in Reply-To, plural of the photo counts, the warning left at the top of a fixed step, "Floor" in the tiler template.
 
 = 1.0.0 =
 * First version: multi-step visitor form, photos, saved requests and emails.

@@ -19,7 +19,7 @@ import apiFetch from '@wordpress/api-fetch';
 import { useEffect, useState } from '@wordpress/element';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { formId, accentColor, radius } = attributes;
+	const { formId, accentColor, radius, headingLevel } = attributes;
 	const [ forms, setForms ] = useState( null );
 	const [ failed, setFailed ] = useState( false );
 
@@ -104,6 +104,29 @@ export default function Edit( { attributes, setAttributes } ) {
 			<InspectorControls>
 				<PanelBody title={ __( 'Form', 'primiko' ) }>
 					{ picker }
+					<SelectControl
+						label={ __( 'Step titles', 'primiko' ) }
+						value={ headingLevel }
+						options={ [ 2, 3, 4 ].map( ( level ) => ( {
+							value: level,
+							label: sprintf(
+								/* translators: %d: heading level, from 2 to 4. */
+								__( 'Heading %d', 'primiko' ),
+								level
+							),
+						} ) ) }
+						onChange={ ( value ) =>
+							setAttributes( {
+								headingLevel: parseInt( value, 10 ) || 2,
+							} )
+						}
+						help={ __(
+							'Choose Heading 3 when the form sits under a section title of level 2.',
+							'primiko'
+						) }
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+					/>
 				</PanelBody>
 				<PanelColorSettings
 					title={ __( 'Main color', 'primiko' ) }

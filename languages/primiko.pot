@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Primiko - Quote Requests by Trade 0.1.0\n"
-"Report-Msgid-Bugs-To: https://github.com/nolidev-fr/primiko/issues\n"
+"Project-Id-Version: Primiko - Quote Requests by Trade 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/primiko\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-19T14:31:19+00:00\n"
+"POT-Creation-Date: 2026-10-19T17:49:05+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: primiko\n"
@@ -43,24 +43,25 @@ msgstr ""
 msgid "The anti-spam check failed. Please reload the page and try again."
 msgstr ""
 
-#: includes/class-entries.php:81
-#: includes/class-renderer.php:227
-#: includes/class-renderer.php:434
+#: includes/class-entries.php:82
+#: includes/class-renderer.php:236
+#: includes/class-renderer.php:466
 #: includes/template-strings.php:1337
 #: build/admin/index.js:10
 msgid "Yes"
 msgstr ""
 
-#: includes/class-entries.php:81
-#: includes/class-renderer.php:228
-#: includes/class-renderer.php:438
+#: includes/class-entries.php:82
+#: includes/class-renderer.php:237
+#: includes/class-renderer.php:470
 #: includes/template-strings.php:1340
 #: build/admin/index.js:10
 msgid "No"
 msgstr ""
 
 #. translators: %d: number of photos.
-#: includes/class-entries.php:88
+#: includes/class-entries.php:89
+#: includes/class-renderer.php:267
 #, php-format
 msgid "%d photo"
 msgid_plural "%d photos"
@@ -100,11 +101,23 @@ msgstr ""
 msgid "One email address per line. Left empty, requests go to the administration email address of the site."
 msgstr ""
 
-#: includes/class-form-settings.php:148
-msgid "Shortcode"
+#: includes/class-form-settings.php:147
+msgid "Visitor email"
 msgstr ""
 
 #: includes/class-form-settings.php:151
+msgid "Optional"
+msgstr ""
+
+#: includes/class-form-settings.php:153
+msgid "For customers who prefer the phone. Without an email address, the visitor gets no copy of the request, and the phone number stays required."
+msgstr ""
+
+#: includes/class-form-settings.php:158
+msgid "Shortcode"
+msgstr ""
+
+#: includes/class-form-settings.php:161
 msgid "In the block editor, add the Quote request form block instead. The shortcode is for page builders and classic themes."
 msgstr ""
 
@@ -137,7 +150,7 @@ msgid "Thank you {name}, your request has been sent. A copy has been sent to {em
 msgstr ""
 
 #: includes/class-mailer.php:205
-msgid "Thank you {name}, your request has been sent. We will get back to you soon."
+msgid "Thank you {name}, your request has been sent."
 msgstr ""
 
 #. translators: Keep the words in braces, such as {name}, as they are.
@@ -155,7 +168,7 @@ msgid ""
 "Here is a copy of what you sent us."
 msgstr ""
 
-#: includes/class-post-types.php:45
+#: includes/class-post-types.php:55
 #: includes/class-privacy.php:41
 #: includes/class-privacy.php:56
 #: includes/class-privacy.php:102
@@ -163,67 +176,67 @@ msgstr ""
 msgid "Quote requests"
 msgstr ""
 
-#: includes/class-post-types.php:46
-#: includes/class-post-types.php:49
+#: includes/class-post-types.php:56
+#: includes/class-post-types.php:59
 #: includes/class-submission.php:490
 msgid "Quote request"
 msgstr ""
 
-#: includes/class-post-types.php:47
+#: includes/class-post-types.php:57
 msgctxt "admin menu"
 msgid "Quotes"
 msgstr ""
 
-#: includes/class-post-types.php:48
+#: includes/class-post-types.php:58
 msgid "Requests"
 msgstr ""
 
-#: includes/class-post-types.php:50
+#: includes/class-post-types.php:60
 msgid "Search requests"
 msgstr ""
 
-#: includes/class-post-types.php:51
+#: includes/class-post-types.php:61
 msgid "No request yet."
 msgstr ""
 
-#: includes/class-post-types.php:52
+#: includes/class-post-types.php:62
 msgid "No request in the trash."
 msgstr ""
 
-#: includes/class-post-types.php:75
+#: includes/class-post-types.php:85
 msgid "Quote forms"
 msgstr ""
 
-#: includes/class-post-types.php:76
+#: includes/class-post-types.php:86
 #: build/block/index.js:2
 msgid "Quote form"
 msgstr ""
 
-#: includes/class-post-types.php:77
+#: includes/class-post-types.php:87
 msgid "Forms"
 msgstr ""
 
-#: includes/class-post-types.php:78
+#: includes/class-post-types.php:88
 msgid "Add form"
 msgstr ""
 
-#: includes/class-post-types.php:79
+#: includes/class-post-types.php:89
 msgid "Add a quote form"
 msgstr ""
 
-#: includes/class-post-types.php:80
+#: includes/class-post-types.php:90
 msgid "Edit quote form"
 msgstr ""
 
-#: includes/class-post-types.php:81
+#: includes/class-post-types.php:91
 msgid "New quote form"
 msgstr ""
 
-#: includes/class-post-types.php:82
+#: includes/class-post-types.php:92
 msgid "Search forms"
 msgstr ""
 
-#: includes/class-post-types.php:83
+#: includes/class-post-types.php:93
 msgid "No form yet."
 msgstr ""
 
@@ -270,179 +283,175 @@ msgstr ""
 msgid "You can ask for a copy of your requests or for their deletion at any time."
 msgstr ""
 
-#: includes/class-renderer.php:112
+#: includes/class-renderer.php:123
 msgid "Leave this field empty"
 msgstr ""
 
-#: includes/class-renderer.php:117
+#: includes/class-renderer.php:128
 msgid "Back"
 msgstr ""
 
-#: includes/class-renderer.php:118
+#: includes/class-renderer.php:129
 msgid "Next"
 msgstr ""
 
-#: includes/class-renderer.php:119
+#: includes/class-renderer.php:130
 msgid "Send my request"
 msgstr ""
 
-#: includes/class-renderer.php:126
+#: includes/class-renderer.php:137
 msgid "This form needs JavaScript. Please enable it in your browser, or contact us by phone or email."
 msgstr ""
 
-#: includes/class-renderer.php:143
+#: includes/class-renderer.php:154
 msgid "This quote form cannot be shown: it is not published or its trade template is missing. Only editors see this message."
 msgstr ""
 
 #. translators: 1: current step number, 2: number of steps, 3: step title.
-#: includes/class-renderer.php:204
+#: includes/class-renderer.php:215
 #, php-format
 msgid "Step %1$d of %2$d: %3$s"
 msgstr ""
 
 #. translators: 1: current step number, 2: number of steps.
-#: includes/class-renderer.php:206
+#: includes/class-renderer.php:217
 #, php-format
 msgid "Step %1$d of %2$d"
 msgstr ""
 
-#: includes/class-renderer.php:207
+#: includes/class-renderer.php:218
 #: includes/class-submission.php:401
 msgid "This field is required."
 msgstr ""
 
-#: includes/class-renderer.php:208
+#: includes/class-renderer.php:219
 #: includes/class-submission.php:394
 msgid "Please choose an answer."
 msgstr ""
 
-#: includes/class-renderer.php:209
+#: includes/class-renderer.php:220
 #: includes/class-submission.php:329
 msgid "Please enter a valid email address, such as name@example.com."
 msgstr ""
 
-#: includes/class-renderer.php:210
+#: includes/class-renderer.php:221
 #: includes/class-submission.php:338
 msgid "Please enter a valid phone number."
 msgstr ""
 
-#: includes/class-renderer.php:211
+#: includes/class-renderer.php:222
 #: includes/class-submission.php:351
 msgid "Please enter a number."
 msgstr ""
 
 #. translators: 1: minimum, 2: maximum.
-#: includes/class-renderer.php:213
+#: includes/class-renderer.php:224
 #: includes/class-submission.php:359
 #, php-format
 msgid "Please enter a number between %1$s and %2$s."
 msgstr ""
 
-#: includes/class-renderer.php:214
+#: includes/class-renderer.php:225
 #: includes/class-submission.php:309
 #: includes/class-submission.php:398
 msgid "Please fill in the street, postcode and town."
 msgstr ""
 
-#: includes/class-renderer.php:215
+#: includes/class-renderer.php:226
 #: includes/class-submission.php:390
 msgid "Please tick this box to send your request."
 msgstr ""
 
-#: includes/class-renderer.php:216
+#: includes/class-renderer.php:227
 #: includes/class-submission.php:473
 msgid "Please add at least one photo."
 msgstr ""
 
 #. translators: %d: maximum number of photos.
-#: includes/class-renderer.php:218
+#: includes/class-renderer.php:229
 #: includes/class-submission.php:447
 #, php-format
 msgid "You can add up to %d photos."
 msgstr ""
 
-#: includes/class-renderer.php:219
+#: includes/class-renderer.php:230
 msgid "This photo could not be read. Please choose a JPEG or PNG image."
 msgstr ""
 
-#. translators: 1: number of photos added, 2: maximum.
-#: includes/class-renderer.php:221
-#, php-format
-msgid "%1$d of %2$d photos"
-msgstr ""
-
 #. translators: %d: photo number.
-#: includes/class-renderer.php:223
+#: includes/class-renderer.php:232
 #, php-format
 msgid "Remove photo %d"
 msgstr ""
 
-#: includes/class-renderer.php:224
+#: includes/class-renderer.php:233
 msgid "Preparing the photos..."
 msgstr ""
 
-#: includes/class-renderer.php:225
+#: includes/class-renderer.php:234
 msgid "Some answers need your attention. Please check the fields marked below."
 msgstr ""
 
-#: includes/class-renderer.php:226
+#: includes/class-renderer.php:235
 msgid "Not specified"
 msgstr ""
 
-#: includes/class-renderer.php:229
+#: includes/class-renderer.php:238
 msgid "Edit"
 msgstr ""
 
 #. translators: %s: step title.
-#: includes/class-renderer.php:231
+#: includes/class-renderer.php:240
 #, php-format
 msgid "Edit: %s"
 msgstr ""
 
-#. translators: %d: number of photos.
-#: includes/class-renderer.php:233
-#, php-format
-msgid "%d photo(s)"
-msgstr ""
-
-#: includes/class-renderer.php:234
+#: includes/class-renderer.php:241
 msgid "Sending..."
 msgstr ""
 
-#: includes/class-renderer.php:235
+#: includes/class-renderer.php:242
 msgid "Your request could not be sent. Please check your connection and try again."
 msgstr ""
 
-#: includes/class-renderer.php:236
+#: includes/class-renderer.php:243
 msgid "Please complete the anti-spam check above the button, then send again."
 msgstr ""
 
-#: includes/class-renderer.php:315
+#. translators: 1: number of photos added, 2: maximum.
+#: includes/class-renderer.php:265
+#, php-format
+msgid "%1$d of %2$d photo"
+msgid_plural "%1$d of %2$d photos"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-renderer.php:347
 msgid "(required)"
 msgstr ""
 
-#: includes/class-renderer.php:381
+#: includes/class-renderer.php:413
 msgid "Choose..."
 msgstr ""
 
-#: includes/class-renderer.php:478
+#: includes/class-renderer.php:510
 msgid "Street and number"
 msgstr ""
 
-#: includes/class-renderer.php:479
+#: includes/class-renderer.php:511
 msgid "Postcode"
 msgstr ""
 
-#: includes/class-renderer.php:480
+#: includes/class-renderer.php:512
 #: includes/class-request-list.php:74
 msgid "Town"
 msgstr ""
 
-#: includes/class-renderer.php:511
+#: includes/class-renderer.php:543
 msgid "Add photos"
 msgstr ""
 
-#: includes/class-renderer.php:536
+#: includes/class-renderer.php:568
 msgid "How we handle your personal data (opens in a new tab)"
 msgstr ""
 
@@ -689,36 +698,40 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: includes/class-templates.php:223
+#: includes/class-templates.php:226
 msgid "Your contact details"
 msgstr ""
 
-#: includes/class-templates.php:228
+#: includes/class-templates.php:231
 msgid "Your name"
 msgstr ""
 
-#: includes/class-templates.php:236
+#: includes/class-templates.php:239
 msgid "Email"
 msgstr ""
 
-#: includes/class-templates.php:237
+#: includes/class-templates.php:241
+msgid "Optional. A copy of your request will be sent to this address."
+msgstr ""
+
+#: includes/class-templates.php:242
 msgid "A copy of your request will be sent to this address."
 msgstr ""
 
-#: includes/class-templates.php:244
+#: includes/class-templates.php:249
 msgid "Phone"
 msgstr ""
 
-#: includes/class-templates.php:245
+#: includes/class-templates.php:250
 msgid "To call you back about your project."
 msgstr ""
 
-#: includes/class-templates.php:253
+#: includes/class-templates.php:258
 msgid "Review and send"
 msgstr ""
 
 #. translators: %s: site name.
-#: includes/class-templates.php:261
+#: includes/class-templates.php:266
 #, php-format
 msgid "I agree that %s uses the information in this form to answer my request and contact me about it."
 msgstr ""
@@ -772,7 +785,7 @@ msgid "Your request"
 msgstr ""
 
 #: includes/template-strings.php:47
-msgid "Please do not send confidential documents through this form: we will ask for what we need."
+msgid "Please do not send confidential documents through this form: what is needed will be asked for later."
 msgstr ""
 
 #: includes/template-strings.php:50
@@ -1088,7 +1101,7 @@ msgid "Town or area you are looking in"
 msgstr ""
 
 #: includes/template-strings.php:284
-msgid "Photos of the land or of the building, or of a sketch, help us prepare the first meeting."
+msgid "Photos of the land or of the building, or of a sketch, help to prepare the first meeting."
 msgstr ""
 
 #: includes/template-strings.php:287
@@ -1491,7 +1504,7 @@ msgid "Digger hire with operator"
 msgstr ""
 
 #: includes/template-strings.php:587
-msgid "Answer what you can. If you are not sure, choose \"I don't know\": we will look on site."
+msgid "Answer what you can. When you are not sure, choose the closest answer: the details are checked on site."
 msgstr ""
 
 #: includes/template-strings.php:590
@@ -1723,7 +1736,7 @@ msgid "A local authority"
 msgstr ""
 
 #: includes/template-strings.php:761
-msgid "Photos help us understand the job and prepare the quote faster. A view of the plot and of the access are ideal."
+msgid "Photos help to understand the job and prepare the quote faster. A view of the plot and of the access are ideal."
 msgstr ""
 
 #: includes/template-strings.php:764
@@ -1795,7 +1808,7 @@ msgid "A safety check before a sale or a rental"
 msgstr ""
 
 #: includes/template-strings.php:815
-msgid "Answer what you can. If you are not sure, choose \"I don't know\"."
+msgid "Answer what you can. When you are not sure, choose the closest answer."
 msgstr ""
 
 #: includes/template-strings.php:818
@@ -1911,7 +1924,7 @@ msgid "A tenant"
 msgstr ""
 
 #: includes/template-strings.php:902
-msgid "A photo of the fuse board, opened, and of the place of the work helps us prepare the quote."
+msgid "A photo of the fuse board, opened, and of the place of the work helps to prepare the quote."
 msgstr ""
 
 #: includes/template-strings.php:905
@@ -2079,7 +2092,7 @@ msgid "Shop or office"
 msgstr ""
 
 #: includes/template-strings.php:1028
-msgid "A photo of each window, door or place of the work, from inside and outside, helps us prepare the quote faster."
+msgid "A photo of each window, door or place of the work, from inside and outside, helps to prepare the quote faster."
 msgstr ""
 
 #: includes/template-strings.php:1031
@@ -2249,7 +2262,7 @@ msgid "A business or a local authority"
 msgstr ""
 
 #: includes/template-strings.php:1152
-msgid "A view of the garden, the hedges or the trees helps us prepare the quote faster."
+msgid "A view of the garden, the hedges or the trees helps to prepare the quote faster."
 msgstr ""
 
 #: includes/template-strings.php:1155
@@ -2524,7 +2537,7 @@ msgid "An architect or a business"
 msgstr ""
 
 #: includes/template-strings.php:1361
-msgid "Photos of the place and, if you have them, of the plans help us prepare the quote faster."
+msgid "Photos of the place and, if you have them, of the plans help to prepare the quote faster."
 msgstr ""
 
 #: includes/template-strings.php:1364
@@ -2540,7 +2553,7 @@ msgid "notary, property sale, purchase, deed, estate, inheritance, succession, g
 msgstr ""
 
 #: includes/template-strings.php:1373
-msgid "Please do not send documents through this form: we will ask for what we need."
+msgid "Please do not send documents through this form: what is needed will be asked for later."
 msgstr ""
 
 #: includes/template-strings.php:1376
@@ -2788,7 +2801,7 @@ msgid "Furniture to move, ceiling height, a question..."
 msgstr ""
 
 #: includes/template-strings.php:1559
-msgid "A view of each room or of the facade helps us prepare the quote faster."
+msgid "A view of each room or of the facade helps to prepare the quote faster."
 msgstr ""
 
 #: includes/template-strings.php:1562
@@ -2853,7 +2866,7 @@ msgid "Cockroaches"
 msgstr ""
 
 #: includes/template-strings.php:1603
-msgid "Keep your distance from the nest or the insects while you answer. If you are not sure, choose \"I don't know\"."
+msgid "Keep your distance from the nest or the insects while you answer. When you are not sure, choose the closest answer."
 msgstr ""
 
 #: includes/template-strings.php:1606
@@ -3017,7 +3030,7 @@ msgid "Access, animals at home, a question..."
 msgstr ""
 
 #: includes/template-strings.php:1726
-msgid "A photo of the nest or of the insects helps us come with the right equipment. Take it from a safe distance, never close to a nest."
+msgid "A photo of the nest or of the insects helps to bring the right equipment. Take it from a safe distance, never close to a nest."
 msgstr ""
 
 #: includes/template-strings.php:1729
@@ -3257,7 +3270,7 @@ msgid "Type of home"
 msgstr ""
 
 #: includes/template-strings.php:1906
-msgid "A photo of the problem, of the appliance and of its plate (brand and model) helps us come with the right parts."
+msgid "A photo of the problem, of the appliance and of its plate (brand and model) helps to bring the right parts."
 msgstr ""
 
 #: includes/template-strings.php:1909
@@ -3436,7 +3449,7 @@ msgid "Fragile or valuable items, narrow stairs, a question..."
 msgstr ""
 
 #: includes/template-strings.php:2037
-msgid "Photos of the rooms or of bulky furniture help us estimate the volume."
+msgid "Photos of the rooms or of bulky furniture help to estimate the volume."
 msgstr ""
 
 #: includes/template-strings.php:2040
@@ -3528,7 +3541,7 @@ msgid "Optional. It helps us suggest solutions that fit."
 msgstr ""
 
 #: includes/template-strings.php:2109
-msgid "Photos of the place help us understand the project and prepare the quote faster."
+msgid "Photos of the place help to understand the project and prepare the quote faster."
 msgstr ""
 
 #: includes/template-strings.php:2112
@@ -3820,7 +3833,7 @@ msgid "Access, a previous repair, a question..."
 msgstr ""
 
 #: includes/template-strings.php:2328
-msgid "Photos help us understand the job and prepare the quote faster. A view of the whole roof and a close-up of the problem are ideal."
+msgid "Photos help to understand the job and prepare the quote faster. A view of the whole roof and a close-up of the problem are ideal."
 msgstr ""
 
 #: includes/template-strings.php:2331
@@ -4008,154 +4021,162 @@ msgid "What is planned in the bathroom?"
 msgstr ""
 
 #: includes/template-strings.php:2469
-msgid "A walk-in shower"
+msgid "Floor tiles"
 msgstr ""
 
 #: includes/template-strings.php:2472
-msgid "Removing the bathtub"
+msgid "Wall tiles"
 msgstr ""
 
 #: includes/template-strings.php:2475
-msgid "Complete renovation, plumbing included"
+msgid "A walk-in shower"
 msgstr ""
 
 #: includes/template-strings.php:2478
-msgid "Approximate area to tile"
+msgid "Removing the bathtub"
 msgstr ""
 
 #: includes/template-strings.php:2481
-msgid "What is on the floor today?"
+msgid "Complete renovation, plumbing included"
 msgstr ""
 
 #: includes/template-strings.php:2484
-msgid "Bare concrete slab"
+msgid "Approximate area to tile"
 msgstr ""
 
 #: includes/template-strings.php:2487
-msgid "Old tiles to remove"
+msgid "What is on the floor today?"
 msgstr ""
 
 #: includes/template-strings.php:2490
-msgid "Old tiles to tile over"
+msgid "Bare concrete slab"
 msgstr ""
 
 #: includes/template-strings.php:2493
-msgid "Wooden floor or floorboards"
+msgid "Old tiles to remove"
 msgstr ""
 
 #: includes/template-strings.php:2496
-msgid "Vinyl, lino or carpet"
+msgid "Old tiles to tile over"
 msgstr ""
 
 #: includes/template-strings.php:2499
-msgid "Is there underfloor heating?"
+msgid "Wooden floor or floorboards"
 msgstr ""
 
 #: includes/template-strings.php:2502
-msgid "Approximate size of the shower"
+msgid "Vinyl, lino or carpet"
 msgstr ""
 
 #: includes/template-strings.php:2505
-msgid "For example 120 x 90 cm"
+msgid "Is there underfloor heating?"
 msgstr ""
 
 #: includes/template-strings.php:2508
-msgid "Does the shower replace a bathtub?"
+msgid "Approximate size of the shower"
 msgstr ""
 
 #: includes/template-strings.php:2511
-msgid "What will the tiles be laid on?"
+msgid "For example 120 x 90 cm"
 msgstr ""
 
 #: includes/template-strings.php:2514
-msgid "Directly on the ground, to prepare"
+msgid "Does the shower replace a bathtub?"
 msgstr ""
 
 #: includes/template-strings.php:2517
-msgid "An existing concrete slab"
+msgid "What will the tiles be laid on?"
 msgstr ""
 
 #: includes/template-strings.php:2520
-msgid "Raised slabs on pedestals"
+msgid "Directly on the ground, to prepare"
 msgstr ""
 
 #: includes/template-strings.php:2523
-msgid "Around a swimming pool"
+msgid "An existing concrete slab"
 msgstr ""
 
 #: includes/template-strings.php:2526
-msgid "How many steps?"
+msgid "Raised slabs on pedestals"
 msgstr ""
 
 #: includes/template-strings.php:2529
-msgid "Indoor or outdoor stairs?"
+msgid "Around a swimming pool"
 msgstr ""
 
 #: includes/template-strings.php:2532
-msgid "Indoor"
+msgid "How many steps?"
 msgstr ""
 
 #: includes/template-strings.php:2535
-msgid "Outdoor"
+msgid "Indoor or outdoor stairs?"
 msgstr ""
 
 #: includes/template-strings.php:2538
-msgid "Number of tiles, cracked joints, a tile that sounds hollow..."
+msgid "Indoor"
 msgstr ""
 
 #: includes/template-strings.php:2541
-msgid "Do you still have tiles of the same model?"
+msgid "Outdoor"
 msgstr ""
 
 #: includes/template-strings.php:2544
-msgid "Do you already have the tiles?"
+msgid "Number of tiles, cracked joints, a tile that sounds hollow..."
 msgstr ""
 
 #: includes/template-strings.php:2547
-msgid "Yes, I have them"
+msgid "Do you still have tiles of the same model?"
 msgstr ""
 
 #: includes/template-strings.php:2550
-msgid "I have chosen them, not bought yet"
+msgid "Do you already have the tiles?"
 msgstr ""
 
 #: includes/template-strings.php:2553
-msgid "Tile format"
+msgid "Yes, I have them"
 msgstr ""
 
 #: includes/template-strings.php:2556
-msgid "Standard, up to 60 x 60 cm"
+msgid "I have chosen them, not bought yet"
 msgstr ""
 
 #: includes/template-strings.php:2559
-msgid "Large format, over 60 cm"
+msgid "Tile format"
 msgstr ""
 
 #: includes/template-strings.php:2562
-msgid "Wood-look planks"
+msgid "Standard, up to 60 x 60 cm"
 msgstr ""
 
 #: includes/template-strings.php:2565
-msgid "Mosaic"
+msgid "Large format, over 60 cm"
 msgstr ""
 
 #: includes/template-strings.php:2568
-msgid "Access, furniture to move, a question..."
+msgid "Wood-look planks"
 msgstr ""
 
 #: includes/template-strings.php:2571
-msgid "New build"
+msgid "Mosaic"
 msgstr ""
 
 #: includes/template-strings.php:2574
-msgid "Photos help us understand the job and prepare the quote faster. A view of the whole room and a close-up of the floor or wall are ideal."
+msgid "Access, furniture to move, a question..."
 msgstr ""
 
 #: includes/template-strings.php:2577
-msgid "Photos of the room"
+msgid "New build"
 msgstr ""
 
 #: includes/template-strings.php:2580
+msgid "Photos help to understand the job and prepare the quote faster. A view of the whole room and a close-up of the floor or wall are ideal."
+msgstr ""
+
+#: includes/template-strings.php:2583
+msgid "Photos of the room"
+msgstr ""
+
+#: includes/template-strings.php:2586
 msgid "Up to 6 photos. You can take them now with your phone. A photo of the tiles you chose is welcome too."
 msgstr ""
 
@@ -4245,6 +4266,14 @@ msgstr ""
 
 #: build/admin/index.js:12
 msgid "Step title"
+msgstr ""
+
+#: build/admin/index.js:12
+msgid "Step introduction"
+msgstr ""
+
+#: build/admin/index.js:12
+msgid "Shown under the step title. Left empty, the text of the template is used."
 msgstr ""
 
 #: build/admin/index.js:12
@@ -4456,30 +4485,44 @@ msgid "Create a form first, under Quote requests, Forms."
 msgstr ""
 
 #: build/block/index.js:3
+msgid "Step titles"
+msgstr ""
+
+#. translators: %d: heading level, from 2 to 4.
+#: build/block/index.js:4
+#, js-format
+msgid "Heading %d"
+msgstr ""
+
+#: build/block/index.js:4
+msgid "Choose Heading 3 when the form sits under a section title of level 2."
+msgstr ""
+
+#: build/block/index.js:4
 msgid "Main color"
 msgstr ""
 
-#: build/block/index.js:3
+#: build/block/index.js:4
 msgid "Selected answers, progress and focus"
 msgstr ""
 
-#: build/block/index.js:3
+#: build/block/index.js:4
 msgid "Left empty, the form takes the main color of your theme."
 msgstr ""
 
-#: build/block/index.js:3
+#: build/block/index.js:4
 msgid "Corners"
 msgstr ""
 
-#: build/block/index.js:3
+#: build/block/index.js:4
 msgid "Corner radius of the answers"
 msgstr ""
 
-#: build/block/index.js:3
+#: build/block/index.js:4
 msgid "Left empty, the corners follow the form default."
 msgstr ""
 
-#: build/block/index.js:3
+#: build/block/index.js:4
 msgid "Quote request form"
 msgstr ""
 

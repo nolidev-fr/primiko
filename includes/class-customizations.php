@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
  *
  *     array(
  *         '<template id>' => array(
- *             'steps'    => array( '<step id>' => array( 'hidden' => true, 'title' => '...' ) ),
+ *             'steps'    => array( '<step id>' => array( 'hidden' => true, 'title' => '...', 'description' => '...' ) ),
  *             'fields'   => array(
  *                 '<field id>' => array(
  *                     'hidden'  => true,
@@ -138,6 +138,12 @@ final class Customizations {
 				$entry['title'] = $title;
 			}
 
+			$description = self::text( $given, 'description', self::MAX_TEXT, $step['description'], true );
+
+			if ( '' !== $description ) {
+				$entry['description'] = $description;
+			}
+
 			if ( $entry ) {
 				$clean['steps'][ $step['id'] ] = $entry;
 			}
@@ -203,6 +209,10 @@ final class Customizations {
 
 			if ( ! empty( $step_custom['title'] ) ) {
 				$step['title'] = $step_custom['title'];
+			}
+
+			if ( ! empty( $step_custom['description'] ) ) {
+				$step['description'] = $step_custom['description'];
 			}
 
 			$fields = array();
