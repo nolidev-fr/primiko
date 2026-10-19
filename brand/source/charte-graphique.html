@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Primiko, charte graphique</title>
+<!--
+  Source de la charte graphique Primiko (version 1, octobre 2026).
+  PDF : google-chrome --headless=new --no-pdf-header-footer --virtual-time-budget=5000 \
+        --print-to-pdf=../charte-graphique-primiko.pdf file://<chemin absolu>/charte-graphique.html
+  Logos : dossier ../logos, produits par build-logos.py. Polices : dossier fonts/.
+-->
+<style>
+@font-face { font-family: "Manrope"; src: url("fonts/manrope-800.ttf") format("truetype"); font-weight: 800; }
+@font-face { font-family: "Figtree"; src: url("fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
+
+:root {
+  --ink: #20211E;
+  --paper: #F4F4F4;
+  --yellow: #F2B705;
+  --green: #5E8A2A;
+  --grey: #5C5D59;
+  --line: #D5D5D1;
+  --alert: #B0331F;
+  --title: "Manrope", sans-serif;
+  --text: "Figtree", Arial, sans-serif;
+}
+
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--paper); }
+body { font-family: var(--text); color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+.page { position: relative; width: 210mm; height: 297mm; overflow: hidden; background: var(--paper); padding: 72px 68px 0; break-after: page; }
+.page.dark { background: var(--ink); color: var(--paper); }
+.folio { position: absolute; left: 68px; right: 68px; bottom: 40px; display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
+.dark .folio { color: #8D8B84; }
+
+h1 { font-family: var(--title); font-weight: 800; font-size: 40px; line-height: 1.1; letter-spacing: -.015em; margin-bottom: 28px; }
+h2 { font-family: var(--title); font-weight: 800; font-size: 17px; letter-spacing: -.005em; margin: 30px 0 10px; }
+p, li { font-size: 13.5px; line-height: 1.6; }
+p + p { margin-top: 10px; }
+.lead { font-size: 17px; line-height: 1.5; max-width: 560px; }
+ul { list-style: none; }
+li { padding-left: 16px; position: relative; margin-bottom: 6px; }
+li::before { content: ""; position: absolute; left: 0; top: .7em; width: 6px; height: 2px; background: var(--ink); }
+.no li::before { background: var(--alert); }
+a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+.panel { border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: flex; align-items: center; justify-content: center; }
+.panel.ink { background: var(--ink); border-color: var(--ink); }
+.panel.white { background: #fff; }
+.cap { font-size: 12.5px; color: var(--grey); margin-top: 8px; letter-spacing: .02em; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+
+/* Cover */
+.cover { display: flex; flex-direction: column; justify-content: center; }
+.cover img { width: 430px; }
+.cover .sub { margin-top: 48px; font-size: 20px; color: #CFCCC4; }
+.cover .ver { margin-top: 8px; font-size: 13px; color: #8D8B84; }
+
+/* Sizes */
+.sizes { display: flex; align-items: flex-end; gap: 26px; }
+.sizes figure { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11.5px; color: var(--grey); }
+
+/* Swatches */
+.sw { border-radius: 10px; height: 96px; }
+.sw-cap { font-size: 12.5px; line-height: 1.45; margin-top: 8px; }
+.sw-cap b { font-family: var(--title); font-weight: 800; font-size: 14px; display: block; }
+.pair { display: inline-block; padding: 4px 10px; border-radius: 4px; font-weight: 600; }
+
+/* Type */
+.specimen { font-family: var(--title); font-weight: 800; font-size: 56px; letter-spacing: -.02em; line-height: 1.02; }
+.alpha { font-family: var(--title); font-weight: 800; font-size: 22px; letter-spacing: .01em; color: var(--grey); margin-top: 12px; }
+.figtree { font-size: 30px; line-height: 1.25; }
+
+/* Do and don't */
+.rule-card { border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+.rule-card .panel { height: 110px; border: 0; background: #fff; margin-bottom: 10px; }
+.rule-card p { font-size: 12.5px; line-height: 1.45; }
+.rule-card .x { color: var(--alert); font-weight: 700; }
+
+table { border-collapse: collapse; width: 100%; margin-top: 8px; }
+td { font-size: 12.5px; padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+td:first-child { width: 42%; font-weight: 600; }
+td.n { width: 14%; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+
+<!-- 1. Couverture -->
+<section class="page dark cover">
+  <img src="../logos/primiko-logo-paper.svg" alt="Primiko">
+  <p class="sub">Charte graphique</p>
+  <p class="ver">Version 1, octobre 2026</p>
+  <div class="folio"><span>Primiko</span><span>01</span></div>
+</section>
+
+<!-- 2. L'idée -->
+<section class="page">
+  <h1>Tout est d'aplomb.</h1>
+  <p class="lead">Primiko pose les bonnes questions, dans le bon ordre, pour que le professionnel reçoive une demande complète du premier coup. Son symbole est un niveau à bulle, bulle au centre : rien ne penche, rien ne manque.</p>
+  <h2>Pourquoi un niveau</h2>
+  <p>C'est l'outil que tout le monde reconnaît, du couvreur au notaire, et il dit exactement la promesse. Il évite les clichés des formulaires en ligne (bulle de dialogue, coche, enveloppe, presse-papiers) et donne à Primiko une image qui lui appartient.</p>
+  <h2>Ce que la marque doit faire sentir</h2>
+  <ul>
+    <li>Le sérieux d'un bon artisan : le travail est préparé, mesuré, propre.</li>
+    <li>La simplicité. Une demande de devis n'est pas un exercice compliqué.</li>
+    <li>Le chantier, sans tomber dans le casque et la truelle.</li>
+  </ul>
+  <h2>Ce qu'elle évite</h2>
+  <ul class="no">
+    <li>Le pictogramme de formulaire : bulle avec trois points, coche, liste.</li>
+    <li>Les codes génériques des logiciels : dégradés, halos, ombres floues, corail et bleu canard.</li>
+    <li>Toute idée de prix instantané. Primiko prépare la demande, le devis reste l'affaire du professionnel.</li>
+  </ul>
+  <h2>Un principe à ne jamais perdre</h2>
+  <p>Primiko ne signe jamais le formulaire qu'il affiche. Le formulaire appartient au site du professionnel : il prend ses polices, ses couleurs et ses boutons. La marque Primiko vit dans l'administration, sur WordPress.org, sur GitHub et dans les documents, jamais devant les clients du professionnel.</p>
+  <div class="folio"><span>Primiko, charte graphique</span><span>02</span></div>
+</section>
+
+<!-- 3. La marque -->
+<section class="page">
+  <h1>La marque</h1>
+  <div class="grid2">
+    <div>
+      <div class="panel" style="height:250px"><img src="../logos/primiko-mark.svg" style="width:170px" alt=""></div>
+      <p class="cap">Le niveau sur sa tuile d'encre. Icône de l'extension, avatar, favicon.</p>
+    </div>
+    <div>
+      <div class="panel" style="height:250px">
+        <svg viewBox="-30 -46 316 340" width="220" height="237">
+          <image href="../logos/primiko-mark.svg" width="256" height="256"/>
+          <g stroke="#B0331F" stroke-width="1" fill="none">
+            <line x1="14" y1="-26" x2="14" y2="88"/><line x1="242" y1="-26" x2="242" y2="88"/>
+            <line x1="14" y1="-16" x2="242" y2="-16"/>
+            <line x1="69" y1="147" x2="69" y2="276"/><line x1="187" y1="147" x2="187" y2="276"/>
+            <line x1="69" y1="268" x2="187" y2="268"/>
+            <line x1="128" y1="-6" x2="128" y2="262" stroke-dasharray="3 3"/>
+          </g>
+          <g font-family="Figtree" font-size="11" font-weight="600" fill="#B0331F" text-anchor="middle">
+            <text x="128" y="-24">corps 228 x 80, coins de 10</text>
+            <text x="128" y="288">fiole 118 x 38, bulle au centre</text>
+          </g>
+        </svg>
+      </div>
+      <p class="cap">Construction sur une grille de 256.</p>
+    </div>
+  </div>
+  <h2>Construction</h2>
+  <p>Tuile de 256 unités, coins de 56. Le corps jaune du niveau mesure 228 sur 80, avec des coins de 10 : presque droits, comme un vrai niveau, pour qu'on ne le prenne pas pour un interrupteur. Fenêtre de 132 sur 52, fiole verte de 118 sur 38, deux repères de 7 unités, bulle de 34 sur 24 au centre exact. La bulle ne bouge jamais.</p>
+  <h2>Tailles</h2>
+  <div class="sizes" style="margin:6px 0 14px">
+    <figure><img src="../logos/primiko-mark.svg" width="64" height="64" alt="">64 px</figure>
+    <figure><img src="../logos/primiko-mark.svg" width="32" height="32" alt="">32 px</figure>
+    <figure><img src="../logos/primiko-mark.svg" width="16" height="16" alt="">16 px</figure>
+    <figure><img src="../logos/primiko-mono.svg" width="32" height="32" alt="">une couleur</figure>
+  </div>
+  <p>La marque reste lisible jusqu'à 16 pixels. Partout où une seule couleur est imposée (menu de l'administration, bloc de l'éditeur, favicon monochrome), utiliser primiko-mono : le corps plein, la fiole évidée, la bulle pleine. WordPress la teinte selon le thème de l'administration. La version sans tuile (primiko-level) sert uniquement sur un fond encre.</p>
+  <div class="folio"><span>Primiko, charte graphique</span><span>03</span></div>
+</section>
+
+<!-- 4. Le logotype -->
+<section class="page">
+  <h1>Le logotype</h1>
+  <div class="panel white" style="height:200px"><img src="../logos/primiko-wordmark.svg" style="width:420px" alt=""></div>
+  <h2>Dessin</h2>
+  <p>"primiko" en minuscules, Manrope ExtraBold, approche resserrée de 1,5 %. Le point du premier i devient la fiole du niveau, une pastille jaune près de deux fois plus large que haute. C'est le seul jaune du logotype : la signature du niveau, posée sur le nom. Le second i garde son point : la fiole n'apparaît qu'une fois.</p>
+  <p>Le logotype est un dessin, pas un texte : toujours utiliser les fichiers fournis, ne jamais le recomposer avec la police. Dans une phrase, on écrit Primiko avec une capitale.</p>
+  <h2>Version horizontale</h2>
+  <div class="grid2" style="margin-top:12px">
+    <div><div class="panel white" style="height:120px"><img src="../logos/primiko-logo-ink.svg" style="width:260px" alt=""></div><p class="cap">primiko-logo-ink, sur fond clair.</p></div>
+    <div><div class="panel ink" style="height:120px"><img src="../logos/primiko-logo-paper.svg" style="width:260px" alt=""></div><p class="cap">primiko-logo-paper, sur fond encre.</p></div>
+  </div>
+  <h2>Zone de protection</h2>
+  <p>Autour du logo, garder au moins la hauteur du corps jaune du niveau. Le logotype seul ne descend pas sous 72 pixels de large, sinon la fiole se confond avec un point : utiliser alors la marque seule.</p>
+  <div class="folio"><span>Primiko, charte graphique</span><span>04</span></div>
+</section>
+
+<!-- 5. Couleurs -->
+<section class="page">
+  <h1>Encre, papier, chantier</h1>
+  <div class="grid3">
+    <div><div class="sw" style="background:var(--ink)"></div><p class="sw-cap"><b>Encre</b>#20211E, fonds sombres et textes</p></div>
+    <div><div class="sw" style="background:var(--paper);border:1px solid var(--line)"></div><p class="sw-cap"><b>Papier</b>#F4F4F4, fonds clairs, la bulle</p></div>
+    <div><div class="sw" style="background:var(--yellow)"></div><p class="sw-cap"><b>Jaune chantier</b>#F2B705, l'accent</p></div>
+    <div><div class="sw" style="background:var(--green)"></div><p class="sw-cap"><b>Vert fiole</b>#5E8A2A, le liquide, les états réussis</p></div>
+    <div><div class="sw" style="background:var(--grey)"></div><p class="sw-cap"><b>Gris</b>#5C5D59, textes secondaires</p></div>
+  </div>
+  <p style="margin-top:20px">L'encre et le papier font le fond et le texte. Le jaune est l'accent : le corps du niveau, la fiole du logotype, un mot à faire remarquer. Un seul élément jaune par surface, jamais pour du texte sur fond clair. Le vert reste rare : le liquide de la fiole, et les états où tout est en ordre (demande envoyée, demande traitée).</p>
+  <h2>Contrastes mesurés</h2>
+  <table>
+    <tr><td><span class="pair" style="background:#F4F4F4;color:#20211E;border:1px solid var(--line)">Encre sur papier</span></td><td class="n">14,7</td><td>Tous les textes</td></tr>
+    <tr><td><span class="pair" style="background:#F4F4F4;color:#5C5D59;border:1px solid var(--line)">Gris sur papier</span></td><td class="n">6,0</td><td>Textes secondaires</td></tr>
+    <tr><td><span class="pair" style="background:#F2B705;color:#20211E">Encre sur jaune</span></td><td class="n">8,9</td><td>Texte sur un aplat jaune</td></tr>
+    <tr><td><span class="pair" style="background:#20211E;color:#F2B705">Jaune sur encre</span></td><td class="n">8,9</td><td>Accent sur fond sombre</td></tr>
+    <tr><td><span class="pair" style="background:#5E8A2A;color:#F4F4F4">Papier sur vert</span></td><td class="n">3,7</td><td>La bulle, gros texte ou pictogramme seulement</td></tr>
+    <tr><td><span class="pair" style="background:#F4F4F4;color:#F2B705;border:1px solid var(--line)">Jaune sur papier</span></td><td class="n">1,7</td><td>À éviter pour du texte</td></tr>
+  </table>
+  <h2>Lien avec Nolidev</h2>
+  <p>L'encre et le papier sont ceux de Nolidev (#20211E et #F4F4F4), comme les deux polices. Ce qui distingue Primiko, c'est le jaune chantier et le vert de la fiole, tirés de l'objet. Les autres extensions de Nolidev, comme <a href="https://wordpress.org/plugins/offair/">Offair</a>, reposent sur la même base : elles se reconnaissent de la même famille sans se confondre. Primiko n'affiche pas le nom Nolidev ailleurs que dans sa section À propos.</p>
+  <div class="folio"><span>Primiko, charte graphique</span><span>05</span></div>
+</section>
+
+<!-- 6. Typographie -->
+<section class="page">
+  <h1>Deux polices</h1>
+  <div class="specimen">Des demandes complètes, du premier coup.</div>
+  <div class="alpha">Manrope ExtraBold : abcdefghijklmnopqrstuvwxyz 0123456789</div>
+  <p style="margin-top:12px">Titres, logotype, chiffres mis en avant. Approche légèrement resserrée (-1 à -2 %).</p>
+  <div style="height:32px"></div>
+  <div class="figtree">Quote requests that arrive complete. The right questions for each trade.</div>
+  <div class="alpha" style="font-family:var(--text);font-weight:400">Figtree : abcdefghijklmnopqrstuvwxyz 0123456789</div>
+  <p style="margin-top:12px">Textes, sous-titres, légendes. Regular pour le texte courant, SemiBold pour les étiquettes et les boutons. Ce sont les deux polices de Nolidev, toutes deux libres (SIL Open Font License).</p>
+  <h2>Où chaque police s'applique</h2>
+  <table>
+    <tr><td>Bannière, documents, site, présentations</td><td>Manrope ExtraBold et Figtree</td></tr>
+    <tr><td>Administration WordPress de l'extension</td><td>Polices natives de WordPress. L'extension respecte l'interface d'administration, elle ne la décore pas.</td></tr>
+    <tr><td>Formulaire sur le site du professionnel</td><td>Les polices du thème, sans exception. Aucune police n'est chargée par Primiko.</td></tr>
+    <tr><td>E-mails de demande</td><td>Polices système.</td></tr>
+  </table>
+  <div class="folio"><span>Primiko, charte graphique</span><span>06</span></div>
+</section>
+
+<!-- 7. Règles -->
+<section class="page">
+  <h1>À ne pas faire</h1>
+  <div class="grid3">
+    <div class="rule-card">
+      <div class="panel"><svg viewBox="0 0 256 256" width="80"><rect width="256" height="256" rx="56" fill="#20211E"/><g transform="rotate(-9 128 128)"><rect x="14" y="88" width="228" height="80" rx="10" fill="#F2B705"/><rect x="62" y="102" width="132" height="52" rx="26" fill="#20211E"/><rect x="69" y="109" width="118" height="38" rx="19" fill="#5E8A2A"/><ellipse cx="162" cy="128" rx="17" ry="12" fill="#F4F4F4"/></g></svg></div>
+      <p><span class="x">Non.</span> Pencher le niveau ou décentrer la bulle. Un niveau faux n'est plus une promesse.</p>
+    </div>
+    <div class="rule-card">
+      <div class="panel"><svg viewBox="0 0 256 256" width="80"><rect width="256" height="256" rx="56" fill="#2F6FA8"/><rect x="14" y="88" width="228" height="80" rx="10" fill="#FF7A59"/><rect x="62" y="102" width="132" height="52" rx="26" fill="#2F6FA8"/><rect x="69" y="109" width="118" height="38" rx="19" fill="#9ED8C6"/><ellipse cx="128" cy="128" rx="17" ry="12" fill="#fff"/></svg></div>
+      <p><span class="x">Non.</span> Changer les couleurs, ou les adoucir en pastel.</p>
+    </div>
+    <div class="rule-card">
+      <div class="panel"><svg viewBox="0 0 256 256" width="80"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs><rect width="256" height="256" rx="56" fill="url(#g)"/><image href="../logos/primiko-level.svg" width="256" height="256"/></svg></div>
+      <p><span class="x">Non.</span> Dégradé, halo, ombre portée ou reflet sur la tuile.</p>
+    </div>
+    <div class="rule-card">
+      <div class="panel"><span style="font-family:var(--title);font-weight:800;font-size:34px;letter-spacing:-.02em">Primiko</span></div>
+      <p><span class="x">Non.</span> Recomposer le logotype avec la police, avec une majuscule ou sans la fiole.</p>
+    </div>
+    <div class="rule-card">
+      <div class="panel" style="background:#F2B705"><img src="../logos/primiko-wordmark.svg" style="width:150px" alt=""></div>
+      <p><span class="x">Non.</span> Poser le logo sur un aplat jaune ou sur une photo chargée.</p>
+    </div>
+    <div class="rule-card">
+      <div class="panel"><svg viewBox="0 0 120 90" width="100"><path d="M14 10h92a8 8 0 0 1 8 8v40a8 8 0 0 1-8 8H50l-20 16v-16H14a8 8 0 0 1-8-8V18a8 8 0 0 1 8-8Z" fill="#20211E"/><circle cx="40" cy="38" r="6" fill="#F2B705"/><circle cx="60" cy="38" r="6" fill="#F2B705"/><circle cx="80" cy="38" r="6" fill="#F2B705"/></svg></div>
+      <p><span class="x">Non.</span> Revenir à la bulle de dialogue, l'icône de tous les formulaires.</p>
+    </div>
+  </div>
+  <h2>Le ton</h2>
+  <p>Primiko parle comme un bon artisan : phrases courtes, mots concrets, le vocabulaire du métier. Il dit ce qu'il fait et le fait. Pas de superlatif, pas de promesse de prix, pas d'intelligence artificielle mise en avant.</p>
+  <table>
+    <tr><td>Oui</td><td>Quote requests that arrive complete. Des demandes complètes, du premier coup. Les bonnes questions pour chaque métier.</td></tr>
+    <tr><td>Non</td><td>La solution révolutionnaire boostée par l'IA. Obtenez un devis instantané. Formulaires intelligents nouvelle génération.</td></tr>
+  </table>
+  <div class="folio"><span>Primiko, charte graphique</span><span>07</span></div>
+</section>
+
+<!-- 8. Applications -->
+<section class="page">
+  <h1>Où vit la marque</h1>
+  <div><img src="../../.wordpress-org/banner-1544x500.png" style="width:100%;border-radius:10px;display:block" alt=""></div>
+  <p class="cap">Bannière WordPress.org (1544 x 500 et 772 x 250). Une étape du vrai formulaire, posée bien d'aplomb. Source : source/banner.html.</p>
+  <div class="grid3" style="margin-top:22px">
+    <div><div class="panel white" style="height:150px"><img src="../logos/primiko-mark.svg" style="width:96px" alt=""></div><p class="cap">Icône WordPress.org, en 128 et 256 pixels et en SVG.</p></div>
+    <div><div class="panel ink" style="height:150px"><img src="../logos/primiko-wordmark-paper.svg" style="width:170px" alt=""></div><p class="cap">README GitHub, présentations, réseaux.</p></div>
+    <div><div class="panel white" style="height:150px;flex-direction:column;gap:10px;font-family:Georgia,serif"><div style="font-size:15px;font-weight:600">Votre projet de toiture</div><div style="font-size:11px;color:var(--grey)">Étape 1 sur 7</div></div><p class="cap">Formulaire public : aucune trace de Primiko, l'identité du site.</p></div>
+  </div>
+  <h2>Les fichiers</h2>
+  <table>
+    <tr><td>logos/primiko-mark.svg</td><td>Marque sur tuile, la version de référence</td></tr>
+    <tr><td>logos/primiko-level.svg</td><td>Niveau sans tuile, sur fond encre seulement</td></tr>
+    <tr><td>logos/primiko-mono.svg</td><td>Version une couleur (menu d'administration, bloc)</td></tr>
+    <tr><td>logos/primiko-wordmark.svg, -paper.svg</td><td>Logotype seul, encre ou papier</td></tr>
+    <tr><td>logos/primiko-logo-ink.svg, -paper.svg</td><td>Marque et logotype côte à côte</td></tr>
+    <tr><td>source/build-logos.py</td><td>Produit tous les logos à partir de Manrope</td></tr>
+    <tr><td>source/banner.html</td><td>Bannière WordPress.org</td></tr>
+  </table>
+  <div class="folio"><span>Primiko, charte graphique</span><span>08</span></div>
+</section>
+
+</body>
+</html>

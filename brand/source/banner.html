@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Primiko banner</title>
+<!--
+  WordPress.org banner. Render at 1544x500 and 772x250:
+  google-chrome --headless=new --hide-scrollbars --window-size=1544,500 --screenshot=banner-1544x500.png file://<chemin absolu>/banner.html
+  google-chrome --headless=new --hide-scrollbars --window-size=772,250 --force-device-scale-factor=0.5 ...
+-->
+<style>
+@font-face { font-family: "Manrope"; src: url("fonts/manrope-800.ttf") format("truetype"); font-weight: 800; }
+@font-face { font-family: "Figtree"; src: url("fonts/figtree-latin.woff2") format("woff2"); font-weight: 300 900; }
+
+:root {
+  --ink: #20211E;
+  --paper: #F4F4F4;
+  --yellow: #F2B705;
+  --green: #5E8A2A;
+  --grey: #9A9890;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1544px; height: 500px; overflow: hidden; background: var(--ink); }
+body { position: relative; font-family: "Figtree", Arial, sans-serif; color: var(--paper); }
+
+.logo { position: absolute; left: 104px; top: 96px; height: 150px; }
+.line { position: absolute; left: 108px; top: 290px; font-size: 32px; line-height: 1.35; font-weight: 400; letter-spacing: -0.005em; }
+.line span { display: block; color: var(--grey); }
+
+/* One step of a real form, set dead level on the banner. */
+.card { position: absolute; left: 1000px; top: 70px; width: 440px; background: var(--paper); color: var(--ink); border-radius: 12px; padding: 34px 34px 30px; }
+.step { display: flex; align-items: center; gap: 16px; font-size: 15px; color: #5C5D59; font-variant-numeric: tabular-nums; }
+.bar { flex: 1; height: 4px; border-radius: 2px; background: #DADAD6; overflow: hidden; }
+.bar i { display: block; width: 28%; height: 100%; background: var(--ink); }
+.q { font-family: "Manrope"; font-weight: 800; font-size: 25px; letter-spacing: -0.01em; margin: 22px 0 16px; }
+.opt { display: flex; align-items: center; gap: 13px; border: 1.5px solid #CFCFCA; border-radius: 9px; padding: 12px 16px; font-size: 17px; margin-top: 10px; background: #fff; }
+.opt b { width: 18px; height: 18px; border-radius: 50%; border: 2px solid #878883; flex: none; }
+.opt.on { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.opt.on b { border-color: var(--ink); background: radial-gradient(circle, var(--ink) 0 4.5px, transparent 5px); }
+.next { display: flex; justify-content: flex-end; margin-top: 20px; }
+.next span { background: var(--ink); color: var(--paper); border-radius: 9px; padding: 11px 28px; font-size: 17px; font-weight: 600; }
+</style>
+</head>
+<body>
+  <img class="logo" src="../logos/primiko-logo-paper.svg" alt="">
+  <p class="line">Quote requests that arrive complete. <span>The right questions for each trade.</span></p>
+
+  <div class="card">
+    <div class="step">Step 1 of 7 <div class="bar"><i></i></div></div>
+    <div class="q">What do you need?</div>
+    <div class="opt on"><b></b>Leak or roof repair</div>
+    <div class="opt"><b></b>Roof window (Velux or similar)</div>
+    <div class="opt"><b></b>Gutters and downpipes</div>
+    <div class="next"><span>Next</span></div>
+  </div>
+</body>
+</html>
