@@ -108,9 +108,12 @@ final class Entries {
 	 * Returns the entries as HTML tables, for emails and the request screen.
 	 *
 	 * @param array[] $entries Entries.
+	 * @param bool    $links   Whether the phone, email and address are links:
+	 *                         useful to the business, not in the copy the
+	 *                         visitor gets of their own details.
 	 * @return string Escaped HTML.
 	 */
-	public static function html( $entries ) {
+	public static function html( $entries, $links = true ) {
 		$html = '';
 
 		foreach ( $entries as $step ) {
@@ -120,7 +123,7 @@ final class Entries {
 			foreach ( $step['items'] as $item ) {
 				$html .= '<tr>';
 				$html .= '<th scope="row" style="text-align:left;vertical-align:top;padding:6px 12px 6px 0;width:40%;font-weight:normal;color:#555;">' . esc_html( $item['label'] ) . '</th>';
-				$html .= '<td style="vertical-align:top;padding:6px 0;">' . self::value_html( $item ) . '</td>';
+				$html .= '<td style="vertical-align:top;padding:6px 0;">' . ( $links ? self::value_html( $item ) : nl2br( esc_html( (string) $item['value'] ) ) ) . '</td>';
 				$html .= '</tr>';
 			}
 

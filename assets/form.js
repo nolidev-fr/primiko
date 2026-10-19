@@ -176,7 +176,6 @@
 		this.form = root.querySelector( '.primiko__form' );
 		this.alert = root.querySelector( '.primiko__alert' );
 		this.done = root.querySelector( '.primiko__done' );
-		this.progressText = root.querySelector( '.primiko__progress-text' );
 		this.progressBar = root.querySelector( '.primiko__bar span' );
 		this.live = root.querySelector( '[data-live]' );
 		this.buttons = {
@@ -688,11 +687,23 @@
 		},
 
 		/**
-		 * Updates the progress text and bar.
+		 * Updates the progress bar and tells screen readers which step is
+		 * shown.
+		 *
+		 * No step count is shown: the number of steps changes with the
+		 * answers, and "Step 1 of 7" makes a two minute form look long. The
+		 * review is not a step to fill in, so the bar is full when it opens.
 		 */
 		progress() {
+			const self = this;
 			const steps = this.state.steps;
 			const position = steps.indexOf( this.current ) + 1;
+			const filled = steps.filter( function ( id ) {
+				return ! self.stepConfig( id ).review;
+			} );
+			const reached = this.stepConfig( this.current ).review
+				? filled.length
+				: filled.indexOf( this.current ) + 1;
 			const title = this.stepElement( this.current ).querySelector(
 				'.primiko__step-title'
 			).textContent;
@@ -704,19 +715,28 @@
 				title
 			);
 
-			this.progressText.textContent = format(
-				this.i18n.progressShort,
-				position,
-				steps.length
-			);
-
 			// Only a new step is announced, not every change in the form.
 			if ( this.live.textContent !== announce ) {
 				this.live.textContent = announce;
 			}
 
 			this.progressBar.style.width =
-				( position / steps.length ) * 100 + '%';
+				( filled.length ? ( reached / filled.length ) * 100 : 100 ) +
+				'%';
+		},
+
+		/**
+		 * Settings of a step.
+		 *
+		 * @param {string} id Step identifier.
+		 * @return {Object} Step settings.
+		 */
+		stepConfig( id ) {
+			return (
+				this.config.steps.find( function ( step ) {
+					return step.id === id;
+				} ) || {}
+			);
 		},
 
 		/**
@@ -1567,9 +1587,44 @@
 			} );
 	}
 
+	/**
+	 * Waits for the stylesheet, which loads without holding the page: the
+	 * form is only shown once it is styled. Gives up after three seconds.
+	 *
+	 * @param {Function} callback Called once the stylesheet applies.
+	 */
+	function whenStyled( callback ) {
+		const sample = document.querySelector( '.primiko[data-primiko]' );
+		const link = document.getElementById( 'primiko-form-css' );
+		let done = false;
+
+		const finish = function () {
+			if ( ! done ) {
+				done = true;
+				callback();
+			}
+		};
+
+		// The stylesheet makes the wrapper a size container.
+		if (
+			! sample ||
+			! link ||
+			'inline-size' === window.getComputedStyle( sample ).containerType
+		) {
+			finish();
+			return;
+		}
+
+		link.addEventListener( 'load', finish );
+		link.addEventListener( 'error', finish );
+		window.setTimeout( finish, 3000 );
+	}
+
 	if ( 'loading' === document.readyState ) {
-		document.addEventListener( 'DOMContentLoaded', init );
+		document.addEventListener( 'DOMContentLoaded', function () {
+			whenStyled( init );
+		} );
 	} else {
-		init();
+		whenStyled( init );
 	}
 } )();

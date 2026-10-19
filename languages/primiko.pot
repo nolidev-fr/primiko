@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Primiko - Quote Requests by Trade 1.0.0\n"
+"Project-Id-Version: Primiko - Quote Requests by Trade 1.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/primiko\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-19T17:49:05+00:00\n"
+"POT-Creation-Date: 2026-10-19T19:22:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: primiko\n"
@@ -44,16 +44,16 @@ msgid "The anti-spam check failed. Please reload the page and try again."
 msgstr ""
 
 #: includes/class-entries.php:82
-#: includes/class-renderer.php:236
-#: includes/class-renderer.php:466
+#: includes/class-renderer.php:256
+#: includes/class-renderer.php:486
 #: includes/template-strings.php:1337
 #: build/admin/index.js:10
 msgid "Yes"
 msgstr ""
 
 #: includes/class-entries.php:82
-#: includes/class-renderer.php:237
-#: includes/class-renderer.php:470
+#: includes/class-renderer.php:257
+#: includes/class-renderer.php:490
 #: includes/template-strings.php:1340
 #: build/admin/index.js:10
 msgid "No"
@@ -61,7 +61,7 @@ msgstr ""
 
 #. translators: %d: number of photos.
 #: includes/class-entries.php:89
-#: includes/class-renderer.php:267
+#: includes/class-renderer.php:287
 #, php-format
 msgid "%d photo"
 msgid_plural "%d photos"
@@ -283,175 +283,169 @@ msgstr ""
 msgid "You can ask for a copy of your requests or for their deletion at any time."
 msgstr ""
 
-#: includes/class-renderer.php:123
+#: includes/class-renderer.php:145
 msgid "Leave this field empty"
 msgstr ""
 
-#: includes/class-renderer.php:128
+#: includes/class-renderer.php:150
 msgid "Back"
 msgstr ""
 
-#: includes/class-renderer.php:129
+#: includes/class-renderer.php:151
 msgid "Next"
 msgstr ""
 
-#: includes/class-renderer.php:130
+#: includes/class-renderer.php:152
 msgid "Send my request"
 msgstr ""
 
-#: includes/class-renderer.php:137
+#: includes/class-renderer.php:159
 msgid "This form needs JavaScript. Please enable it in your browser, or contact us by phone or email."
 msgstr ""
 
-#: includes/class-renderer.php:154
+#: includes/class-renderer.php:176
 msgid "This quote form cannot be shown: it is not published or its trade template is missing. Only editors see this message."
 msgstr ""
 
 #. translators: 1: current step number, 2: number of steps, 3: step title.
-#: includes/class-renderer.php:215
+#: includes/class-renderer.php:237
 #, php-format
 msgid "Step %1$d of %2$d: %3$s"
 msgstr ""
 
-#. translators: 1: current step number, 2: number of steps.
-#: includes/class-renderer.php:217
-#, php-format
-msgid "Step %1$d of %2$d"
-msgstr ""
-
-#: includes/class-renderer.php:218
+#: includes/class-renderer.php:238
 #: includes/class-submission.php:401
 msgid "This field is required."
 msgstr ""
 
-#: includes/class-renderer.php:219
+#: includes/class-renderer.php:239
 #: includes/class-submission.php:394
 msgid "Please choose an answer."
 msgstr ""
 
-#: includes/class-renderer.php:220
+#: includes/class-renderer.php:240
 #: includes/class-submission.php:329
 msgid "Please enter a valid email address, such as name@example.com."
 msgstr ""
 
-#: includes/class-renderer.php:221
+#: includes/class-renderer.php:241
 #: includes/class-submission.php:338
 msgid "Please enter a valid phone number."
 msgstr ""
 
-#: includes/class-renderer.php:222
+#: includes/class-renderer.php:242
 #: includes/class-submission.php:351
 msgid "Please enter a number."
 msgstr ""
 
 #. translators: 1: minimum, 2: maximum.
-#: includes/class-renderer.php:224
+#: includes/class-renderer.php:244
 #: includes/class-submission.php:359
 #, php-format
 msgid "Please enter a number between %1$s and %2$s."
 msgstr ""
 
-#: includes/class-renderer.php:225
+#: includes/class-renderer.php:245
 #: includes/class-submission.php:309
 #: includes/class-submission.php:398
 msgid "Please fill in the street, postcode and town."
 msgstr ""
 
-#: includes/class-renderer.php:226
+#: includes/class-renderer.php:246
 #: includes/class-submission.php:390
 msgid "Please tick this box to send your request."
 msgstr ""
 
-#: includes/class-renderer.php:227
+#: includes/class-renderer.php:247
 #: includes/class-submission.php:473
 msgid "Please add at least one photo."
 msgstr ""
 
 #. translators: %d: maximum number of photos.
-#: includes/class-renderer.php:229
+#: includes/class-renderer.php:249
 #: includes/class-submission.php:447
 #, php-format
 msgid "You can add up to %d photos."
 msgstr ""
 
-#: includes/class-renderer.php:230
-msgid "This photo could not be read. Please choose a JPEG or PNG image."
+#: includes/class-renderer.php:250
+msgid "Your browser could not read this photo. Please choose a JPEG, PNG or WebP photo. An iPhone photo in HEIC format can be sent from the iPhone itself."
 msgstr ""
 
 #. translators: %d: photo number.
-#: includes/class-renderer.php:232
+#: includes/class-renderer.php:252
 #, php-format
 msgid "Remove photo %d"
 msgstr ""
 
-#: includes/class-renderer.php:233
+#: includes/class-renderer.php:253
 msgid "Preparing the photos..."
 msgstr ""
 
-#: includes/class-renderer.php:234
+#: includes/class-renderer.php:254
 msgid "Some answers need your attention. Please check the fields marked below."
 msgstr ""
 
-#: includes/class-renderer.php:235
+#: includes/class-renderer.php:255
 msgid "Not specified"
 msgstr ""
 
-#: includes/class-renderer.php:238
+#: includes/class-renderer.php:258
 msgid "Edit"
 msgstr ""
 
 #. translators: %s: step title.
-#: includes/class-renderer.php:240
+#: includes/class-renderer.php:260
 #, php-format
 msgid "Edit: %s"
 msgstr ""
 
-#: includes/class-renderer.php:241
+#: includes/class-renderer.php:261
 msgid "Sending..."
 msgstr ""
 
-#: includes/class-renderer.php:242
+#: includes/class-renderer.php:262
 msgid "Your request could not be sent. Please check your connection and try again."
 msgstr ""
 
-#: includes/class-renderer.php:243
+#: includes/class-renderer.php:263
 msgid "Please complete the anti-spam check above the button, then send again."
 msgstr ""
 
 #. translators: 1: number of photos added, 2: maximum.
-#: includes/class-renderer.php:265
+#: includes/class-renderer.php:285
 #, php-format
 msgid "%1$d of %2$d photo"
 msgid_plural "%1$d of %2$d photos"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-renderer.php:347
+#: includes/class-renderer.php:367
 msgid "(required)"
 msgstr ""
 
-#: includes/class-renderer.php:413
+#: includes/class-renderer.php:433
 msgid "Choose..."
 msgstr ""
 
-#: includes/class-renderer.php:510
+#: includes/class-renderer.php:530
 msgid "Street and number"
 msgstr ""
 
-#: includes/class-renderer.php:511
+#: includes/class-renderer.php:531
 msgid "Postcode"
 msgstr ""
 
-#: includes/class-renderer.php:512
+#: includes/class-renderer.php:532
 #: includes/class-request-list.php:74
 msgid "Town"
 msgstr ""
 
-#: includes/class-renderer.php:543
+#: includes/class-renderer.php:563
 msgid "Add photos"
 msgstr ""
 
-#: includes/class-renderer.php:568
+#: includes/class-renderer.php:588
 msgid "How we handle your personal data (opens in a new tab)"
 msgstr ""
 
@@ -662,7 +656,7 @@ msgid "A photo is too large. Please choose a smaller one."
 msgstr ""
 
 #: includes/class-submission.php:464
-msgid "A photo could not be read. Please choose a JPEG or PNG image."
+msgid "A photo could not be read. Please choose a JPEG, PNG or WebP photo."
 msgstr ""
 
 #: includes/class-submission.php:512
@@ -4495,7 +4489,19 @@ msgid "Heading %d"
 msgstr ""
 
 #: build/block/index.js:4
-msgid "Choose Heading 3 when the form sits under a section title of level 2."
+msgid "Heading 3 suits a form placed under the title of its section. Choose Heading 2 when no title comes before it."
+msgstr ""
+
+#: build/block/index.js:4
+msgid "Width"
+msgstr ""
+
+#: build/block/index.js:4
+msgid "Easy to read"
+msgstr ""
+
+#: build/block/index.js:4
+msgid "Whole column"
 msgstr ""
 
 #: build/block/index.js:4

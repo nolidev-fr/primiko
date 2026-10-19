@@ -19,7 +19,7 @@ import apiFetch from '@wordpress/api-fetch';
 import { useEffect, useState } from '@wordpress/element';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { formId, accentColor, radius, headingLevel } = attributes;
+	const { formId, accentColor, radius, headingLevel, width } = attributes;
 	const [ forms, setForms ] = useState( null );
 	const [ failed, setFailed ] = useState( false );
 
@@ -117,13 +117,32 @@ export default function Edit( { attributes, setAttributes } ) {
 						} ) ) }
 						onChange={ ( value ) =>
 							setAttributes( {
-								headingLevel: parseInt( value, 10 ) || 2,
+								headingLevel: parseInt( value, 10 ) || 3,
 							} )
 						}
 						help={ __(
-							'Choose Heading 3 when the form sits under a section title of level 2.',
+							'Heading 3 suits a form placed under the title of its section. Choose Heading 2 when no title comes before it.',
 							'primiko'
 						) }
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+					/>
+					<SelectControl
+						label={ __( 'Width', 'primiko' ) }
+						value={ width }
+						options={ [
+							{
+								value: 'reading',
+								label: __( 'Easy to read', 'primiko' ),
+							},
+							{
+								value: 'full',
+								label: __( 'Whole column', 'primiko' ),
+							},
+						] }
+						onChange={ ( value ) =>
+							setAttributes( { width: value } )
+						}
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
 					/>

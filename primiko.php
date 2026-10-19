@@ -3,7 +3,7 @@
  * Plugin Name:       Primiko - Quote Requests by Trade
  * Plugin URI:        https://github.com/nolidev-fr/primiko
  * Description:       Quote request forms made for each trade: the right questions in the right order, with photos and the site address. Requests are saved in WordPress and sent by email.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Nolidev
@@ -22,7 +22,7 @@ if ( defined( 'PRIMIKO_VERSION' ) ) {
 	return;
 }
 
-define( 'PRIMIKO_VERSION', '1.0.1' );
+define( 'PRIMIKO_VERSION', '1.0.2' );
 define( 'PRIMIKO_FILE', __FILE__ );
 define( 'PRIMIKO_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PRIMIKO_URL', plugin_dir_url( __FILE__ ) );

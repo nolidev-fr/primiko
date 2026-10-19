@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Primiko - Quote Requests by Trade 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/primiko\n"
-"POT-Creation-Date: 2026-10-19T17:49:05+00:00\n"
+"POT-Creation-Date: 2026-10-19T19:22:42+00:00\n"
 "PO-Revision-Date: 2026-10-19 12:00+0200\n"
 "Last-Translator: Nolidev <contact@nolidev.fr>\n"
 "Language-Team: French\n"
@@ -52,20 +52,20 @@ msgstr "https://nolidev.fr"
 msgid "The anti-spam check failed. Please reload the page and try again."
 msgstr "La vérification anti-spam a échoué. Rechargez la page et réessayez."
 
-#: includes/class-entries.php:82 includes/class-renderer.php:236
-#: includes/class-renderer.php:466 includes/template-strings.php:1337
+#: includes/class-entries.php:82 includes/class-renderer.php:256
+#: includes/class-renderer.php:486 includes/template-strings.php:1337
 #: build/admin/index.js:10
 msgid "Yes"
 msgstr "Oui"
 
-#: includes/class-entries.php:82 includes/class-renderer.php:237
-#: includes/class-renderer.php:470 includes/template-strings.php:1340
+#: includes/class-entries.php:82 includes/class-renderer.php:257
+#: includes/class-renderer.php:490 includes/template-strings.php:1340
 #: build/admin/index.js:10
 msgid "No"
 msgstr "Non"
 
 #. translators: %d: number of photos.
-#: includes/class-entries.php:89 includes/class-renderer.php:267
+#: includes/class-entries.php:89 includes/class-renderer.php:287
 #, php-format
 msgid "%d photo"
 msgid_plural "%d photos"
@@ -336,23 +336,23 @@ msgstr ""
 "Vous pouvez demander à tout moment une copie de vos demandes ou leur "
 "suppression."
 
-#: includes/class-renderer.php:123
+#: includes/class-renderer.php:145
 msgid "Leave this field empty"
 msgstr "Laissez ce champ vide"
 
-#: includes/class-renderer.php:128
+#: includes/class-renderer.php:150
 msgid "Back"
 msgstr "Retour"
 
-#: includes/class-renderer.php:129
+#: includes/class-renderer.php:151
 msgid "Next"
 msgstr "Suivant"
 
-#: includes/class-renderer.php:130
+#: includes/class-renderer.php:152
 msgid "Send my request"
 msgstr "Envoyer ma demande"
 
-#: includes/class-renderer.php:137
+#: includes/class-renderer.php:159
 msgid ""
 "This form needs JavaScript. Please enable it in your browser, or contact us "
 "by phone or email."
@@ -360,7 +360,7 @@ msgstr ""
 "Ce formulaire a besoin de JavaScript. Activez-le dans votre navigateur, ou "
 "contactez-nous par téléphone ou par e-mail."
 
-#: includes/class-renderer.php:154
+#: includes/class-renderer.php:176
 msgid ""
 "This quote form cannot be shown: it is not published or its trade template "
 "is missing. Only editors see this message."
@@ -370,143 +370,142 @@ msgstr ""
 "message."
 
 #. translators: 1: current step number, 2: number of steps, 3: step title.
-#: includes/class-renderer.php:215
+#: includes/class-renderer.php:237
 #, php-format
 msgid "Step %1$d of %2$d: %3$s"
 msgstr "Étape %1$d sur %2$d : %3$s"
 
-#. translators: 1: current step number, 2: number of steps.
-#: includes/class-renderer.php:217
-#, php-format
-msgid "Step %1$d of %2$d"
-msgstr "Étape %1$d sur %2$d"
-
-#: includes/class-renderer.php:218 includes/class-submission.php:401
+#: includes/class-renderer.php:238 includes/class-submission.php:401
 msgid "This field is required."
 msgstr "Ce champ est obligatoire."
 
-#: includes/class-renderer.php:219 includes/class-submission.php:394
+#: includes/class-renderer.php:239 includes/class-submission.php:394
 msgid "Please choose an answer."
 msgstr "Choisissez une réponse."
 
-#: includes/class-renderer.php:220 includes/class-submission.php:329
+#: includes/class-renderer.php:240 includes/class-submission.php:329
 msgid "Please enter a valid email address, such as name@example.com."
 msgstr "Saisissez une adresse e-mail valide, par exemple nom@exemple.fr."
 
-#: includes/class-renderer.php:221 includes/class-submission.php:338
+#: includes/class-renderer.php:241 includes/class-submission.php:338
 msgid "Please enter a valid phone number."
 msgstr "Saisissez un numéro de téléphone valide."
 
-#: includes/class-renderer.php:222 includes/class-submission.php:351
+#: includes/class-renderer.php:242 includes/class-submission.php:351
 msgid "Please enter a number."
 msgstr "Saisissez un nombre."
 
 #. translators: 1: minimum, 2: maximum.
-#: includes/class-renderer.php:224 includes/class-submission.php:359
+#: includes/class-renderer.php:244 includes/class-submission.php:359
 #, php-format
 msgid "Please enter a number between %1$s and %2$s."
 msgstr "Saisissez un nombre entre %1$s et %2$s."
 
-#: includes/class-renderer.php:225 includes/class-submission.php:309
+#: includes/class-renderer.php:245 includes/class-submission.php:309
 #: includes/class-submission.php:398
 msgid "Please fill in the street, postcode and town."
 msgstr "Indiquez la rue, le code postal et la ville."
 
-#: includes/class-renderer.php:226 includes/class-submission.php:390
+#: includes/class-renderer.php:246 includes/class-submission.php:390
 msgid "Please tick this box to send your request."
 msgstr "Cochez cette case pour envoyer votre demande."
 
-#: includes/class-renderer.php:227 includes/class-submission.php:473
+#: includes/class-renderer.php:247 includes/class-submission.php:473
 msgid "Please add at least one photo."
 msgstr "Ajoutez au moins une photo."
 
 #. translators: %d: maximum number of photos.
-#: includes/class-renderer.php:229 includes/class-submission.php:447
+#: includes/class-renderer.php:249 includes/class-submission.php:447
 #, php-format
 msgid "You can add up to %d photos."
 msgstr "Vous pouvez ajouter jusqu’à %d photos."
 
-#: includes/class-renderer.php:230
-msgid "This photo could not be read. Please choose a JPEG or PNG image."
-msgstr "Cette photo n’a pas pu être lue. Choisissez une image JPEG ou PNG."
+#: includes/class-renderer.php:250
+msgid ""
+"Your browser could not read this photo. Please choose a JPEG, PNG or WebP "
+"photo. An iPhone photo in HEIC format can be sent from the iPhone itself."
+msgstr ""
+"Votre navigateur ne peut pas lire cette photo. Choisissez une photo JPEG, "
+"PNG ou WebP. Une photo d’iPhone au format HEIC peut être envoyée depuis "
+"l’iPhone lui-même."
 
 #. translators: %d: photo number.
-#: includes/class-renderer.php:232
+#: includes/class-renderer.php:252
 #, php-format
 msgid "Remove photo %d"
 msgstr "Retirer la photo %d"
 
-#: includes/class-renderer.php:233
+#: includes/class-renderer.php:253
 msgid "Preparing the photos..."
 msgstr "Préparation des photos…"
 
-#: includes/class-renderer.php:234
+#: includes/class-renderer.php:254
 msgid "Some answers need your attention. Please check the fields marked below."
 msgstr ""
 "Certaines réponses sont à vérifier. Regardez les champs signalés ci-dessous."
 
-#: includes/class-renderer.php:235
+#: includes/class-renderer.php:255
 msgid "Not specified"
 msgstr "Non précisé"
 
-#: includes/class-renderer.php:238
+#: includes/class-renderer.php:258
 msgid "Edit"
 msgstr "Modifier"
 
 #. translators: %s: step title.
-#: includes/class-renderer.php:240
+#: includes/class-renderer.php:260
 #, php-format
 msgid "Edit: %s"
 msgstr "Modifier : %s"
 
-#: includes/class-renderer.php:241
+#: includes/class-renderer.php:261
 msgid "Sending..."
 msgstr "Envoi en cours…"
 
-#: includes/class-renderer.php:242
+#: includes/class-renderer.php:262
 msgid ""
 "Your request could not be sent. Please check your connection and try again."
 msgstr ""
 "Votre demande n’a pas pu être envoyée. Vérifiez votre connexion et réessayez."
 
-#: includes/class-renderer.php:243
+#: includes/class-renderer.php:263
 msgid "Please complete the anti-spam check above the button, then send again."
 msgstr ""
 "Complétez la vérification anti-spam au-dessus du bouton, puis renvoyez."
 
 #. translators: 1: number of photos added, 2: maximum.
-#: includes/class-renderer.php:265
+#: includes/class-renderer.php:285
 #, php-format
 msgid "%1$d of %2$d photo"
 msgid_plural "%1$d of %2$d photos"
 msgstr[0] "%1$d photo sur %2$d"
 msgstr[1] "%1$d photos sur %2$d"
 
-#: includes/class-renderer.php:347
+#: includes/class-renderer.php:367
 msgid "(required)"
 msgstr "(obligatoire)"
 
-#: includes/class-renderer.php:413
+#: includes/class-renderer.php:433
 msgid "Choose..."
 msgstr "Choisir…"
 
-#: includes/class-renderer.php:510
+#: includes/class-renderer.php:530
 msgid "Street and number"
 msgstr "Numéro et rue"
 
-#: includes/class-renderer.php:511
+#: includes/class-renderer.php:531
 msgid "Postcode"
 msgstr "Code postal"
 
-#: includes/class-renderer.php:512 includes/class-request-list.php:74
+#: includes/class-renderer.php:532 includes/class-request-list.php:74
 msgid "Town"
 msgstr "Ville"
 
-#: includes/class-renderer.php:543
+#: includes/class-renderer.php:563
 msgid "Add photos"
 msgstr "Ajouter des photos"
 
-#: includes/class-renderer.php:568
+#: includes/class-renderer.php:588
 msgid "How we handle your personal data (opens in a new tab)"
 msgstr ""
 "Comment nous traitons vos données personnelles (s’ouvre dans un nouvel "
@@ -743,8 +742,8 @@ msgid "A photo is too large. Please choose a smaller one."
 msgstr "Une photo est trop lourde. Choisissez-en une plus légère."
 
 #: includes/class-submission.php:464
-msgid "A photo could not be read. Please choose a JPEG or PNG image."
-msgstr "Une photo n’a pas pu être lue. Choisissez une image JPEG ou PNG."
+msgid "A photo could not be read. Please choose a JPEG, PNG or WebP photo."
+msgstr "Une photo n’a pas pu être lue. Choisissez une photo JPEG, PNG ou WebP."
 
 #: includes/class-submission.php:512
 msgid ""
@@ -4964,10 +4963,24 @@ msgid "Heading %d"
 msgstr "Titre %d"
 
 #: build/block/index.js:4
-msgid "Choose Heading 3 when the form sits under a section title of level 2."
+msgid ""
+"Heading 3 suits a form placed under the title of its section. Choose Heading "
+"2 when no title comes before it."
 msgstr ""
-"Choisissez Titre 3 quand le formulaire est placé sous un titre de section de "
-"niveau 2."
+"Titre 3 convient à un formulaire placé sous le titre de sa section. "
+"Choisissez Titre 2 quand aucun titre ne le précède."
+
+#: build/block/index.js:4
+msgid "Width"
+msgstr "Largeur"
+
+#: build/block/index.js:4
+msgid "Easy to read"
+msgstr "Confortable à lire"
+
+#: build/block/index.js:4
+msgid "Whole column"
+msgstr "Toute la colonne"
 
 #: build/block/index.js:4
 msgid "Main color"

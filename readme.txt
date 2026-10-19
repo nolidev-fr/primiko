@@ -4,7 +4,7 @@ Tags: quote, request a quote, multi-step form, contractor, tradesman
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,9 +100,17 @@ Yes. The form asks for its security token when it loads, so a cached page still 
 
 You should not need to. The form reads your theme: its fonts, main color, buttons, the corners and background of its fields. To change it anyway, the block has a main color and a corner radius, or set `--primiko-accent`, `--primiko-radius` and `--primiko-small` (size of the help texts, 1rem at least by default) on `.primiko` in your theme CSS.
 
-= The form sits under a section title. Can the step titles follow? =
+= Which heading level do the step titles use? =
 
-Yes. In the block settings, choose Heading 3 (or 4) for the step titles. With the shortcode, add `heading="3"`.
+Heading 3, since the form usually sits under the title of its section. In the block settings, choose Heading 2 when no title comes before it, or Heading 4. With the shortcode, add `heading="2"`.
+
+= Can a button or a menu link go straight to the form? =
+
+Yes. Give the block an HTML anchor in its Advanced settings, such as `quote`, and link to `#quote`. With the shortcode, add `anchor="quote"`. The form stops below a fixed site header.
+
+= Can the form use the whole width of its column? =
+
+Yes. In the block settings, set Width to Whole column. With the shortcode, add `width="full"`. By default the form keeps a width that is easy to read.
 
 = Can visitors leave out their email address? =
 
@@ -131,6 +139,15 @@ Usually not. The form stops most spam on its own: a hidden field robots fill in,
 7. A request with all its answers and a reply button.
 
 == Changelog ==
+
+= 1.0.2 =
+* No step count any more: the progress bar shows the way, without "Step 1 of 7".
+* Step titles use Heading 3 by default.
+* HTML anchor and width setting for the block, `anchor` and `width` for the shortcode.
+* Emails carry a plain text part.
+* The stylesheet no longer holds the page, and the visitor script is minified.
+* The copy sent to the visitor no longer links to their own details.
+* Clearer message for a photo the browser cannot read, such as a HEIC photo on a computer.
 
 = 1.0.1 =
 * A step made only of single choices moves on by itself after a click or a tap.

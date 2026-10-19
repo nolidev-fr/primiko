@@ -56,12 +56,27 @@ final class Shortcode {
 		$atts = shortcode_atts(
 			array(
 				'form'    => 0,
-				'heading' => 2,
+				'heading' => 3,
+				'anchor'  => '',
+				'width'   => 'reading',
 			),
 			$atts,
 			self::TAG
 		);
 
-		return $this->renderer->render( absint( $atts['form'] ), absint( $atts['heading'] ) );
+		$html = $this->renderer->render( absint( $atts['form'] ), absint( $atts['heading'] ) );
+
+		if ( '' === $html ) {
+			return '';
+		}
+
+		$anchor = sanitize_html_class( $atts['anchor'] );
+		$style  = 'full' === $atts['width'] ? '--primiko-width:none;' : '';
+
+		if ( '' === $anchor && '' === $style ) {
+			return $html;
+		}
+
+		return '<div class="primiko-wrap"' . ( '' !== $anchor ? ' id="' . esc_attr( $anchor ) . '"' : '' ) . ( '' !== $style ? ' style="' . esc_attr( $style ) . '"' : '' ) . '>' . $html . '</div>';
 	}
 }

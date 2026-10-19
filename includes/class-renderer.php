@@ -37,7 +37,7 @@ final class Renderer {
 	 *
 	 * @var int
 	 */
-	private $heading = 2;
+	private $heading = 3;
 
 	/**
 	 * Sets up the renderer.
@@ -53,6 +53,23 @@ final class Renderer {
 	 */
 	public function register_hooks() {
 		add_action( 'init', array( $this, 'register_assets' ) );
+		add_filter( 'style_loader_tag', array( $this, 'async_style' ), 10, 2 );
+	}
+
+	/**
+	 * Loads the form stylesheet without holding the page: the form is often
+	 * far down the page, and the script shows it once the stylesheet applies.
+	 *
+	 * @param string $tag    Link tag.
+	 * @param string $handle Style handle.
+	 * @return string
+	 */
+	public function async_style( $tag, $handle ) {
+		if ( 'primiko-form' !== $handle || false !== strpos( $tag, 'onload=' ) ) {
+			return $tag;
+		}
+
+		return preg_replace( "/media=(['\"])all\\1/", 'media="print" onload="this.media=\'all\'"', $tag, 1 );
 	}
 
 	/**
@@ -60,29 +77,35 @@ final class Renderer {
 	 * that show a form.
 	 */
 	public function register_assets() {
+		// The minified build of assets/form.js, versioned by its content.
+		$asset = file_exists( PRIMIKO_DIR . 'build/form/form.asset.php' )
+			? require PRIMIKO_DIR . 'build/form/form.asset.php'
+			: array( 'version' => PRIMIKO_VERSION );
+
 		wp_register_script(
 			'primiko-form',
-			PRIMIKO_URL . 'assets/form.js',
+			PRIMIKO_URL . 'build/form/form.js',
 			array(),
-			PRIMIKO_VERSION,
+			$asset['version'],
 			array(
 				'in_footer' => true,
 				'strategy'  => 'defer',
 			)
 		);
 
-		wp_register_style( 'primiko-form', PRIMIKO_URL . 'assets/form.css', array(), PRIMIKO_VERSION );
+		wp_register_style( 'primiko-form', PRIMIKO_URL . 'assets/form.css', array(), PRIMIKO_VERSION . '-' . filemtime( PRIMIKO_DIR . 'assets/form.css' ) );
 	}
 
 	/**
 	 * Returns the HTML of a form.
 	 *
 	 * @param int $form_id Form post ID.
-	 * @param int $heading Heading level of the step titles, 2 to 4: 3 when
-	 *                     the form sits under a section title of level 2.
+	 * @param int $heading Heading level of the step titles, 2 to 4. 3 by
+	 *                     default: the form usually sits under the title
+	 *                     of its section.
 	 * @return string Empty when the form cannot be shown.
 	 */
-	public function render( $form_id, $heading = 2 ) {
+	public function render( $form_id, $heading = 3 ) {
 		$this->heading = max( 2, min( 4, (int) $heading ) );
 
 		$form   = get_post( $form_id );
@@ -106,7 +129,6 @@ final class Renderer {
 		<div class="primiko" data-primiko="<?php echo esc_attr( wp_json_encode( $this->config( $form->ID, $schema, $prefix ) ) ); ?>">
 			<form class="primiko__form" novalidate hidden aria-label="<?php echo esc_attr( get_the_title( $form ) ); ?>">
 				<div class="primiko__progress" aria-hidden="true">
-					<p class="primiko__progress-text"></p>
 					<div class="primiko__bar"><span></span></div>
 				</div>
 				<p class="primiko__sr" aria-live="polite" data-live></p>
@@ -200,6 +222,7 @@ final class Renderer {
 		return array(
 			'form'      => $form_id,
 			'prefix'    => $prefix,
+			'heading'   => $this->heading,
 			'tokenUrl'  => rest_url( Rest::NAMESPACE . '/token' ),
 			'submitUrl' => rest_url( Rest::NAMESPACE . '/submit' ),
 			'steps'     => $steps,
@@ -213,8 +236,6 @@ final class Renderer {
 			'i18n'      => array(
 				/* translators: 1: current step number, 2: number of steps, 3: step title. */
 				'progress'      => __( 'Step %1$d of %2$d: %3$s', 'primiko' ),
-				/* translators: 1: current step number, 2: number of steps. */
-				'progressShort' => __( 'Step %1$d of %2$d', 'primiko' ),
 				'required'      => __( 'This field is required.', 'primiko' ),
 				'requiredOne'   => __( 'Please choose an answer.', 'primiko' ),
 				'email'         => __( 'Please enter a valid email address, such as name@example.com.', 'primiko' ),
@@ -227,7 +248,7 @@ final class Renderer {
 				'photosNeeded'  => __( 'Please add at least one photo.', 'primiko' ),
 				/* translators: %d: maximum number of photos. */
 				'photosMax'     => __( 'You can add up to %d photos.', 'primiko' ),
-				'photoBad'      => __( 'This photo could not be read. Please choose a JPEG or PNG image.', 'primiko' ),
+				'photoBad'      => __( 'Your browser could not read this photo. Please choose a JPEG, PNG or WebP photo. An iPhone photo in HEIC format can be sent from the iPhone itself.', 'primiko' ),
 				/* translators: %d: photo number. */
 				'photoRemove'   => __( 'Remove photo %d', 'primiko' ),
 				'photoWorking'  => __( 'Preparing the photos...', 'primiko' ),

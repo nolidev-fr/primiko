@@ -64,7 +64,7 @@ final class Mailer {
 			$body .= '<p>' . esc_html__( 'The photos are too large to be attached: open the request on the website to see them.', 'primiko' ) . '</p>';
 		}
 
-		return wp_mail( $this->recipients( (int) $request->post_parent ), $subject, $this->wrap( $body ), $headers, $attachments );
+		return $this->send( $this->recipients( (int) $request->post_parent ), $subject, $body, $headers, $attachments );
 	}
 
 	/**
@@ -98,7 +98,7 @@ final class Mailer {
 			$body .= '<p>' . nl2br( esc_html( trim( $paragraph ) ) ) . '</p>';
 		}
 
-		$body .= Entries::html( (array) get_post_meta( $request_id, '_primiko_entries', true ) );
+		$body .= Entries::html( (array) get_post_meta( $request_id, '_primiko_entries', true ), false );
 		$body .= '<p style="margin-top:24px;">' . esc_html( wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ) ) . '</p>';
 
 		$headers    = array( 'Content-Type: text/html; charset=UTF-8' );
@@ -109,7 +109,7 @@ final class Mailer {
 			$headers[] = 'Reply-To: ' . self::address( wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ), $recipients[0] );
 		}
 
-		$sent = wp_mail( $email, $subject, $this->wrap( $body ), $headers );
+		$sent = $this->send( $email, $subject, $body, $headers );
 
 		// Only a copy that left counts against the daily limit.
 		if ( $sent ) {
@@ -297,6 +297,60 @@ final class Mailer {
 		$name = trim( preg_replace( '/[\r\n"<>,;]+/', ' ', $name ) );
 
 		return '' === $name ? $email : $name . ' <' . $email . '>';
+	}
+
+	/**
+	 * Sends an HTML email with a plain text part (multipart/alternative):
+	 * spam filters trust it more, and some mail apps only show the text.
+	 *
+	 * @param string|string[] $to          Recipients.
+	 * @param string          $subject     Subject.
+	 * @param string          $body        Escaped HTML body.
+	 * @param string[]        $headers     Headers.
+	 * @param array           $attachments Attachments.
+	 * @return bool Whether wp_mail() accepted the email.
+	 */
+	private function send( $to, $subject, $body, $headers, $attachments = array() ) {
+		$text = self::to_text( $body );
+
+		$alternative = static function ( $phpmailer ) use ( $text ) {
+			$phpmailer->AltBody = $text; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer property.
+		};
+
+		add_action( 'phpmailer_init', $alternative );
+		$sent = wp_mail( $to, $subject, $this->wrap( $body ), $headers, $attachments );
+		remove_action( 'phpmailer_init', $alternative );
+
+		return $sent;
+	}
+
+	/**
+	 * Plain text version of an email body built by this class.
+	 *
+	 * @param string $html Escaped HTML body.
+	 * @return string
+	 */
+	private static function to_text( $html ) {
+		// A web link keeps its address. Phone, email and map links are the text itself.
+		$html = preg_replace_callback(
+			'#<a\s[^>]*href="([^"]+)"[^>]*>(.*?)</a>#is',
+			static function ( $link ) {
+				$url = html_entity_decode( $link[1], ENT_QUOTES, 'UTF-8' );
+
+				return 0 === strpos( $url, 'http' ) && false === strpos( $url, 'google.com/maps' ) ? $link[2] . ': ' . $url : $link[2];
+			},
+			$html
+		);
+		$html = preg_replace( '#<br\s*/?>#i', "\n", $html );
+		// A label that already ends with "?" or ":" takes a plain space.
+		$html = preg_replace( '#([?:])\s*</th>#i', '$1 ', $html );
+		$html = preg_replace( '#</th>#i', ': ', $html );
+		$html = preg_replace( '#</tr>#i', "\n", $html );
+		$html = preg_replace( '#</(p|h3|table)>#i', "\n\n", $html );
+		$text = html_entity_decode( wp_strip_all_tags( $html ), ENT_QUOTES, 'UTF-8' );
+		$text = preg_replace( "/[ \t]+\n/", "\n", $text );
+
+		return trim( preg_replace( "/\n{3,}/", "\n\n", $text ) );
 	}
 
 	/**

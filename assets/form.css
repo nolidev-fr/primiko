@@ -16,6 +16,7 @@
  * --primiko-accent  main color (cards, progress, focus)
  * --primiko-radius  corner radius of the cards and fallback inputs
  * --primiko-small   size of the small texts (help, errors, counters)
+ * --primiko-width   largest width of the form, 42rem (none for the column)
  * None is needed: the script reads the colors, corners and fields of
  * the theme.
  * The --primiko-x-* variables are internal.
@@ -41,9 +42,14 @@
 	--primiko-small: max(var(--wp--preset--font-size--small, 0.9em), 1rem);
 	container-type: inline-size;
 	container-name: primiko;
-	max-width: 42rem;
+	max-width: var(--primiko-width, 42rem);
 	caret-color: var(--primiko-x-accent);
 	accent-color: var(--primiko-x-accent);
+}
+
+/* A link to the form (#quote) stops below a fixed site header. */
+:where(.wp-block-primiko-form, .primiko-wrap, .primiko) {
+	scroll-margin-top: 6rem;
 }
 
 :where(.primiko) *,
@@ -67,14 +73,6 @@
 	align-items: center;
 	gap: 0.75rem;
 	margin-bottom: calc(var(--primiko-gap) * 1.25);
-}
-
-.primiko .primiko__progress-text {
-	flex: none;
-	margin: 0;
-	font-size: var(--primiko-small);
-	font-variant-numeric: tabular-nums;
-	color: var(--primiko-muted);
 }
 
 :where(.primiko__bar) {

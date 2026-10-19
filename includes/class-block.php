@@ -67,7 +67,7 @@ final class Block {
 	public function render( $attributes ) {
 		$html = $this->renderer->render(
 			isset( $attributes['formId'] ) ? absint( $attributes['formId'] ) : 0,
-			isset( $attributes['headingLevel'] ) ? (int) $attributes['headingLevel'] : 2
+			isset( $attributes['headingLevel'] ) ? (int) $attributes['headingLevel'] : 3
 		);
 
 		if ( '' === $html ) {
@@ -85,7 +85,19 @@ final class Block {
 			$style .= '--primiko-radius:' . max( 0, min( 24, (int) $attributes['radius'] ) ) . 'px;';
 		}
 
+		if ( isset( $attributes['width'] ) && 'full' === $attributes['width'] ) {
+			$style .= '--primiko-width:none;';
+		}
+
 		// The variables sit on the wrapper and reach the form through inheritance.
-		return '<div ' . get_block_wrapper_attributes( $style ? array( 'style' => $style ) : array() ) . '>' . $html . '</div>';
+		$wrapper = get_block_wrapper_attributes( $style ? array( 'style' => $style ) : array() );
+		$anchor  = isset( $attributes['anchor'] ) ? sanitize_html_class( $attributes['anchor'] ) : '';
+
+		// WordPress 7.0 sets the HTML anchor of dynamic blocks itself. Before, it is added here, once.
+		if ( '' !== $anchor && false === strpos( $wrapper, ' id="' ) && 0 !== strpos( $wrapper, 'id="' ) ) {
+			$wrapper .= ' id="' . esc_attr( $anchor ) . '"';
+		}
+
+		return '<div ' . $wrapper . '>' . $html . '</div>';
 	}
 }

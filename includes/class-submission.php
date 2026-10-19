@@ -461,7 +461,7 @@ final class Submission {
 			$size = UPLOAD_ERR_OK === $error && is_uploaded_file( $file['tmp_name'] ) ? wp_getimagesize( $file['tmp_name'] ) : false;
 
 			if ( ! $size || ! in_array( $size['mime'], array( 'image/jpeg', 'image/png', 'image/webp' ), true ) ) {
-				return __( 'A photo could not be read. Please choose a JPEG or PNG image.', 'primiko' );
+				return __( 'A photo could not be read. Please choose a JPEG, PNG or WebP photo.', 'primiko' );
 			}
 
 			if ( $size[0] * $size[1] > Private_Uploads::MAX_PIXELS ) {
