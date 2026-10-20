@@ -667,3 +667,23 @@
 		animation: none;
 	}
 }
+
+/* Two columns, when the block asks for it and the form is wide enough:
+   short fields (name, phone, email, number, date) sit side by side, the
+   rest takes the whole width. */
+@container primiko (min-width: 34rem) {
+	:where(.primiko-columns) .primiko__step:not([hidden]) {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		column-gap: var(--primiko-gap);
+		align-items: end;
+	}
+
+	:where(.primiko-columns) .primiko__step > * {
+		grid-column: 1 / -1;
+	}
+
+	:where(.primiko-columns) .primiko__step > :is(.primiko__field--text, .primiko__field--email, .primiko__field--tel, .primiko__field--number, .primiko__field--date) {
+		grid-column: auto;
+	}
+}

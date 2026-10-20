@@ -90,7 +90,13 @@ final class Block {
 		}
 
 		// The variables sit on the wrapper and reach the form through inheritance.
-		$wrapper = get_block_wrapper_attributes( $style ? array( 'style' => $style ) : array() );
+		$extra = $style ? array( 'style' => $style ) : array();
+
+		if ( ! empty( $attributes['columns'] ) ) {
+			$extra['class'] = 'primiko-columns';
+		}
+
+		$wrapper = get_block_wrapper_attributes( $extra );
 		$anchor  = isset( $attributes['anchor'] ) ? sanitize_html_class( $attributes['anchor'] ) : '';
 
 		// WordPress 7.0 sets the HTML anchor of dynamic blocks itself. Before, it is added here, once.

@@ -33,17 +33,28 @@ final class Mailer {
 		$name    = isset( $answers['name'] ) ? $answers['name'] : '';
 		$email   = isset( $answers['email'] ) ? $answers['email'] : '';
 
-		$subject = sprintf(
-			/* translators: 1: trade, such as Roofer, 2: request title (name and town). */
-			__( 'New quote request (%1$s): %2$s', 'primiko' ),
-			get_post_meta( $request_id, '_primiko_trade', true ),
-			wp_specialchars_decode( $request->post_title, ENT_QUOTES )
-		);
+		$single = (bool) get_post_meta( $request_id, '_primiko_single', true );
+
+		$subject = $single
+			? sprintf(
+				/* translators: %s: name of the visitor. */
+				__( 'New message: %s', 'primiko' ),
+				$name
+			)
+			: sprintf(
+				/* translators: 1: trade, such as Roofer, 2: request title (name and town). */
+				__( 'New quote request (%1$s): %2$s', 'primiko' ),
+				get_post_meta( $request_id, '_primiko_trade', true ),
+				wp_specialchars_decode( $request->post_title, ENT_QUOTES )
+			);
 
 		$body = '<p>' . esc_html(
 			sprintf(
-				/* translators: %s: reference of the request. */
-				__( 'A new quote request was sent from your website, reference %s.', 'primiko' ),
+				$single
+					/* translators: %s: reference of the message. */
+					? __( 'A new message was sent from your website, reference %s.', 'primiko' )
+					/* translators: %s: reference of the request. */
+					: __( 'A new quote request was sent from your website, reference %s.', 'primiko' ),
 				self::reference( $request_id )
 			)
 		) . '</p>';

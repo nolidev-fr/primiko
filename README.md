@@ -1,6 +1,6 @@
-# Primiko - Quote Requests by Trade
+# Primiko - Quote Requests by Trade and Contact Form
 
-Quote request forms made for each trade: the right questions in the right order, with photos and the site address.
+Quote request forms made for each trade: the right questions in the right order, with photos and the site address. A Simple message template replaces the contact form of the site.
 
 A trade template is a JSON file in [`templates/`](templates/): steps, fields, display conditions, help texts and the messages sent to the visitor. The format is described in [`docs/modele-metier.md`](docs/modele-metier.md). Nothing in the code depends on a given trade.
 

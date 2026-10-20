@@ -1359,6 +1359,41 @@ function primiko_template_strings() {
 		// From mason.json.
 		'Photos of the place and, if you have them, of the plans help to prepare the quote faster.' =>
 			__( 'Photos of the place and, if you have them, of the plans help to prepare the quote faster.', 'primiko' ),
+		// From message.json.
+		'Simple message' =>
+			__( 'Simple message', 'primiko' ),
+		// From message.json.
+		'A contact form on one screen, for a question, a supplier or a customer calling back. Name, phone, email and message.' =>
+			__( 'A contact form on one screen, for a question, a supplier or a customer calling back. Name, phone, email and message.', 'primiko' ),
+		// From message.json.
+		'contact, message, question, contact form, simple form' =>
+			__( 'contact, message, question, contact form, simple form', 'primiko' ),
+		// From message.json.
+		'Thank you {name}, your message has been sent. A copy has been sent to {email}.' =>
+			/* translators: Keep the words in braces, such as {name}, as they are. */
+			__( 'Thank you {name}, your message has been sent. A copy has been sent to {email}.', 'primiko' ),
+		// From message.json.
+		'Your message to {site_name}' =>
+			/* translators: Keep the words in braces, such as {name}, as they are. */
+			__( 'Your message to {site_name}', 'primiko' ),
+		// From message.json.
+		"Hello {name},\n\nThank you for your message. Here is a copy of what you sent." =>
+			/* translators: Keep the words in braces, such as {name}, as they are. */
+			__( "Hello {name},\n\nThank you for your message. Here is a copy of what you sent.", 'primiko' ),
+		// From message.json.
+		'Thank you {name}, your message has been sent.' =>
+			/* translators: Keep the words in braces, such as {name}, as they are. */
+			__( 'Thank you {name}, your message has been sent.', 'primiko' ),
+		// From message.json.
+		'Your message is only used to answer you. It is saved on this website, sent to {site_name} by email and shared with no one else. It is kept {retention}. You can ask for a copy or for its deletion at any time.' =>
+			/* translators: Keep the words in braces, such as {name}, as they are. */
+			__( 'Your message is only used to answer you. It is saved on this website, sent to {site_name} by email and shared with no one else. It is kept {retention}. You can ask for a copy or for its deletion at any time.', 'primiko' ),
+		// From message.json.
+		'Your message' =>
+			__( 'Your message', 'primiko' ),
+		// From message.json.
+		'Message' =>
+			__( 'Message', 'primiko' ),
 		// From notary.json.
 		'Notary' =>
 			__( 'Notary', 'primiko' ),

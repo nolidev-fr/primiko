@@ -59,6 +59,7 @@ final class Shortcode {
 				'heading' => 3,
 				'anchor'  => '',
 				'width'   => 'reading',
+				'columns' => '1',
 			),
 			$atts,
 			self::TAG
@@ -73,10 +74,12 @@ final class Shortcode {
 		$anchor = sanitize_html_class( $atts['anchor'] );
 		$style  = 'full' === $atts['width'] ? '--primiko-width:none;' : '';
 
-		if ( '' === $anchor && '' === $style ) {
+		$columns = '2' === (string) $atts['columns'];
+
+		if ( '' === $anchor && '' === $style && ! $columns ) {
 			return $html;
 		}
 
-		return '<div class="primiko-wrap"' . ( '' !== $anchor ? ' id="' . esc_attr( $anchor ) . '"' : '' ) . ( '' !== $style ? ' style="' . esc_attr( $style ) . '"' : '' ) . '>' . $html . '</div>';
+		return '<div class="primiko-wrap' . ( $columns ? ' primiko-columns' : '' ) . '"' . ( '' !== $anchor ? ' id="' . esc_attr( $anchor ) . '"' : '' ) . ( '' !== $style ? ' style="' . esc_attr( $style ) . '"' : '' ) . '>' . $html . '</div>';
 	}
 }

@@ -256,6 +256,11 @@ final class Submission {
 			}
 		}
 
+		// "Phone or email": both are optional, but one of them is needed to answer.
+		if ( ! empty( $schema['contact_either'] ) && ! isset( $clean['phone'] ) && ! isset( $clean['email'] ) && ! isset( $errors['phone'] ) && ! isset( $errors['email'] ) ) {
+			$errors['phone'] = __( 'Please give a phone number or an email address.', 'primiko' );
+		}
+
 		return array(
 			'clean'  => $clean,
 			'errors' => $errors,
@@ -490,9 +495,20 @@ final class Submission {
 		$name = str_replace( array( '<', '>' ), '', isset( $clean['name'] ) ? $clean['name'] : __( 'Quote request', 'primiko' ) );
 		$city = '';
 
+		$title = $name;
+
 		foreach ( Templates::fields( $schema ) as $id => $field ) {
 			if ( 'address' === $field['type'] && ! empty( $clean[ $id ]['city'] ) ) {
-				$city = str_replace( array( '<', '>' ), '', $clean[ $id ]['city'] );
+				$city  = str_replace( array( '<', '>' ), '', $clean[ $id ]['city'] );
+				$title = $name . ', ' . $city;
+				break;
+			}
+
+			// A simple message is titled with the start of the message.
+			if ( ! empty( $schema['single'] ) && 'textarea' === $field['type'] && ! empty( $clean[ $id ] ) ) {
+				$start = trim( str_replace( array( '<', '>', "\r", "\n" ), array( '', '', '', ' ' ), $clean[ $id ] ) );
+				$cut   = self::cut( $start, 60 );
+				$title = $name . ', ' . ( $cut !== $start ? rtrim( $cut ) . '…' : $cut );
 				break;
 			}
 		}
@@ -501,7 +517,7 @@ final class Submission {
 			array(
 				'post_type'   => Post_Types::REQUEST,
 				'post_status' => 'private',
-				'post_title'  => '' !== $city ? $name . ', ' . $city : $name,
+				'post_title'  => $title,
 				'post_parent' => $form_id,
 				'post_author' => 0,
 			),
@@ -535,6 +551,7 @@ final class Submission {
 			'_primiko_city'       => $city,
 			'_primiko_consent_at' => gmdate( 'c' ),
 			'_primiko_reference'  => self::new_reference(),
+			'_primiko_single'     => empty( $schema['single'] ) ? '' : '1',
 		);
 
 		foreach ( $meta as $key => $value ) {

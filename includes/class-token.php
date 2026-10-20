@@ -59,13 +59,7 @@ final class Token {
 			return new \WP_Error( 'primiko_token_expired', __( 'This form has expired. Please try again.', 'primiko' ), array( 'status' => 403 ) );
 		}
 
-		/**
-		 * Filters the minimum time, in seconds, between the display of the form
-		 * and its submission. Robots usually send forms at once.
-		 *
-		 * @param int $seconds Minimum filling time.
-		 */
-		if ( $age < (int) apply_filters( 'primiko_min_fill_time', 5 ) ) {
+		if ( $age < self::min_fill_time() ) {
 			return new \WP_Error( 'primiko_too_fast', __( 'Your request could not be sent. Please try again in a moment.', 'primiko' ), array( 'status' => 400 ) );
 		}
 
@@ -142,5 +136,21 @@ final class Token {
 	 */
 	private static function sign( $form_id, $time, $salt ) {
 		return hash_hmac( 'sha256', 'primiko|' . (int) $form_id . '|' . $time . '|' . $salt, wp_salt( 'nonce' ) );
+	}
+
+	/**
+	 * Minimum time, in seconds, between the display of the form and its
+	 * submission. The script waits for it before sending.
+	 *
+	 * @return int
+	 */
+	public static function min_fill_time() {
+		/**
+		 * Filters the minimum time, in seconds, between the display of the form
+		 * and its submission. Robots usually send forms at once.
+		 *
+		 * @param int $seconds Minimum filling time.
+		 */
+		return max( 0, (int) apply_filters( 'primiko_min_fill_time', 5 ) );
 	}
 }

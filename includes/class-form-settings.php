@@ -295,13 +295,15 @@ final class Form_Settings {
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Visitor email', 'primiko' ); ?></th>
+				<th scope="row"><label for="primiko-contact"><?php esc_html_e( 'Visitor contact details', 'primiko' ); ?></label></th>
 				<td>
-					<label for="primiko-email-optional">
-						<input type="checkbox" id="primiko-email-optional" name="primiko_email_optional" value="1" <?php checked( (bool) get_post_meta( $post->ID, '_primiko_email_optional', true ) ); ?>>
-						<?php esc_html_e( 'Optional', 'primiko' ); ?>
-					</label>
-					<p class="description"><?php esc_html_e( 'For customers who prefer the phone. Without an email address, the visitor gets no copy of the request, and the phone number stays required.', 'primiko' ); ?></p>
+					<?php $contact = Templates::contact_mode( $post->ID ); ?>
+					<select id="primiko-contact" name="primiko_contact">
+						<option value="both" <?php selected( $contact, 'both' ); ?>><?php esc_html_e( 'Phone and email required', 'primiko' ); ?></option>
+						<option value="phone" <?php selected( $contact, 'phone' ); ?>><?php esc_html_e( 'Phone required, email optional', 'primiko' ); ?></option>
+						<option value="either" <?php selected( $contact, 'either' ); ?>><?php esc_html_e( 'Phone or email, at least one', 'primiko' ); ?></option>
+					</select>
+					<p class="description"><?php esc_html_e( 'Without an email address, the visitor gets no copy of the request.', 'primiko' ); ?></p>
 				</td>
 			</tr>
 			<?php if ( 'auto-draft' !== $post->post_status ) : ?>
@@ -376,9 +378,10 @@ final class Form_Settings {
 
 		update_post_meta( $post_id, '_primiko_recipients', array_values( array_unique( $recipients ) ) );
 
-		if ( ! empty( $_POST['primiko_email_optional'] ) ) {
-			update_post_meta( $post_id, '_primiko_email_optional', '1' );
-		} else {
+		$contact = isset( $_POST['primiko_contact'] ) ? sanitize_key( wp_unslash( $_POST['primiko_contact'] ) ) : '';
+
+		if ( in_array( $contact, array( 'both', 'phone', 'either' ), true ) ) {
+			update_post_meta( $post_id, '_primiko_contact', $contact );
 			delete_post_meta( $post_id, '_primiko_email_optional' );
 		}
 

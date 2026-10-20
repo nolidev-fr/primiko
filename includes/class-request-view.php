@@ -61,13 +61,26 @@ final class Request_View {
 		$email  = (string) get_post_meta( $post->ID, '_primiko_email', true );
 		$photos = (array) get_post_meta( $post->ID, '_primiko_photos', true );
 		$trade  = (string) get_post_meta( $post->ID, '_primiko_trade', true );
+		$form   = get_post( (int) $post->post_parent );
+		$single = (bool) get_post_meta( $post->ID, '_primiko_single', true );
+
+		// The name the business gave its form says more than the template name.
+		if ( $form && Post_Types::FORM === $form->post_type && '' !== $form->post_title ) {
+			$trade = $form->post_title;
+		}
+
+		$reply = $single
+			/* translators: %s: site name. */
+			? __( 'Your message to %s', 'primiko' )
+			/* translators: %s: site name. */
+			: __( 'Your quote request to %s', 'primiko' );
 		?>
 		<p>
 			<?php
 			echo esc_html(
 				sprintf(
-					/* translators: 1: date, 2: trade, 3: reference of the request. */
-					__( 'Sent on %1$s with the %2$s form, reference %3$s.', 'primiko' ),
+					/* translators: 1: date, 2: name of the form, 3: reference of the request. */
+					__( 'Sent on %1$s with the form "%2$s", reference %3$s.', 'primiko' ),
 					get_the_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $post ),
 					$trade,
 					Mailer::reference( $post->ID )
@@ -75,7 +88,7 @@ final class Request_View {
 			);
 			?>
 			<?php if ( is_email( $email ) ) : ?>
-				<a class="button button-primary" style="margin-left:8px;" href="<?php echo esc_url( 'mailto:' . $email . '?subject=' . rawurlencode( sprintf( /* translators: %s: site name. */ __( 'Your quote request to %s', 'primiko' ), wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ) ) ) ); ?>"><?php esc_html_e( 'Reply by email', 'primiko' ); ?></a>
+				<a class="button button-primary" style="margin-left:8px;" href="<?php echo esc_url( 'mailto:' . $email . '?subject=' . rawurlencode( sprintf( $reply, wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ) ) ) ); ?>"><?php esc_html_e( 'Reply by email', 'primiko' ); ?></a>
 			<?php endif; ?>
 		</p>
 

@@ -14,12 +14,14 @@ import {
 	RangeControl,
 	SelectControl,
 	Spinner,
+	ToggleControl,
 } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 import { useEffect, useState } from '@wordpress/element';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { formId, accentColor, radius, headingLevel, width } = attributes;
+	const { formId, accentColor, radius, headingLevel, width, columns } =
+		attributes;
 	const [ forms, setForms ] = useState( null );
 	const [ failed, setFailed ] = useState( false );
 
@@ -145,6 +147,21 @@ export default function Edit( { attributes, setAttributes } ) {
 						}
 						__nextHasNoMarginBottom
 						__next40pxDefaultSize
+					/>
+					<ToggleControl
+						label={ __(
+							'Two columns when there is room',
+							'primiko'
+						) }
+						help={ __(
+							'Short fields such as the name and the phone sit side by side when the form is wide enough.',
+							'primiko'
+						) }
+						checked={ !! columns }
+						onChange={ ( value ) =>
+							setAttributes( { columns: value } )
+						}
+						__nextHasNoMarginBottom
 					/>
 				</PanelBody>
 				<PanelColorSettings

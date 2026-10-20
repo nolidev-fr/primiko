@@ -175,21 +175,42 @@ final class Templates {
 			return null;
 		}
 
-		$schema          = Customizations::apply( $template, Customizations::get( $form_id, $template['id'] ) );
-		$notice          = ! empty( $schema['messages']['privacy_notice'] ) ? $schema['messages']['privacy_notice'] : Mailer::default_message( 'privacy_notice' );
-		$schema['steps'] = array_merge(
-			$schema['steps'],
-			$this->built_in_steps(
-				(bool) get_post_meta( $form_id, '_primiko_email_optional', true ),
-				strtr(
-					$notice,
-					array(
-						'{site_name}' => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
-						'{retention}' => Mailer::retention_phrase(),
-					)
+		$schema = Customizations::apply( $template, Customizations::get( $form_id, $template['id'] ) );
+		$notice = ! empty( $schema['messages']['privacy_notice'] ) ? $schema['messages']['privacy_notice'] : Mailer::default_message( 'privacy_notice' );
+		$mode   = self::contact_mode( $form_id );
+		$built  = $this->built_in_steps(
+			$mode,
+			strtr(
+				$notice,
+				array(
+					'{site_name}' => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
+					'{retention}' => Mailer::retention_phrase(),
 				)
-			)
+			),
+			! empty( $schema['single'] )
 		);
+
+		$schema['contact_either'] = 'either' === $mode;
+
+		if ( ! empty( $schema['single'] ) ) {
+			// One screen: contact details first, the questions, then the consent.
+			if ( ! $schema['steps'] ) {
+				$schema['steps'] = array(
+					array(
+						'id'          => 'message',
+						'title'       => __( 'Your message', 'primiko' ),
+						'description' => '',
+						'fields'      => array(),
+					),
+				);
+			}
+
+			$schema['steps'] = array( $schema['steps'][0] );
+
+			$schema['steps'][0]['fields'] = array_merge( $built[0]['fields'], $schema['steps'][0]['fields'], $built[1]['fields'] );
+		} else {
+			$schema['steps'] = array_merge( $schema['steps'], $built );
+		}
 
 		/**
 		 * Filters the schema of a form before it is shown or checked.
@@ -224,48 +245,85 @@ final class Templates {
 	}
 
 	/**
+	 * How the visitor can be reached, set on the form screen.
+	 *
+	 * @param int $form_id Form post ID.
+	 * @return string 'both' (phone and email required), 'phone' (email
+	 *                optional) or 'either' (at least one of the two).
+	 */
+	public static function contact_mode( $form_id ) {
+		$mode = (string) get_post_meta( $form_id, '_primiko_contact', true );
+
+		if ( in_array( $mode, array( 'both', 'phone', 'either' ), true ) ) {
+			return $mode;
+		}
+
+		// Forms saved with 1.0.1 to 1.0.7 had an "email optional" box.
+		return get_post_meta( $form_id, '_primiko_email_optional', true ) ? 'phone' : 'both';
+	}
+
+	/**
 	 * Contact and review steps, added at the end of every form so that no
 	 * template can leave out the contact details or the consent.
 	 *
-	 * @param bool   $email_optional Whether the visitor may leave the email
-	 *                               empty: the phone number then stays the
-	 *                               only way back, and no copy is sent.
-	 * @param string $notice         Privacy notice shown under the consent box.
+	 * @param string $mode   How the visitor can be reached: 'both', 'phone'
+	 *                       or 'either' (see contact_mode()). Without an
+	 *                       email address, no copy is sent.
+	 * @param string $notice Privacy notice shown under the consent box.
+	 * @param bool   $single Whether the form fits on one screen: the phone
+	 *                       comes before the email, and the texts speak of
+	 *                       a message rather than a project.
 	 * @return array[]
 	 */
-	private function built_in_steps( $email_optional = false, $notice = '' ) {
+	private function built_in_steps( $mode = 'both', $notice = '', $single = false ) {
+		$name = array(
+			'id'           => 'name',
+			'type'         => 'text',
+			'label'        => __( 'Your name', 'primiko' ),
+			'required'     => true,
+			'autocomplete' => 'name',
+			'maxlength'    => 100,
+		);
+
+		$email = array(
+			'id'           => 'email',
+			'type'         => 'email',
+			'label'        => __( 'Email', 'primiko' ),
+			'help'         => 'phone' === $mode
+				? __( 'Optional. A copy of your request will be sent to this address.', 'primiko' )
+				: __( 'A copy of your request will be sent to this address.', 'primiko' ),
+			'required'     => 'both' === $mode,
+			'autocomplete' => 'email',
+		);
+
+		// On one screen, the name and the phone often share a row: the phone
+		// keeps no help, so both labels line up, and the email carries the rule.
+		if ( $single ) {
+			$email['help'] = array(
+				'both'   => __( 'For a copy of your message.', 'primiko' ),
+				'phone'  => __( 'Optional, for a copy of your message.', 'primiko' ),
+				'either' => __( 'Phone or email: at least one. With an email, you get a copy of your message.', 'primiko' ),
+			)[ $mode ];
+		}
+
+		$phone = array(
+			'id'           => 'phone',
+			'type'         => 'tel',
+			'label'        => __( 'Phone', 'primiko' ),
+			'help'         => $single ? '' : __( 'To call you back about your project.', 'primiko' ),
+			'required'     => 'either' !== $mode,
+			'autocomplete' => 'tel',
+		);
+
+		if ( 'either' === $mode && ! $single ) {
+			$phone['help'] = __( 'A phone number, an email address, or both: at least one, to answer you.', 'primiko' );
+		}
+
 		return array(
 			array(
 				'id'     => 'contact',
 				'title'  => __( 'Your contact details', 'primiko' ),
-				'fields' => array(
-					array(
-						'id'           => 'name',
-						'type'         => 'text',
-						'label'        => __( 'Your name', 'primiko' ),
-						'required'     => true,
-						'autocomplete' => 'name',
-						'maxlength'    => 100,
-					),
-					array(
-						'id'           => 'email',
-						'type'         => 'email',
-						'label'        => __( 'Email', 'primiko' ),
-						'help'         => $email_optional
-							? __( 'Optional. A copy of your request will be sent to this address.', 'primiko' )
-							: __( 'A copy of your request will be sent to this address.', 'primiko' ),
-						'required'     => ! $email_optional,
-						'autocomplete' => 'email',
-					),
-					array(
-						'id'           => 'phone',
-						'type'         => 'tel',
-						'label'        => __( 'Phone', 'primiko' ),
-						'help'         => __( 'To call you back about your project.', 'primiko' ),
-						'required'     => true,
-						'autocomplete' => 'tel',
-					),
-				),
+				'fields' => $single ? array( $name, $phone, $email ) : array( $name, $email, $phone ),
 			),
 			array(
 				'id'     => 'review',
@@ -276,8 +334,11 @@ final class Templates {
 						'id'       => 'consent',
 						'type'     => 'consent',
 						'label'    => sprintf(
-							/* translators: %s: site name. */
-							__( 'I agree that %s uses the information in this form to answer my request and contact me about it.', 'primiko' ),
+							$single
+								/* translators: %s: site name. */
+								? __( 'I agree that %s uses the information in this form to answer my message.', 'primiko' )
+								/* translators: %s: site name. */
+								: __( 'I agree that %s uses the information in this form to answer my request and contact me about it.', 'primiko' ),
 							wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES )
 						),
 						'required' => true,
@@ -495,6 +556,8 @@ final class Templates {
 		$data['keywords']    = isset( $data['keywords'] ) && is_string( $data['keywords'] ) ? $data['keywords'] : '';
 		$data['category']    = isset( $data['category'] ) && in_array( $data['category'], self::CATEGORY_IDS, true ) ? $data['category'] : 'other';
 		$data['messages']    = isset( $data['messages'] ) && is_array( $data['messages'] ) ? $data['messages'] : array();
+		// A single screen form: one step, the contact details and the consent in it, no review.
+		$data['single'] = ! empty( $data['single'] ) && 1 === count( $data['steps'] );
 
 		foreach ( $data['steps'] as &$step ) {
 			$step['description'] = isset( $step['description'] ) ? (string) $step['description'] : '';

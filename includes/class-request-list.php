@@ -18,6 +18,11 @@ final class Request_List {
 	const STATUS_ARG = 'primiko_status';
 
 	/**
+	 * Query argument of the form filter.
+	 */
+	const FORM_ARG = 'primiko_form';
+
+	/**
 	 * Registers the hooks.
 	 */
 	public function register_hooks() {
@@ -29,6 +34,7 @@ final class Request_List {
 		add_filter( "bulk_actions-edit-{$type}", array( $this, 'bulk_actions' ) );
 		add_filter( "handle_bulk_actions-edit-{$type}", array( $this, 'handle_bulk' ), 10, 3 );
 		add_action( 'pre_get_posts', array( $this, 'filter_status' ) );
+		add_action( 'restrict_manage_posts', array( $this, 'form_filter' ) );
 		add_action( 'admin_notices', array( $this, 'bulk_notice' ) );
 		add_action( 'admin_menu', array( $this, 'menu_count' ), 99 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'styles' ) );
@@ -70,7 +76,7 @@ final class Request_List {
 	 */
 	public function columns( $columns ) {
 		$added  = array(
-			'primiko_trade'  => __( 'Trade', 'primiko' ),
+			'primiko_trade'  => __( 'Form', 'primiko' ),
 			'primiko_city'   => __( 'Town', 'primiko' ),
 			'primiko_photos' => __( 'Photos', 'primiko' ),
 			'primiko_status' => __( 'Status', 'primiko' ),
@@ -97,11 +103,10 @@ final class Request_List {
 	public function column( $column, $post_id ) {
 		switch ( $column ) {
 			case 'primiko_trade':
-				// Current name of the template, or the name saved with the request.
-				$choices  = primiko()->templates->choices();
-				$template = (string) get_post_meta( $post_id, '_primiko_template', true );
+				// Name of the form the request came from, or the trade saved with it.
+				$form = get_post( (int) wp_get_post_parent_id( $post_id ) );
 
-				echo esc_html( isset( $choices[ $template ] ) ? $choices[ $template ] : (string) get_post_meta( $post_id, '_primiko_trade', true ) );
+				echo esc_html( $form && Post_Types::FORM === $form->post_type && '' !== $form->post_title ? $form->post_title : (string) get_post_meta( $post_id, '_primiko_trade', true ) );
 				break;
 
 			case 'primiko_city':
@@ -173,6 +178,50 @@ final class Request_List {
 		if ( '' !== $status ) {
 			$query->set( 'meta_query', self::status_query( $status ) );
 		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only list filter.
+		$form = isset( $_GET[ self::FORM_ARG ] ) ? absint( $_GET[ self::FORM_ARG ] ) : 0;
+
+		if ( $form ) {
+			$query->set( 'post_parent', $form );
+		}
+	}
+
+	/**
+	 * Adds a form filter above the list, once the site has several forms.
+	 *
+	 * @param string $post_type Post type of the list.
+	 */
+	public function form_filter( $post_type ) {
+		if ( Post_Types::REQUEST !== $post_type ) {
+			return;
+		}
+
+		$forms = get_posts(
+			array(
+				'post_type'      => Post_Types::FORM,
+				'post_status'    => array( 'publish', 'draft', 'private' ),
+				'posts_per_page' => 100,
+				'orderby'        => 'title',
+				'order'          => 'ASC',
+			)
+		);
+
+		if ( count( $forms ) < 2 ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only list filter.
+		$current = isset( $_GET[ self::FORM_ARG ] ) ? absint( $_GET[ self::FORM_ARG ] ) : 0;
+		?>
+		<label class="screen-reader-text" for="primiko-form-filter"><?php esc_html_e( 'Filter by form', 'primiko' ); ?></label>
+		<select id="primiko-form-filter" name="<?php echo esc_attr( self::FORM_ARG ); ?>">
+			<option value="0"><?php esc_html_e( 'All forms', 'primiko' ); ?></option>
+			<?php foreach ( $forms as $form ) : ?>
+				<option value="<?php echo esc_attr( (string) $form->ID ); ?>" <?php selected( $current, $form->ID ); ?>><?php echo esc_html( '' !== $form->post_title ? $form->post_title : '#' . $form->ID ); ?></option>
+			<?php endforeach; ?>
+		</select>
+		<?php
 	}
 
 	/**

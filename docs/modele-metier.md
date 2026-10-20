@@ -58,6 +58,7 @@ Les textes sont rédigés en anglais (langue source pour WordPress.org) et tradu
 | `keywords` | non | Mots-clés de recherche séparés par des virgules (synonymes, prestations, termes courants), traduits comme les autres textes. La recherche compare le début de chaque mot, sans tenir compte des accents ni des majuscules. |
 | `steps` | oui | Liste des étapes, dans l'ordre. |
 | `messages` | non | Textes envoyés au visiteur (voir plus bas). Un message absent prend le texte par défaut. |
+| `single` | non | `true` pour un formulaire sur un seul écran, comme le modèle "Message simple" (`message.json`). Le modèle n'a alors qu'une étape : le nom, le téléphone et l'e-mail viennent en tête, la case de consentement à la fin, sans barre de progression ni étape de relecture. |
 
 ## Étapes
 

@@ -35,7 +35,8 @@ final class Entries {
 			$items = array();
 
 			foreach ( $step['fields'] as $field ) {
-				if ( ! isset( $clean[ $field['id'] ] ) ) {
+				// The consent is kept as a date, not as an answer (single screen forms hold it in their step).
+				if ( ! isset( $clean[ $field['id'] ] ) || 'consent' === $field['type'] ) {
 					continue;
 				}
 

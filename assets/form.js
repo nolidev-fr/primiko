@@ -502,11 +502,30 @@
 				} )
 				.then( function ( data ) {
 					self.token = data && data.token ? data.token : null;
+					self.tokenAt = Date.now();
 					return self.token;
 				} )
 				.catch( function () {
 					return null;
 				} );
+		},
+
+		/**
+		 * Waits until the token is old enough for the server, which refuses a
+		 * form sent within seconds of its display (robots do that). A quick
+		 * visitor on a short form waits a moment instead of getting an error.
+		 *
+		 * @return {Promise} Resolved once the minimum time has passed.
+		 */
+		afterMinDelay() {
+			const wait =
+				( this.config.minFill || 0 ) * 1000 +
+				500 -
+				( Date.now() - ( this.tokenAt || 0 ) );
+
+			return new Promise( function ( resolve ) {
+				window.setTimeout( resolve, Math.max( 0, wait ) );
+			} );
 		},
 
 		/**
@@ -642,8 +661,22 @@
 		 */
 		changed( target ) {
 			const wrapper = target.closest( '[data-field]' );
+			const phone = this.fieldElement( 'phone' );
 
 			this.refresh();
+
+			// "Phone or email": an email address also fixes the phone field.
+			if (
+				this.config.either &&
+				wrapper &&
+				phone &&
+				'email' === wrapper.getAttribute( 'data-field' ) &&
+				phone.classList.contains( 'has-error' ) &&
+				values( this.read( 'email' ) ).length &&
+				! this.check( 'email' )
+			) {
+				this.clearError( 'phone' );
+			}
 
 			if (
 				wrapper &&
@@ -732,6 +765,12 @@
 		 */
 		progress() {
 			const self = this;
+
+			// A single screen form has neither a bar nor steps to announce.
+			if ( this.config.single || ! this.progressBar ) {
+				return;
+			}
+
 			const steps = this.state.steps;
 			const position = steps.indexOf( this.current ) + 1;
 			const filled = steps.filter( function ( id ) {
@@ -954,6 +993,19 @@
 					self.clearError( id );
 				}
 			} );
+
+			// "Phone or email": one of the two is needed to answer.
+			if (
+				this.config.either &&
+				-1 !== this.state.fields.indexOf( 'phone' ) &&
+				stepId === this.config.fields.phone.step &&
+				! errors.phone &&
+				! errors.email &&
+				! values( this.read( 'phone' ) ).length &&
+				! values( this.read( 'email' ) ).length
+			) {
+				errors.phone = this.i18n.contactEither;
+			}
 
 			return this.showErrors( errors );
 		},
@@ -1360,7 +1412,9 @@
 			] )
 				.then( function ( results ) {
 					self.captchaValue = results[ 1 ];
-					return self.post( false );
+					return self.afterMinDelay().then( function () {
+						return self.post( false );
+					} );
 				} )
 				.catch( function () {
 					self.busy( false );
@@ -1519,9 +1573,14 @@
 						( 'primiko_token_expired' === code ||
 							'primiko_token_invalid' === code )
 					) {
-						return self.fetchToken().then( function () {
-							return self.post( true );
-						} );
+						return self
+							.fetchToken()
+							.then( function () {
+								return self.afterMinDelay();
+							} )
+							.then( function () {
+								return self.post( true );
+							} );
 					}
 
 					self.busy( false );

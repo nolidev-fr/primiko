@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "id": "message",
+  "title": "Simple message",
+  "description": "A contact form on one screen, for a question, a supplier or a customer calling back. Name, phone, email and message.",
+  "category": "general",
+  "keywords": "contact, message, question, contact form, simple form",
+  "single": true,
+  "steps": [
+    {
+      "id": "message",
+      "title": "Your message",
+      "fields": [
+        {
+          "id": "message",
+          "type": "textarea",
+          "label": "Message",
+          "required": true,
+          "maxlength": 3000
+        }
+      ]
+    }
+  ],
+  "messages": {
+    "success": "Thank you {name}, your message has been sent. A copy has been sent to {email}.",
+    "acknowledgement_subject": "Your message to {site_name}",
+    "acknowledgement_body": "Hello {name},\n\nThank you for your message. Here is a copy of what you sent.",
+    "success_no_copy": "Thank you {name}, your message has been sent.",
+    "privacy_notice": "Your message is only used to answer you. It is saved on this website, sent to {site_name} by email and shared with no one else. It is kept {retention}. You can ask for a copy or for its deletion at any time."
+  }
+}

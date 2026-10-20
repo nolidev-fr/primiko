@@ -128,9 +128,11 @@ final class Renderer {
 		?>
 		<div class="primiko" data-primiko="<?php echo esc_attr( wp_json_encode( $this->config( $form->ID, $schema, $prefix ) ) ); ?>">
 			<form class="primiko__form" novalidate hidden aria-label="<?php echo esc_attr( get_the_title( $form ) ); ?>">
-				<div class="primiko__progress" aria-hidden="true">
-					<div class="primiko__bar"><span></span></div>
-				</div>
+				<?php if ( empty( $schema['single'] ) ) : ?>
+					<div class="primiko__progress" aria-hidden="true">
+						<div class="primiko__bar"><span></span></div>
+					</div>
+				<?php endif; ?>
 				<p class="primiko__sr" aria-live="polite" data-live></p>
 
 				<div class="primiko__alert" role="alert" hidden></div>
@@ -149,7 +151,7 @@ final class Renderer {
 				<div class="primiko__nav">
 					<button type="button" class="primiko__button primiko__button--secondary" data-action="prev"><?php esc_html_e( 'Back', 'primiko' ); ?></button>
 					<button type="button" class="primiko__button wp-element-button" data-action="next"><?php esc_html_e( 'Next', 'primiko' ); ?></button>
-					<button type="submit" class="primiko__button wp-element-button" data-action="submit" hidden><?php esc_html_e( 'Send my request', 'primiko' ); ?></button>
+					<button type="submit" class="primiko__button wp-element-button" data-action="submit" hidden><?php empty( $schema['single'] ) ? esc_html_e( 'Send my request', 'primiko' ) : esc_html_e( 'Send my message', 'primiko' ); ?></button>
 				</div>
 			</form>
 
@@ -228,6 +230,9 @@ final class Renderer {
 			'steps'     => $steps,
 			'fields'    => $fields,
 			'photoSize' => 2000,
+			'minFill'   => Token::min_fill_time(),
+			'single'    => ! empty( $schema['single'] ),
+			'either'    => ! empty( $schema['contact_either'] ),
 			'captcha'   => Captcha::config(),
 			'icons'     => array(
 				'close' => self::icon( 'close' ),
@@ -262,6 +267,7 @@ final class Renderer {
 				'sending'       => __( 'Sending...', 'primiko' ),
 				'sendFailed'    => __( 'Your request could not be sent. Please check your connection and try again.', 'primiko' ),
 				'captchaWait'   => __( 'Please complete the anti-spam check above the button, then send again.', 'primiko' ),
+				'contactEither' => __( 'Please give a phone number or an email address.', 'primiko' ),
 				'photoCounts'   => $this->photo_strings( 'count' ),
 				'photosSummary' => $this->photo_strings( 'summary' ),
 			),

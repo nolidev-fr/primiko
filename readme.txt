@@ -1,14 +1,14 @@
-=== Primiko - Quote Requests by Trade ===
+=== Primiko - Quote Requests by Trade and Contact Form ===
 Contributors: nolidev
-Tags: quote, request a quote, multi-step form, contractor, tradesman
+Tags: quote, request a quote, contact form, multi-step form, contractor
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.7
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Quote request forms made for each trade: the right questions in the right order, with photos and the site address.
+Quote request forms made for each trade, with the right questions, photos and the site address, plus a simple contact form.
 
 == Description ==
 
@@ -31,7 +31,8 @@ This is not a form builder, and it never shows a price. It collects and qualifie
 * Questions you can fit to your business: hide a step, a question or an answer you do not offer, rename what you say differently, add your own questions, change their order, rewrite the messages sent to visitors. Questions that depend on a hidden answer disappear with it.
 * Every request saved in WordPress, under Quote requests, with its answers and photos.
 * An email for each new request, to one or more addresses, with the photos attached. Reply to it and your answer goes to the visitor.
-* A list of requests with the trade, town, photos and status, New and Handled views, and the number of new requests next to the menu.
+* As many forms as you need, each with its own questions, recipients and messages: a quote form on the home page and a simple message in the footer can share a page.
+* A list of requests with the form, town, photos and status, New and Handled views, a filter by form, and the number of new requests next to the menu.
 * Photos kept in a private folder, outside the media library, without their location data.
 * Requests deleted automatically after the period you choose (three years by default), with their photos.
 * Plugged into the personal data tools of WordPress: a visitor's requests are part of the export and erase requests made with their email address. A paragraph is suggested for your privacy policy.
@@ -42,13 +43,14 @@ This is not a form builder, and it never shows a price. It collects and qualifie
 
 = Trades =
 
-Twenty templates, all free, found in a searchable list when you create a form:
+Twenty-one templates, all free, found in a searchable list when you create a form:
 
 * Building trades: roofer, tiler, plumber and heating engineer, electrician, painter and decorator, mason, joiner and window fitter.
 * Outdoor: septic systems and earthworks, landscaper and gardener.
 * Home services: pest control, cleaning, removals.
 * Professional services: accountant, lawyer, notary, architect, property diagnostics, land surveyor.
 * Two general templates, for renovation works and for any service on quote, when your trade has no template yet.
+* A simple message: a contact form on one screen (name, phone, email, message), to replace the contact form of the site.
 
 More trades are coming.
 
@@ -114,7 +116,11 @@ Yes. In the block settings, set Width to Whole column. With the shortcode, add `
 
 = Can visitors leave out their email address? =
 
-Yes. Tick Visitor email, Optional, on the form screen. Visitors who leave it empty get no copy of their request, and the phone number stays required.
+Yes. On the form screen, set Visitor contact details to "Phone required, email optional" or to "Phone or email, at least one". Visitors who give no email address get no copy of their request.
+
+= Can I replace my contact form? =
+
+Yes. Create a second form with the Simple message template: name, phone, email and message on one screen, with the consent box, the same protection against spam and the same list of requests. Add your own questions, such as a subject to choose from, and place it where you want, for example on a Contact page or in the footer. Turn on Two columns in the block settings to put the name and the phone side by side.
 
 = Does it send data to an outside service? =
 
@@ -139,6 +145,13 @@ Usually not. The form stops most spam on its own: a hidden field robots fill in,
 7. A request with all its answers and a reply button.
 
 == Changelog ==
+
+= 1.1.0 =
+* New Simple message template: a contact form on one screen, to replace the contact form of the site.
+* Visitor contact details: phone and email, phone with optional email, or phone or email with at least one.
+* Two columns option for the block (`columns="2"` for the shortcode).
+* Form name and form filter in the list of requests. A simple message is titled with the start of the message, and its email says "New message".
+* A quick visitor waits a moment instead of getting an error, as the form needs a few seconds before it can be sent.
 
 = 1.0.7 =
 * A short privacy notice under the consent box, editable, with `{retention}` for the retention setting: the form informs visitors by itself.

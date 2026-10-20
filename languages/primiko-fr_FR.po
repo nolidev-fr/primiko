@@ -3,9 +3,9 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Primiko - Quote Requests by Trade 0.1.0\n"
+"Project-Id-Version: Primiko - Quote Requests by Trade and Contact Form 1.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/primiko\n"
-"POT-Creation-Date: 2026-10-20T01:05:36+00:00\n"
+"POT-Creation-Date: 2026-10-20T01:23:18+00:00\n"
 "PO-Revision-Date: 2026-10-19 12:00+0200\n"
 "Last-Translator: Nolidev <contact@nolidev.fr>\n"
 "Language-Team: French\n"
@@ -19,8 +19,8 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: primiko.php
-msgid "Primiko - Quote Requests by Trade"
-msgstr "Primiko - Demandes de devis par métier"
+msgid "Primiko - Quote Requests by Trade and Contact Form"
+msgstr "Primiko - Demandes de devis par métier et formulaire de contact"
 
 #. Plugin URI of the plugin
 #: primiko.php
@@ -29,8 +29,8 @@ msgstr "https://github.com/nolidev-fr/primiko"
 
 #. Description of the plugin
 #: primiko.php
-msgid "Quote request forms made for each trade: the right questions in the right order, with photos and the site address. Requests are saved in WordPress and sent by email."
-msgstr "Des formulaires de demande de devis pensés pour chaque métier : les bonnes questions dans le bon ordre, avec photos et adresse du chantier. Les demandes sont enregistrées dans WordPress et envoyées par e-mail."
+msgid "Quote request forms made for each trade: the right questions in the right order, with photos and the site address. A simple contact form too. Requests are saved in WordPress and sent by email."
+msgstr "Des formulaires de demande de devis pensés pour chaque métier : les bonnes questions dans le bon ordre, avec photos et adresse du chantier. Un formulaire de contact simple aussi. Les demandes sont enregistrées dans WordPress et envoyées par e-mail."
 
 #. Author of the plugin
 #: primiko.php
@@ -46,20 +46,20 @@ msgstr "https://nolidev.fr"
 msgid "The anti-spam check failed. Please reload the page and try again."
 msgstr "La vérification anti-spam a échoué. Rechargez la page et réessayez."
 
-#: includes/class-entries.php:82 includes/class-renderer.php:257
-#: includes/class-renderer.php:487 includes/template-strings.php:1337
+#: includes/class-entries.php:83 includes/class-renderer.php:262
+#: includes/class-renderer.php:493 includes/template-strings.php:1337
 #: build/admin/index.js:11
 msgid "Yes"
 msgstr "Oui"
 
-#: includes/class-entries.php:82 includes/class-renderer.php:258
-#: includes/class-renderer.php:491 includes/template-strings.php:1340
+#: includes/class-entries.php:83 includes/class-renderer.php:263
+#: includes/class-renderer.php:497 includes/template-strings.php:1340
 #: build/admin/index.js:11
 msgid "No"
 msgstr "Non"
 
 #. translators: %d: number of photos.
-#: includes/class-entries.php:89 includes/class-renderer.php:288
+#: includes/class-entries.php:90 includes/class-renderer.php:294
 #, php-format
 msgid "%d photo"
 msgid_plural "%d photos"
@@ -123,7 +123,7 @@ msgstr "Questions et messages"
 msgid "Loading the questions..."
 msgstr "Chargement des questions…"
 
-#: includes/class-form-settings.php:276 includes/class-request-list.php:73
+#: includes/class-form-settings.php:276
 msgid "Trade"
 msgstr "Métier"
 
@@ -144,63 +144,83 @@ msgid "One email address per line. Left empty, requests go to the administration
 msgstr "Une adresse e-mail par ligne. Laissé vide, les demandes partent à l’adresse e-mail d’administration du site."
 
 #: includes/class-form-settings.php:298
-msgid "Visitor email"
-msgstr "E-mail du visiteur"
+msgid "Visitor contact details"
+msgstr "Coordonnées du visiteur"
 
 #: includes/class-form-settings.php:302
-msgid "Optional"
-msgstr "Facultatif"
+msgid "Phone and email required"
+msgstr "Téléphone et e-mail obligatoires"
+
+#: includes/class-form-settings.php:303
+msgid "Phone required, email optional"
+msgstr "Téléphone obligatoire, e-mail facultatif"
 
 #: includes/class-form-settings.php:304
-msgid "For customers who prefer the phone. Without an email address, the visitor gets no copy of the request, and the phone number stays required."
-msgstr "Pour les clients qui préfèrent le téléphone. Sans adresse e-mail, le visiteur ne reçoit pas de copie de sa demande, et le téléphone reste obligatoire."
+msgid "Phone or email, at least one"
+msgstr "Téléphone ou e-mail, au moins l’un des deux"
 
-#: includes/class-form-settings.php:309
+#: includes/class-form-settings.php:306
+msgid "Without an email address, the visitor gets no copy of the request."
+msgstr "Sans adresse e-mail, le visiteur ne reçoit pas de copie de sa demande."
+
+#: includes/class-form-settings.php:311
 msgid "Shortcode"
 msgstr "Code court"
 
-#: includes/class-form-settings.php:312
+#: includes/class-form-settings.php:314
 msgid "In the block editor, add the Quote request form block instead. The shortcode is for page builders and classic themes."
 msgstr "Dans l’éditeur de blocs, ajoutez plutôt le bloc Formulaire de demande de devis. Le code court sert aux constructeurs de pages et aux thèmes classiques."
 
+#. translators: %s: name of the visitor.
+#: includes/class-mailer.php:41
+#, php-format
+msgid "New message: %s"
+msgstr "Nouveau message : %s"
+
 #. translators: 1: trade, such as Roofer, 2: request title (name and town).
-#: includes/class-mailer.php:38
+#: includes/class-mailer.php:46
 #, php-format
 msgid "New quote request (%1$s): %2$s"
 msgstr "Nouvelle demande de devis (%1$s) : %2$s"
 
+#. translators: %s: reference of the message.
+#: includes/class-mailer.php:55
+#, php-format
+msgid "A new message was sent from your website, reference %s."
+msgstr "Un nouveau message a été envoyé depuis votre site, référence %s."
+
 #. translators: %s: reference of the request.
-#: includes/class-mailer.php:46
+#: includes/class-mailer.php:57
 #, php-format
 msgid "A new quote request was sent from your website, reference %s."
 msgstr "Une nouvelle demande de devis a été envoyée depuis votre site, référence %s."
 
-#: includes/class-mailer.php:51
+#: includes/class-mailer.php:62
 msgid "Open the request on the website"
 msgstr "Ouvrir la demande sur le site"
 
-#: includes/class-mailer.php:62
+#: includes/class-mailer.php:73
 msgid "The photos are attached to this email."
 msgstr "Les photos sont jointes à cet e-mail."
 
-#: includes/class-mailer.php:64
+#: includes/class-mailer.php:75
 msgid "The photos are too large to be attached: open the request on the website to see them."
 msgstr "Les photos sont trop lourdes pour être jointes : ouvrez la demande sur le site pour les voir."
 
-#: includes/class-mailer.php:204
+#: includes/class-mailer.php:215
 msgid "Thank you {name}, your request has been sent. A copy has been sent to {email}."
 msgstr "Merci {name}, votre demande a bien été envoyée. Une copie vous a été adressée à {email}."
 
-#: includes/class-mailer.php:205
+#: includes/class-mailer.php:216
 msgid "Thank you {name}, your request has been sent."
 msgstr "Merci {name}, votre demande a bien été envoyée."
 
 #. translators: Keep the words in braces, such as {name}, as they are.
-#: includes/class-mailer.php:206 includes/template-strings.php:316
+#: includes/class-mailer.php:217 includes/template-strings.php:316
 msgid "Your quote request to {site_name}"
 msgstr "Votre demande de devis à {site_name}"
 
-#: includes/class-mailer.php:207
+#: includes/class-mailer.php:218
 msgid ""
 "Hello {name},\n"
 "\n"
@@ -214,29 +234,29 @@ msgstr ""
 "\n"
 "Voici une copie de ce que vous nous avez envoyé."
 
-#: includes/class-mailer.php:223
+#: includes/class-mailer.php:234
 msgid "Your answers and photos are only used to answer your request and prepare a quote. They are saved on this website, sent to {site_name} by email and shared with no one else. They are kept {retention}. You can ask for a copy or for their deletion at any time."
 msgstr "Vos réponses et vos photos servent uniquement à répondre à votre demande et à préparer un devis. Elles sont enregistrées sur ce site, envoyées par e-mail à {site_name} et ne sont transmises à personne d’autre. Elles sont conservées {retention}. Vous pouvez en demander une copie ou la suppression à tout moment."
 
 #. translators: %d: number of months, completes "They are kept ...".
-#: includes/class-mailer.php:237
+#: includes/class-mailer.php:248
 #, php-format
 msgid "for %d month"
 msgid_plural "for %d months"
 msgstr[0] "pendant %d mois"
 msgstr[1] "pendant %d mois"
 
-#: includes/class-mailer.php:238
+#: includes/class-mailer.php:249
 msgid "until the request is deleted"
 msgstr "jusqu’à la suppression de la demande"
 
-#: includes/class-mailer.php:376
+#: includes/class-mailer.php:387
 msgctxt "between a label and its value in the plain text part of an email"
 msgid ": "
 msgstr " : "
 
 #: includes/class-post-types.php:56 includes/class-post-types.php:59
-#: includes/class-submission.php:490
+#: includes/class-submission.php:495
 msgid "Quote request"
 msgstr "Demande de devis"
 
@@ -301,7 +321,8 @@ msgstr "Aucun formulaire pour l’instant."
 msgid "Sent on"
 msgstr "Envoyée le"
 
-#: includes/class-privacy.php:81 build/block/index.js:3
+#: includes/class-privacy.php:81 includes/class-request-list.php:79
+#: build/block/index.js:3
 msgid "Form"
 msgstr "Formulaire"
 
@@ -339,207 +360,223 @@ msgstr "Pour protéger le formulaire contre les indésirables, la page qui l’a
 msgid "Visitors can ask at any time for a copy of their requests or for their deletion."
 msgstr "Les visiteurs peuvent demander à tout moment une copie de leurs demandes ou leur suppression."
 
-#: includes/class-renderer.php:145
+#: includes/class-renderer.php:147
 msgid "Leave this field empty"
 msgstr "Laissez ce champ vide"
 
-#: includes/class-renderer.php:150
+#: includes/class-renderer.php:152
 msgid "Back"
 msgstr "Retour"
 
-#: includes/class-renderer.php:151
+#: includes/class-renderer.php:153
 msgid "Next"
 msgstr "Suivant"
 
-#: includes/class-renderer.php:152
+#: includes/class-renderer.php:154
 msgid "Send my request"
 msgstr "Envoyer ma demande"
 
-#: includes/class-renderer.php:159
+#: includes/class-renderer.php:154
+msgid "Send my message"
+msgstr "Envoyer mon message"
+
+#: includes/class-renderer.php:161
 msgid "This form needs JavaScript. Please enable it in your browser, or use the phone number or email address shown on this site."
 msgstr "Ce formulaire a besoin de JavaScript. Activez-le dans votre navigateur, ou utilisez le téléphone ou l’adresse e-mail indiqués sur ce site."
 
-#: includes/class-renderer.php:176
+#: includes/class-renderer.php:178
 msgid "This quote form cannot be shown: it is not published or its trade template is missing. Only editors see this message."
 msgstr "Ce formulaire de devis ne peut pas être affiché : il n’est pas publié ou son modèle de métier est introuvable. Seuls les éditeurs et éditrices voient ce message."
 
 #. translators: 1: current step number, 2: number of steps, 3: step title.
-#: includes/class-renderer.php:238
+#: includes/class-renderer.php:243
 #, php-format
 msgid "Step %1$d of %2$d: %3$s"
 msgstr "Étape %1$d sur %2$d : %3$s"
 
-#: includes/class-renderer.php:239 includes/class-submission.php:401
+#: includes/class-renderer.php:244 includes/class-submission.php:406
 msgid "This field is required."
 msgstr "Ce champ est obligatoire."
 
-#: includes/class-renderer.php:240 includes/class-submission.php:394
+#: includes/class-renderer.php:245 includes/class-submission.php:399
 msgid "Please choose an answer."
 msgstr "Choisissez une réponse."
 
-#: includes/class-renderer.php:241 includes/class-submission.php:329
+#: includes/class-renderer.php:246 includes/class-submission.php:334
 msgid "Please enter a valid email address, such as name@example.com."
 msgstr "Saisissez une adresse e-mail valide, par exemple nom@exemple.fr."
 
-#: includes/class-renderer.php:242 includes/class-submission.php:338
+#: includes/class-renderer.php:247 includes/class-submission.php:343
 msgid "Please enter a valid phone number."
 msgstr "Saisissez un numéro de téléphone valide."
 
-#: includes/class-renderer.php:243 includes/class-submission.php:351
+#: includes/class-renderer.php:248 includes/class-submission.php:356
 msgid "Please enter a number."
 msgstr "Saisissez un nombre."
 
 #. translators: 1: minimum, 2: maximum.
-#: includes/class-renderer.php:245 includes/class-submission.php:359
+#: includes/class-renderer.php:250 includes/class-submission.php:364
 #, php-format
 msgid "Please enter a number between %1$s and %2$s."
 msgstr "Saisissez un nombre entre %1$s et %2$s."
 
-#: includes/class-renderer.php:246 includes/class-submission.php:309
-#: includes/class-submission.php:398
+#: includes/class-renderer.php:251 includes/class-submission.php:314
+#: includes/class-submission.php:403
 msgid "Please fill in the street, postcode and town."
 msgstr "Indiquez la rue, le code postal et la ville."
 
-#: includes/class-renderer.php:247 includes/class-submission.php:390
+#: includes/class-renderer.php:252 includes/class-submission.php:395
 msgid "Please tick this box to send your request."
 msgstr "Cochez cette case pour envoyer votre demande."
 
-#: includes/class-renderer.php:248 includes/class-submission.php:473
+#: includes/class-renderer.php:253 includes/class-submission.php:478
 msgid "Please add at least one photo."
 msgstr "Ajoutez au moins une photo."
 
 #. translators: %d: maximum number of photos.
-#: includes/class-renderer.php:250 includes/class-submission.php:447
+#: includes/class-renderer.php:255 includes/class-submission.php:452
 #, php-format
 msgid "You can add up to %d photos."
 msgstr "Vous pouvez ajouter jusqu’à %d photos."
 
-#: includes/class-renderer.php:251
+#: includes/class-renderer.php:256
 msgid "Your browser could not read this photo. Please choose a JPEG, PNG or WebP photo. An iPhone photo in HEIC format can be sent from the iPhone itself."
 msgstr "Votre navigateur ne peut pas lire cette photo. Choisissez une photo JPEG, PNG ou WebP. Une photo d’iPhone au format HEIC peut être envoyée depuis l’iPhone lui-même."
 
 #. translators: %d: photo number.
-#: includes/class-renderer.php:253
+#: includes/class-renderer.php:258
 #, php-format
 msgid "Remove photo %d"
 msgstr "Retirer la photo %d"
 
-#: includes/class-renderer.php:254
+#: includes/class-renderer.php:259
 msgid "Preparing the photos..."
 msgstr "Préparation des photos…"
 
-#: includes/class-renderer.php:255
+#: includes/class-renderer.php:260
 msgid "Some answers need your attention. Please check the fields marked below."
 msgstr "Certaines réponses sont à vérifier. Regardez les champs signalés ci-dessous."
 
-#: includes/class-renderer.php:256
+#: includes/class-renderer.php:261
 msgid "Not specified"
 msgstr "Non précisé"
 
-#: includes/class-renderer.php:259
+#: includes/class-renderer.php:264
 msgid "Edit"
 msgstr "Modifier"
 
 #. translators: %s: step title.
-#: includes/class-renderer.php:261
+#: includes/class-renderer.php:266
 #, php-format
 msgid "Edit: %s"
 msgstr "Modifier : %s"
 
-#: includes/class-renderer.php:262
+#: includes/class-renderer.php:267
 msgid "Sending..."
 msgstr "Envoi en cours…"
 
-#: includes/class-renderer.php:263
+#: includes/class-renderer.php:268
 msgid "Your request could not be sent. Please check your connection and try again."
 msgstr "Votre demande n’a pas pu être envoyée. Vérifiez votre connexion et réessayez."
 
-#: includes/class-renderer.php:264
+#: includes/class-renderer.php:269
 msgid "Please complete the anti-spam check above the button, then send again."
 msgstr "Complétez la vérification anti-spam au-dessus du bouton, puis renvoyez."
 
+#: includes/class-renderer.php:270 includes/class-submission.php:261
+msgid "Please give a phone number or an email address."
+msgstr "Indiquez un numéro de téléphone ou une adresse e-mail."
+
 #. translators: 1: number of photos added, 2: maximum.
-#: includes/class-renderer.php:286
+#: includes/class-renderer.php:292
 #, php-format
 msgid "%1$d of %2$d photo"
 msgid_plural "%1$d of %2$d photos"
 msgstr[0] "%1$d photo sur %2$d"
 msgstr[1] "%1$d photos sur %2$d"
 
-#: includes/class-renderer.php:368
+#: includes/class-renderer.php:374
 msgid "(required)"
 msgstr "(obligatoire)"
 
-#: includes/class-renderer.php:434
+#: includes/class-renderer.php:440
 msgid "Choose..."
 msgstr "Choisir…"
 
-#: includes/class-renderer.php:531
+#: includes/class-renderer.php:537
 msgid "Street and number"
 msgstr "Numéro et rue"
 
-#: includes/class-renderer.php:532
+#: includes/class-renderer.php:538
 msgid "Postcode"
 msgstr "Code postal"
 
-#: includes/class-renderer.php:533 includes/class-request-list.php:74
+#: includes/class-renderer.php:539 includes/class-request-list.php:80
 msgid "Town"
 msgstr "Ville"
 
-#: includes/class-renderer.php:564
+#: includes/class-renderer.php:570
 msgid "Add photos"
 msgstr "Ajouter des photos"
 
-#: includes/class-renderer.php:592
+#: includes/class-renderer.php:598
 msgid "Privacy policy (opens in a new tab)"
 msgstr "Politique de confidentialité (s’ouvre dans un nouvel onglet)"
 
-#: includes/class-request-list.php:62
+#: includes/class-request-list.php:68
 msgid "Received"
 msgstr "Reçue"
 
-#: includes/class-request-list.php:75 includes/class-request-view.php:85
+#: includes/class-request-list.php:81 includes/class-request-view.php:98
 #: includes/template-strings.php:281
 msgid "Photos"
 msgstr "Photos"
 
-#: includes/class-request-list.php:76 includes/class-request-view.php:52
-#: includes/class-request-view.php:108
+#: includes/class-request-list.php:82 includes/class-request-view.php:52
+#: includes/class-request-view.php:121
 msgid "Status"
 msgstr "État"
 
-#: includes/class-request-list.php:113
+#: includes/class-request-list.php:118
 msgid "None"
 msgstr "Aucune"
 
-#: includes/class-request-list.php:122 includes/class-request-view.php:110
+#: includes/class-request-list.php:127 includes/class-request-view.php:123
 msgid "New"
 msgstr "Nouvelle"
 
-#: includes/class-request-list.php:122 includes/class-request-view.php:111
+#: includes/class-request-list.php:127 includes/class-request-view.php:124
 msgid "Handled"
 msgstr "Traitée"
 
-#: includes/class-request-list.php:139
+#: includes/class-request-list.php:144
 msgctxt "view of the request list"
 msgid "New"
 msgstr "Nouvelles"
 
-#: includes/class-request-list.php:140
+#: includes/class-request-list.php:145
 msgctxt "view of the request list"
 msgid "Handled"
 msgstr "Traitées"
 
-#: includes/class-request-list.php:185
+#: includes/class-request-list.php:217
+msgid "Filter by form"
+msgstr "Filtrer par formulaire"
+
+#: includes/class-request-list.php:219
+msgid "All forms"
+msgstr "Tous les formulaires"
+
+#: includes/class-request-list.php:234
 msgid "Mark as handled"
 msgstr "Marquer comme traitée"
 
-#: includes/class-request-list.php:186
+#: includes/class-request-list.php:235
 msgid "Mark as new"
 msgstr "Marquer comme nouvelle"
 
 #. translators: %d: number of requests.
-#: includes/class-request-list.php:241
+#: includes/class-request-list.php:290
 #, php-format
 msgid "%d request updated."
 msgid_plural "%d requests updated."
@@ -547,7 +584,7 @@ msgstr[0] "%d demande mise à jour."
 msgstr[1] "%d demandes mises à jour."
 
 #. translators: %d: number of new requests.
-#: includes/class-request-list.php:270
+#: includes/class-request-list.php:319
 #, php-format
 msgid "%d new request"
 msgid_plural "%d new requests"
@@ -558,34 +595,39 @@ msgstr[1] "%d nouvelles demandes"
 msgid "Request"
 msgstr "Demande"
 
-#. translators: 1: date, 2: trade, 3: reference of the request.
-#: includes/class-request-view.php:70
+#. translators: %s: site name.
+#: includes/class-request-view.php:74
 #, php-format
-msgid "Sent on %1$s with the %2$s form, reference %3$s."
-msgstr "Envoyée le %1$s avec le formulaire %2$s, référence %3$s."
+msgid "Your message to %s"
+msgstr "Votre message à %s"
 
 #. translators: %s: site name.
-#: includes/class-request-view.php:78
+#: includes/class-request-view.php:76
 #, php-format
 msgid "Your quote request to %s"
 msgstr "Votre demande de devis à %s"
 
-#. translators: %s: site name.
-#: includes/class-request-view.php:78
+#. translators: 1: date, 2: name of the form, 3: reference of the request.
+#: includes/class-request-view.php:83
+#, php-format
+msgid "Sent on %1$s with the form \"%2$s\", reference %3$s."
+msgstr "Envoyée le %1$s avec le formulaire « %2$s », référence %3$s."
+
+#: includes/class-request-view.php:91
 msgid "Reply by email"
 msgstr "Répondre par e-mail"
 
 #. translators: %d: photo number.
-#: includes/class-request-view.php:90
+#: includes/class-request-view.php:103
 #, php-format
 msgid "Photo %d"
 msgstr "Photo %d"
 
-#: includes/class-request-view.php:168
+#: includes/class-request-view.php:181
 msgid "You are not allowed to see this photo."
 msgstr "Vous n’avez pas l’autorisation de voir cette photo."
 
-#: includes/class-request-view.php:176
+#: includes/class-request-view.php:189
 msgid "This photo cannot be found."
 msgstr "Cette photo est introuvable."
 
@@ -665,7 +707,7 @@ msgstr[1] "%d mois"
 msgid "Thank you, your request has been sent."
 msgstr "Merci, votre demande a bien été envoyée."
 
-#: includes/class-submission.php:111 includes/class-token.php:73
+#: includes/class-submission.php:111 includes/class-token.php:67
 msgid "This request has already been sent."
 msgstr "Cette demande a déjà été envoyée."
 
@@ -681,27 +723,27 @@ msgstr "Vos réponses sont trop longues. Raccourcissez-les et réessayez."
 msgid "Some answers need your attention."
 msgstr "Certaines réponses sont à vérifier."
 
-#: includes/class-submission.php:372
+#: includes/class-submission.php:377
 msgid "Please enter a valid date."
 msgstr "Saisissez une date valide."
 
-#: includes/class-submission.php:451
+#: includes/class-submission.php:456
 msgid "The photos are too large together. Please send fewer or smaller photos."
 msgstr "Les photos sont trop lourdes ensemble. Envoyez-en moins ou de plus légères."
 
-#: includes/class-submission.php:458 includes/class-submission.php:468
+#: includes/class-submission.php:463 includes/class-submission.php:473
 msgid "A photo is too large. Please choose a smaller one."
 msgstr "Une photo est trop lourde. Choisissez-en une plus légère."
 
-#: includes/class-submission.php:464
+#: includes/class-submission.php:469
 msgid "A photo could not be read. Please choose a JPEG, PNG or WebP photo."
 msgstr "Une photo n’a pas pu être lue. Choisissez une photo JPEG, PNG ou WebP."
 
-#: includes/class-submission.php:512
+#: includes/class-submission.php:528
 msgid "Your request could not be saved. Please try again or contact us by phone."
 msgstr "Votre demande n’a pas pu être enregistrée. Réessayez ou contactez-nous par téléphone."
 
-#: includes/class-submission.php:523
+#: includes/class-submission.php:539
 msgid "Your photos could not be saved. Please try again, or send the request without photos."
 msgstr "Vos photos n’ont pas pu être enregistrées. Réessayez, ou envoyez la demande sans photos."
 
@@ -725,44 +767,70 @@ msgstr "Professions libérales et conseil"
 msgid "General templates"
 msgstr "Modèles généraux"
 
-#: includes/class-templates.php:67 includes/template-strings.php:2106
+#: includes/class-templates.php:67 includes/template-strings.php:2141
 msgid "Other"
 msgstr "Autres"
 
-#: includes/class-templates.php:240
-msgid "Your contact details"
-msgstr "Vos coordonnées"
+#: includes/class-templates.php:201 includes/template-strings.php:1393
+msgid "Your message"
+msgstr "Votre message"
 
-#: includes/class-templates.php:245
+#: includes/class-templates.php:282
 msgid "Your name"
 msgstr "Votre nom"
 
-#: includes/class-templates.php:253
+#: includes/class-templates.php:291
 msgid "Email"
 msgstr "E-mail"
 
-#: includes/class-templates.php:255
+#: includes/class-templates.php:293
 msgid "Optional. A copy of your request will be sent to this address."
 msgstr "Facultatif. Une copie de votre demande sera envoyée à cette adresse."
 
-#: includes/class-templates.php:256
+#: includes/class-templates.php:294
 msgid "A copy of your request will be sent to this address."
 msgstr "Une copie de votre demande sera envoyée à cette adresse."
 
-#: includes/class-templates.php:263
+#: includes/class-templates.php:303
+msgid "For a copy of your message."
+msgstr "Pour recevoir une copie de votre message."
+
+#: includes/class-templates.php:304
+msgid "Optional, for a copy of your message."
+msgstr "Facultatif, pour recevoir une copie de votre message."
+
+#: includes/class-templates.php:305
+msgid "Phone or email: at least one. With an email, you get a copy of your message."
+msgstr "Téléphone ou e-mail : au moins l’un des deux. Avec un e-mail, vous recevez une copie de votre message."
+
+#: includes/class-templates.php:312
 msgid "Phone"
 msgstr "Téléphone"
 
-#: includes/class-templates.php:264
+#: includes/class-templates.php:313
 msgid "To call you back about your project."
 msgstr "Pour vous rappeler au sujet de votre projet."
 
-#: includes/class-templates.php:272
+#: includes/class-templates.php:319
+msgid "A phone number, an email address, or both: at least one, to answer you."
+msgstr "Un numéro de téléphone, une adresse e-mail ou les deux : au moins l’un des deux, pour vous répondre."
+
+#: includes/class-templates.php:325
+msgid "Your contact details"
+msgstr "Vos coordonnées"
+
+#: includes/class-templates.php:330
 msgid "Review and send"
 msgstr "Vérifier et envoyer"
 
 #. translators: %s: site name.
-#: includes/class-templates.php:280
+#: includes/class-templates.php:339
+#, php-format
+msgid "I agree that %s uses the information in this form to answer my message."
+msgstr "J’accepte que %s utilise les informations de ce formulaire pour répondre à mon message."
+
+#. translators: %s: site name.
+#: includes/class-templates.php:341
 #, php-format
 msgid "I agree that %s uses the information in this form to answer my request and contact me about it."
 msgstr "J’accepte que %s utilise les informations de ce formulaire pour répondre à ma demande et me recontacter à son sujet."
@@ -775,7 +843,7 @@ msgstr "Ce formulaire a expiré. Rechargez la page et réessayez."
 msgid "This form has expired. Please try again."
 msgstr "Ce formulaire a expiré. Réessayez."
 
-#: includes/class-token.php:69
+#: includes/class-token.php:63
 msgid "Your request could not be sent. Please try again in a moment."
 msgstr "Votre demande n’a pas pu être envoyée. Réessayez dans un instant."
 
@@ -2597,288 +2665,335 @@ msgid "Photos of the place and, if you have them, of the plans help to prepare t
 msgstr "Des photos de l’endroit et, si vous en avez, des plans permettent de préparer le devis plus vite."
 
 #: includes/template-strings.php:1364
+msgid "Simple message"
+msgstr "Message simple"
+
+#: includes/template-strings.php:1367
+msgid "A contact form on one screen, for a question, a supplier or a customer calling back. Name, phone, email and message."
+msgstr "Un formulaire de contact sur un seul écran, pour une question, un fournisseur ou un client qui rappelle. Nom, téléphone, e-mail et message."
+
+#: includes/template-strings.php:1370
+msgid "contact, message, question, contact form, simple form"
+msgstr "contact, message, question, formulaire de contact, formulaire simple"
+
+#. translators: Keep the words in braces, such as {name}, as they are.
+#: includes/template-strings.php:1374
+msgid "Thank you {name}, your message has been sent. A copy has been sent to {email}."
+msgstr "Merci {name}, votre message a bien été envoyé. Une copie vous a été adressée à {email}."
+
+#. translators: Keep the words in braces, such as {name}, as they are.
+#: includes/template-strings.php:1378
+msgid "Your message to {site_name}"
+msgstr "Votre message à {site_name}"
+
+#. translators: Keep the words in braces, such as {name}, as they are.
+#: includes/template-strings.php:1382
+msgid ""
+"Hello {name},\n"
+"\n"
+"Thank you for your message. Here is a copy of what you sent."
+msgstr ""
+"Bonjour {name},\n"
+"\n"
+"Merci pour votre message. En voici une copie."
+
+#. translators: Keep the words in braces, such as {name}, as they are.
+#: includes/template-strings.php:1386
+msgid "Thank you {name}, your message has been sent."
+msgstr "Merci {name}, votre message a bien été envoyé."
+
+#. translators: Keep the words in braces, such as {name}, as they are.
+#: includes/template-strings.php:1390
+msgid "Your message is only used to answer you. It is saved on this website, sent to {site_name} by email and shared with no one else. It is kept {retention}. You can ask for a copy or for its deletion at any time."
+msgstr "Votre message sert uniquement à vous répondre. Il est enregistré sur ce site, envoyé par e-mail à {site_name} et n’est transmis à personne d’autre. Il est conservé {retention}. Vous pouvez en demander une copie ou la suppression à tout moment."
+
+#: includes/template-strings.php:1396
+msgid "Message"
+msgstr "Message"
+
+#: includes/template-strings.php:1399
 msgid "Notary"
 msgstr "Notaire"
 
-#: includes/template-strings.php:1367
+#: includes/template-strings.php:1402
 msgid "Property sales and purchases, estates, gifts, marriage contracts, wills and company deeds."
 msgstr "Ventes et achats immobiliers, successions, donations, contrats de mariage, testaments et actes de société."
 
-#: includes/template-strings.php:1370
+#: includes/template-strings.php:1405
 msgid "notary, property sale, purchase, deed, estate, inheritance, succession, gift, donation, marriage contract, will, civil partnership"
 msgstr "notaire, office notarial, vente, achat, compromis, acte authentique, succession, héritage, donation, contrat de mariage, PACS, testament, statuts"
 
-#: includes/template-strings.php:1373
+#: includes/template-strings.php:1408
 msgid "Please do not send documents through this form: what is needed will be asked for later."
 msgstr "N’envoyez pas de documents par ce formulaire : ceux qui sont utiles vous seront demandés ensuite."
 
-#: includes/template-strings.php:1376
+#: includes/template-strings.php:1411
 msgid "What is it about?"
 msgstr "De quoi s’agit-il ?"
 
-#: includes/template-strings.php:1379
+#: includes/template-strings.php:1414
 msgid "Buying or selling a property"
 msgstr "Acheter ou vendre un bien"
 
-#: includes/template-strings.php:1382
+#: includes/template-strings.php:1417
 msgid "An estate, after a death"
 msgstr "Une succession, après un décès"
 
-#: includes/template-strings.php:1385
+#: includes/template-strings.php:1420
 msgid "A gift to a relative"
 msgstr "Une donation à un proche"
 
-#: includes/template-strings.php:1388
+#: includes/template-strings.php:1423
 msgid "Marriage contract or civil partnership"
 msgstr "Contrat de mariage ou PACS"
 
-#: includes/template-strings.php:1391
+#: includes/template-strings.php:1426
 msgid "A will"
 msgstr "Un testament"
 
-#: includes/template-strings.php:1394
+#: includes/template-strings.php:1429
 msgid "A company (articles, sale of shares)"
 msgstr "Une société (statuts, cession de parts)"
 
-#: includes/template-strings.php:1397
+#: includes/template-strings.php:1432
 msgid "A commercial lease"
 msgstr "Un bail commercial"
 
-#: includes/template-strings.php:1400
+#: includes/template-strings.php:1435
 msgid "Buying"
 msgstr "J’achète"
 
-#: includes/template-strings.php:1403
+#: includes/template-strings.php:1438
 msgid "Selling"
 msgstr "Je vends"
 
-#: includes/template-strings.php:1406
+#: includes/template-strings.php:1441
 msgid "Selling and buying"
 msgstr "Je vends et j’achète"
 
-#: includes/template-strings.php:1409
+#: includes/template-strings.php:1444
 msgid "Where are you in the process?"
 msgstr "Où en êtes-vous ?"
 
-#: includes/template-strings.php:1412
+#: includes/template-strings.php:1447
 msgid "Still looking or about to sell"
 msgstr "Je cherche encore ou je vais mettre en vente"
 
-#: includes/template-strings.php:1415
+#: includes/template-strings.php:1450
 msgid "An offer has been accepted"
 msgstr "Une offre a été acceptée"
 
-#: includes/template-strings.php:1418
+#: includes/template-strings.php:1453
 msgid "The preliminary contract is signed"
 msgstr "Le compromis est signé"
 
-#: includes/template-strings.php:1421
+#: includes/template-strings.php:1456
 msgid "No property involved"
 msgstr "Pas de bien immobilier"
 
-#: includes/template-strings.php:1424
+#: includes/template-strings.php:1459
 msgid "Date of the death"
 msgstr "Date du décès"
 
-#: includes/template-strings.php:1427
+#: includes/template-strings.php:1462
 msgid "Is there a will?"
 msgstr "Y a-t-il un testament ?"
 
-#: includes/template-strings.php:1430
+#: includes/template-strings.php:1465
 msgid "Keep to the main points: we will go into the details together."
 msgstr "Restez-en à l’essentiel : nous verrons les détails ensemble."
 
-#: includes/template-strings.php:1433
+#: includes/template-strings.php:1468
 msgid "Context, people involved, deadlines, questions..."
 msgstr "Contexte, personnes concernées, échéances, questions…"
 
-#: includes/template-strings.php:1436
+#: includes/template-strings.php:1471
 msgid "Town of the property or of your home"
 msgstr "Ville du bien ou de votre domicile"
 
-#: includes/template-strings.php:1439
+#: includes/template-strings.php:1474
 msgid "Painter and decorator"
 msgstr "Peintre et décorateur"
 
-#: includes/template-strings.php:1442
+#: includes/template-strings.php:1477
 msgid "Interior painting, facades, wallpaper, woodwork and floor coverings."
 msgstr "Peinture intérieure, façades, papier peint, boiseries et revêtements de sol."
 
-#: includes/template-strings.php:1445
+#: includes/template-strings.php:1480
 msgid "painting, decorating, walls, ceilings, facade, wallpaper, shutters, flooring"
 msgstr "peinture, peintre, décoration, murs, plafonds, façade, ravalement, papier peint, volets, revêtement de sol, parquet flottant"
 
-#: includes/template-strings.php:1448
+#: includes/template-strings.php:1483
 msgid "Interior painting"
 msgstr "Peinture intérieure"
 
-#: includes/template-strings.php:1451
+#: includes/template-strings.php:1486
 msgid "Facade painting or cleaning"
 msgstr "Peinture ou nettoyage de façade"
 
-#: includes/template-strings.php:1454
+#: includes/template-strings.php:1489
 msgid "Wallpaper"
 msgstr "Papier peint"
 
-#: includes/template-strings.php:1457
+#: includes/template-strings.php:1492
 msgid "Shutters, windows or woodwork"
 msgstr "Volets, fenêtres ou boiseries"
 
-#: includes/template-strings.php:1460
+#: includes/template-strings.php:1495
 msgid "Floor covering (vinyl, laminate, carpet)"
 msgstr "Revêtement de sol (vinyle, stratifié, moquette)"
 
-#: includes/template-strings.php:1463
+#: includes/template-strings.php:1498
 msgid "How many rooms?"
 msgstr "Combien de pièces ?"
 
-#: includes/template-strings.php:1466
+#: includes/template-strings.php:1501
 msgid "What should be done?"
 msgstr "Que faut-il faire ?"
 
-#: includes/template-strings.php:1469
+#: includes/template-strings.php:1504
 msgid "Walls"
 msgstr "Murs"
 
-#: includes/template-strings.php:1472
+#: includes/template-strings.php:1507
 msgid "Ceilings"
 msgstr "Plafonds"
 
-#: includes/template-strings.php:1475
+#: includes/template-strings.php:1510
 msgid "Doors and skirting boards"
 msgstr "Portes et plinthes"
 
-#: includes/template-strings.php:1478
+#: includes/template-strings.php:1513
 msgid "Stairs or banisters"
 msgstr "Escalier ou rampe"
 
-#: includes/template-strings.php:1481
+#: includes/template-strings.php:1516
 msgid "Approximate floor area of the rooms"
 msgstr "Surface au sol approximative des pièces"
 
-#: includes/template-strings.php:1484
+#: includes/template-strings.php:1519
 msgid "The floor area is enough: we work out the wall area."
 msgstr "La surface au sol suffit : nous calculons la surface des murs."
 
-#: includes/template-strings.php:1487
+#: includes/template-strings.php:1522
 msgid "How are the walls today?"
 msgstr "Dans quel état sont les murs ?"
 
-#: includes/template-strings.php:1490
+#: includes/template-strings.php:1525
 msgid "In good condition"
 msgstr "En bon état"
 
-#: includes/template-strings.php:1493
+#: includes/template-strings.php:1528
 msgid "Cracks or holes to fill"
 msgstr "Fissures ou trous à reboucher"
 
-#: includes/template-strings.php:1496
+#: includes/template-strings.php:1531
 msgid "Wallpaper to remove"
 msgstr "Papier peint à retirer"
 
-#: includes/template-strings.php:1499
+#: includes/template-strings.php:1534
 msgid "Damp or mould"
 msgstr "Humidité ou moisissures"
 
-#: includes/template-strings.php:1502
+#: includes/template-strings.php:1537
 msgid "Height of the building"
 msgstr "Hauteur du bâtiment"
 
-#: includes/template-strings.php:1505
+#: includes/template-strings.php:1540
 msgid "Ground floor only"
 msgstr "Plain-pied"
 
-#: includes/template-strings.php:1508
+#: includes/template-strings.php:1543
 msgid "One floor above the ground floor"
 msgstr "Un étage"
 
-#: includes/template-strings.php:1511
+#: includes/template-strings.php:1546
 msgid "Two floors or more"
 msgstr "Deux étages ou plus"
 
-#: includes/template-strings.php:1514
+#: includes/template-strings.php:1549
 msgid "What is the facade made of?"
 msgstr "En quoi est la façade ?"
 
-#: includes/template-strings.php:1517
+#: includes/template-strings.php:1552
 msgid "Render"
 msgstr "Enduit"
 
-#: includes/template-strings.php:1520
+#: includes/template-strings.php:1555
 msgid "Wood cladding"
 msgstr "Bardage bois"
 
-#: includes/template-strings.php:1523
+#: includes/template-strings.php:1558
 msgid "Approximate facade area"
 msgstr "Surface approximative de façade"
 
-#: includes/template-strings.php:1526
+#: includes/template-strings.php:1561
 msgid "What should be painted?"
 msgstr "Que faut-il peindre ?"
 
-#: includes/template-strings.php:1529
+#: includes/template-strings.php:1564
 msgid "For example 6 pairs of shutters and 3 windows"
 msgstr "Par exemple 6 paires de volets et 3 fenêtres"
 
-#: includes/template-strings.php:1532
+#: includes/template-strings.php:1567
 msgid "Which covering?"
 msgstr "Quel revêtement ?"
 
-#: includes/template-strings.php:1535
+#: includes/template-strings.php:1570
 msgid "Vinyl"
 msgstr "Vinyle"
 
-#: includes/template-strings.php:1538
+#: includes/template-strings.php:1573
 msgid "Laminate"
 msgstr "Stratifié"
 
-#: includes/template-strings.php:1541
+#: includes/template-strings.php:1576
 msgid "Carpet"
 msgstr "Moquette"
 
-#: includes/template-strings.php:1544
+#: includes/template-strings.php:1579
 msgid "Not decided yet"
 msgstr "Pas encore décidé"
 
-#: includes/template-strings.php:1547
+#: includes/template-strings.php:1582
 msgid "Have you chosen the colours or the materials?"
 msgstr "Avez-vous choisi les couleurs ou les matériaux ?"
 
-#: includes/template-strings.php:1550
+#: includes/template-strings.php:1585
 msgid "No, I would like advice"
 msgstr "Non, j’aimerais un conseil"
 
-#: includes/template-strings.php:1553
+#: includes/template-strings.php:1588
 msgid "Will the rooms be lived in during the work?"
 msgstr "Les pièces seront-elles habitées pendant les travaux ?"
 
-#: includes/template-strings.php:1556
+#: includes/template-strings.php:1591
 msgid "Furniture to move, ceiling height, a question..."
 msgstr "Meubles à déplacer, hauteur sous plafond, une question…"
 
-#: includes/template-strings.php:1559
+#: includes/template-strings.php:1594
 msgid "A view of each room or of the facade helps to prepare the quote faster."
 msgstr "Une vue de chaque pièce ou de la façade permet de préparer le devis plus vite."
 
-#: includes/template-strings.php:1562
+#: includes/template-strings.php:1597
 msgid "Pest control"
 msgstr "Nuisibles et guêpes"
 
-#: includes/template-strings.php:1565
+#: includes/template-strings.php:1600
 msgid "Wasp and hornet nests (Asian hornets included), bee swarms, rodents, bed bugs and other pests."
 msgstr "Nids de guêpes et de frelons (frelon asiatique compris), essaims d’abeilles, rongeurs, punaises de lit et autres nuisibles."
 
-#: includes/template-strings.php:1568
+#: includes/template-strings.php:1603
 msgid "pests, wasps, hornets, Asian hornet, bees, swarm, nest, rats, mice, bed bugs, cockroaches"
 msgstr "nuisibles, dératisation, désinsectisation, guêpes, frelons, frelon asiatique, abeilles, essaim, nid, bourdons, rats, souris, punaises de lit, cafards, blattes"
 
 #. translators: Keep the words in braces, such as {name}, as they are.
-#: includes/template-strings.php:1572
+#: includes/template-strings.php:1607
 msgid "Thank you {name}, your request has been sent. We will call you back soon. A copy has been sent to {email}."
 msgstr "Merci {name}, votre demande a bien été envoyée. Nous vous rappelons rapidement. Une copie vous a été adressée à {email}."
 
 #. translators: Keep the words in braces, such as {name}, as they are.
-#: includes/template-strings.php:1576
+#: includes/template-strings.php:1611
 msgid ""
 "Hello {name},\n"
 "\n"
@@ -2896,465 +3011,465 @@ msgstr ""
 "\n"
 "Voici une copie de ce que vous nous avez envoyé."
 
-#: includes/template-strings.php:1579
+#: includes/template-strings.php:1614
 msgid "Your problem"
 msgstr "Votre problème"
 
-#: includes/template-strings.php:1582
+#: includes/template-strings.php:1617
 msgid "What is the problem?"
 msgstr "Quel est le problème ?"
 
-#: includes/template-strings.php:1585
+#: includes/template-strings.php:1620
 msgid "A wasp or hornet nest"
 msgstr "Un nid de guêpes ou de frelons"
 
-#: includes/template-strings.php:1588
+#: includes/template-strings.php:1623
 msgid "Bumblebees"
 msgstr "Des bourdons"
 
-#: includes/template-strings.php:1591
+#: includes/template-strings.php:1626
 msgid "A bee swarm"
 msgstr "Un essaim d’abeilles"
 
-#: includes/template-strings.php:1594
+#: includes/template-strings.php:1629
 msgid "Rats or mice"
 msgstr "Des rats ou des souris"
 
-#: includes/template-strings.php:1597
+#: includes/template-strings.php:1632
 msgid "Bed bugs"
 msgstr "Des punaises de lit"
 
-#: includes/template-strings.php:1600
+#: includes/template-strings.php:1635
 msgid "Cockroaches"
 msgstr "Des cafards"
 
-#: includes/template-strings.php:1603
+#: includes/template-strings.php:1638
 msgid "Keep your distance from the nest or the insects while you answer. When you are not sure, choose the closest answer."
 msgstr "Restez à distance du nid ou des insectes pendant que vous répondez. En cas de doute, choisissez la réponse la plus proche."
 
-#: includes/template-strings.php:1606
+#: includes/template-strings.php:1641
 msgid "Which insect?"
 msgstr "Quel insecte ?"
 
-#: includes/template-strings.php:1609
+#: includes/template-strings.php:1644
 msgid "The Asian hornet is dark, almost black, with yellow legs. The European hornet is larger, brown and yellow."
 msgstr "Le frelon asiatique est sombre, presque noir, avec les pattes jaunes. Le frelon européen est plus gros, brun et jaune."
 
-#: includes/template-strings.php:1612
+#: includes/template-strings.php:1647
 msgid "Wasps"
 msgstr "Des guêpes"
 
-#: includes/template-strings.php:1615
+#: includes/template-strings.php:1650
 msgid "European hornets"
 msgstr "Des frelons européens"
 
-#: includes/template-strings.php:1618
+#: includes/template-strings.php:1653
 msgid "Asian hornets"
 msgstr "Des frelons asiatiques"
 
-#: includes/template-strings.php:1621
+#: includes/template-strings.php:1656
 msgid "Where is the nest?"
 msgstr "Où est le nid ?"
 
-#: includes/template-strings.php:1624
+#: includes/template-strings.php:1659
 msgid "Under the roof, in the attic or a shutter box"
 msgstr "Sous le toit, dans les combles ou un coffre de volet"
 
-#: includes/template-strings.php:1627
+#: includes/template-strings.php:1662
 msgid "In a tree or a hedge"
 msgstr "Dans un arbre ou une haie"
 
-#: includes/template-strings.php:1630
+#: includes/template-strings.php:1665
 msgid "In a wall or a hole"
 msgstr "Dans un mur ou un trou"
 
-#: includes/template-strings.php:1633
+#: includes/template-strings.php:1668
 msgid "In the ground"
 msgstr "Dans le sol"
 
-#: includes/template-strings.php:1636
+#: includes/template-strings.php:1671
 msgid "In a shed or an outbuilding"
 msgstr "Dans un abri ou une dépendance"
 
-#: includes/template-strings.php:1639
+#: includes/template-strings.php:1674
 msgid "I can't see it, insects come and go"
 msgstr "Je ne le vois pas, des insectes vont et viennent"
 
-#: includes/template-strings.php:1642
+#: includes/template-strings.php:1677
 msgid "How high is it?"
 msgstr "À quelle hauteur ?"
 
-#: includes/template-strings.php:1645
+#: includes/template-strings.php:1680
 msgid "Within reach, under 3 m"
 msgstr "À portée de main, moins de 3 m"
 
-#: includes/template-strings.php:1648
+#: includes/template-strings.php:1683
 msgid "3 to 10 m"
 msgstr "De 3 à 10 m"
 
-#: includes/template-strings.php:1651
+#: includes/template-strings.php:1686
 msgid "Over 10 m, at the top of a tall tree"
 msgstr "Plus de 10 m, en haut d’un grand arbre"
 
-#: includes/template-strings.php:1654
+#: includes/template-strings.php:1689
 msgid "Size of the nest"
 msgstr "Taille du nid"
 
-#: includes/template-strings.php:1657
+#: includes/template-strings.php:1692
 msgid "Smaller than a fist"
 msgstr "Plus petit qu’un poing"
 
-#: includes/template-strings.php:1660
+#: includes/template-strings.php:1695
 msgid "About the size of a ball"
 msgstr "De la taille d’un ballon"
 
-#: includes/template-strings.php:1663
+#: includes/template-strings.php:1698
 msgid "Larger than a football"
 msgstr "Plus gros qu’un ballon de foot"
 
-#: includes/template-strings.php:1666
+#: includes/template-strings.php:1701
 msgid "I can't see it"
 msgstr "Je ne le vois pas"
 
-#: includes/template-strings.php:1669
+#: includes/template-strings.php:1704
 msgid "Is someone at risk (allergic person, young children, nest near a door or a path)?"
 msgstr "Quelqu’un est-il exposé (personne allergique, jeunes enfants, nid près d’une porte ou d’un passage) ?"
 
-#: includes/template-strings.php:1672
+#: includes/template-strings.php:1707
 msgid "Since when has the swarm been there?"
 msgstr "Depuis quand l’essaim est-il là ?"
 
-#: includes/template-strings.php:1675
+#: includes/template-strings.php:1710
 msgid "Bees are protected: a swarm is collected alive whenever possible."
 msgstr "Les abeilles sont protégées : un essaim est récupéré vivant chaque fois que possible."
 
-#: includes/template-strings.php:1678
+#: includes/template-strings.php:1713
 msgid "Today"
 msgstr "Aujourd’hui"
 
-#: includes/template-strings.php:1681
+#: includes/template-strings.php:1716
 msgid "A few days"
 msgstr "Quelques jours"
 
-#: includes/template-strings.php:1684
+#: includes/template-strings.php:1719
 msgid "Longer, the bees have settled in"
 msgstr "Plus longtemps, les abeilles se sont installées"
 
-#: includes/template-strings.php:1687
+#: includes/template-strings.php:1722
 msgid "Where do you see them or hear them?"
 msgstr "Où les voyez-vous ou les entendez-vous ?"
 
-#: includes/template-strings.php:1690
+#: includes/template-strings.php:1725
 msgid "In the house"
 msgstr "Dans la maison"
 
-#: includes/template-strings.php:1693
+#: includes/template-strings.php:1728
 msgid "In the attic or the walls"
 msgstr "Dans les combles ou les murs"
 
-#: includes/template-strings.php:1696
+#: includes/template-strings.php:1731
 msgid "In a garage, cellar or outbuilding"
 msgstr "Dans un garage, une cave ou une dépendance"
 
-#: includes/template-strings.php:1699
+#: includes/template-strings.php:1734
 msgid "In the garden"
 msgstr "Dans le jardin"
 
-#: includes/template-strings.php:1702
+#: includes/template-strings.php:1737
 msgid "How many rooms are affected?"
 msgstr "Combien de pièces sont touchées ?"
 
-#: includes/template-strings.php:1705
+#: includes/template-strings.php:1740
 msgid "Since when?"
 msgstr "Depuis quand ?"
 
-#: includes/template-strings.php:1708
+#: includes/template-strings.php:1743
 msgid "A few weeks"
 msgstr "Quelques semaines"
 
-#: includes/template-strings.php:1711
+#: includes/template-strings.php:1746
 msgid "Several months"
 msgstr "Plusieurs mois"
 
-#: includes/template-strings.php:1714
+#: includes/template-strings.php:1749
 msgid "Shop, restaurant or office"
 msgstr "Commerce, restaurant ou bureau"
 
-#: includes/template-strings.php:1717
+#: includes/template-strings.php:1752
 msgid "Farm"
 msgstr "Exploitation agricole"
 
-#: includes/template-strings.php:1720
+#: includes/template-strings.php:1755
 msgid "Public building or school"
 msgstr "Bâtiment public ou école"
 
-#: includes/template-strings.php:1723
+#: includes/template-strings.php:1758
 msgid "Access, animals at home, a question..."
 msgstr "Accès, animaux à la maison, une question…"
 
-#: includes/template-strings.php:1726
+#: includes/template-strings.php:1761
 msgid "A photo of the nest or of the insects helps to bring the right equipment. Take it from a safe distance, never close to a nest."
 msgstr "Une photo du nid ou des insectes permet de venir avec le bon matériel. Prenez-la à bonne distance, jamais près d’un nid."
 
-#: includes/template-strings.php:1729
+#: includes/template-strings.php:1764
 msgid "Up to 4 photos. Zoom in rather than walking closer."
 msgstr "Jusqu’à 4 photos. Zoomez plutôt que de vous approcher."
 
-#: includes/template-strings.php:1732
+#: includes/template-strings.php:1767
 msgid "This week"
 msgstr "Cette semaine"
 
-#: includes/template-strings.php:1735
+#: includes/template-strings.php:1770
 msgid "When can we call you or come?"
 msgstr "Quand pouvons-nous vous appeler ou passer ?"
 
-#: includes/template-strings.php:1738
+#: includes/template-strings.php:1773
 msgid "Plumber and heating engineer"
 msgstr "Plombier chauffagiste"
 
-#: includes/template-strings.php:1741
+#: includes/template-strings.php:1776
 msgid "Leaks and blockages, water heaters, boilers, heat pumps, bathrooms and plumbing installations."
 msgstr "Fuites et débouchage, chauffe-eau, chaudières, pompes à chaleur, salles de bains et installations de plomberie."
 
-#: includes/template-strings.php:1744
+#: includes/template-strings.php:1779
 msgid "plumbing, heating, leak, blocked drain, water heater, boiler, heat pump, radiator, bathroom"
 msgstr "plomberie, plombier, chauffage, chauffagiste, fuite, débouchage, WC bouché, chauffe-eau, ballon, chaudière, entretien, pompe à chaleur, PAC, radiateur, salle de bains"
 
-#: includes/template-strings.php:1747
+#: includes/template-strings.php:1782
 msgid "A leak"
 msgstr "Une fuite"
 
-#: includes/template-strings.php:1750
+#: includes/template-strings.php:1785
 msgid "A blocked sink, toilet or drain"
 msgstr "Un évier, des WC ou une canalisation bouchés"
 
-#: includes/template-strings.php:1753
+#: includes/template-strings.php:1788
 msgid "Water heater (repair or replacement)"
 msgstr "Chauffe-eau (réparation ou remplacement)"
 
-#: includes/template-strings.php:1756
+#: includes/template-strings.php:1791
 msgid "Boiler (servicing, repair or replacement)"
 msgstr "Chaudière (entretien, dépannage ou remplacement)"
 
-#: includes/template-strings.php:1759
+#: includes/template-strings.php:1794
 msgid "Heat pump"
 msgstr "Pompe à chaleur"
 
-#: includes/template-strings.php:1762
+#: includes/template-strings.php:1797
 msgid "Radiators or underfloor heating"
 msgstr "Radiateurs ou plancher chauffant"
 
-#: includes/template-strings.php:1765
+#: includes/template-strings.php:1800
 msgid "Bathroom or kitchen plumbing"
 msgstr "Plomberie de salle de bains ou de cuisine"
 
-#: includes/template-strings.php:1768
+#: includes/template-strings.php:1803
 msgid "Plumbing for a new build or a renovation"
 msgstr "Plomberie d’une construction ou d’une rénovation"
 
-#: includes/template-strings.php:1771
+#: includes/template-strings.php:1806
 msgid "Is water leaking right now?"
 msgstr "L’eau fuit-elle en ce moment ?"
 
-#: includes/template-strings.php:1774
+#: includes/template-strings.php:1809
 msgid "If it is, close the main water valve, usually near the water meter."
 msgstr "Si c’est le cas, fermez le robinet d’arrivée générale, en général près du compteur d’eau."
 
-#: includes/template-strings.php:1777
+#: includes/template-strings.php:1812
 msgid "Where is the leak?"
 msgstr "Où est la fuite ?"
 
-#: includes/template-strings.php:1780
+#: includes/template-strings.php:1815
 msgid "A tap or a toilet"
 msgstr "Un robinet ou des WC"
 
-#: includes/template-strings.php:1783
+#: includes/template-strings.php:1818
 msgid "A visible pipe"
 msgstr "Un tuyau visible"
 
-#: includes/template-strings.php:1786
+#: includes/template-strings.php:1821
 msgid "Inside a wall or under the floor"
 msgstr "Dans un mur ou sous le sol"
 
-#: includes/template-strings.php:1789
+#: includes/template-strings.php:1824
 msgid "The water heater or the boiler"
 msgstr "Le chauffe-eau ou la chaudière"
 
-#: includes/template-strings.php:1792
+#: includes/template-strings.php:1827
 msgid "I don't know, I see water or damp"
 msgstr "Je ne sais pas, je vois de l’eau ou de l’humidité"
 
-#: includes/template-strings.php:1795
+#: includes/template-strings.php:1830
 msgid "What is blocked?"
 msgstr "Qu’est-ce qui est bouché ?"
 
-#: includes/template-strings.php:1798
+#: includes/template-strings.php:1833
 msgid "A sink or a washbasin"
 msgstr "Un évier ou un lavabo"
 
-#: includes/template-strings.php:1801
+#: includes/template-strings.php:1836
 msgid "A toilet"
 msgstr "Des WC"
 
-#: includes/template-strings.php:1804
+#: includes/template-strings.php:1839
 msgid "A shower or a bathtub"
 msgstr "Une douche ou une baignoire"
 
-#: includes/template-strings.php:1807
+#: includes/template-strings.php:1842
 msgid "The main drain, everything is slow"
 msgstr "La canalisation principale, tout s’écoule mal"
 
-#: includes/template-strings.php:1810
+#: includes/template-strings.php:1845
 msgid "Type of water heater"
 msgstr "Type de chauffe-eau"
 
-#: includes/template-strings.php:1813
+#: includes/template-strings.php:1848
 msgid "Electric"
 msgstr "Électrique"
 
-#: includes/template-strings.php:1816
+#: includes/template-strings.php:1851
 msgid "Heat pump water heater"
 msgstr "Thermodynamique"
 
-#: includes/template-strings.php:1819
+#: includes/template-strings.php:1854
 msgid "Gas"
 msgstr "Gaz"
 
-#: includes/template-strings.php:1822
+#: includes/template-strings.php:1857
 msgid "Solar"
 msgstr "Solaire"
 
-#: includes/template-strings.php:1825
+#: includes/template-strings.php:1860
 msgid "Capacity of the tank, if you know it"
 msgstr "Capacité du ballon, si vous la connaissez"
 
-#: includes/template-strings.php:1828
+#: includes/template-strings.php:1863
 msgid "L"
 msgstr "L"
 
-#: includes/template-strings.php:1831
+#: includes/template-strings.php:1866
 msgid "Yearly servicing"
 msgstr "Entretien annuel"
 
-#: includes/template-strings.php:1834
+#: includes/template-strings.php:1869
 msgid "A breakdown"
 msgstr "Une panne"
 
-#: includes/template-strings.php:1837
+#: includes/template-strings.php:1872
 msgid "Replacing the boiler"
 msgstr "Remplacer la chaudière"
 
-#: includes/template-strings.php:1840
+#: includes/template-strings.php:1875
 msgid "Energy of the boiler"
 msgstr "Énergie de la chaudière"
 
-#: includes/template-strings.php:1843
+#: includes/template-strings.php:1878
 msgid "Heating oil"
 msgstr "Fioul"
 
-#: includes/template-strings.php:1846
+#: includes/template-strings.php:1881
 msgid "Wood or pellets"
 msgstr "Bois ou granulés"
 
-#: includes/template-strings.php:1849
+#: includes/template-strings.php:1884
 msgid "Age of the boiler or the water heater"
 msgstr "Âge de la chaudière ou du chauffe-eau"
 
-#: includes/template-strings.php:1852
+#: includes/template-strings.php:1887
 msgid "Less than 10 years"
 msgstr "Moins de 10 ans"
 
-#: includes/template-strings.php:1855
+#: includes/template-strings.php:1890
 msgid "10 to 20 years"
 msgstr "De 10 à 20 ans"
 
-#: includes/template-strings.php:1858
+#: includes/template-strings.php:1893
 msgid "More than 20 years"
 msgstr "Plus de 20 ans"
 
-#: includes/template-strings.php:1861
+#: includes/template-strings.php:1896
 msgid "Installing a heat pump"
 msgstr "Installer une pompe à chaleur"
 
-#: includes/template-strings.php:1864
+#: includes/template-strings.php:1899
 msgid "Servicing"
 msgstr "Entretien"
 
-#: includes/template-strings.php:1867
+#: includes/template-strings.php:1902
 msgid "How is the home heated today?"
 msgstr "Comment le logement est-il chauffé aujourd’hui ?"
 
-#: includes/template-strings.php:1870
+#: includes/template-strings.php:1905
 msgid "Heating oil boiler"
 msgstr "Chaudière au fioul"
 
-#: includes/template-strings.php:1873
+#: includes/template-strings.php:1908
 msgid "Gas boiler"
 msgstr "Chaudière au gaz"
 
-#: includes/template-strings.php:1876
+#: includes/template-strings.php:1911
 msgid "Electric heaters"
 msgstr "Radiateurs électriques"
 
-#: includes/template-strings.php:1879
+#: includes/template-strings.php:1914
 msgid "New build, nothing yet"
 msgstr "Construction neuve, rien pour l’instant"
 
-#: includes/template-strings.php:1882
+#: includes/template-strings.php:1917
 msgid "What is planned?"
 msgstr "Que prévoyez-vous ?"
 
-#: includes/template-strings.php:1885
+#: includes/template-strings.php:1920
 msgid "Shower"
 msgstr "Douche"
 
-#: includes/template-strings.php:1888
+#: includes/template-strings.php:1923
 msgid "Bathtub"
 msgstr "Baignoire"
 
-#: includes/template-strings.php:1891
+#: includes/template-strings.php:1926
 msgid "Toilet"
 msgstr "WC"
 
-#: includes/template-strings.php:1894
+#: includes/template-strings.php:1929
 msgid "Washbasin or vanity unit"
 msgstr "Lavabo ou meuble vasque"
 
-#: includes/template-strings.php:1897
+#: includes/template-strings.php:1932
 msgid "Kitchen sink and appliances"
 msgstr "Évier et électroménager de cuisine"
 
-#: includes/template-strings.php:1900
+#: includes/template-strings.php:1935
 msgid "Brand of the appliance, a fault code, access, a question..."
 msgstr "Marque de l’appareil, code d’erreur, accès, une question…"
 
-#: includes/template-strings.php:1903
+#: includes/template-strings.php:1938
 msgid "Type of home"
 msgstr "Type de logement"
 
-#: includes/template-strings.php:1906
+#: includes/template-strings.php:1941
 msgid "A photo of the problem, of the appliance and of its plate (brand and model) helps to bring the right parts."
 msgstr "Une photo du problème, de l’appareil et de sa plaque (marque et modèle) permet de venir avec les bonnes pièces."
 
-#: includes/template-strings.php:1909
+#: includes/template-strings.php:1944
 msgid "Removals"
 msgstr "Déménagement"
 
-#: includes/template-strings.php:1912
+#: includes/template-strings.php:1947
 msgid "House and office moves, furniture transport, packing, piano moving and storage."
 msgstr "Déménagements de particuliers et d’entreprises, transport de meubles, emballage, transport de piano et garde-meubles."
 
-#: includes/template-strings.php:1915
+#: includes/template-strings.php:1950
 msgid "moving, removals, relocation, furniture, piano, storage, boxes"
 msgstr "déménagement, déménageur, transfert de bureaux, transport de meubles, piano, garde-meubles, stockage, cartons, monte-meubles"
 
 #. translators: Keep the words in braces, such as {name}, as they are.
-#: includes/template-strings.php:1919
+#: includes/template-strings.php:1954
 msgid "Your removal quote request to {site_name}"
 msgstr "Votre demande de devis de déménagement à {site_name}"
 
 #. translators: Keep the words in braces, such as {name}, as they are.
-#: includes/template-strings.php:1923
+#: includes/template-strings.php:1958
 msgid ""
 "Hello {name},\n"
 "\n"
@@ -3368,883 +3483,883 @@ msgstr ""
 "\n"
 "Voici une copie de ce que vous nous avez envoyé."
 
-#: includes/template-strings.php:1926
+#: includes/template-strings.php:1961
 msgid "Your move"
 msgstr "Votre déménagement"
 
-#: includes/template-strings.php:1929
+#: includes/template-strings.php:1964
 msgid "A home removal"
 msgstr "Un déménagement de logement"
 
-#: includes/template-strings.php:1932
+#: includes/template-strings.php:1967
 msgid "An office removal"
 msgstr "Un déménagement de bureaux"
 
-#: includes/template-strings.php:1935
+#: includes/template-strings.php:1970
 msgid "Moving a few pieces of furniture"
 msgstr "Le transport de quelques meubles"
 
-#: includes/template-strings.php:1938
+#: includes/template-strings.php:1973
 msgid "Moving a piano or a heavy item"
 msgstr "Le transport d’un piano ou d’un objet lourd"
 
-#: includes/template-strings.php:1941
+#: includes/template-strings.php:1976
 msgid "Storage only"
 msgstr "Seulement un garde-meubles"
 
-#: includes/template-strings.php:1944
+#: includes/template-strings.php:1979
 msgid "Size of the home you leave"
 msgstr "Taille du logement que vous quittez"
 
-#: includes/template-strings.php:1947
+#: includes/template-strings.php:1982
 msgid "Studio"
 msgstr "Studio"
 
-#: includes/template-strings.php:1950
+#: includes/template-strings.php:1985
 msgid "2 rooms"
 msgstr "2 pièces"
 
-#: includes/template-strings.php:1953
+#: includes/template-strings.php:1988
 msgid "3 rooms"
 msgstr "3 pièces"
 
-#: includes/template-strings.php:1956
+#: includes/template-strings.php:1991
 msgid "4 rooms"
 msgstr "4 pièces"
 
-#: includes/template-strings.php:1959
+#: includes/template-strings.php:1994
 msgid "5 rooms or more"
 msgstr "5 pièces ou plus"
 
-#: includes/template-strings.php:1962
+#: includes/template-strings.php:1997
 msgid "Volume, if you know it"
 msgstr "Volume, si vous le connaissez"
 
-#: includes/template-strings.php:1965
+#: includes/template-strings.php:2000
 msgid "Leave it blank if you don't know: we can work it out with you or during a visit."
 msgstr "Laissez vide si vous ne savez pas : nous pouvons l’estimer avec vous ou lors d’une visite."
 
-#: includes/template-strings.php:1968
+#: includes/template-strings.php:2003
 msgid "m³"
 msgstr "m³"
 
-#: includes/template-strings.php:1971
+#: includes/template-strings.php:2006
 msgid "What should be moved?"
 msgstr "Que faut-il transporter ?"
 
-#: includes/template-strings.php:1974
+#: includes/template-strings.php:2009
 msgid "For example a wardrobe, a sofa and a washing machine"
 msgstr "Par exemple une armoire, un canapé et un lave-linge"
 
-#: includes/template-strings.php:1977
+#: includes/template-strings.php:2012
 msgid "From"
 msgstr "Départ"
 
-#: includes/template-strings.php:1980
+#: includes/template-strings.php:2015
 msgid "Address you leave"
 msgstr "Adresse de départ"
 
-#: includes/template-strings.php:1983
+#: includes/template-strings.php:2018
 msgid "Floor"
 msgstr "Étage"
 
-#: includes/template-strings.php:1986
+#: includes/template-strings.php:2021
 msgid "Ground floor or house"
 msgstr "Rez-de-chaussée ou maison"
 
-#: includes/template-strings.php:1989
+#: includes/template-strings.php:2024
 msgid "1st or 2nd floor"
 msgstr "1er ou 2e étage"
 
-#: includes/template-strings.php:1992
+#: includes/template-strings.php:2027
 msgid "3rd floor or above"
 msgstr "3e étage ou plus"
 
-#: includes/template-strings.php:1995
+#: includes/template-strings.php:2030
 msgid "Is there a lift?"
 msgstr "Y a-t-il un ascenseur ?"
 
-#: includes/template-strings.php:1998
+#: includes/template-strings.php:2033
 msgid "Can a truck park close to the entrance?"
 msgstr "Un camion peut-il se garer près de l’entrée ?"
 
-#: includes/template-strings.php:2001
+#: includes/template-strings.php:2036
 msgid "With a parking permit from the town"
 msgstr "Avec une autorisation de stationnement de la mairie"
 
-#: includes/template-strings.php:2004
+#: includes/template-strings.php:2039
 msgid "No, it is far or difficult"
 msgstr "Non, c’est loin ou difficile"
 
-#: includes/template-strings.php:2007
+#: includes/template-strings.php:2042
 msgid "To"
 msgstr "Arrivée"
 
-#: includes/template-strings.php:2010
+#: includes/template-strings.php:2045
 msgid "Address you move to"
 msgstr "Adresse d’arrivée"
 
-#: includes/template-strings.php:2013
+#: includes/template-strings.php:2048
 msgid "Services"
 msgstr "Prestations"
 
-#: includes/template-strings.php:2016
+#: includes/template-strings.php:2051
 msgid "Which services would you like?"
 msgstr "Quelles prestations souhaitez-vous ?"
 
-#: includes/template-strings.php:2019
+#: includes/template-strings.php:2054
 msgid "Packing"
 msgstr "Emballage"
 
-#: includes/template-strings.php:2022
+#: includes/template-strings.php:2057
 msgid "Supply of boxes"
 msgstr "Fourniture de cartons"
 
-#: includes/template-strings.php:2025
+#: includes/template-strings.php:2060
 msgid "Dismantling and reassembling furniture"
 msgstr "Démontage et remontage des meubles"
 
-#: includes/template-strings.php:2028
+#: includes/template-strings.php:2063
 msgid "Storage between the two homes"
 msgstr "Garde-meubles entre les deux logements"
 
-#: includes/template-strings.php:2031
+#: includes/template-strings.php:2066
 msgid "Cleaning of the home left"
 msgstr "Nettoyage du logement quitté"
 
-#: includes/template-strings.php:2034
+#: includes/template-strings.php:2069
 msgid "Fragile or valuable items, narrow stairs, a question..."
 msgstr "Objets fragiles ou de valeur, escalier étroit, une question…"
 
-#: includes/template-strings.php:2037
+#: includes/template-strings.php:2072
 msgid "Photos of the rooms or of bulky furniture help to estimate the volume."
 msgstr "Des photos des pièces ou des meubles encombrants permettent d’estimer le volume."
 
-#: includes/template-strings.php:2040
+#: includes/template-strings.php:2075
 msgid "Date of the move, if you know it"
 msgstr "Date du déménagement, si vous la connaissez"
 
-#: includes/template-strings.php:2043
+#: includes/template-strings.php:2078
 msgid "Is the date flexible?"
 msgstr "La date est-elle flexible ?"
 
-#: includes/template-strings.php:2046
+#: includes/template-strings.php:2081
 msgid "Renovation works (general)"
 msgstr "Travaux de rénovation (général)"
 
-#: includes/template-strings.php:2049
+#: includes/template-strings.php:2084
 msgid "A general template for building and renovation trades without a template of their own."
 msgstr "Un modèle général pour les métiers du bâtiment et de la rénovation qui n’ont pas encore de modèle."
 
-#: includes/template-strings.php:2052
+#: includes/template-strings.php:2087
 msgid "renovation, works, building, refurbishment, insulation, kitchen, bathroom"
 msgstr "rénovation, travaux, bâtiment, réhabilitation, isolation, cuisine, salle de bains, multiservice, second œuvre"
 
-#: includes/template-strings.php:2055
+#: includes/template-strings.php:2090
 msgid "What kind of project?"
 msgstr "Quel type de projet ?"
 
-#: includes/template-strings.php:2058
+#: includes/template-strings.php:2093
 msgid "Full renovation"
 msgstr "Rénovation complète"
 
-#: includes/template-strings.php:2061
+#: includes/template-strings.php:2096
 msgid "Renovating one or more rooms"
 msgstr "Rénovation d’une ou plusieurs pièces"
 
-#: includes/template-strings.php:2064
+#: includes/template-strings.php:2099
 msgid "Kitchen"
 msgstr "Cuisine"
 
-#: includes/template-strings.php:2067
+#: includes/template-strings.php:2102
 msgid "Bathroom"
 msgstr "Salle de bains"
 
-#: includes/template-strings.php:2070
+#: includes/template-strings.php:2105
 msgid "Insulation"
 msgstr "Isolation"
 
-#: includes/template-strings.php:2073
+#: includes/template-strings.php:2108
 msgid "Outside works"
 msgstr "Travaux extérieurs"
 
-#: includes/template-strings.php:2076
+#: includes/template-strings.php:2111
 msgid "What should be done, materials you have in mind, what matters to you..."
 msgstr "Ce qu’il faut faire, les matériaux envisagés, ce qui compte pour vous…"
 
-#: includes/template-strings.php:2079
+#: includes/template-strings.php:2114
 msgid "Approximate area concerned"
 msgstr "Surface approximative concernée"
 
-#: includes/template-strings.php:2082
+#: includes/template-strings.php:2117
 msgid "15 to 50 years"
 msgstr "De 15 à 50 ans"
 
-#: includes/template-strings.php:2085
+#: includes/template-strings.php:2120
 msgid "More than 50 years"
 msgstr "Plus de 50 ans"
 
-#: includes/template-strings.php:2088
+#: includes/template-strings.php:2123
 msgid "Will the place be lived in during the work?"
 msgstr "Le logement sera-t-il habité pendant les travaux ?"
 
-#: includes/template-strings.php:2091
+#: includes/template-strings.php:2126
 msgid "Are other professionals involved?"
 msgstr "D’autres professionnels interviennent-ils ?"
 
-#: includes/template-strings.php:2094
+#: includes/template-strings.php:2129
 msgid "An architect or a project manager"
 msgstr "Un architecte ou un maître d’œuvre"
 
-#: includes/template-strings.php:2097
+#: includes/template-strings.php:2132
 msgid "Other tradespeople"
 msgstr "D’autres artisans"
 
-#: includes/template-strings.php:2100
+#: includes/template-strings.php:2135
 msgid "Budget you have in mind, if any"
 msgstr "Budget envisagé, si vous en avez un"
 
-#: includes/template-strings.php:2103
+#: includes/template-strings.php:2138
 msgid "Optional. It helps us suggest solutions that fit."
 msgstr "Facultatif. Cela nous aide à proposer des solutions adaptées."
 
-#: includes/template-strings.php:2109
+#: includes/template-strings.php:2144
 msgid "Photos of the place help to understand the project and prepare the quote faster."
 msgstr "Des photos de l’endroit permettent de comprendre le projet et de préparer le devis plus vite."
 
-#: includes/template-strings.php:2112
+#: includes/template-strings.php:2147
 msgid "Roofer"
 msgstr "Couvreur"
 
-#: includes/template-strings.php:2115
+#: includes/template-strings.php:2150
 msgid "Roof repair and renovation, roof windows, roof cleaning, gutters, cladding and chimney sweeping."
 msgstr "Réparation et rénovation de toiture, fenêtres de toit, nettoyage de toiture, gouttières, bardage et ramonage."
 
-#: includes/template-strings.php:2118
+#: includes/template-strings.php:2153
 msgid "roof, roofing, slate, tiles, zinc, roof window, Velux, gutters, cladding, chimney sweep, moss removal, leak"
 msgstr "toiture, toit, couverture, couvreur, zingueur, ardoise, tuiles, zinc, fenêtre de toit, Velux, gouttières, bardage, ramonage, démoussage, fuite"
 
-#: includes/template-strings.php:2121
+#: includes/template-strings.php:2156
 msgid "Leak or roof repair"
 msgstr "Fuite ou réparation de toiture"
 
-#: includes/template-strings.php:2124
+#: includes/template-strings.php:2159
 msgid "Roof renovation or new roof"
 msgstr "Rénovation de toiture ou toiture neuve"
 
-#: includes/template-strings.php:2127
+#: includes/template-strings.php:2162
 msgid "Roof window (Velux or similar)"
 msgstr "Fenêtre de toit (Velux ou autre)"
 
-#: includes/template-strings.php:2130
+#: includes/template-strings.php:2165
 msgid "Roof cleaning and moss removal"
 msgstr "Nettoyage et démoussage de toiture"
 
-#: includes/template-strings.php:2133
+#: includes/template-strings.php:2168
 msgid "Gutters and downpipes"
 msgstr "Gouttières et descentes"
 
-#: includes/template-strings.php:2136
+#: includes/template-strings.php:2171
 msgid "Wall cladding"
 msgstr "Bardage"
 
-#: includes/template-strings.php:2139
+#: includes/template-strings.php:2174
 msgid "Chimney sweeping"
 msgstr "Ramonage"
 
-#: includes/template-strings.php:2142
+#: includes/template-strings.php:2177
 msgid "Is water coming in right now?"
 msgstr "L’eau entre-t-elle en ce moment ?"
 
-#: includes/template-strings.php:2145
+#: includes/template-strings.php:2180
 msgid "Where is the problem?"
 msgstr "Où se situe le problème ?"
 
-#: includes/template-strings.php:2148
+#: includes/template-strings.php:2183
 msgid "Missing or broken slates or tiles"
 msgstr "Ardoises ou tuiles manquantes ou cassées"
 
-#: includes/template-strings.php:2151
+#: includes/template-strings.php:2186
 msgid "Around the chimney or a roof window"
 msgstr "Autour de la cheminée ou d’une fenêtre de toit"
 
-#: includes/template-strings.php:2154
+#: includes/template-strings.php:2189
 msgid "Ridge or roof edge"
 msgstr "Faîtage ou rive"
 
-#: includes/template-strings.php:2157
+#: includes/template-strings.php:2192
 msgid "Storm damage"
 msgstr "Dégâts après une tempête"
 
-#: includes/template-strings.php:2160
+#: includes/template-strings.php:2195
 msgid "I don't know where it comes from"
 msgstr "Je ne sais pas d’où ça vient"
 
-#: includes/template-strings.php:2163
+#: includes/template-strings.php:2198
 msgid "What should be renovated?"
 msgstr "Que faut-il rénover ?"
 
-#: includes/template-strings.php:2166
+#: includes/template-strings.php:2201
 msgid "The whole roof"
 msgstr "Toute la toiture"
 
-#: includes/template-strings.php:2169
+#: includes/template-strings.php:2204
 msgid "Part of the roof"
 msgstr "Une partie de la toiture"
 
-#: includes/template-strings.php:2172
+#: includes/template-strings.php:2207
 msgid "A new roof (new building or extension)"
 msgstr "Une toiture neuve (construction ou extension)"
 
-#: includes/template-strings.php:2175
+#: includes/template-strings.php:2210
 msgid "Would you like to add roof insulation at the same time?"
 msgstr "Souhaitez-vous isoler la toiture en même temps ?"
 
-#: includes/template-strings.php:2178
+#: includes/template-strings.php:2213
 msgid "What is the roof covered with?"
 msgstr "Quelle est la couverture actuelle ?"
 
-#: includes/template-strings.php:2181
+#: includes/template-strings.php:2216
 msgid "Natural slate"
 msgstr "Ardoise naturelle"
 
-#: includes/template-strings.php:2184
+#: includes/template-strings.php:2219
 msgid "Clay or concrete tiles"
 msgstr "Tuiles (terre cuite ou béton)"
 
-#: includes/template-strings.php:2187
+#: includes/template-strings.php:2222
 msgid "Zinc or metal"
 msgstr "Zinc ou bac acier"
 
-#: includes/template-strings.php:2190
+#: includes/template-strings.php:2225
 msgid "Fibre cement sheets"
 msgstr "Plaques fibrociment"
 
-#: includes/template-strings.php:2193
+#: includes/template-strings.php:2228
 msgid "Flat roof (membrane)"
 msgstr "Toit plat (membrane)"
 
-#: includes/template-strings.php:2196
+#: includes/template-strings.php:2231
 msgid "Which covering would you like?"
 msgstr "Quelle couverture souhaitez-vous ?"
 
-#: includes/template-strings.php:2199
+#: includes/template-strings.php:2234
 msgid "The same as today"
 msgstr "La même qu’aujourd’hui"
 
-#: includes/template-strings.php:2202
+#: includes/template-strings.php:2237
 msgid "Zinc"
 msgstr "Zinc"
 
-#: includes/template-strings.php:2205
+#: includes/template-strings.php:2240
 msgid "Tiles"
 msgstr "Tuiles"
 
-#: includes/template-strings.php:2208
+#: includes/template-strings.php:2243
 msgid "Not decided yet, I would like advice"
 msgstr "Pas encore décidé, j’aimerais un conseil"
 
-#: includes/template-strings.php:2211
+#: includes/template-strings.php:2246
 msgid "Approximate roof area"
 msgstr "Surface approximative de la toiture"
 
-#: includes/template-strings.php:2214
+#: includes/template-strings.php:2249
 msgid "A rough idea is enough. Leave it blank if you don't know."
 msgstr "Un ordre d’idée suffit. Laissez vide si vous ne savez pas."
 
-#: includes/template-strings.php:2217
+#: includes/template-strings.php:2252
 msgid "Fitting a new roof window"
 msgstr "Poser une nouvelle fenêtre de toit"
 
-#: includes/template-strings.php:2220
+#: includes/template-strings.php:2255
 msgid "Replacing an existing roof window"
 msgstr "Remplacer une fenêtre de toit existante"
 
-#: includes/template-strings.php:2223
+#: includes/template-strings.php:2258
 msgid "A leak, a blind or a motor to repair"
 msgstr "Une fuite, un store ou un moteur à réparer"
 
-#: includes/template-strings.php:2226
+#: includes/template-strings.php:2261
 msgid "How many roof windows?"
 msgstr "Combien de fenêtres de toit ?"
 
-#: includes/template-strings.php:2229
+#: includes/template-strings.php:2264
 msgid "Size or reference of the window, if you know it"
 msgstr "Taille ou référence de la fenêtre, si vous la connaissez"
 
-#: includes/template-strings.php:2232
+#: includes/template-strings.php:2267
 msgid "On a Velux window, the reference is on a plate at the top of the frame, visible when the window is open."
 msgstr "Sur une fenêtre Velux, la référence figure sur une plaque en haut du cadre, visible fenêtre ouverte."
 
-#: includes/template-strings.php:2235
+#: includes/template-strings.php:2270
 msgid "For example 78 x 98 cm or MK04"
 msgstr "Par exemple 78 x 98 cm ou MK04"
 
-#: includes/template-strings.php:2238
+#: includes/template-strings.php:2273
 msgid "How does the roof look?"
 msgstr "Dans quel état est la toiture ?"
 
-#: includes/template-strings.php:2241
+#: includes/template-strings.php:2276
 msgid "A little moss"
 msgstr "Un peu de mousse"
 
-#: includes/template-strings.php:2244
+#: includes/template-strings.php:2279
 msgid "A lot of moss or lichen"
 msgstr "Beaucoup de mousse ou de lichen"
 
-#: includes/template-strings.php:2247
+#: includes/template-strings.php:2282
 msgid "It has never been cleaned"
 msgstr "Elle n’a jamais été nettoyée"
 
-#: includes/template-strings.php:2250
+#: includes/template-strings.php:2285
 msgid "Would you like a water-repellent treatment after cleaning?"
 msgstr "Souhaitez-vous un traitement hydrofuge après le nettoyage ?"
 
-#: includes/template-strings.php:2253
+#: includes/template-strings.php:2288
 msgid "What needs doing?"
 msgstr "Que faut-il faire ?"
 
-#: includes/template-strings.php:2256
+#: includes/template-strings.php:2291
 msgid "Replace gutters or downpipes"
 msgstr "Remplacer des gouttières ou des descentes"
 
-#: includes/template-strings.php:2259
+#: includes/template-strings.php:2294
 msgid "Fit new gutters"
 msgstr "Poser des gouttières neuves"
 
-#: includes/template-strings.php:2262
+#: includes/template-strings.php:2297
 msgid "Repair a leak or an overflow"
 msgstr "Réparer une fuite ou un débordement"
 
-#: includes/template-strings.php:2265
+#: includes/template-strings.php:2300
 msgid "Clean the gutters"
 msgstr "Nettoyer les gouttières"
 
-#: includes/template-strings.php:2268
+#: includes/template-strings.php:2303
 msgid "Copper"
 msgstr "Cuivre"
 
-#: includes/template-strings.php:2271
+#: includes/template-strings.php:2306
 msgid "Approximate length"
 msgstr "Longueur approximative"
 
-#: includes/template-strings.php:2274
+#: includes/template-strings.php:2309
 msgid "Which cladding?"
 msgstr "Quel bardage ?"
 
-#: includes/template-strings.php:2277
+#: includes/template-strings.php:2312
 msgid "Slate"
 msgstr "Ardoise"
 
-#: includes/template-strings.php:2280
+#: includes/template-strings.php:2315
 msgid "Fibre cement"
 msgstr "Fibrociment"
 
-#: includes/template-strings.php:2283
+#: includes/template-strings.php:2318
 msgid "Approximate wall area"
 msgstr "Surface approximative du mur"
 
-#: includes/template-strings.php:2286
+#: includes/template-strings.php:2321
 msgid "What is connected to the chimney?"
 msgstr "Qu’est-ce qui est raccordé au conduit ?"
 
-#: includes/template-strings.php:2289
+#: includes/template-strings.php:2324
 msgid "Open fireplace"
 msgstr "Cheminée à foyer ouvert"
 
-#: includes/template-strings.php:2292
+#: includes/template-strings.php:2327
 msgid "Wood stove or fireplace insert"
 msgstr "Poêle à bois ou insert"
 
-#: includes/template-strings.php:2295
+#: includes/template-strings.php:2330
 msgid "Pellet stove"
 msgstr "Poêle à granulés"
 
-#: includes/template-strings.php:2298
+#: includes/template-strings.php:2333
 msgid "Oil or gas boiler"
 msgstr "Chaudière fioul ou gaz"
 
-#: includes/template-strings.php:2301
+#: includes/template-strings.php:2336
 msgid "How many flues?"
 msgstr "Combien de conduits ?"
 
-#: includes/template-strings.php:2304
+#: includes/template-strings.php:2339
 msgid "When was it last swept?"
 msgstr "À quand remonte le dernier ramonage ?"
 
-#: includes/template-strings.php:2307
+#: includes/template-strings.php:2342
 msgid "Less than a year ago"
 msgstr "Moins d’un an"
 
-#: includes/template-strings.php:2310
+#: includes/template-strings.php:2345
 msgid "One to two years ago"
 msgstr "Un à deux ans"
 
-#: includes/template-strings.php:2313
+#: includes/template-strings.php:2348
 msgid "Longer ago"
 msgstr "Plus longtemps"
 
-#: includes/template-strings.php:2316
+#: includes/template-strings.php:2351
 msgid "Extension, garage or outbuilding"
 msgstr "Extension, garage ou dépendance"
 
-#: includes/template-strings.php:2319
+#: includes/template-strings.php:2354
 msgid "Shop, office or farm building"
 msgstr "Commerce, bureau ou bâtiment agricole"
 
-#: includes/template-strings.php:2322
+#: includes/template-strings.php:2357
 msgid "It tells us which scaffolding or lift to bring."
 msgstr "Cela nous indique quel échafaudage ou quelle nacelle prévoir."
 
-#: includes/template-strings.php:2325
+#: includes/template-strings.php:2360
 msgid "Access, a previous repair, a question..."
 msgstr "Accès, réparation précédente, question…"
 
-#: includes/template-strings.php:2328
+#: includes/template-strings.php:2363
 msgid "Photos help to understand the job and prepare the quote faster. A view of the whole roof and a close-up of the problem are ideal."
 msgstr "Les photos permettent de comprendre le chantier et de préparer le devis plus vite. Une vue d’ensemble du toit et un gros plan sur le problème, c’est idéal."
 
-#: includes/template-strings.php:2331
+#: includes/template-strings.php:2366
 msgid "Photos of the roof"
 msgstr "Photos de la toiture"
 
-#: includes/template-strings.php:2334
+#: includes/template-strings.php:2369
 msgid "Up to 6 photos. You can take them now with your phone. No need to climb on the roof: photos from the ground or a window are fine."
 msgstr "Jusqu’à 6 photos. Vous pouvez les prendre maintenant avec votre téléphone. Inutile de monter sur le toit : des photos depuis le sol ou une fenêtre suffisent."
 
-#: includes/template-strings.php:2337
+#: includes/template-strings.php:2372
 msgid "Service on quote (general)"
 msgstr "Prestation sur devis (général)"
 
-#: includes/template-strings.php:2340
+#: includes/template-strings.php:2375
 msgid "A general template for any service quoted on request, when no trade template fits."
 msgstr "Un modèle général pour toute prestation sur devis, quand aucun modèle de métier ne convient."
 
-#: includes/template-strings.php:2343
+#: includes/template-strings.php:2378
 msgid "service, quote, request, other trade"
 msgstr "prestation, service, devis, demande, autre métier"
 
-#: includes/template-strings.php:2346
+#: includes/template-strings.php:2381
 msgid "Describe the service, the context and what matters to you."
 msgstr "Décrivez la prestation, le contexte et ce qui compte pour vous."
 
-#: includes/template-strings.php:2349
+#: includes/template-strings.php:2384
 msgid "Is it a one-off or a regular service?"
 msgstr "Est-ce ponctuel ou régulier ?"
 
-#: includes/template-strings.php:2352
+#: includes/template-strings.php:2387
 msgid "A one-off"
 msgstr "Ponctuel"
 
-#: includes/template-strings.php:2355
+#: includes/template-strings.php:2390
 msgid "A regular service"
 msgstr "Régulier"
 
-#: includes/template-strings.php:2358
+#: includes/template-strings.php:2393
 msgid "Does the service take place at an address?"
 msgstr "La prestation a-t-elle lieu à une adresse ?"
 
-#: includes/template-strings.php:2361
+#: includes/template-strings.php:2396
 msgid "For example at your home, your business or an event venue."
 msgstr "Par exemple chez vous, dans votre entreprise ou dans une salle."
 
-#: includes/template-strings.php:2364
+#: includes/template-strings.php:2399
 msgid "Photos or documents"
 msgstr "Photos ou documents"
 
-#: includes/template-strings.php:2367
+#: includes/template-strings.php:2402
 msgid "Optional: a photo, a plan or a screenshot often explains better than words."
 msgstr "Facultatif : une photo, un plan ou une capture d’écran explique souvent mieux que des mots."
 
-#: includes/template-strings.php:2370
+#: includes/template-strings.php:2405
 msgid "Up to 4 images."
 msgstr "Jusqu’à 4 images."
 
-#: includes/template-strings.php:2373
+#: includes/template-strings.php:2408
 msgid "Land surveyor"
 msgstr "Géomètre-expert"
 
-#: includes/template-strings.php:2376
+#: includes/template-strings.php:2411
 msgid "Boundary marking, plot division, topographic surveys and co-ownership documents."
 msgstr "Bornage, division parcellaire, relevés topographiques et documents de copropriété."
 
-#: includes/template-strings.php:2379
+#: includes/template-strings.php:2414
 msgid "land surveyor, boundaries, boundary marking, plot division, topographic survey, land, co-ownership, measurements"
 msgstr "géomètre, géomètre-expert, bornage, limites de propriété, division parcellaire, relevé topographique, terrain, copropriété, mesurage"
 
-#: includes/template-strings.php:2382
+#: includes/template-strings.php:2417
 msgid "Marking the boundaries of a plot"
 msgstr "Le bornage d’un terrain"
 
-#: includes/template-strings.php:2385
+#: includes/template-strings.php:2420
 msgid "Dividing a plot to sell or build"
 msgstr "La division d’un terrain pour vendre ou construire"
 
-#: includes/template-strings.php:2388
+#: includes/template-strings.php:2423
 msgid "A topographic survey before a project"
 msgstr "Un relevé topographique avant un projet"
 
-#: includes/template-strings.php:2391
+#: includes/template-strings.php:2426
 msgid "Co-ownership documents"
 msgstr "Des documents de copropriété"
 
-#: includes/template-strings.php:2394
+#: includes/template-strings.php:2429
 msgid "Approximate area of the plot"
 msgstr "Surface approximative du terrain"
 
-#: includes/template-strings.php:2397
+#: includes/template-strings.php:2432
 msgid "Are the neighbours aware?"
 msgstr "Les voisins sont-ils au courant ?"
 
-#: includes/template-strings.php:2400
+#: includes/template-strings.php:2435
 msgid "Yes, we agree"
 msgstr "Oui, nous sommes d’accord"
 
-#: includes/template-strings.php:2403
+#: includes/template-strings.php:2438
 msgid "There is a disagreement"
 msgstr "Il y a un désaccord"
 
-#: includes/template-strings.php:2406
+#: includes/template-strings.php:2441
 msgid "Project, reference of the plot in the land register if you have it, questions..."
 msgstr "Projet, référence cadastrale si vous l’avez, questions…"
 
-#: includes/template-strings.php:2409
+#: includes/template-strings.php:2444
 msgid "Address of the land or building"
 msgstr "Adresse du terrain ou du bâtiment"
 
-#: includes/template-strings.php:2412
+#: includes/template-strings.php:2447
 msgid "A notary, an agency or a builder"
 msgstr "Un notaire, une agence ou un constructeur"
 
-#: includes/template-strings.php:2415
+#: includes/template-strings.php:2450
 msgid "Optional: a photo of the land, of a plan or of the land register extract."
 msgstr "Facultatif : une photo du terrain, d’un plan ou de l’extrait cadastral."
 
-#: includes/template-strings.php:2418
+#: includes/template-strings.php:2453
 msgid "As soon as possible, a sale or a deed is planned"
 msgstr "Dès que possible, une vente ou un acte est prévu"
 
-#: includes/template-strings.php:2421
+#: includes/template-strings.php:2456
 msgid "Tiler"
 msgstr "Carreleur"
 
-#: includes/template-strings.php:2424
+#: includes/template-strings.php:2459
 msgid "Floor and wall tiling, bathrooms, walk-in showers, terraces, stairs and repairs."
 msgstr "Carrelage de sols et de murs, salles de bains, douches à l’italienne, terrasses, escaliers et réparations."
 
-#: includes/template-strings.php:2427
+#: includes/template-strings.php:2462
 msgid "tiles, tiling, floor, wall tiles, bathroom, walk-in shower, terrace, mosaic, grout"
 msgstr "carrelage, carreleur, sol, faïence, salle de bains, douche à l’italienne, terrasse, mosaïque, joints, grand format, plage de piscine"
 
-#: includes/template-strings.php:2430
+#: includes/template-strings.php:2465
 msgid "Floor tiling"
 msgstr "Carrelage au sol"
 
-#: includes/template-strings.php:2433
+#: includes/template-strings.php:2468
 msgid "Wall tiles (kitchen, walls)"
 msgstr "Faïence murale (cuisine, murs)"
 
-#: includes/template-strings.php:2436
+#: includes/template-strings.php:2471
 msgid "Bathroom renovation"
 msgstr "Rénovation de salle de bains"
 
-#: includes/template-strings.php:2439
+#: includes/template-strings.php:2474
 msgid "Walk-in shower"
 msgstr "Douche à l’italienne"
 
-#: includes/template-strings.php:2442
+#: includes/template-strings.php:2477
 msgid "Outdoor terrace or pool surround"
 msgstr "Terrasse extérieure ou plage de piscine"
 
-#: includes/template-strings.php:2445
+#: includes/template-strings.php:2480
 msgid "Replace a few tiles or redo the joints"
 msgstr "Remplacer quelques carreaux ou refaire les joints"
 
-#: includes/template-strings.php:2448
+#: includes/template-strings.php:2483
 msgid "Which rooms?"
 msgstr "Quelles pièces ?"
 
-#: includes/template-strings.php:2451
+#: includes/template-strings.php:2486
 msgid "Living room or bedroom"
 msgstr "Séjour ou chambre"
 
-#: includes/template-strings.php:2454
+#: includes/template-strings.php:2489
 msgid "Bathroom or toilet"
 msgstr "Salle de bains ou WC"
 
-#: includes/template-strings.php:2457
+#: includes/template-strings.php:2492
 msgid "Entrance or corridor"
 msgstr "Entrée ou couloir"
 
-#: includes/template-strings.php:2460
+#: includes/template-strings.php:2495
 msgid "The whole floor of the house"
 msgstr "Tout le sol de la maison"
 
-#: includes/template-strings.php:2463
+#: includes/template-strings.php:2498
 msgid "Another room"
 msgstr "Une autre pièce"
 
-#: includes/template-strings.php:2466
+#: includes/template-strings.php:2501
 msgid "What is planned in the bathroom?"
 msgstr "Que prévoyez-vous dans la salle de bains ?"
 
-#: includes/template-strings.php:2469
+#: includes/template-strings.php:2504
 msgid "Floor tiles"
 msgstr "Sol"
 
-#: includes/template-strings.php:2472
+#: includes/template-strings.php:2507
 msgid "Wall tiles"
 msgstr "Murs"
 
-#: includes/template-strings.php:2475
+#: includes/template-strings.php:2510
 msgid "A walk-in shower"
 msgstr "Une douche à l’italienne"
 
-#: includes/template-strings.php:2478
+#: includes/template-strings.php:2513
 msgid "Removing the bathtub"
 msgstr "Retirer la baignoire"
 
-#: includes/template-strings.php:2481
+#: includes/template-strings.php:2516
 msgid "Complete renovation, plumbing included"
 msgstr "Rénovation complète, plomberie comprise"
 
-#: includes/template-strings.php:2484
+#: includes/template-strings.php:2519
 msgid "Approximate area to tile"
 msgstr "Surface approximative à carreler"
 
-#: includes/template-strings.php:2487
+#: includes/template-strings.php:2522
 msgid "What is on the floor today?"
 msgstr "Qu’y a-t-il au sol aujourd’hui ?"
 
-#: includes/template-strings.php:2490
+#: includes/template-strings.php:2525
 msgid "Bare concrete slab"
 msgstr "Une dalle béton brute"
 
-#: includes/template-strings.php:2493
+#: includes/template-strings.php:2528
 msgid "Old tiles to remove"
 msgstr "Un ancien carrelage à retirer"
 
-#: includes/template-strings.php:2496
+#: includes/template-strings.php:2531
 msgid "Old tiles to tile over"
 msgstr "Un ancien carrelage à recouvrir"
 
-#: includes/template-strings.php:2499
+#: includes/template-strings.php:2534
 msgid "Wooden floor or floorboards"
 msgstr "Un parquet ou un plancher"
 
-#: includes/template-strings.php:2502
+#: includes/template-strings.php:2537
 msgid "Vinyl, lino or carpet"
 msgstr "Du vinyle, du lino ou de la moquette"
 
-#: includes/template-strings.php:2505
+#: includes/template-strings.php:2540
 msgid "Is there underfloor heating?"
 msgstr "Y a-t-il un plancher chauffant ?"
 
-#: includes/template-strings.php:2508
+#: includes/template-strings.php:2543
 msgid "Approximate size of the shower"
 msgstr "Dimensions approximatives de la douche"
 
-#: includes/template-strings.php:2511
+#: includes/template-strings.php:2546
 msgid "For example 120 x 90 cm"
 msgstr "Par exemple 120 x 90 cm"
 
-#: includes/template-strings.php:2514
+#: includes/template-strings.php:2549
 msgid "Does the shower replace a bathtub?"
 msgstr "La douche remplace-t-elle une baignoire ?"
 
-#: includes/template-strings.php:2517
+#: includes/template-strings.php:2552
 msgid "What will the tiles be laid on?"
 msgstr "Sur quoi le carrelage sera-t-il posé ?"
 
-#: includes/template-strings.php:2520
+#: includes/template-strings.php:2555
 msgid "Directly on the ground, to prepare"
 msgstr "Directement sur le sol, à préparer"
 
-#: includes/template-strings.php:2523
+#: includes/template-strings.php:2558
 msgid "An existing concrete slab"
 msgstr "Une dalle béton existante"
 
-#: includes/template-strings.php:2526
+#: includes/template-strings.php:2561
 msgid "Raised slabs on pedestals"
 msgstr "Des dalles sur plots"
 
-#: includes/template-strings.php:2529
+#: includes/template-strings.php:2564
 msgid "Around a swimming pool"
 msgstr "Autour d’une piscine"
 
-#: includes/template-strings.php:2532
+#: includes/template-strings.php:2567
 msgid "How many steps?"
 msgstr "Combien de marches ?"
 
-#: includes/template-strings.php:2535
+#: includes/template-strings.php:2570
 msgid "Indoor or outdoor stairs?"
 msgstr "Escalier intérieur ou extérieur ?"
 
-#: includes/template-strings.php:2538
+#: includes/template-strings.php:2573
 msgid "Indoor"
 msgstr "Intérieur"
 
-#: includes/template-strings.php:2541
+#: includes/template-strings.php:2576
 msgid "Outdoor"
 msgstr "Extérieur"
 
-#: includes/template-strings.php:2544
+#: includes/template-strings.php:2579
 msgid "Number of tiles, cracked joints, a tile that sounds hollow..."
 msgstr "Nombre de carreaux, joints fissurés, un carreau qui sonne creux…"
 
-#: includes/template-strings.php:2547
+#: includes/template-strings.php:2582
 msgid "Do you still have tiles of the same model?"
 msgstr "Avez-vous encore des carreaux du même modèle ?"
 
-#: includes/template-strings.php:2550
+#: includes/template-strings.php:2585
 msgid "Do you already have the tiles?"
 msgstr "Avez-vous déjà le carrelage ?"
 
-#: includes/template-strings.php:2553
+#: includes/template-strings.php:2588
 msgid "Yes, I have them"
 msgstr "Oui, je l’ai"
 
-#: includes/template-strings.php:2556
+#: includes/template-strings.php:2591
 msgid "I have chosen them, not bought yet"
 msgstr "Je l’ai choisi, pas encore acheté"
 
-#: includes/template-strings.php:2559
+#: includes/template-strings.php:2594
 msgid "Tile format"
 msgstr "Format des carreaux"
 
-#: includes/template-strings.php:2562
+#: includes/template-strings.php:2597
 msgid "Standard, up to 60 x 60 cm"
 msgstr "Standard, jusqu’à 60 x 60 cm"
 
-#: includes/template-strings.php:2565
+#: includes/template-strings.php:2600
 msgid "Large format, over 60 cm"
 msgstr "Grand format, plus de 60 cm"
 
-#: includes/template-strings.php:2568
+#: includes/template-strings.php:2603
 msgid "Wood-look planks"
 msgstr "Lames imitation parquet"
 
-#: includes/template-strings.php:2571
+#: includes/template-strings.php:2606
 msgid "Mosaic"
 msgstr "Mosaïque"
 
-#: includes/template-strings.php:2574
+#: includes/template-strings.php:2609
 msgid "Access, furniture to move, a question..."
 msgstr "Accès, meubles à déplacer, une question…"
 
-#: includes/template-strings.php:2577
+#: includes/template-strings.php:2612
 msgid "New build"
 msgstr "Construction neuve"
 
-#: includes/template-strings.php:2580
+#: includes/template-strings.php:2615
 msgid "Photos help to understand the job and prepare the quote faster. A view of the whole room and a close-up of the floor or wall are ideal."
 msgstr "Les photos permettent de comprendre le chantier et de préparer le devis plus vite. Une vue de toute la pièce et un gros plan du sol ou du mur, c’est idéal."
 
-#: includes/template-strings.php:2583
+#: includes/template-strings.php:2618
 msgid "Photos of the room"
 msgstr "Photos de la pièce"
 
-#: includes/template-strings.php:2586
+#: includes/template-strings.php:2621
 msgid "Up to 6 photos. You can take them now with your phone. A photo of the tiles you chose is welcome too."
 msgstr "Jusqu’à 6 photos. Vous pouvez les prendre maintenant avec votre téléphone. Une photo du carrelage choisi est aussi la bienvenue."
 
@@ -4571,6 +4686,14 @@ msgstr "Confortable à lire"
 #: build/block/index.js:4
 msgid "Whole column"
 msgstr "Toute la colonne"
+
+#: build/block/index.js:4
+msgid "Two columns when there is room"
+msgstr "Deux colonnes quand la place le permet"
+
+#: build/block/index.js:4
+msgid "Short fields such as the name and the phone sit side by side when the form is wide enough."
+msgstr "Les champs courts, comme le nom et le téléphone, se placent côte à côte quand le formulaire est assez large."
 
 #: build/block/index.js:4
 msgid "Main color"
