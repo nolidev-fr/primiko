@@ -181,7 +181,13 @@ final class Templates {
 			$schema['steps'],
 			$this->built_in_steps(
 				(bool) get_post_meta( $form_id, '_primiko_email_optional', true ),
-				strtr( $notice, array( '{site_name}' => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ) ) )
+				strtr(
+					$notice,
+					array(
+						'{site_name}' => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
+						'{retention}' => Mailer::retention_phrase(),
+					)
+				)
 			)
 		);
 

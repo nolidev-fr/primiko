@@ -21,9 +21,11 @@ final class Form_Settings {
 	const POLICY_ACTION = 'primiko_add_policy';
 
 	/**
-	 * Marks a privacy policy page that already holds the paragraph.
+	 * Class of the heading added to the privacy policy page. While the
+	 * heading is there, the button is not offered again; if the business
+	 * removes it, the button comes back.
 	 */
-	const POLICY_META = '_primiko_policy_added';
+	const POLICY_CLASS = 'primiko-privacy';
 
 	const NONCE = 'primiko_form_settings';
 
@@ -73,7 +75,7 @@ final class Form_Settings {
 			?>
 			<div class="notice notice-success inline">
 				<p>
-					<?php esc_html_e( 'The paragraph about quote requests was added at the end of your privacy policy page.', 'primiko' ); ?>
+					<?php esc_html_e( 'The paragraph about quote requests was added at the end of your privacy policy page. Move it in the page if another place suits it better.', 'primiko' ); ?>
 					<?php if ( 'publish' !== $page->post_status ) : ?>
 						<?php esc_html_e( 'The page is not published yet: publish it so that visitors can read it.', 'primiko' ); ?>
 					<?php endif; ?>
@@ -96,7 +98,7 @@ final class Form_Settings {
 			return;
 		}
 
-		if ( get_post_meta( $page->ID, self::POLICY_META, true ) || ! current_user_can( 'edit_post', $page->ID ) ) {
+		if ( self::has_policy_paragraph( $page ) || ! current_user_can( 'edit_post', $page->ID ) ) {
 			return;
 		}
 
@@ -116,11 +118,20 @@ final class Form_Settings {
 				<?php
 				printf(
 					/* translators: %s: title of the privacy policy page. */
-					esc_html__( 'Your privacy policy page (%s) does not say anything about quote requests yet.', 'primiko' ),
+					esc_html__( 'Your privacy policy page (%s) does not have the paragraph about quote requests yet. Check first that it does not already say the same thing about your contact form.', 'primiko' ),
 					esc_html( get_the_title( $page ) )
 				);
 				?>
 			</p>
+			<details>
+				<summary><?php esc_html_e( 'Read the paragraph', 'primiko' ); ?></summary>
+				<div class="primiko-policy-preview">
+					<p><strong><?php esc_html_e( 'Quote requests', 'primiko' ); ?></strong></p>
+					<?php foreach ( Privacy::policy_paragraphs() as $paragraph ) : ?>
+						<p><?php echo esc_html( $paragraph ); ?></p>
+					<?php endforeach; ?>
+				</div>
+			</details>
 			<p><a class="button" href="<?php echo esc_url( $url ); ?>"><?php esc_html_e( 'Add the paragraph about quote requests', 'primiko' ); ?></a></p>
 		</div>
 		<?php
@@ -138,6 +149,16 @@ final class Form_Settings {
 	}
 
 	/**
+	 * Tells whether the privacy policy page still holds the added paragraph.
+	 *
+	 * @param \WP_Post $page Privacy policy page.
+	 * @return bool
+	 */
+	private static function has_policy_paragraph( $page ) {
+		return false !== strpos( $page->post_content, self::POLICY_CLASS );
+	}
+
+	/**
 	 * Adds the paragraph about quote requests at the end of the privacy
 	 * policy page, when the business clicks the button, once.
 	 */
@@ -151,8 +172,8 @@ final class Form_Settings {
 			wp_die( esc_html__( 'You are not allowed to change the privacy policy page.', 'primiko' ), 403 );
 		}
 
-		if ( ! get_post_meta( $page->ID, self::POLICY_META, true ) ) {
-			$blocks = '<!-- wp:heading --><h2 class="wp-block-heading">' . esc_html__( 'Quote requests', 'primiko' ) . '</h2><!-- /wp:heading -->';
+		if ( ! self::has_policy_paragraph( $page ) ) {
+			$blocks = '<!-- wp:heading {"className":"' . self::POLICY_CLASS . '"} --><h2 class="wp-block-heading ' . self::POLICY_CLASS . '">' . esc_html__( 'Quote requests', 'primiko' ) . '</h2><!-- /wp:heading -->';
 
 			foreach ( Privacy::policy_paragraphs() as $paragraph ) {
 				$blocks .= "\n\n<!-- wp:paragraph --><p>" . esc_html( $paragraph ) . '</p><!-- /wp:paragraph -->';
@@ -164,7 +185,6 @@ final class Form_Settings {
 					'post_content' => rtrim( $page->post_content ) . "\n\n" . $blocks,
 				)
 			);
-			update_post_meta( $page->ID, self::POLICY_META, '1' );
 		}
 
 		wp_safe_redirect( add_query_arg( 'primiko_policy', 'added', get_edit_post_link( $form_id, 'url' ) ) );

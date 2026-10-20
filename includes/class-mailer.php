@@ -213,25 +213,29 @@ final class Mailer {
 
 	/**
 	 * Short privacy notice shown under the consent box: what the answers are
-	 * used for, who gets them, how long they are kept and the rights of the
-	 * visitor. Built from the retention setting, so it stays true when the
-	 * setting changes.
+	 * used for, where they go, how long they are kept and the rights of the
+	 * visitor. {retention} is filled with the retention setting, so a
+	 * rewritten notice stays true when the setting changes.
 	 *
-	 * @return string Plain text, with {site_name} left to fill.
+	 * @return string Plain text, with {site_name} and {retention} left to fill.
 	 */
 	private static function privacy_notice() {
-		$months = (int) Settings::get( 'retention_months' );
-		$keep   = $months
-			? sprintf(
-				/* translators: %d: number of months. */
-				_n( 'They are deleted %d month after the request.', 'They are deleted %d months after the request.', $months, 'primiko' ),
-				$months
-			)
-			: __( 'They are kept until the request is deleted.', 'primiko' );
+		return __( 'Your answers and photos are only used to answer your request and prepare a quote. They are saved on this website, sent to {site_name} by email and shared with no one else. They are kept {retention}. You can ask for a copy or for their deletion at any time.', 'primiko' );
+	}
 
-		return __( 'Your answers and photos are only used to answer your request and prepare a quote. They are saved on this website and sent to {site_name} by email, and shared with no one else.', 'primiko' )
-			. ' ' . $keep . ' '
-			. __( 'You can ask for a copy or for their deletion at any time.', 'primiko' );
+	/**
+	 * How long requests are kept, from the retention setting, to complete a
+	 * sentence such as "They are kept {retention}."
+	 *
+	 * @return string
+	 */
+	public static function retention_phrase() {
+		$months = (int) Settings::get( 'retention_months' );
+
+		return $months
+			/* translators: %d: number of months, completes "They are kept ...". */
+			? sprintf( _n( 'for %d month', 'for %d months', $months, 'primiko' ), $months )
+			: __( 'until the request is deleted', 'primiko' );
 	}
 
 	/**
@@ -366,9 +370,10 @@ final class Mailer {
 			$html
 		);
 		$html = preg_replace( '#<br\s*/?>#i', "\n", $html );
-		// A label that already ends with "?" or ":" takes a plain space.
+		// A label that already ends with "?" or ":" takes a plain space. The
+		// separator follows the language: " : " with a no-break space in French.
 		$html = preg_replace( '#([?:])\s*</th>#i', '$1 ', $html );
-		$html = preg_replace( '#</th>#i', ': ', $html );
+		$html = str_ireplace( '</th>', _x( ': ', 'between a label and its value in the plain text part of an email', 'primiko' ), $html );
 		$html = preg_replace( '#</tr>#i', "\n", $html );
 		$html = preg_replace( '#</(p|h3|table)>#i', "\n\n", $html );
 		$text = html_entity_decode( wp_strip_all_tags( $html ), ENT_QUOTES, 'UTF-8' );

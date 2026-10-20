@@ -162,25 +162,25 @@ final class Privacy {
 		$keep   = $months
 			? sprintf(
 				/* translators: %d: number of months. */
-				_n( 'They are deleted automatically %d month after they are sent.', 'They are deleted automatically %d months after they are sent.', $months, 'primiko' ),
+				_n( 'Requests are deleted automatically %d month after they are sent.', 'Requests are deleted automatically %d months after they are sent.', $months, 'primiko' ),
 				$months
 			)
-			: __( 'They are kept until we delete them.', 'primiko' );
+			: __( 'Requests are kept until they are deleted by hand.', 'primiko' );
 
 		$paragraphs = array(
-			__( 'When you send a quote request through our form, we receive your name, email address, phone number, the address of the work, your answers about the project and the photos you add. We use them only to answer your request and prepare a quote.', 'primiko' ),
-			__( 'Your request is saved on this website and sent to us by email. If you give your email address, a copy is sent to you. Photos are kept in a folder that cannot be reached from the web, without their location data.', 'primiko' ) . ' ' . $keep,
+			__( 'A quote request sent through the form of this website holds the name, email address and phone number of the visitor, the address of the work, the answers about the project and the photos added. They are only used to answer the request and prepare a quote.', 'primiko' ),
+			__( 'Each request is saved on this website and sent by email to the business. When the visitor gives an email address, a copy is sent to it. Photos are kept in a folder that cannot be reached from the web, without their location data.', 'primiko' ) . ' ' . $keep,
 		);
 
 		if ( Captcha::provider_name() ) {
 			$paragraphs[] = sprintf(
 				/* translators: %s: name of the anti-spam service, such as Cloudflare Turnstile. */
-				__( 'To protect the form against spam, the page that shows it uses %s, which receives technical data about your browser and your connection.', 'primiko' ),
+				__( 'To protect the form against spam, the page that shows it uses %s, which receives technical data about the browser and the connection of the visitor.', 'primiko' ),
 				Captcha::provider_name()
 			);
 		}
 
-		$paragraphs[] = __( 'You can ask for a copy of your requests or for their deletion at any time.', 'primiko' );
+		$paragraphs[] = __( 'Visitors can ask at any time for a copy of their requests or for their deletion.', 'primiko' );
 
 		return $paragraphs;
 	}

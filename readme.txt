@@ -4,7 +4,7 @@ Tags: quote, request a quote, multi-step form, contractor, tradesman
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -140,10 +140,11 @@ Usually not. The form stops most spam on its own: a hidden field robots fill in,
 
 == Changelog ==
 
-= 1.0.6 =
-* A short privacy notice under the consent box, built from the retention setting and editable: the form informs visitors by itself.
-* One click adds the paragraph about quote requests to the privacy policy page, and the form screen says when the site has no such page.
-* Neutral wording for the privacy policy link under the consent box, and the suggested paragraph no longer promises a copy when the email is optional.
+= 1.0.7 =
+* A short privacy notice under the consent box, editable, with `{retention}` for the retention setting: the form informs visitors by itself.
+* One click adds a neutral paragraph about quote requests to the privacy policy page, after a preview. The button comes back if the paragraph is removed.
+* Neutral wording for the privacy policy link under the consent box.
+* The plain text part of the emails puts the separator of the language between labels and values.
 * French translation follows the typography of the French WordPress team.
 
 = 1.0.3 =

@@ -758,7 +758,7 @@ function Messages( { template, custom, update } ) {
 		>
 			<p className="primiko-editor__condition">
 				{ __(
-					'Write {name}, {email}, {site_name} or {reference} where the name of the visitor, their email, the name of your site or the number of the request should appear. Leave a field empty to keep the template text.',
+					'Write {name}, {email}, {site_name} or {reference} where the name of the visitor, their email, the name of your site or the number of the request should appear, and {retention} for how long requests are kept (privacy notice). Leave a field empty to keep the template text.',
 					'primiko'
 				) }
 			</p>

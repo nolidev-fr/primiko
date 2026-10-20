@@ -172,6 +172,11 @@
 	color: var(--primiko-muted);
 }
 
+/* The privacy notice reads as its own paragraph, apart from the box above. */
+.primiko .primiko__privacy {
+	margin-top: 0.9rem;
+}
+
 /* Fallback input style, for themes that do not style form fields. A theme
    rule such as input[type="text"] replaces it. */
 :where(.primiko__input) {

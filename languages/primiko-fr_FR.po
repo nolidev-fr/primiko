@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Primiko - Quote Requests by Trade 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/primiko\n"
-"POT-Creation-Date: 2026-10-20T00:19:45+00:00\n"
+"POT-Creation-Date: 2026-10-20T01:05:36+00:00\n"
 "PO-Revision-Date: 2026-10-19 12:00+0200\n"
 "Last-Translator: Nolidev <contact@nolidev.fr>\n"
 "Language-Team: French\n"
@@ -66,95 +66,100 @@ msgid_plural "%d photos"
 msgstr[0] "%d photo"
 msgstr[1] "%d photos"
 
-#: includes/class-form-settings.php:76
-msgid "The paragraph about quote requests was added at the end of your privacy policy page."
-msgstr "Le paragraphe sur les demandes de devis a été ajouté à la fin de votre page de politique de confidentialité."
-
 #: includes/class-form-settings.php:78
+msgid "The paragraph about quote requests was added at the end of your privacy policy page. Move it in the page if another place suits it better."
+msgstr "Le paragraphe sur les demandes de devis a été ajouté à la fin de votre page de politique de confidentialité. Déplacez-le dans la page si un autre endroit lui convient mieux."
+
+#: includes/class-form-settings.php:80
 msgid "The page is not published yet: publish it so that visitors can read it."
 msgstr "La page n’est pas encore publiée : publiez-la pour que les visiteurs puissent la lire."
 
-#: includes/class-form-settings.php:80
+#: includes/class-form-settings.php:82
 msgid "Open the page"
 msgstr "Ouvrir la page"
 
-#: includes/class-form-settings.php:91
+#: includes/class-form-settings.php:93
 msgid "The form tells visitors how their request is handled, under the consent box. Your site has no privacy policy page yet."
 msgstr "Le formulaire indique aux visiteurs, sous la case de consentement, comment leur demande est traitée. Votre site n’a pas encore de page de politique de confidentialité."
 
-#: includes/class-form-settings.php:92
+#: includes/class-form-settings.php:94
 msgid "Choose or create one in Settings, Privacy."
 msgstr "Choisissez-en une ou créez-la dans Réglages, Confidentialité."
 
 #. translators: %s: title of the privacy policy page.
-#: includes/class-form-settings.php:119
+#: includes/class-form-settings.php:121
 #, php-format
-msgid "Your privacy policy page (%s) does not say anything about quote requests yet."
-msgstr "Votre page de politique de confidentialité (%s) ne parle pas encore des demandes de devis."
+msgid "Your privacy policy page (%s) does not have the paragraph about quote requests yet. Check first that it does not already say the same thing about your contact form."
+msgstr "Votre page de politique de confidentialité (%s) n’a pas encore le paragraphe sur les demandes de devis. Vérifiez d’abord qu’elle ne dit pas déjà la même chose de votre formulaire de contact."
 
-#: includes/class-form-settings.php:124
-msgid "Add the paragraph about quote requests"
-msgstr "Ajouter le paragraphe sur les demandes de devis"
+#: includes/class-form-settings.php:127
+msgid "Read the paragraph"
+msgstr "Lire le paragraphe"
 
-#: includes/class-form-settings.php:151
-msgid "You are not allowed to change the privacy policy page."
-msgstr "Vous n’avez pas le droit de modifier la page de politique de confidentialité."
-
-#: includes/class-form-settings.php:155 includes/class-post-types.php:55
-#: includes/class-privacy.php:41 includes/class-privacy.php:56
-#: includes/class-privacy.php:102 includes/class-privacy.php:151
+#: includes/class-form-settings.php:129 includes/class-form-settings.php:176
+#: includes/class-post-types.php:55 includes/class-privacy.php:41
+#: includes/class-privacy.php:56 includes/class-privacy.php:102
+#: includes/class-privacy.php:151
 msgid "Quote requests"
 msgstr "Demandes de devis"
 
-#: includes/class-form-settings.php:178
+#: includes/class-form-settings.php:135
+msgid "Add the paragraph about quote requests"
+msgstr "Ajouter le paragraphe sur les demandes de devis"
+
+#: includes/class-form-settings.php:172
+msgid "You are not allowed to change the privacy policy page."
+msgstr "Vous n’avez pas le droit de modifier la page de politique de confidentialité."
+
+#: includes/class-form-settings.php:198
 msgid "Form settings"
 msgstr "Réglages du formulaire"
 
-#: includes/class-form-settings.php:179
+#: includes/class-form-settings.php:199
 msgid "Questions and messages"
 msgstr "Questions et messages"
 
-#: includes/class-form-settings.php:235
+#: includes/class-form-settings.php:255
 msgid "Loading the questions..."
 msgstr "Chargement des questions…"
 
-#: includes/class-form-settings.php:256 includes/class-request-list.php:73
+#: includes/class-form-settings.php:276 includes/class-request-list.php:73
 msgid "Trade"
 msgstr "Métier"
 
-#: includes/class-form-settings.php:260
+#: includes/class-form-settings.php:280
 msgid "Choose a trade"
 msgstr "Choisir un métier"
 
-#: includes/class-form-settings.php:267
+#: includes/class-form-settings.php:287
 msgid "The questions of the form come from this trade template. You can adapt them below."
 msgstr "Les questions du formulaire viennent de ce modèle de métier. Vous pouvez les adapter plus bas."
 
-#: includes/class-form-settings.php:271
+#: includes/class-form-settings.php:291
 msgid "Send requests to"
 msgstr "Envoyer les demandes à"
 
-#: includes/class-form-settings.php:274
+#: includes/class-form-settings.php:294
 msgid "One email address per line. Left empty, requests go to the administration email address of the site."
 msgstr "Une adresse e-mail par ligne. Laissé vide, les demandes partent à l’adresse e-mail d’administration du site."
 
-#: includes/class-form-settings.php:278
+#: includes/class-form-settings.php:298
 msgid "Visitor email"
 msgstr "E-mail du visiteur"
 
-#: includes/class-form-settings.php:282
+#: includes/class-form-settings.php:302
 msgid "Optional"
 msgstr "Facultatif"
 
-#: includes/class-form-settings.php:284
+#: includes/class-form-settings.php:304
 msgid "For customers who prefer the phone. Without an email address, the visitor gets no copy of the request, and the phone number stays required."
 msgstr "Pour les clients qui préfèrent le téléphone. Sans adresse e-mail, le visiteur ne reçoit pas de copie de sa demande, et le téléphone reste obligatoire."
 
-#: includes/class-form-settings.php:289
+#: includes/class-form-settings.php:309
 msgid "Shortcode"
 msgstr "Code court"
 
-#: includes/class-form-settings.php:292
+#: includes/class-form-settings.php:312
 msgid "In the block editor, add the Quote request form block instead. The shortcode is for page builders and classic themes."
 msgstr "Dans l’éditeur de blocs, ajoutez plutôt le bloc Formulaire de demande de devis. Le code court sert aux constructeurs de pages et aux thèmes classiques."
 
@@ -209,25 +214,26 @@ msgstr ""
 "\n"
 "Voici une copie de ce que vous nous avez envoyé."
 
-#. translators: %d: number of months.
-#: includes/class-mailer.php:227
+#: includes/class-mailer.php:223
+msgid "Your answers and photos are only used to answer your request and prepare a quote. They are saved on this website, sent to {site_name} by email and shared with no one else. They are kept {retention}. You can ask for a copy or for their deletion at any time."
+msgstr "Vos réponses et vos photos servent uniquement à répondre à votre demande et à préparer un devis. Elles sont enregistrées sur ce site, envoyées par e-mail à {site_name} et ne sont transmises à personne d’autre. Elles sont conservées {retention}. Vous pouvez en demander une copie ou la suppression à tout moment."
+
+#. translators: %d: number of months, completes "They are kept ...".
+#: includes/class-mailer.php:237
 #, php-format
-msgid "They are deleted %d month after the request."
-msgid_plural "They are deleted %d months after the request."
-msgstr[0] "Elles sont supprimées %d mois après la demande."
-msgstr[1] "Elles sont supprimées %d mois après la demande."
+msgid "for %d month"
+msgid_plural "for %d months"
+msgstr[0] "pendant %d mois"
+msgstr[1] "pendant %d mois"
 
-#: includes/class-mailer.php:230
-msgid "They are kept until the request is deleted."
-msgstr "Elles sont conservées jusqu’à la suppression de la demande."
+#: includes/class-mailer.php:238
+msgid "until the request is deleted"
+msgstr "jusqu’à la suppression de la demande"
 
-#: includes/class-mailer.php:232
-msgid "Your answers and photos are only used to answer your request and prepare a quote. They are saved on this website and sent to {site_name} by email, and shared with no one else."
-msgstr "Vos réponses et vos photos servent uniquement à répondre à votre demande et à préparer un devis. Elles sont enregistrées sur ce site, envoyées par e-mail à {site_name} et ne sont transmises à personne d’autre."
-
-#: includes/class-mailer.php:234
-msgid "You can ask for a copy or for their deletion at any time."
-msgstr "Vous pouvez en demander une copie ou la suppression à tout moment."
+#: includes/class-mailer.php:376
+msgctxt "between a label and its value in the plain text part of an email"
+msgid ": "
+msgstr " : "
 
 #: includes/class-post-types.php:56 includes/class-post-types.php:59
 #: includes/class-submission.php:490
@@ -306,32 +312,32 @@ msgstr "Consentement donné le"
 #. translators: %d: number of months.
 #: includes/class-privacy.php:165
 #, php-format
-msgid "They are deleted automatically %d month after they are sent."
-msgid_plural "They are deleted automatically %d months after they are sent."
-msgstr[0] "Elles sont supprimées automatiquement %d mois après leur envoi."
-msgstr[1] "Elles sont supprimées automatiquement %d mois après leur envoi."
+msgid "Requests are deleted automatically %d month after they are sent."
+msgid_plural "Requests are deleted automatically %d months after they are sent."
+msgstr[0] "Les demandes sont supprimées automatiquement %d mois après leur envoi."
+msgstr[1] "Les demandes sont supprimées automatiquement %d mois après leur envoi."
 
 #: includes/class-privacy.php:168
-msgid "They are kept until we delete them."
-msgstr "Elles sont conservées jusqu’à ce que nous les supprimions."
+msgid "Requests are kept until they are deleted by hand."
+msgstr "Les demandes sont conservées jusqu’à leur suppression manuelle."
 
 #: includes/class-privacy.php:171
-msgid "When you send a quote request through our form, we receive your name, email address, phone number, the address of the work, your answers about the project and the photos you add. We use them only to answer your request and prepare a quote."
-msgstr "Quand vous envoyez une demande de devis par notre formulaire, nous recevons votre nom, votre adresse e-mail, votre numéro de téléphone, l’adresse du chantier, vos réponses sur le projet et les photos que vous ajoutez. Nous les utilisons uniquement pour répondre à votre demande et préparer un devis."
+msgid "A quote request sent through the form of this website holds the name, email address and phone number of the visitor, the address of the work, the answers about the project and the photos added. They are only used to answer the request and prepare a quote."
+msgstr "Une demande de devis envoyée par le formulaire de ce site contient le nom, l’adresse e-mail et le numéro de téléphone du visiteur, l’adresse du chantier, les réponses sur le projet et les photos ajoutées. Ces données servent uniquement à répondre à la demande et à préparer un devis."
 
 #: includes/class-privacy.php:172
-msgid "Your request is saved on this website and sent to us by email. If you give your email address, a copy is sent to you. Photos are kept in a folder that cannot be reached from the web, without their location data."
-msgstr "Votre demande est enregistrée sur ce site et nous est envoyée par e-mail. Si vous donnez votre adresse e-mail, une copie vous est adressée. Les photos sont conservées dans un dossier inaccessible depuis le web, sans leurs données de localisation."
+msgid "Each request is saved on this website and sent by email to the business. When the visitor gives an email address, a copy is sent to it. Photos are kept in a folder that cannot be reached from the web, without their location data."
+msgstr "Chaque demande est enregistrée sur ce site et envoyée par e-mail à l’entreprise. Quand le visiteur donne une adresse e-mail, une copie lui est envoyée. Les photos sont conservées dans un dossier inaccessible depuis le web, sans leurs données de localisation."
 
 #. translators: %s: name of the anti-spam service, such as Cloudflare Turnstile.
 #: includes/class-privacy.php:178
 #, php-format
-msgid "To protect the form against spam, the page that shows it uses %s, which receives technical data about your browser and your connection."
-msgstr "Pour protéger le formulaire contre les spams, la page qui l’affiche utilise %s, qui reçoit des données techniques sur votre navigateur et votre connexion."
+msgid "To protect the form against spam, the page that shows it uses %s, which receives technical data about the browser and the connection of the visitor."
+msgstr "Pour protéger le formulaire contre les indésirables, la page qui l’affiche utilise %s, qui reçoit des données techniques sur le navigateur et la connexion du visiteur."
 
 #: includes/class-privacy.php:183
-msgid "You can ask for a copy of your requests or for their deletion at any time."
-msgstr "Vous pouvez demander à tout moment une copie de vos demandes ou leur suppression."
+msgid "Visitors can ask at any time for a copy of their requests or for their deletion."
+msgstr "Les visiteurs peuvent demander à tout moment une copie de leurs demandes ou leur suppression."
 
 #: includes/class-renderer.php:145
 msgid "Leave this field empty"
@@ -723,40 +729,40 @@ msgstr "Modèles généraux"
 msgid "Other"
 msgstr "Autres"
 
-#: includes/class-templates.php:234
+#: includes/class-templates.php:240
 msgid "Your contact details"
 msgstr "Vos coordonnées"
 
-#: includes/class-templates.php:239
+#: includes/class-templates.php:245
 msgid "Your name"
 msgstr "Votre nom"
 
-#: includes/class-templates.php:247
+#: includes/class-templates.php:253
 msgid "Email"
 msgstr "E-mail"
 
-#: includes/class-templates.php:249
+#: includes/class-templates.php:255
 msgid "Optional. A copy of your request will be sent to this address."
 msgstr "Facultatif. Une copie de votre demande sera envoyée à cette adresse."
 
-#: includes/class-templates.php:250
+#: includes/class-templates.php:256
 msgid "A copy of your request will be sent to this address."
 msgstr "Une copie de votre demande sera envoyée à cette adresse."
 
-#: includes/class-templates.php:257
+#: includes/class-templates.php:263
 msgid "Phone"
 msgstr "Téléphone"
 
-#: includes/class-templates.php:258
+#: includes/class-templates.php:264
 msgid "To call you back about your project."
 msgstr "Pour vous rappeler au sujet de votre projet."
 
-#: includes/class-templates.php:266
+#: includes/class-templates.php:272
 msgid "Review and send"
 msgstr "Vérifier et envoyer"
 
 #. translators: %s: site name.
-#: includes/class-templates.php:274
+#: includes/class-templates.php:280
 #, php-format
 msgid "I agree that %s uses the information in this form to answer my request and contact me about it."
 msgstr "J’accepte que %s utilise les informations de ce formulaire pour répondre à ma demande et me recontacter à son sujet."
@@ -4489,8 +4495,8 @@ msgid "Messages to the visitor"
 msgstr "Messages au visiteur"
 
 #: build/admin/index.js:18
-msgid "Write {name}, {email}, {site_name} or {reference} where the name of the visitor, their email, the name of your site or the number of the request should appear. Leave a field empty to keep the template text."
-msgstr "Écrivez {name}, {email}, {site_name} ou {reference} là où doivent apparaître le nom du visiteur, son e-mail, le nom de votre site ou le numéro de la demande. Laissez un champ vide pour garder le texte du modèle."
+msgid "Write {name}, {email}, {site_name} or {reference} where the name of the visitor, their email, the name of your site or the number of the request should appear, and {retention} for how long requests are kept (privacy notice). Leave a field empty to keep the template text."
+msgstr "Écrivez {name}, {email}, {site_name} ou {reference} là où doivent apparaître le nom du visiteur, son e-mail, le nom de votre site ou le numéro de la demande, et {retention} pour la durée de conservation des demandes (mention de confidentialité). Laissez un champ vide pour garder le texte du modèle."
 
 #: build/admin/index.js:18
 msgid "Change trade"
