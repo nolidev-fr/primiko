@@ -176,7 +176,14 @@ final class Templates {
 		}
 
 		$schema          = Customizations::apply( $template, Customizations::get( $form_id, $template['id'] ) );
-		$schema['steps'] = array_merge( $schema['steps'], $this->built_in_steps( (bool) get_post_meta( $form_id, '_primiko_email_optional', true ) ) );
+		$notice          = ! empty( $schema['messages']['privacy_notice'] ) ? $schema['messages']['privacy_notice'] : Mailer::default_message( 'privacy_notice' );
+		$schema['steps'] = array_merge(
+			$schema['steps'],
+			$this->built_in_steps(
+				(bool) get_post_meta( $form_id, '_primiko_email_optional', true ),
+				strtr( $notice, array( '{site_name}' => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ) ) )
+			)
+		);
 
 		/**
 		 * Filters the schema of a form before it is shown or checked.
@@ -214,12 +221,13 @@ final class Templates {
 	 * Contact and review steps, added at the end of every form so that no
 	 * template can leave out the contact details or the consent.
 	 *
-	 * @param bool $email_optional Whether the visitor may leave the email
-	 *                             empty: the phone number then stays the
-	 *                             only way back, and no copy is sent.
+	 * @param bool   $email_optional Whether the visitor may leave the email
+	 *                               empty: the phone number then stays the
+	 *                               only way back, and no copy is sent.
+	 * @param string $notice         Privacy notice shown under the consent box.
 	 * @return array[]
 	 */
-	private function built_in_steps( $email_optional = false ) {
+	private function built_in_steps( $email_optional = false, $notice = '' ) {
 		return array(
 			array(
 				'id'     => 'contact',
@@ -267,6 +275,7 @@ final class Templates {
 							wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES )
 						),
 						'required' => true,
+						'notice'   => $notice,
 					),
 				),
 			),

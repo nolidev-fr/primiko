@@ -290,7 +290,11 @@ export function describe( condition, template, custom ) {
 	const field = findField( template, condition.field, custom );
 	const question = field ? fieldLabel( field, custom ) : condition.field;
 	const answer = ( value ) =>
-		`"${ optionLabel( field, String( value ), custom ) }"`;
+		sprintf(
+			/* translators: %s: an answer, quoted in a condition such as: "Service" is "Roof repair". */
+			__( '"%s"', 'primiko' ),
+			optionLabel( field, String( value ), custom )
+		);
 
 	if ( undefined !== condition.equals ) {
 		return sprintf(

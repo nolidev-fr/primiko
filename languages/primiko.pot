@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Primiko - Quote Requests by Trade 1.0.3\n"
+"Project-Id-Version: Primiko - Quote Requests by Trade 1.0.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/primiko\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-19T23:03:00+00:00\n"
+"POT-Creation-Date: 2026-10-20T00:19:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: primiko\n"
@@ -47,7 +47,7 @@ msgstr ""
 #: includes/class-renderer.php:257
 #: includes/class-renderer.php:487
 #: includes/template-strings.php:1337
-#: build/admin/index.js:10
+#: build/admin/index.js:11
 msgid "Yes"
 msgstr ""
 
@@ -55,7 +55,7 @@ msgstr ""
 #: includes/class-renderer.php:258
 #: includes/class-renderer.php:491
 #: includes/template-strings.php:1340
-#: build/admin/index.js:10
+#: build/admin/index.js:11
 msgid "No"
 msgstr ""
 
@@ -68,56 +68,99 @@ msgid_plural "%d photos"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-form-settings.php:49
+#: includes/class-form-settings.php:76
+msgid "The paragraph about quote requests was added at the end of your privacy policy page."
+msgstr ""
+
+#: includes/class-form-settings.php:78
+msgid "The page is not published yet: publish it so that visitors can read it."
+msgstr ""
+
+#: includes/class-form-settings.php:80
+msgid "Open the page"
+msgstr ""
+
+#: includes/class-form-settings.php:91
+msgid "The form tells visitors how their request is handled, under the consent box. Your site has no privacy policy page yet."
+msgstr ""
+
+#: includes/class-form-settings.php:92
+msgid "Choose or create one in Settings, Privacy."
+msgstr ""
+
+#. translators: %s: title of the privacy policy page.
+#: includes/class-form-settings.php:119
+#, php-format
+msgid "Your privacy policy page (%s) does not say anything about quote requests yet."
+msgstr ""
+
+#: includes/class-form-settings.php:124
+msgid "Add the paragraph about quote requests"
+msgstr ""
+
+#: includes/class-form-settings.php:151
+msgid "You are not allowed to change the privacy policy page."
+msgstr ""
+
+#: includes/class-form-settings.php:155
+#: includes/class-post-types.php:55
+#: includes/class-privacy.php:41
+#: includes/class-privacy.php:56
+#: includes/class-privacy.php:102
+#: includes/class-privacy.php:151
+msgid "Quote requests"
+msgstr ""
+
+#: includes/class-form-settings.php:178
 msgid "Form settings"
 msgstr ""
 
-#: includes/class-form-settings.php:50
+#: includes/class-form-settings.php:179
 msgid "Questions and messages"
 msgstr ""
 
-#: includes/class-form-settings.php:106
+#: includes/class-form-settings.php:235
 msgid "Loading the questions..."
 msgstr ""
 
-#: includes/class-form-settings.php:125
+#: includes/class-form-settings.php:256
 #: includes/class-request-list.php:73
 msgid "Trade"
 msgstr ""
 
-#: includes/class-form-settings.php:129
+#: includes/class-form-settings.php:260
 msgid "Choose a trade"
 msgstr ""
 
-#: includes/class-form-settings.php:136
+#: includes/class-form-settings.php:267
 msgid "The questions of the form come from this trade template. You can adapt them below."
 msgstr ""
 
-#: includes/class-form-settings.php:140
+#: includes/class-form-settings.php:271
 msgid "Send requests to"
 msgstr ""
 
-#: includes/class-form-settings.php:143
+#: includes/class-form-settings.php:274
 msgid "One email address per line. Left empty, requests go to the administration email address of the site."
 msgstr ""
 
-#: includes/class-form-settings.php:147
+#: includes/class-form-settings.php:278
 msgid "Visitor email"
 msgstr ""
 
-#: includes/class-form-settings.php:151
+#: includes/class-form-settings.php:282
 msgid "Optional"
 msgstr ""
 
-#: includes/class-form-settings.php:153
+#: includes/class-form-settings.php:284
 msgid "For customers who prefer the phone. Without an email address, the visitor gets no copy of the request, and the phone number stays required."
 msgstr ""
 
-#: includes/class-form-settings.php:158
+#: includes/class-form-settings.php:289
 msgid "Shortcode"
 msgstr ""
 
-#: includes/class-form-settings.php:161
+#: includes/class-form-settings.php:292
 msgid "In the block editor, add the Quote request form block instead. The shortcode is for page builders and classic themes."
 msgstr ""
 
@@ -168,12 +211,24 @@ msgid ""
 "Here is a copy of what you sent us."
 msgstr ""
 
-#: includes/class-post-types.php:55
-#: includes/class-privacy.php:41
-#: includes/class-privacy.php:56
-#: includes/class-privacy.php:102
-#: includes/class-privacy.php:168
-msgid "Quote requests"
+#. translators: %d: number of months.
+#: includes/class-mailer.php:227
+#, php-format
+msgid "They are deleted %d month after the request."
+msgid_plural "They are deleted %d months after the request."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-mailer.php:230
+msgid "They are kept until the request is deleted."
+msgstr ""
+
+#: includes/class-mailer.php:232
+msgid "Your answers and photos are only used to answer your request and prepare a quote. They are saved on this website and sent to {site_name} by email, and shared with no one else."
+msgstr ""
+
+#: includes/class-mailer.php:234
+msgid "You can ask for a copy or for their deletion at any time."
 msgstr ""
 
 #: includes/class-post-types.php:56
@@ -254,32 +309,32 @@ msgid "Consent given on"
 msgstr ""
 
 #. translators: %d: number of months.
-#: includes/class-privacy.php:149
+#: includes/class-privacy.php:165
 #, php-format
 msgid "They are deleted automatically %d month after they are sent."
 msgid_plural "They are deleted automatically %d months after they are sent."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/class-privacy.php:152
+#: includes/class-privacy.php:168
 msgid "They are kept until we delete them."
 msgstr ""
 
-#: includes/class-privacy.php:154
+#: includes/class-privacy.php:171
 msgid "When you send a quote request through our form, we receive your name, email address, phone number, the address of the work, your answers about the project and the photos you add. We use them only to answer your request and prepare a quote."
 msgstr ""
 
-#: includes/class-privacy.php:155
-msgid "Your request is saved on this website and sent to us by email. A copy is sent to you. Photos are kept in a folder that cannot be reached from the web, without their location data."
+#: includes/class-privacy.php:172
+msgid "Your request is saved on this website and sent to us by email. If you give your email address, a copy is sent to you. Photos are kept in a folder that cannot be reached from the web, without their location data."
 msgstr ""
 
 #. translators: %s: name of the anti-spam service, such as Cloudflare Turnstile.
-#: includes/class-privacy.php:160
+#: includes/class-privacy.php:178
 #, php-format
 msgid "To protect the form against spam, the page that shows it uses %s, which receives technical data about your browser and your connection."
 msgstr ""
 
-#: includes/class-privacy.php:166
+#: includes/class-privacy.php:183
 msgid "You can ask for a copy of your requests or for their deletion at any time."
 msgstr ""
 
@@ -445,8 +500,8 @@ msgstr ""
 msgid "Add photos"
 msgstr ""
 
-#: includes/class-renderer.php:589
-msgid "How we handle your personal data (opens in a new tab)"
+#: includes/class-renderer.php:592
+msgid "Privacy policy (opens in a new tab)"
 msgstr ""
 
 #: includes/class-request-list.php:62
@@ -692,40 +747,40 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: includes/class-templates.php:226
+#: includes/class-templates.php:234
 msgid "Your contact details"
 msgstr ""
 
-#: includes/class-templates.php:231
+#: includes/class-templates.php:239
 msgid "Your name"
 msgstr ""
 
-#: includes/class-templates.php:239
+#: includes/class-templates.php:247
 msgid "Email"
 msgstr ""
 
-#: includes/class-templates.php:241
+#: includes/class-templates.php:249
 msgid "Optional. A copy of your request will be sent to this address."
 msgstr ""
 
-#: includes/class-templates.php:242
+#: includes/class-templates.php:250
 msgid "A copy of your request will be sent to this address."
 msgstr ""
 
-#: includes/class-templates.php:249
+#: includes/class-templates.php:257
 msgid "Phone"
 msgstr ""
 
-#: includes/class-templates.php:250
+#: includes/class-templates.php:258
 msgid "To call you back about your project."
 msgstr ""
 
-#: includes/class-templates.php:258
+#: includes/class-templates.php:266
 msgid "Review and send"
 msgstr ""
 
 #. translators: %s: site name.
-#: includes/class-templates.php:266
+#: includes/class-templates.php:274
 #, php-format
 msgid "I agree that %s uses the information in this form to answer my request and contact me about it."
 msgstr ""
@@ -4184,277 +4239,287 @@ msgstr ""
 msgid "and"
 msgstr ""
 
-#. translators: 1: question, 2: one or more answers.
+#. translators: %s: an answer, quoted in a condition such as: "Service" is "Roof repair".
 #: build/admin/index.js:6
+#, js-format
+msgid "\"%s\""
+msgstr ""
+
+#. translators: 1: question, 2: one or more answers.
 #: build/admin/index.js:7
+#: build/admin/index.js:8
 #, js-format
 msgid "\"%1$s\" is %2$s"
 msgstr ""
 
 #. translators: 1: question, 2: one or more answers.
-#: build/admin/index.js:8
+#: build/admin/index.js:9
 #, js-format
 msgid "\"%1$s\" is not %2$s"
 msgstr ""
 
 #. translators: %s: question.
-#: build/admin/index.js:9
+#: build/admin/index.js:10
 #, js-format
 msgid "\"%s\" is answered"
 msgstr ""
 
 #. translators: %s: question.
-#: build/admin/index.js:10
+#: build/admin/index.js:11
 #, js-format
 msgid "\"%s\" is left empty"
 msgstr ""
 
-#: build/admin/index.js:10
+#: build/admin/index.js:11
 msgid "Choose a trade above to see its questions."
 msgstr ""
 
-#: build/admin/index.js:10
+#: build/admin/index.js:11
 msgid "Hide what you do not offer and rename what you say differently. Questions that depend on a hidden answer disappear with it. Changes apply when you update the form."
 msgstr ""
 
 #. translators: %d: number of questions visitors will not see.
-#: build/admin/index.js:11
+#: build/admin/index.js:12
 #, js-format
 msgid "%d question will not be shown to visitors."
 msgid_plural "%d questions will not be shown to visitors."
 msgstr[0] ""
 msgstr[1] ""
 
-#: build/admin/index.js:11
+#: build/admin/index.js:12
 msgid "Your changes keep every question."
 msgstr ""
 
-#: build/admin/index.js:11
+#: build/admin/index.js:12
 msgid "Undo every change?"
 msgstr ""
 
-#: build/admin/index.js:11
+#: build/admin/index.js:12
 msgid "Restore the template"
 msgstr ""
 
-#: build/admin/index.js:11
-#: build/admin/index.js:14
+#: build/admin/index.js:12
+#: build/admin/index.js:15
 msgid "Cancel"
 msgstr ""
 
-#: build/admin/index.js:11
+#: build/admin/index.js:12
 msgid "hidden"
 msgstr ""
 
 #. translators: %d: number of questions not shown.
-#: build/admin/index.js:12
+#: build/admin/index.js:13
 #, js-format
 msgid "%d question not shown"
 msgid_plural "%d questions not shown"
 msgstr[0] ""
 msgstr[1] ""
 
-#: build/admin/index.js:12
+#: build/admin/index.js:13
 msgid "Show this step"
 msgstr ""
 
-#: build/admin/index.js:12
+#: build/admin/index.js:13
 msgid "Step title"
 msgstr ""
 
-#: build/admin/index.js:12
+#: build/admin/index.js:13
 msgid "Step introduction"
 msgstr ""
 
-#: build/admin/index.js:12
+#: build/admin/index.js:13
 msgid "Shown under the step title. Left empty, the text of the template is used."
 msgstr ""
 
-#: build/admin/index.js:12
+#: build/admin/index.js:13
 msgid "Add a question to this step"
 msgstr ""
 
 #. translators: %s: question.
-#: build/admin/index.js:13
+#: build/admin/index.js:14
 #, js-format
 msgid "Move up: %s"
 msgstr ""
 
 #. translators: %s: question.
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 #, js-format
 msgid "Move down: %s"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Short text"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Long text"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Number"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Choice of answers"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Yes or no"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Date"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "New question"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Your question"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Write the question, otherwise it is not saved."
 msgstr ""
 
-#: build/admin/index.js:14
-#: build/admin/index.js:17
+#: build/admin/index.js:15
+#: build/admin/index.js:18
 msgid "Question"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Type of answer"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Answers offered"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "One answer per line."
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Several answers allowed"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Unit, if any"
 msgstr ""
 
-#: build/admin/index.js:14
-#: build/admin/index.js:17
+#: build/admin/index.js:15
+#: build/admin/index.js:18
 msgid "Help text"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Answer required"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Remove the question"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Remove"
 msgstr ""
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Required"
 msgstr ""
 
 #. translators: %s: condition in plain words.
-#: build/admin/index.js:15
+#: build/admin/index.js:16
 #, js-format
 msgid "Shown when %s."
 msgstr ""
 
-#: build/admin/index.js:15
+#: build/admin/index.js:16
 msgid "Visitors will never see this question: it depends on an answer or a question you hid."
 msgstr ""
 
-#: build/admin/index.js:15
+#: build/admin/index.js:16
 msgid "Every answer is hidden, so the question is not shown."
 msgstr ""
 
 #. translators: %s: question.
-#: build/admin/index.js:16
+#: build/admin/index.js:17
 #, js-format
 msgid "Answers offered for \"%s\""
 msgstr ""
 
 #. translators: %s: answer.
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 #, js-format
 msgid "Text of the answer \"%s\""
 msgstr ""
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "No help text"
 msgstr ""
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Done"
 msgstr ""
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Edit the texts"
 msgstr ""
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Message shown once the request is sent"
 msgstr ""
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Message shown when no copy is sent (no email address, or too many copies to that address today)"
 msgstr ""
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
+msgid "Privacy notice under the consent box (what the answers are used for, how long they are kept)"
+msgstr ""
+
+#: build/admin/index.js:18
 msgid "Subject of the copy sent to the visitor"
 msgstr ""
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Beginning of that email (the answers follow)"
 msgstr ""
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Messages to the visitor"
 msgstr ""
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Write {name}, {email}, {site_name} or {reference} where the name of the visitor, their email, the name of your site or the number of the request should appear. Leave a field empty to keep the template text."
 msgstr ""
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Change trade"
 msgstr ""
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Search a trade"
 msgstr ""
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Roofer, plumber, notary, cleaning…"
 msgstr ""
 
 #. translators: %d: number of templates found.
-#: build/admin/index.js:18
+#: build/admin/index.js:19
 #, js-format
 msgid "%d template"
 msgid_plural "%d templates"
 msgstr[0] ""
 msgstr[1] ""
 
-#: build/admin/index.js:18
+#: build/admin/index.js:19
 msgid "No template matches. The general templates fit any trade, and you can adapt their questions:"
 msgstr ""
 
-#: build/admin/index.js:18
+#: build/admin/index.js:19
 msgid "Keep the current trade"
 msgstr ""
 

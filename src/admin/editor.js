@@ -732,6 +732,14 @@ function Messages( { template, custom, update } ) {
 			TextareaControl,
 		],
 		[
+			'privacy_notice',
+			__(
+				'Privacy notice under the consent box (what the answers are used for, how long they are kept)',
+				'primiko'
+			),
+			TextareaControl,
+		],
+		[
 			'acknowledgement_subject',
 			__( 'Subject of the copy sent to the visitor', 'primiko' ),
 			TextControl,
@@ -762,7 +770,10 @@ function Messages( { template, custom, update } ) {
 							? { __next40pxDefaultSize: true }
 							: {
 									rows:
-										'acknowledgement_body' === key ? 5 : 2,
+										{
+											acknowledgement_body: 5,
+											privacy_notice: 4,
+										}[ key ] || 2,
 							  } ) }
 						label={ label }
 						value={ getIn( custom, [ 'messages', key ] ) || '' }

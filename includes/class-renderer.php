@@ -584,9 +584,12 @@ final class Renderer {
 			<input type="checkbox" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $field['id'] ); ?>" value="1" aria-required="true">
 			<label for="<?php echo esc_attr( $id ); ?>"><?php $this->label_text( $field ); ?></label>
 		</div>
+		<?php if ( ! empty( $field['notice'] ) ) : ?>
+			<p class="primiko__help primiko__privacy"><?php echo nl2br( esc_html( $field['notice'] ) ); ?></p>
+		<?php endif; ?>
 		<?php if ( $policy ) : ?>
 			<p class="primiko__help">
-				<a href="<?php echo esc_url( $policy ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'How we handle your personal data (opens in a new tab)', 'primiko' ); ?></a>
+				<a href="<?php echo esc_url( $policy ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Privacy policy (opens in a new tab)', 'primiko' ); ?></a>
 			</p>
 		<?php endif; ?>
 		<?php

@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "primiko/form",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "title": "Quote request form",
   "category": "widgets",
   "icon": "clipboard",

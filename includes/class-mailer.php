@@ -205,9 +205,33 @@ final class Mailer {
 			'success_no_copy'         => __( 'Thank you {name}, your request has been sent.', 'primiko' ),
 			'acknowledgement_subject' => __( 'Your quote request to {site_name}', 'primiko' ),
 			'acknowledgement_body'    => __( "Hello {name},\n\nThank you for your request. We have received it and will get back to you soon.\n\nHere is a copy of what you sent us.", 'primiko' ),
+			'privacy_notice'          => self::privacy_notice(),
 		);
 
 		return isset( $messages[ $key ] ) ? $messages[ $key ] : '';
+	}
+
+	/**
+	 * Short privacy notice shown under the consent box: what the answers are
+	 * used for, who gets them, how long they are kept and the rights of the
+	 * visitor. Built from the retention setting, so it stays true when the
+	 * setting changes.
+	 *
+	 * @return string Plain text, with {site_name} left to fill.
+	 */
+	private static function privacy_notice() {
+		$months = (int) Settings::get( 'retention_months' );
+		$keep   = $months
+			? sprintf(
+				/* translators: %d: number of months. */
+				_n( 'They are deleted %d month after the request.', 'They are deleted %d months after the request.', $months, 'primiko' ),
+				$months
+			)
+			: __( 'They are kept until the request is deleted.', 'primiko' );
+
+		return __( 'Your answers and photos are only used to answer your request and prepare a quote. They are saved on this website and sent to {site_name} by email, and shared with no one else.', 'primiko' )
+			. ' ' . $keep . ' '
+			. __( 'You can ask for a copy or for their deletion at any time.', 'primiko' );
 	}
 
 	/**

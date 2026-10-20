@@ -15,6 +15,16 @@ defined( 'ABSPATH' ) || exit;
  */
 final class Form_Settings {
 
+	/**
+	 * Action (admin-post) of the button that adds the privacy paragraph.
+	 */
+	const POLICY_ACTION = 'primiko_add_policy';
+
+	/**
+	 * Marks a privacy policy page that already holds the paragraph.
+	 */
+	const POLICY_META = '_primiko_policy_added';
+
 	const NONCE = 'primiko_form_settings';
 
 	/**
@@ -40,6 +50,125 @@ final class Form_Settings {
 		add_action( 'add_meta_boxes_' . Post_Types::FORM, array( $this, 'add_box' ) );
 		add_action( 'save_post_' . Post_Types::FORM, array( $this, 'save' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
+		add_action( 'admin_post_' . self::POLICY_ACTION, array( $this, 'add_policy_paragraph' ) );
+	}
+
+	/**
+	 * Helps the business with the privacy policy of the site. The form
+	 * already tells visitors how their request is handled, under the consent
+	 * box: this only offers to add the same information to the privacy
+	 * policy page, in one click, never on its own.
+	 *
+	 * @param int $form_id Form post ID.
+	 */
+	private function privacy_notice( $form_id ) {
+		if ( ! current_user_can( 'manage_privacy_options' ) ) {
+			return;
+		}
+
+		$page = self::policy_page();
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only flag set by add_policy_paragraph() after its own nonce check.
+		if ( $page && isset( $_GET['primiko_policy'] ) && 'added' === $_GET['primiko_policy'] ) {
+			?>
+			<div class="notice notice-success inline">
+				<p>
+					<?php esc_html_e( 'The paragraph about quote requests was added at the end of your privacy policy page.', 'primiko' ); ?>
+					<?php if ( 'publish' !== $page->post_status ) : ?>
+						<?php esc_html_e( 'The page is not published yet: publish it so that visitors can read it.', 'primiko' ); ?>
+					<?php endif; ?>
+					<a href="<?php echo esc_url( get_edit_post_link( $page->ID ) ); ?>"><?php esc_html_e( 'Open the page', 'primiko' ); ?></a>
+				</p>
+			</div>
+			<?php
+			return;
+		}
+
+		if ( ! $page ) {
+			?>
+			<div class="notice notice-info inline">
+				<p>
+					<?php esc_html_e( 'The form tells visitors how their request is handled, under the consent box. Your site has no privacy policy page yet.', 'primiko' ); ?>
+					<a href="<?php echo esc_url( admin_url( 'options-privacy.php' ) ); ?>"><?php esc_html_e( 'Choose or create one in Settings, Privacy.', 'primiko' ); ?></a>
+				</p>
+			</div>
+			<?php
+			return;
+		}
+
+		if ( get_post_meta( $page->ID, self::POLICY_META, true ) || ! current_user_can( 'edit_post', $page->ID ) ) {
+			return;
+		}
+
+		$url = wp_nonce_url(
+			add_query_arg(
+				array(
+					'action' => self::POLICY_ACTION,
+					'form'   => $form_id,
+				),
+				admin_url( 'admin-post.php' )
+			),
+			self::POLICY_ACTION
+		);
+		?>
+		<div class="notice notice-info inline">
+			<p>
+				<?php
+				printf(
+					/* translators: %s: title of the privacy policy page. */
+					esc_html__( 'Your privacy policy page (%s) does not say anything about quote requests yet.', 'primiko' ),
+					esc_html( get_the_title( $page ) )
+				);
+				?>
+			</p>
+			<p><a class="button" href="<?php echo esc_url( $url ); ?>"><?php esc_html_e( 'Add the paragraph about quote requests', 'primiko' ); ?></a></p>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Privacy policy page chosen in Settings, Privacy, published or not.
+	 *
+	 * @return \WP_Post|null
+	 */
+	private static function policy_page() {
+		$page = get_post( (int) get_option( 'wp_page_for_privacy_policy' ) );
+
+		return $page && 'page' === $page->post_type && 'trash' !== $page->post_status ? $page : null;
+	}
+
+	/**
+	 * Adds the paragraph about quote requests at the end of the privacy
+	 * policy page, when the business clicks the button, once.
+	 */
+	public function add_policy_paragraph() {
+		check_admin_referer( self::POLICY_ACTION );
+
+		$form_id = isset( $_GET['form'] ) ? absint( $_GET['form'] ) : 0;
+		$page    = self::policy_page();
+
+		if ( ! $page || ! current_user_can( 'manage_privacy_options' ) || ! current_user_can( 'edit_post', $page->ID ) ) {
+			wp_die( esc_html__( 'You are not allowed to change the privacy policy page.', 'primiko' ), 403 );
+		}
+
+		if ( ! get_post_meta( $page->ID, self::POLICY_META, true ) ) {
+			$blocks = '<!-- wp:heading --><h2 class="wp-block-heading">' . esc_html__( 'Quote requests', 'primiko' ) . '</h2><!-- /wp:heading -->';
+
+			foreach ( Privacy::policy_paragraphs() as $paragraph ) {
+				$blocks .= "\n\n<!-- wp:paragraph --><p>" . esc_html( $paragraph ) . '</p><!-- /wp:paragraph -->';
+			}
+
+			wp_update_post(
+				array(
+					'ID'           => $page->ID,
+					'post_content' => rtrim( $page->post_content ) . "\n\n" . $blocks,
+				)
+			);
+			update_post_meta( $page->ID, self::POLICY_META, '1' );
+		}
+
+		wp_safe_redirect( add_query_arg( 'primiko_policy', 'added', get_edit_post_link( $form_id, 'url' ) ) );
+		exit;
 	}
 
 	/**
@@ -119,6 +248,8 @@ final class Form_Settings {
 		$recipients = implode( "\n", (array) get_post_meta( $post->ID, '_primiko_recipients', true ) );
 
 		wp_nonce_field( self::NONCE, self::NONCE );
+
+		$this->privacy_notice( $post->ID );
 		?>
 		<table class="form-table" role="presentation">
 			<tr>

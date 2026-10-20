@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Primiko - Quote Requests by Trade 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/primiko\n"
-"POT-Creation-Date: 2026-10-19T23:03:00+00:00\n"
+"POT-Creation-Date: 2026-10-20T00:19:45+00:00\n"
 "PO-Revision-Date: 2026-10-19 12:00+0200\n"
 "Last-Translator: Nolidev <contact@nolidev.fr>\n"
 "Language-Team: French\n"
@@ -48,13 +48,13 @@ msgstr "La vérification anti-spam a échoué. Rechargez la page et réessayez."
 
 #: includes/class-entries.php:82 includes/class-renderer.php:257
 #: includes/class-renderer.php:487 includes/template-strings.php:1337
-#: build/admin/index.js:10
+#: build/admin/index.js:11
 msgid "Yes"
 msgstr "Oui"
 
 #: includes/class-entries.php:82 includes/class-renderer.php:258
 #: includes/class-renderer.php:491 includes/template-strings.php:1340
-#: build/admin/index.js:10
+#: build/admin/index.js:11
 msgid "No"
 msgstr "Non"
 
@@ -66,55 +66,95 @@ msgid_plural "%d photos"
 msgstr[0] "%d photo"
 msgstr[1] "%d photos"
 
-#: includes/class-form-settings.php:49
+#: includes/class-form-settings.php:76
+msgid "The paragraph about quote requests was added at the end of your privacy policy page."
+msgstr "Le paragraphe sur les demandes de devis a été ajouté à la fin de votre page de politique de confidentialité."
+
+#: includes/class-form-settings.php:78
+msgid "The page is not published yet: publish it so that visitors can read it."
+msgstr "La page n’est pas encore publiée : publiez-la pour que les visiteurs puissent la lire."
+
+#: includes/class-form-settings.php:80
+msgid "Open the page"
+msgstr "Ouvrir la page"
+
+#: includes/class-form-settings.php:91
+msgid "The form tells visitors how their request is handled, under the consent box. Your site has no privacy policy page yet."
+msgstr "Le formulaire indique aux visiteurs, sous la case de consentement, comment leur demande est traitée. Votre site n’a pas encore de page de politique de confidentialité."
+
+#: includes/class-form-settings.php:92
+msgid "Choose or create one in Settings, Privacy."
+msgstr "Choisissez-en une ou créez-la dans Réglages, Confidentialité."
+
+#. translators: %s: title of the privacy policy page.
+#: includes/class-form-settings.php:119
+#, php-format
+msgid "Your privacy policy page (%s) does not say anything about quote requests yet."
+msgstr "Votre page de politique de confidentialité (%s) ne parle pas encore des demandes de devis."
+
+#: includes/class-form-settings.php:124
+msgid "Add the paragraph about quote requests"
+msgstr "Ajouter le paragraphe sur les demandes de devis"
+
+#: includes/class-form-settings.php:151
+msgid "You are not allowed to change the privacy policy page."
+msgstr "Vous n’avez pas le droit de modifier la page de politique de confidentialité."
+
+#: includes/class-form-settings.php:155 includes/class-post-types.php:55
+#: includes/class-privacy.php:41 includes/class-privacy.php:56
+#: includes/class-privacy.php:102 includes/class-privacy.php:151
+msgid "Quote requests"
+msgstr "Demandes de devis"
+
+#: includes/class-form-settings.php:178
 msgid "Form settings"
 msgstr "Réglages du formulaire"
 
-#: includes/class-form-settings.php:50
+#: includes/class-form-settings.php:179
 msgid "Questions and messages"
 msgstr "Questions et messages"
 
-#: includes/class-form-settings.php:106
+#: includes/class-form-settings.php:235
 msgid "Loading the questions..."
 msgstr "Chargement des questions…"
 
-#: includes/class-form-settings.php:125 includes/class-request-list.php:73
+#: includes/class-form-settings.php:256 includes/class-request-list.php:73
 msgid "Trade"
 msgstr "Métier"
 
-#: includes/class-form-settings.php:129
+#: includes/class-form-settings.php:260
 msgid "Choose a trade"
 msgstr "Choisir un métier"
 
-#: includes/class-form-settings.php:136
+#: includes/class-form-settings.php:267
 msgid "The questions of the form come from this trade template. You can adapt them below."
 msgstr "Les questions du formulaire viennent de ce modèle de métier. Vous pouvez les adapter plus bas."
 
-#: includes/class-form-settings.php:140
+#: includes/class-form-settings.php:271
 msgid "Send requests to"
 msgstr "Envoyer les demandes à"
 
-#: includes/class-form-settings.php:143
+#: includes/class-form-settings.php:274
 msgid "One email address per line. Left empty, requests go to the administration email address of the site."
 msgstr "Une adresse e-mail par ligne. Laissé vide, les demandes partent à l’adresse e-mail d’administration du site."
 
-#: includes/class-form-settings.php:147
+#: includes/class-form-settings.php:278
 msgid "Visitor email"
 msgstr "E-mail du visiteur"
 
-#: includes/class-form-settings.php:151
+#: includes/class-form-settings.php:282
 msgid "Optional"
 msgstr "Facultatif"
 
-#: includes/class-form-settings.php:153
+#: includes/class-form-settings.php:284
 msgid "For customers who prefer the phone. Without an email address, the visitor gets no copy of the request, and the phone number stays required."
 msgstr "Pour les clients qui préfèrent le téléphone. Sans adresse e-mail, le visiteur ne reçoit pas de copie de sa demande, et le téléphone reste obligatoire."
 
-#: includes/class-form-settings.php:158
+#: includes/class-form-settings.php:289
 msgid "Shortcode"
 msgstr "Code court"
 
-#: includes/class-form-settings.php:161
+#: includes/class-form-settings.php:292
 msgid "In the block editor, add the Quote request form block instead. The shortcode is for page builders and classic themes."
 msgstr "Dans l’éditeur de blocs, ajoutez plutôt le bloc Formulaire de demande de devis. Le code court sert aux constructeurs de pages et aux thèmes classiques."
 
@@ -169,11 +209,25 @@ msgstr ""
 "\n"
 "Voici une copie de ce que vous nous avez envoyé."
 
-#: includes/class-post-types.php:55 includes/class-privacy.php:41
-#: includes/class-privacy.php:56 includes/class-privacy.php:102
-#: includes/class-privacy.php:168
-msgid "Quote requests"
-msgstr "Demandes de devis"
+#. translators: %d: number of months.
+#: includes/class-mailer.php:227
+#, php-format
+msgid "They are deleted %d month after the request."
+msgid_plural "They are deleted %d months after the request."
+msgstr[0] "Elles sont supprimées %d mois après la demande."
+msgstr[1] "Elles sont supprimées %d mois après la demande."
+
+#: includes/class-mailer.php:230
+msgid "They are kept until the request is deleted."
+msgstr "Elles sont conservées jusqu’à la suppression de la demande."
+
+#: includes/class-mailer.php:232
+msgid "Your answers and photos are only used to answer your request and prepare a quote. They are saved on this website and sent to {site_name} by email, and shared with no one else."
+msgstr "Vos réponses et vos photos servent uniquement à répondre à votre demande et à préparer un devis. Elles sont enregistrées sur ce site, envoyées par e-mail à {site_name} et ne sont transmises à personne d’autre."
+
+#: includes/class-mailer.php:234
+msgid "You can ask for a copy or for their deletion at any time."
+msgstr "Vous pouvez en demander une copie ou la suppression à tout moment."
 
 #: includes/class-post-types.php:56 includes/class-post-types.php:59
 #: includes/class-submission.php:490
@@ -250,32 +304,32 @@ msgid "Consent given on"
 msgstr "Consentement donné le"
 
 #. translators: %d: number of months.
-#: includes/class-privacy.php:149
+#: includes/class-privacy.php:165
 #, php-format
 msgid "They are deleted automatically %d month after they are sent."
 msgid_plural "They are deleted automatically %d months after they are sent."
 msgstr[0] "Elles sont supprimées automatiquement %d mois après leur envoi."
 msgstr[1] "Elles sont supprimées automatiquement %d mois après leur envoi."
 
-#: includes/class-privacy.php:152
+#: includes/class-privacy.php:168
 msgid "They are kept until we delete them."
 msgstr "Elles sont conservées jusqu’à ce que nous les supprimions."
 
-#: includes/class-privacy.php:154
+#: includes/class-privacy.php:171
 msgid "When you send a quote request through our form, we receive your name, email address, phone number, the address of the work, your answers about the project and the photos you add. We use them only to answer your request and prepare a quote."
 msgstr "Quand vous envoyez une demande de devis par notre formulaire, nous recevons votre nom, votre adresse e-mail, votre numéro de téléphone, l’adresse du chantier, vos réponses sur le projet et les photos que vous ajoutez. Nous les utilisons uniquement pour répondre à votre demande et préparer un devis."
 
-#: includes/class-privacy.php:155
-msgid "Your request is saved on this website and sent to us by email. A copy is sent to you. Photos are kept in a folder that cannot be reached from the web, without their location data."
-msgstr "Votre demande est enregistrée sur ce site et nous est envoyée par e-mail. Une copie vous est adressée. Les photos sont conservées dans un dossier inaccessible depuis le web, sans leurs données de localisation."
+#: includes/class-privacy.php:172
+msgid "Your request is saved on this website and sent to us by email. If you give your email address, a copy is sent to you. Photos are kept in a folder that cannot be reached from the web, without their location data."
+msgstr "Votre demande est enregistrée sur ce site et nous est envoyée par e-mail. Si vous donnez votre adresse e-mail, une copie vous est adressée. Les photos sont conservées dans un dossier inaccessible depuis le web, sans leurs données de localisation."
 
 #. translators: %s: name of the anti-spam service, such as Cloudflare Turnstile.
-#: includes/class-privacy.php:160
+#: includes/class-privacy.php:178
 #, php-format
 msgid "To protect the form against spam, the page that shows it uses %s, which receives technical data about your browser and your connection."
 msgstr "Pour protéger le formulaire contre les spams, la page qui l’affiche utilise %s, qui reçoit des données techniques sur votre navigateur et votre connexion."
 
-#: includes/class-privacy.php:166
+#: includes/class-privacy.php:183
 msgid "You can ask for a copy of your requests or for their deletion at any time."
 msgstr "Vous pouvez demander à tout moment une copie de vos demandes ou leur suppression."
 
@@ -430,9 +484,9 @@ msgstr "Ville"
 msgid "Add photos"
 msgstr "Ajouter des photos"
 
-#: includes/class-renderer.php:589
-msgid "How we handle your personal data (opens in a new tab)"
-msgstr "Comment nous traitons vos données personnelles (s’ouvre dans un nouvel onglet)"
+#: includes/class-renderer.php:592
+msgid "Privacy policy (opens in a new tab)"
+msgstr "Politique de confidentialité (s’ouvre dans un nouvel onglet)"
 
 #: includes/class-request-list.php:62
 msgid "Received"
@@ -669,40 +723,40 @@ msgstr "Modèles généraux"
 msgid "Other"
 msgstr "Autres"
 
-#: includes/class-templates.php:226
+#: includes/class-templates.php:234
 msgid "Your contact details"
 msgstr "Vos coordonnées"
 
-#: includes/class-templates.php:231
+#: includes/class-templates.php:239
 msgid "Your name"
 msgstr "Votre nom"
 
-#: includes/class-templates.php:239
+#: includes/class-templates.php:247
 msgid "Email"
 msgstr "E-mail"
 
-#: includes/class-templates.php:241
+#: includes/class-templates.php:249
 msgid "Optional. A copy of your request will be sent to this address."
 msgstr "Facultatif. Une copie de votre demande sera envoyée à cette adresse."
 
-#: includes/class-templates.php:242
+#: includes/class-templates.php:250
 msgid "A copy of your request will be sent to this address."
 msgstr "Une copie de votre demande sera envoyée à cette adresse."
 
-#: includes/class-templates.php:249
+#: includes/class-templates.php:257
 msgid "Phone"
 msgstr "Téléphone"
 
-#: includes/class-templates.php:250
+#: includes/class-templates.php:258
 msgid "To call you back about your project."
 msgstr "Pour vous rappeler au sujet de votre projet."
 
-#: includes/class-templates.php:258
+#: includes/class-templates.php:266
 msgid "Review and send"
 msgstr "Vérifier et envoyer"
 
 #. translators: %s: site name.
-#: includes/class-templates.php:266
+#: includes/class-templates.php:274
 #, php-format
 msgid "I agree that %s uses the information in this form to answer my request and contact me about it."
 msgstr "J’accepte que %s utilise les informations de ce formulaire pour répondre à ma demande et me recontacter à son sujet."
@@ -762,7 +816,7 @@ msgstr "Votre demande"
 
 #: includes/template-strings.php:47
 msgid "Please do not send confidential documents through this form: what is needed will be asked for later."
-msgstr "N’envoyez pas de documents confidentiels par ce formulaire : ceux qui sont utiles vous seront demandés ensuite."
+msgstr "N’envoyez pas de documents confidentiels par ce formulaire : ceux qui sont utiles vous seront demandés ensuite."
 
 #: includes/template-strings.php:50
 msgid "What do you need?"
@@ -1491,7 +1545,7 @@ msgstr "Location de pelleteuse avec chauffeur"
 
 #: includes/template-strings.php:587
 msgid "Answer what you can. When you are not sure, choose the closest answer: the details are checked on site."
-msgstr "Répondez à ce que vous pouvez. En cas de doute, choisissez la réponse la plus proche : les détails seront vérifiés sur place."
+msgstr "Répondez à ce que vous pouvez. En cas de doute, choisissez la réponse la plus proche : les détails seront vérifiés sur place."
 
 #: includes/template-strings.php:590
 msgid "What documents do you have?"
@@ -2550,7 +2604,7 @@ msgstr "notaire, office notarial, vente, achat, compromis, acte authentique, suc
 
 #: includes/template-strings.php:1373
 msgid "Please do not send documents through this form: what is needed will be asked for later."
-msgstr "N’envoyez pas de documents par ce formulaire : ceux qui sont utiles vous seront demandés ensuite."
+msgstr "N’envoyez pas de documents par ce formulaire : ceux qui sont utiles vous seront demandés ensuite."
 
 #: includes/template-strings.php:1376
 msgid "What is it about?"
@@ -4198,261 +4252,270 @@ msgstr "ou"
 msgid "and"
 msgstr "et"
 
+#. translators: %s: an answer, quoted in a condition such as: "Service" is "Roof repair".
+#: build/admin/index.js:6
+msgid "\"%s\""
+msgstr "« %s »"
+
 #. translators: 1: question, 2: one or more answers.
-#: build/admin/index.js:6 build/admin/index.js:7
+#: build/admin/index.js:7 build/admin/index.js:8
 msgid "\"%1$s\" is %2$s"
-msgstr "\"%1$s\" vaut %2$s"
+msgstr "« %1$s » vaut %2$s"
 
 #. translators: 1: question, 2: one or more answers.
-#: build/admin/index.js:8
-msgid "\"%1$s\" is not %2$s"
-msgstr "\"%1$s\" ne vaut pas %2$s"
-
-#. translators: %s: question.
 #: build/admin/index.js:9
-msgid "\"%s\" is answered"
-msgstr "\"%s\" a une réponse"
+msgid "\"%1$s\" is not %2$s"
+msgstr "« %1$s » ne vaut pas %2$s"
 
 #. translators: %s: question.
 #: build/admin/index.js:10
-msgid "\"%s\" is left empty"
-msgstr "\"%s\" est laissée vide"
+msgid "\"%s\" is answered"
+msgstr "« %s » a une réponse"
 
-#: build/admin/index.js:10
+#. translators: %s: question.
+#: build/admin/index.js:11
+msgid "\"%s\" is left empty"
+msgstr "« %s » est laissée vide"
+
+#: build/admin/index.js:11
 msgid "Choose a trade above to see its questions."
 msgstr "Choisissez un métier ci-dessus pour voir ses questions."
 
-#: build/admin/index.js:10
+#: build/admin/index.js:11
 msgid "Hide what you do not offer and rename what you say differently. Questions that depend on a hidden answer disappear with it. Changes apply when you update the form."
 msgstr "Masquez ce que vous ne proposez pas et renommez ce que vous dites autrement. Les questions qui dépendent d’une réponse masquée disparaissent avec elle. Les changements s’appliquent quand vous mettez à jour le formulaire."
 
 #. translators: %d: number of questions visitors will not see.
-#: build/admin/index.js:11
+#: build/admin/index.js:12
 msgid "%d question will not be shown to visitors."
 msgid_plural "%d questions will not be shown to visitors."
 msgstr[0] "%d question ne sera pas montrée aux visiteurs."
 msgstr[1] "%d questions ne seront pas montrées aux visiteurs."
 
-#: build/admin/index.js:11
+#: build/admin/index.js:12
 msgid "Your changes keep every question."
 msgstr "Vos changements gardent toutes les questions."
 
-#: build/admin/index.js:11
+#: build/admin/index.js:12
 msgid "Undo every change?"
 msgstr "Annuler tous les changements ?"
 
-#: build/admin/index.js:11
+#: build/admin/index.js:12
 msgid "Restore the template"
 msgstr "Revenir au modèle"
 
-#: build/admin/index.js:11 build/admin/index.js:14
+#: build/admin/index.js:12 build/admin/index.js:15
 msgid "Cancel"
 msgstr "Annuler"
 
-#: build/admin/index.js:11
+#: build/admin/index.js:12
 msgid "hidden"
 msgstr "masquée"
 
 #. translators: %d: number of questions not shown.
-#: build/admin/index.js:12
+#: build/admin/index.js:13
 msgid "%d question not shown"
 msgid_plural "%d questions not shown"
 msgstr[0] "%d question non affichée"
 msgstr[1] "%d questions non affichées"
 
-#: build/admin/index.js:12
+#: build/admin/index.js:13
 msgid "Show this step"
 msgstr "Afficher cette étape"
 
-#: build/admin/index.js:12
+#: build/admin/index.js:13
 msgid "Step title"
 msgstr "Titre de l’étape"
 
-#: build/admin/index.js:12
+#: build/admin/index.js:13
 msgid "Step introduction"
 msgstr "Introduction de l’étape"
 
-#: build/admin/index.js:12
+#: build/admin/index.js:13
 msgid "Shown under the step title. Left empty, the text of the template is used."
 msgstr "Affichée sous le titre de l’étape. Laissée vide, le texte du modèle est utilisé."
 
-#: build/admin/index.js:12
+#: build/admin/index.js:13
 msgid "Add a question to this step"
 msgstr "Ajouter une question à cette étape"
 
 #. translators: %s: question.
-#: build/admin/index.js:13
+#: build/admin/index.js:14
 msgid "Move up: %s"
 msgstr "Monter : %s"
 
 #. translators: %s: question.
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Move down: %s"
 msgstr "Descendre : %s"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Short text"
 msgstr "Texte court"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Long text"
 msgstr "Texte long"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Number"
 msgstr "Nombre"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Choice of answers"
 msgstr "Choix de réponses"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Yes or no"
 msgstr "Oui ou non"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Date"
 msgstr "Date"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "New question"
 msgstr "Nouvelle question"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Your question"
 msgstr "Votre question"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Write the question, otherwise it is not saved."
 msgstr "Écrivez la question, sinon elle n’est pas enregistrée."
 
-#: build/admin/index.js:14 build/admin/index.js:17
+#: build/admin/index.js:15 build/admin/index.js:18
 msgid "Question"
 msgstr "Question"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Type of answer"
 msgstr "Type de réponse"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Answers offered"
 msgstr "Réponses proposées"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "One answer per line."
 msgstr "Une réponse par ligne."
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Several answers allowed"
 msgstr "Plusieurs réponses possibles"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Unit, if any"
 msgstr "Unité, s’il y en a une"
 
-#: build/admin/index.js:14 build/admin/index.js:17
+#: build/admin/index.js:15 build/admin/index.js:18
 msgid "Help text"
 msgstr "Texte d’aide"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Answer required"
 msgstr "Réponse obligatoire"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Remove the question"
 msgstr "Supprimer la question"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Remove"
 msgstr "Supprimer"
 
-#: build/admin/index.js:14
+#: build/admin/index.js:15
 msgid "Required"
 msgstr "Obligatoire"
 
 #. translators: %s: condition in plain words.
-#: build/admin/index.js:15
+#: build/admin/index.js:16
 msgid "Shown when %s."
 msgstr "Affichée quand %s."
 
-#: build/admin/index.js:15
+#: build/admin/index.js:16
 msgid "Visitors will never see this question: it depends on an answer or a question you hid."
 msgstr "Les visiteurs ne verront jamais cette question : elle dépend d’une réponse ou d’une question que vous avez masquée."
 
-#: build/admin/index.js:15
+#: build/admin/index.js:16
 msgid "Every answer is hidden, so the question is not shown."
 msgstr "Toutes les réponses sont masquées, la question n’est donc pas affichée."
 
 #. translators: %s: question.
-#: build/admin/index.js:16
+#: build/admin/index.js:17
 msgid "Answers offered for \"%s\""
-msgstr "Réponses proposées pour \"%s\""
+msgstr "Réponses proposées pour « %s »"
 
 #. translators: %s: answer.
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Text of the answer \"%s\""
-msgstr "Texte de la réponse \"%s\""
+msgstr "Texte de la réponse « %s »"
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "No help text"
 msgstr "Pas de texte d’aide"
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Done"
 msgstr "Terminé"
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Edit the texts"
 msgstr "Modifier les textes"
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Message shown once the request is sent"
 msgstr "Message affiché une fois la demande envoyée"
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Message shown when no copy is sent (no email address, or too many copies to that address today)"
 msgstr "Message affiché quand aucune copie n’est envoyée (pas d’adresse e-mail, ou trop de copies vers cette adresse aujourd’hui)"
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
+msgid "Privacy notice under the consent box (what the answers are used for, how long they are kept)"
+msgstr "Mention de confidentialité sous la case de consentement (à quoi servent les réponses, combien de temps elles sont gardées)"
+
+#: build/admin/index.js:18
 msgid "Subject of the copy sent to the visitor"
 msgstr "Objet de la copie envoyée au visiteur"
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Beginning of that email (the answers follow)"
 msgstr "Début de cet e-mail (les réponses suivent)"
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Messages to the visitor"
 msgstr "Messages au visiteur"
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Write {name}, {email}, {site_name} or {reference} where the name of the visitor, their email, the name of your site or the number of the request should appear. Leave a field empty to keep the template text."
 msgstr "Écrivez {name}, {email}, {site_name} ou {reference} là où doivent apparaître le nom du visiteur, son e-mail, le nom de votre site ou le numéro de la demande. Laissez un champ vide pour garder le texte du modèle."
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Change trade"
 msgstr "Changer de métier"
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Search a trade"
 msgstr "Rechercher un métier"
 
-#: build/admin/index.js:17
+#: build/admin/index.js:18
 msgid "Roofer, plumber, notary, cleaning…"
 msgstr "Couvreur, plombier, notaire, ménage…"
 
 #. translators: %d: number of templates found.
-#: build/admin/index.js:18
+#: build/admin/index.js:19
 msgid "%d template"
 msgid_plural "%d templates"
 msgstr[0] "%d modèle"
 msgstr[1] "%d modèles"
 
-#: build/admin/index.js:18
+#: build/admin/index.js:19
 msgid "No template matches. The general templates fit any trade, and you can adapt their questions:"
 msgstr "Aucun modèle ne correspond. Les modèles généraux conviennent à tous les métiers, et vous pouvez adapter leurs questions :"
 
-#: build/admin/index.js:18
+#: build/admin/index.js:19
 msgid "Keep the current trade"
 msgstr "Garder le métier actuel"
 

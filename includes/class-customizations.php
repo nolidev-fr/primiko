@@ -51,7 +51,7 @@ final class Customizations {
 	/**
 	 * Messages the business can rewrite.
 	 */
-	const MESSAGES = array( 'success', 'success_no_copy', 'acknowledgement_subject', 'acknowledgement_body' );
+	const MESSAGES = array( 'success', 'success_no_copy', 'acknowledgement_subject', 'acknowledgement_body', 'privacy_notice' );
 
 	/**
 	 * Longest text accepted for a title, a question or an answer.
@@ -172,7 +172,7 @@ final class Customizations {
 		foreach ( self::MESSAGES as $key ) {
 			$default = isset( $template['messages'][ $key ] ) ? $template['messages'][ $key ] : Mailer::default_message( $key );
 			$max     = 'acknowledgement_subject' === $key ? self::MAX_LABEL : self::MAX_TEXT;
-			$message = self::text( isset( $raw['messages'] ) && is_array( $raw['messages'] ) ? $raw['messages'] : array(), $key, $max, $default, 'acknowledgement_body' === $key );
+			$message = self::text( isset( $raw['messages'] ) && is_array( $raw['messages'] ) ? $raw['messages'] : array(), $key, $max, $default, in_array( $key, array( 'acknowledgement_body', 'privacy_notice' ), true ) );
 
 			if ( '' !== $message ) {
 				$clean['messages'][ $key ] = $message;

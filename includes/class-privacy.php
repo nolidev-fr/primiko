@@ -142,6 +142,22 @@ final class Privacy {
 			return;
 		}
 
+		$text = '';
+
+		foreach ( self::policy_paragraphs() as $paragraph ) {
+			$text .= '<p>' . esc_html( $paragraph ) . '</p>';
+		}
+
+		wp_add_privacy_policy_content( __( 'Quote requests', 'primiko' ), wp_kses_post( $text ) );
+	}
+
+	/**
+	 * Paragraphs about quote requests for the privacy policy of the site,
+	 * built from the settings.
+	 *
+	 * @return string[] Plain text paragraphs.
+	 */
+	public static function policy_paragraphs() {
 		$months = (int) Settings::get( 'retention_months' );
 		$keep   = $months
 			? sprintf(
@@ -151,21 +167,22 @@ final class Privacy {
 			)
 			: __( 'They are kept until we delete them.', 'primiko' );
 
-		$text  = '<p>' . esc_html__( 'When you send a quote request through our form, we receive your name, email address, phone number, the address of the work, your answers about the project and the photos you add. We use them only to answer your request and prepare a quote.', 'primiko' ) . '</p>';
-		$text .= '<p>' . esc_html__( 'Your request is saved on this website and sent to us by email. A copy is sent to you. Photos are kept in a folder that cannot be reached from the web, without their location data.', 'primiko' ) . ' ' . esc_html( $keep ) . '</p>';
+		$paragraphs = array(
+			__( 'When you send a quote request through our form, we receive your name, email address, phone number, the address of the work, your answers about the project and the photos you add. We use them only to answer your request and prepare a quote.', 'primiko' ),
+			__( 'Your request is saved on this website and sent to us by email. If you give your email address, a copy is sent to you. Photos are kept in a folder that cannot be reached from the web, without their location data.', 'primiko' ) . ' ' . $keep,
+		);
+
 		if ( Captcha::provider_name() ) {
-			$text .= '<p>' . esc_html(
-				sprintf(
-					/* translators: %s: name of the anti-spam service, such as Cloudflare Turnstile. */
-					__( 'To protect the form against spam, the page that shows it uses %s, which receives technical data about your browser and your connection.', 'primiko' ),
-					Captcha::provider_name()
-				)
-			) . '</p>';
+			$paragraphs[] = sprintf(
+				/* translators: %s: name of the anti-spam service, such as Cloudflare Turnstile. */
+				__( 'To protect the form against spam, the page that shows it uses %s, which receives technical data about your browser and your connection.', 'primiko' ),
+				Captcha::provider_name()
+			);
 		}
 
-		$text .= '<p>' . esc_html__( 'You can ask for a copy of your requests or for their deletion at any time.', 'primiko' ) . '</p>';
+		$paragraphs[] = __( 'You can ask for a copy of your requests or for their deletion at any time.', 'primiko' );
 
-		wp_add_privacy_policy_content( __( 'Quote requests', 'primiko' ), wp_kses_post( $text ) );
+		return $paragraphs;
 	}
 
 	/**
