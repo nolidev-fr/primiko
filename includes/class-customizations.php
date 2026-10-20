@@ -29,9 +29,10 @@ defined( 'ABSPATH' ) || exit;
  *                     'label'   => '...',
  *                     'help'    => '...',
  *                     'options' => array( '<value>' => array( 'hidden' => true, 'label' => '...' ) ),
+ *                     'extra'   => array( array( 'value' => 'custom_ef34gh', 'label' => '...' ) ),
  *                 ),
  *             ),
- *             'messages' => array( 'success' => '...', 'success_no_copy' => '...', 'acknowledgement_subject' => '...', 'acknowledgement_body' => '...' ),
+ *             'messages' => array( 'success' => '...', 'success_no_copy' => '...', 'acknowledgement_subject' => '...', 'acknowledgement_body' => '...', 'privacy_notice' => '...', 'fallback' => '...' ),
  *             'added'    => array(
  *                 array( 'id' => 'custom_ab12cd', 'step' => '<step id>', 'type' => 'choice', 'label' => '...', 'help' => '...',
  *                        'required' => true, 'multiple' => false, 'options' => array( array( 'value' => 'o1', 'label' => '...' ) ) ),
@@ -51,7 +52,7 @@ final class Customizations {
 	/**
 	 * Messages the business can rewrite.
 	 */
-	const MESSAGES = array( 'success', 'success_no_copy', 'acknowledgement_subject', 'acknowledgement_body', 'privacy_notice' );
+	const MESSAGES = array( 'success', 'success_no_copy', 'acknowledgement_subject', 'acknowledgement_body', 'privacy_notice', 'fallback' );
 
 	/**
 	 * Longest text accepted for a title, a question or an answer.
@@ -62,6 +63,11 @@ final class Customizations {
 	 * Longest text accepted for a help text or a message.
 	 */
 	const MAX_TEXT = 2000;
+
+	/**
+	 * Most answers the business can add to one question of the template.
+	 */
+	const MAX_EXTRA = 20;
 
 	/**
 	 * Field types a business can add.
@@ -540,6 +546,29 @@ final class Customizations {
 			}
 		}
 
+		// Answers the business adds to a question of the template.
+		if ( isset( $field['options'] ) && isset( $given['extra'] ) && is_array( $given['extra'] ) ) {
+			$extra = array();
+			$used  = wp_list_pluck( $field['options'], 'value' );
+
+			foreach ( array_slice( $given['extra'], 0, self::MAX_EXTRA ) as $added ) {
+				$value = is_array( $added ) && isset( $added['value'] ) && is_string( $added['value'] ) ? $added['value'] : '';
+				$label = is_array( $added ) ? self::text( $added, 'label', self::MAX_LABEL, '' ) : '';
+
+				if ( preg_match( '/^custom_[a-z0-9]{6}$/', $value ) && '' !== $label && ! in_array( $value, $used, true ) ) {
+					$extra[] = array(
+						'value' => $value,
+						'label' => $label,
+					);
+					$used[]  = $value;
+				}
+			}
+
+			if ( $extra ) {
+				$entry['extra'] = $extra;
+			}
+		}
+
 		return $entry;
 	}
 
@@ -579,6 +608,17 @@ final class Customizations {
 			}
 
 			$options[] = $option;
+		}
+
+		// Added answers go before a last catch-all answer ("Other", "I don't know").
+		if ( ! empty( $custom['extra'] ) ) {
+			$tail = array();
+
+			if ( $options && in_array( $options[ count( $options ) - 1 ]['value'], array( 'other', 'unknown', 'none' ), true ) ) {
+				$tail = array( array_pop( $options ) );
+			}
+
+			$options = array_merge( $options, $custom['extra'], $tail );
 		}
 
 		if ( ! $options ) {

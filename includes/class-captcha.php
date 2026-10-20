@@ -85,6 +85,11 @@ final class Captcha {
 
 		if ( 'recaptcha' === $provider ) {
 			$src .= rawurlencode( (string) Settings::get( 'captcha_site_key' ) );
+
+			// The badge Google fixes at the bottom of the screen hides under the
+			// call bars many sites show on phones. Google allows hiding it when
+			// the form shows its notice instead, which the consent box does.
+			wp_add_inline_style( 'primiko-form', '.grecaptcha-badge{visibility:hidden}' );
 		}
 
 		// The provider serves its own current version: no version string.
@@ -104,7 +109,7 @@ final class Captcha {
 			return true;
 		}
 
-		$refused = new \WP_Error( 'primiko_captcha', __( 'The anti-spam check failed. Please reload the page and try again.', 'primiko' ), array( 'status' => 403 ) );
+		$refused = new \WP_Error( 'primiko_captcha', __( 'The anti-spam check failed. Please send your request again: your answers are kept.', 'primiko' ), array( 'status' => 403 ) );
 
 		if ( '' === $response || strlen( $response ) > 4096 ) {
 			return $refused;

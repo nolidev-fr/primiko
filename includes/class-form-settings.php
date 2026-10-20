@@ -21,6 +21,17 @@ final class Form_Settings {
 	const POLICY_ACTION = 'primiko_add_policy';
 
 	/**
+	 * Action (admin-post) of the "My page already covers them" link.
+	 */
+	const POLICY_COVERED_ACTION = 'primiko_policy_covered';
+
+	/**
+	 * Option holding the ID of a privacy policy page the business says
+	 * already covers quote requests: the offer is not shown again for it.
+	 */
+	const POLICY_COVERED_OPTION = 'primiko_policy_covered';
+
+	/**
 	 * Class of the heading added to the privacy policy page. While the
 	 * heading is there, the button is not offered again; if the business
 	 * removes it, the button comes back.
@@ -53,6 +64,7 @@ final class Form_Settings {
 		add_action( 'save_post_' . Post_Types::FORM, array( $this, 'save' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
 		add_action( 'admin_post_' . self::POLICY_ACTION, array( $this, 'add_policy_paragraph' ) );
+		add_action( 'admin_post_' . self::POLICY_COVERED_ACTION, array( $this, 'policy_covered' ) );
 	}
 
 	/**
@@ -98,7 +110,7 @@ final class Form_Settings {
 			return;
 		}
 
-		if ( self::has_policy_paragraph( $page ) || ! current_user_can( 'edit_post', $page->ID ) ) {
+		if ( self::has_policy_paragraph( $page ) || (int) get_option( self::POLICY_COVERED_OPTION ) === $page->ID || ! current_user_can( 'edit_post', $page->ID ) ) {
 			return;
 		}
 
@@ -112,13 +124,24 @@ final class Form_Settings {
 			),
 			self::POLICY_ACTION
 		);
+
+		$covered = wp_nonce_url(
+			add_query_arg(
+				array(
+					'action' => self::POLICY_COVERED_ACTION,
+					'form'   => $form_id,
+				),
+				admin_url( 'admin-post.php' )
+			),
+			self::POLICY_COVERED_ACTION
+		);
 		?>
 		<div class="notice notice-info inline">
 			<p>
 				<?php
 				printf(
 					/* translators: %s: title of the privacy policy page. */
-					esc_html__( 'Your privacy policy page (%s) does not have the paragraph about quote requests yet. Check first that it does not already say the same thing about your contact form.', 'primiko' ),
+					esc_html__( 'If your privacy policy page (%s) does not talk about quote requests yet, Primiko can add a paragraph about them.', 'primiko' ),
 					esc_html( get_the_title( $page ) )
 				);
 				?>
@@ -132,7 +155,10 @@ final class Form_Settings {
 					<?php endforeach; ?>
 				</div>
 			</details>
-			<p><a class="button" href="<?php echo esc_url( $url ); ?>"><?php esc_html_e( 'Add the paragraph about quote requests', 'primiko' ); ?></a></p>
+			<p>
+				<a class="button" href="<?php echo esc_url( $url ); ?>"><?php esc_html_e( 'Add the paragraph about quote requests', 'primiko' ); ?></a>
+				<a class="button-link" style="margin-left:12px;" href="<?php echo esc_url( $covered ); ?>"><?php esc_html_e( 'My page already covers them', 'primiko' ); ?></a>
+			</p>
 		</div>
 		<?php
 	}
@@ -182,12 +208,66 @@ final class Form_Settings {
 			wp_update_post(
 				array(
 					'ID'           => $page->ID,
-					'post_content' => rtrim( $page->post_content ) . "\n\n" . $blocks,
+					'post_content' => self::insert_paragraph( $page->post_content, $blocks ),
 				)
 			);
 		}
 
 		wp_safe_redirect( add_query_arg( 'primiko_policy', 'added', get_edit_post_link( $form_id, 'url' ) ) );
+		exit;
+	}
+
+	/**
+	 * Places the paragraph at the end of the page, but before a closing line
+	 * such as "This page was updated in October 2026.": a short last
+	 * paragraph with a year in it.
+	 *
+	 * @param string $content Content of the privacy policy page.
+	 * @param string $blocks  Block markup to add.
+	 * @return string
+	 */
+	private static function insert_paragraph( $content, $blocks ) {
+		$parsed = parse_blocks( $content );
+		$last   = null;
+
+		foreach ( $parsed as $index => $block ) {
+			if ( null !== $block['blockName'] || '' !== trim( $block['innerHTML'] ) ) {
+				$last = $index;
+			}
+		}
+
+		if ( null !== $last && 'core/paragraph' === $parsed[ $last ]['blockName'] ) {
+			$text = trim( wp_strip_all_tags( $parsed[ $last ]['innerHTML'] ) );
+
+			if ( strlen( $text ) < 160 && preg_match( '/\b(19|20)\d{2}\b/', $text ) ) {
+				array_splice( $parsed, $last, 0, parse_blocks( $blocks . "\n\n" ) );
+
+				return serialize_blocks( $parsed );
+			}
+		}
+
+		return rtrim( $content ) . "\n\n" . $blocks;
+	}
+
+	/**
+	 * Remembers that the privacy policy page already covers quote requests,
+	 * when the business says so: the offer is not shown again for this page.
+	 */
+	public function policy_covered() {
+		check_admin_referer( self::POLICY_COVERED_ACTION );
+
+		$form_id = isset( $_GET['form'] ) ? absint( $_GET['form'] ) : 0;
+		$page    = self::policy_page();
+
+		if ( ! current_user_can( 'manage_privacy_options' ) ) {
+			wp_die( esc_html__( 'You are not allowed to change the privacy policy page.', 'primiko' ), 403 );
+		}
+
+		if ( $page ) {
+			update_option( self::POLICY_COVERED_OPTION, $page->ID, false );
+		}
+
+		wp_safe_redirect( get_edit_post_link( $form_id, 'url' ) );
 		exit;
 	}
 

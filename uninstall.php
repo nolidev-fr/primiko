@@ -52,4 +52,5 @@ $wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, Word
 
 delete_option( 'primiko_version' );
 delete_option( 'primiko_settings' );
+delete_option( 'primiko_policy_covered' );
 wp_clear_scheduled_hook( 'primiko_purge' );

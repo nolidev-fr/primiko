@@ -217,6 +217,7 @@ final class Mailer {
 			'acknowledgement_subject' => __( 'Your quote request to {site_name}', 'primiko' ),
 			'acknowledgement_body'    => __( "Hello {name},\n\nThank you for your request. We have received it and will get back to you soon.\n\nHere is a copy of what you sent us.", 'primiko' ),
 			'privacy_notice'          => self::privacy_notice(),
+			'fallback'                => __( 'Please try again later, or call instead.', 'primiko' ),
 		);
 
 		return isset( $messages[ $key ] ) ? $messages[ $key ] : '';

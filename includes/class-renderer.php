@@ -593,6 +593,18 @@ final class Renderer {
 		<?php if ( ! empty( $field['notice'] ) ) : ?>
 			<p class="primiko__help primiko__privacy"><?php echo nl2br( esc_html( $field['notice'] ) ); ?></p>
 		<?php endif; ?>
+		<?php if ( 'recaptcha' === Captcha::provider() ) : ?>
+			<p class="primiko__help">
+				<?php
+				printf(
+					/* translators: 1: link to the Google privacy policy, 2: link to the Google terms of service. */
+					esc_html__( 'This form is protected by reCAPTCHA: the Google %1$s and %2$s apply.', 'primiko' ),
+					'<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">' . esc_html__( 'privacy policy', 'primiko' ) . '</a>',
+					'<a href="https://policies.google.com/terms" target="_blank" rel="noopener">' . esc_html__( 'terms of service', 'primiko' ) . '</a>'
+				);
+				?>
+			</p>
+		<?php endif; ?>
 		<?php if ( $policy ) : ?>
 			<p class="primiko__help">
 				<a href="<?php echo esc_url( $policy ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Privacy policy (opens in a new tab)', 'primiko' ); ?></a>

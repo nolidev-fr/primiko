@@ -4,7 +4,7 @@ Tags: quote, request a quote, contact form, multi-step form, contractor
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,7 +28,7 @@ This is not a form builder, and it never shows a price. It collects and qualifie
 
 = What you get =
 
-* Questions you can fit to your business: hide a step, a question or an answer you do not offer, rename what you say differently, add your own questions, change their order, rewrite the messages sent to visitors. Questions that depend on a hidden answer disappear with it.
+* Questions you can fit to your business: hide a step, a question or an answer you do not offer, rename what you say differently, add answers or your own questions, change their order, rewrite the messages sent to visitors. Questions that depend on a hidden answer disappear with it.
 * Every request saved in WordPress, under Quote requests, with its answers and photos.
 * An email for each new request, to one or more addresses, with the photos attached. Reply to it and your answer goes to the visitor.
 * As many forms as you need, each with its own questions, recipients and messages: a quote form on the home page and a simple message in the footer can share a page.
@@ -80,7 +80,7 @@ When chosen, the reCAPTCHA script is loaded from www.google.com on the pages tha
 
 = Can I change the questions? =
 
-Yes. On the screen of a form, the Questions and messages box lists every step, question and answer of the trade template. Hide what you do not offer, rename what you say differently, add your own questions, change their order, and rewrite the messages sent to visitors. Only your changes are saved, so improvements to the template in plugin updates still reach your form.
+Yes. On the screen of a form, the Questions and messages box lists every step, question and answer of the trade template. Hide what you do not offer, rename what you say differently, add answers to a question or your own questions, change their order, and rewrite the messages sent to visitors. Only your changes are saved, so improvements to the template in plugin updates still reach your form.
 
 = Does it show a price or an estimate? =
 
@@ -132,7 +132,7 @@ The limit per connection (five requests an hour) relies on the address the serve
 
 = Do I need a captcha? =
 
-Usually not. The form stops most spam on its own: a hidden field robots fill in, a minimum filling time, a single use signed token and a limit per connection. If spam still gets through, turn on Cloudflare Turnstile or Google reCAPTCHA v3 under Quotes, Settings.
+Usually not. The form stops most spam on its own: a hidden field robots fill in, a minimum filling time, a single use signed token and a limit per connection. If spam still gets through, turn on Cloudflare Turnstile or Google reCAPTCHA v3 under Quotes, Settings. If the service cannot be reached when a request is sent, the request still goes through, protected by the other checks: an outage at Cloudflare or Google never stops your customers. Both services load their script as soon as the page with the form opens, and reCAPTCHA also sets Google cookies: say so in your privacy policy (the paragraph Primiko suggests does). With reCAPTCHA, Primiko hides the badge Google fixes at the bottom of the screen, which often covers call bars on phones, and shows the notice Google asks for under the consent box instead.
 
 == Screenshots ==
 
@@ -145,6 +145,14 @@ Usually not. The form stops most spam on its own: a hidden field robots fill in,
 7. A request with all its answers and a reply button.
 
 == Changelog ==
+
+= 1.1.1 =
+* Add your own answers to a question of a template.
+* The message shown when a request cannot be sent (limit per connection, server error) ends with an editable text, a good place for your phone number.
+* A failed anti-spam check asks to send again, without reloading the page and losing the answers.
+* Privacy policy page: the offer no longer assumes the page is silent about quote requests, can be dismissed, and the paragraph goes before a closing "updated on" line.
+* Turnstile gets the language code it expects.
+* With reCAPTCHA, the badge that covered call bars on phones is hidden, and the notice Google asks for shows under the consent box. The suggested privacy paragraph says reCAPTCHA loads with the page and sets cookies.
 
 = 1.1.0 =
 * New Simple message template: a contact form on one screen, to replace the contact form of the site.

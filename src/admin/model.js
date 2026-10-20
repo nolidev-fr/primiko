@@ -177,7 +177,12 @@ export function reach( template, custom ) {
 							'hidden',
 						] )
 				)
-				.map( ( option ) => option.value );
+				.map( ( option ) => option.value )
+				.concat(
+					( getIn( custom, [ 'fields', field.id, 'extra' ] ) || [] )
+						.filter( ( item ) => item.label )
+						.map( ( item ) => item.value )
+				);
 			const noOptions = !! field.options && ! options.length;
 			let reason = '';
 

@@ -178,6 +178,10 @@ final class Privacy {
 				__( 'To protect the form against spam, the page that shows it uses %s, which receives technical data about the browser and the connection of the visitor.', 'primiko' ),
 				Captcha::provider_name()
 			);
+
+			if ( 'recaptcha' === Captcha::provider() ) {
+				$paragraphs[] = __( 'Google reCAPTCHA loads as soon as the page opens, before the visitor fills anything in, and sets its own cookies. The privacy policy and terms of service of Google apply to it.', 'primiko' );
+			}
 		}
 
 		$paragraphs[] = __( 'Visitors can ask at any time for a copy of their requests or for their deletion.', 'primiko' );

@@ -146,7 +146,7 @@ final class Submission {
 		 * @param int $limit Requests per hour.
 		 */
 		if ( Limiter::reached( $rate_key, (int) apply_filters( 'primiko_hourly_limit', 5 ) ) ) {
-			return new \WP_Error( 'primiko_limit', __( 'Too many requests were sent from your connection. Please try again later or contact us by phone.', 'primiko' ), array( 'status' => 429 ) );
+			return new \WP_Error( 'primiko_limit', __( 'Too many requests were sent from your connection.', 'primiko' ) . ' ' . $this->message( $schema, 'fallback' ), array( 'status' => 429 ) );
 		}
 
 		// Counted before any work, so that parallel requests cannot all pass.
@@ -525,7 +525,7 @@ final class Submission {
 		);
 
 		if ( is_wp_error( $request_id ) ) {
-			return new \WP_Error( 'primiko_save', __( 'Your request could not be saved. Please try again or contact us by phone.', 'primiko' ), array( 'status' => 500 ) );
+			return new \WP_Error( 'primiko_save', __( 'Your request could not be saved.', 'primiko' ) . ' ' . $this->message( $schema, 'fallback' ), array( 'status' => 500 ) );
 		}
 
 		$photos = array();

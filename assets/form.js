@@ -1452,7 +1452,10 @@
 
 			this.captchaWidget = window.turnstile.render( container, {
 				sitekey: captcha.siteKey,
-				language: document.documentElement.lang || 'auto',
+				// Turnstile wants lower case codes, such as fr-fr.
+				language: (
+					document.documentElement.lang || 'auto'
+				).toLowerCase(),
 				callback( token ) {
 					self.turnstileToken = token;
 				},

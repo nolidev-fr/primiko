@@ -673,6 +673,14 @@ function Question( { field, template, custom, state, update } ) {
 				</fieldset>
 			) }
 
+			{ ! hidden && field.options && ! field.added && (
+				<ExtraAnswers
+					path={ [ ...base, 'extra' ] }
+					custom={ custom }
+					update={ update }
+				/>
+			) }
+
 			{ ! hidden && editing && (
 				<div className="primiko-editor__texts">
 					<TextControl
@@ -716,6 +724,74 @@ function Question( { field, template, custom, state, update } ) {
 	);
 }
 
+/**
+ * Answers the business adds to a question of the template. Each one keeps
+ * a fixed value (custom_ and six characters), so saved requests stay
+ * readable when its text changes.
+ *
+ * @param {Object}   props        Props.
+ * @param {string[]} props.path   Path of the list in the customizations.
+ * @param {Object}   props.custom Customizations.
+ * @param {Function} props.update Updates the customizations.
+ */
+function ExtraAnswers( { path, custom, update } ) {
+	const extra = getIn( custom, path ) || [];
+
+	const change = ( value, label ) =>
+		update(
+			path,
+			extra.map( ( item ) =>
+				item.value === value ? { ...item, label } : item
+			)
+		);
+
+	const add = () =>
+		update( path, [
+			...extra,
+			{
+				value:
+					'custom_' +
+					Math.random().toString( 36 ).slice( 2, 8 ).padEnd( 6, '0' ),
+				label: '',
+			},
+		] );
+
+	return (
+		<div className="primiko-editor__extra">
+			{ extra.map( ( item ) => (
+				<div key={ item.value } className="primiko-editor__extra-row">
+					<TextControl
+						{ ...common }
+						__next40pxDefaultSize
+						label={ __( 'Added answer', 'primiko' ) }
+						value={ item.label }
+						onChange={ ( value ) => change( item.value, value ) }
+					/>
+					<Button
+						variant="link"
+						isDestructive
+						onClick={ () =>
+							update(
+								path,
+								extra.filter(
+									( other ) => other.value !== item.value
+								)
+							)
+						}
+					>
+						{ __( 'Remove', 'primiko' ) }
+					</Button>
+				</div>
+			) ) }
+			{ extra.length < 20 && (
+				<Button variant="secondary" size="compact" onClick={ add }>
+					{ __( 'Add an answer', 'primiko' ) }
+				</Button>
+			) }
+		</div>
+	);
+}
+
 function Messages( { template, custom, update } ) {
 	const fields = [
 		[
@@ -735,6 +811,14 @@ function Messages( { template, custom, update } ) {
 			'privacy_notice',
 			__(
 				'Privacy notice under the consent box (what the answers are used for, how long they are kept)',
+				'primiko'
+			),
+			TextareaControl,
+		],
+		[
+			'fallback',
+			__(
+				'Shown when the request cannot be sent (too many requests from one connection, server error): a good place for your phone number',
 				'primiko'
 			),
 			TextareaControl,
